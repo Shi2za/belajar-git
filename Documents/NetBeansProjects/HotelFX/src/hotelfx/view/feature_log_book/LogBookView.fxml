@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" fx:id="ancFormLogBook" maxHeight="580.0" maxWidth="1200.0" minHeight="580.0" minWidth="1200.0" prefHeight="580.0" prefWidth="1200.0" styleClass="anchor-pane" stylesheets="@log_book.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hotelfx.view.feature_log_book.LogBookController">
+   <children>
+      <GridPane fx:id="gpFormDataLogBook" hgap="15.0" layoutX="15.0" layoutY="16.0" vgap="20.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="5.0" minWidth="5.0" prefWidth="5.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.0" minWidth="235.0" prefWidth="235.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
+            <ColumnConstraints hgrow="SOMETIMES" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="235.0" minWidth="235.0" prefWidth="235.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="5.0" minWidth="5.0" prefWidth="5.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="5.0" minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="15.0" minHeight="15.0" prefHeight="15.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="5.0" minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <AnchorPane fx:id="ancDataLogBookLayout" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.rowIndex="4">
+               <children>
+                  <ScrollPane fx:id="spDataLogBookLayout" fitToWidth="true" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <content>
+                        <VBox fx:id="vbDetailDataLogBookLayout" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="15.0" />
+                     </content>
+                  </ScrollPane>
+               </children></AnchorPane>
+            <Separator prefWidth="200.0" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+            <Label alignment="CENTER" maxHeight="20.0" maxWidth="200.0" minHeight="20.0" minWidth="200.0" prefHeight="20.0" prefWidth="200.0" styleClass="lable-title-logbook" text="(Log Book)" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+            <Label fx:id="lblHotelName" alignment="CENTER" maxHeight="30.0" maxWidth="200.0" minHeight="30.0" minWidth="200.0" prefHeight="30.0" prefWidth="200.0" styleClass="lable-title-hotel-name" text="LENORA HOTEL" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+            <HBox fx:id="hbFunctionalButtonLayout" prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

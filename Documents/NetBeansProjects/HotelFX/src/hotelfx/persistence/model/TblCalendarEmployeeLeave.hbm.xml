@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 23, 2017 4:51:39 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblCalendarEmployeeLeave" table="tblCalendar_EmployeeLeave" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idrelation" type="long">
+            <column name="IDRelation" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refEmployeeLeaveType" class="hotelfx.persistence.model.RefEmployeeLeaveType" fetch="select">
+            <column name="_LeaveType" />
+        </many-to-one>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="sysCalendar" class="hotelfx.persistence.model.SysCalendar" fetch="select">
+            <column name="IDCalendar" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByIdemployee" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="IDEmployee" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <property name="note" type="string">
+            <column name="Note" />
+        </property>
+        <property name="cutLeaveStatus" type="java.lang.Boolean">
+            <column name="CutLeaveStatus" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+    </class>
+    <query name="findAllTblCalendarEmployeeLeave">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblCalendarEmployeeLeave t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+     <query name="findAllTblCalendarEmployeeLeaveBySysCalendarAndTypeLeave">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblCalendarEmployeeLeave t where t.sysCalendar.calendarDate=:date and t.refEmployeeLeaveType.idtype=0 and(t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+    <query name="findAllTblCalendarEmployeeLeaveBySysCalendarAndIdEmployee">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblCalendarEmployeeLeave t where t.sysCalendar.calendarDate=:date and t.tblEmployeeByIdemployee.idemployee=:idEmployee and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+    <query name="findAllTblCalendarEmployeeLeaveByStartDateEndDateAndIdEmployee">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblCalendarEmployeeLeave t where t.sysCalendar.calendarDate between :startDate and :endDate and t.tblEmployeeByIdemployee.idemployee=:idEmployee and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+    <query name="findAllTblCalendarEmployeeLeaveByStartDateEndDateAndTypeLeave">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblCalendarEmployeeLeave t where t.sysCalendar.calendarDate between :startDate and :endDate and t.refEmployeeLeaveType.idtype=0 and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+    <query name="findAllTblCalendarEmployeeLeaveByDateAndIdEmployee">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblCalendarEmployeeLeave t where t.sysCalendar.idcalendar=:idCalendar and t.tblEmployeeByIdemployee.idemployee=:idEmployee and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 21, 2017 1:49:37 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblSystemFeature" table="tblSystemFeature" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idfeature" type="long">
+            <column name="IDFeature" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblSystemFeature" class="hotelfx.persistence.model.TblSystemFeature" fetch="select">
+            <column name="IDFeatureParent" />
+        </many-to-one>
+        <property name="codeFeature" type="string">
+            <column name="CodeFeature" length="50" />
+        </property>
+        <property name="featureName" type="string">
+            <column name="FeatureName" length="100" />
+        </property>
+        <property name="imageIconPath" type="string">
+            <column name="ImageIconPath" length="100" />
+        </property>
+        <property name="fxmlpath" type="string">
+            <column name="FXMLPath" length="100" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblSystemRoleSystemFeatures" table="tblSystemRole_SystemFeature" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDFeature" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblSystemRoleSystemFeature" />
+        </set>
+        <set name="tblSystemFeatures" table="tblSystemFeature" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDFeatureParent" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblSystemFeature" />
+        </set>
+    </class>
+    <query name="findAllTblSystemFeature">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblSystemFeature t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

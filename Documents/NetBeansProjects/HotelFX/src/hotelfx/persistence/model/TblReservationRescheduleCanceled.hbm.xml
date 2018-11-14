@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 31, 2018 8:44:19 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblReservationRescheduleCanceled" table="tblReservationRescheduleCanceled" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idrescheduleCanceled" type="long">
+            <column name="IDRescheduleCanceled" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblBankEventCard" class="hotelfx.persistence.model.TblBankEventCard" fetch="select">
+            <column name="IDCardEvent" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblHotelEvent" class="hotelfx.persistence.model.TblHotelEvent" fetch="select">
+            <column name="IDHotelEvent" />
+        </many-to-one>
+        <many-to-one name="tblItem" class="hotelfx.persistence.model.TblItem" fetch="select">
+            <column name="IDItem" />
+        </many-to-one>
+        <many-to-one name="tblReservation" class="hotelfx.persistence.model.TblReservation" fetch="select">
+            <column name="IDReservation" />
+        </many-to-one>
+        <many-to-one name="tblReservationRoomTypeDetail" class="hotelfx.persistence.model.TblReservationRoomTypeDetail" fetch="select">
+            <column name="IDRRTD" />
+        </many-to-one>
+        <many-to-one name="tblRoomService" class="hotelfx.persistence.model.TblRoomService" fetch="select">
+            <column name="IDRoomService" />
+        </many-to-one>
+        <property name="reservedForDate" type="date">
+            <column name="ReservedForDate" />
+        </property>
+        <property name="reservedDate" type="timestamp">
+            <column name="ReservedDate" length="23" />
+        </property>
+        <property name="price" type="big_decimal">
+            <column name="Price" precision="18" scale="4" />
+        </property>
+        <property name="quantity" type="big_decimal">
+            <column name="Quantity" precision="10" scale="4" />
+        </property>
+        <property name="discountPercentage" type="big_decimal">
+            <column name="DiscountPercentage" precision="10" scale="4" />
+        </property>
+        <property name="complimentary" type="big_decimal">
+            <column name="Complimentary" precision="18" scale="4" />
+        </property>
+        <property name="note" type="string">
+            <column name="Note" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+    </class>
+    <query name="findAllTblReservationRescheduleCanceled">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationRescheduleCanceled t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblReservationRescheduleCanceledByIDReservation">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationRescheduleCanceled t where t.tblReservation.idreservation=:idReservation and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

@@ -1,0 +1,15 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+@import "../root.css";
+
+.title-column-header{
+    -fx-background-color: #558b2f;
+    -fx-border-insets: 0 0 1 0;
+    -fx-border-width: 0 0 0 0;
+    /*-fx-border-color: #33691e;*/
+    -fx-border-color: white;
+    
+    -fx-text-fill: white;
+}

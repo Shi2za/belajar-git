@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 15, 2018 12:47:57 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblReservationBill" table="tblReservationBill" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idbill" type="long">
+            <column name="IDBill" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="refReservationBillDiscountType" class="hotelfx.persistence.model.RefReservationBillDiscountType" fetch="select">
+            <column name="_ReservationBillDiscountType" />
+        </many-to-one>
+        <many-to-one name="refReservationBillStatus" class="hotelfx.persistence.model.RefReservationBillStatus" fetch="select">
+            <column name="_BillStatus" />
+        </many-to-one>
+        <many-to-one name="refReservationBillType" class="hotelfx.persistence.model.RefReservationBillType" fetch="select">
+            <column name="_ReservationBillType" />
+        </many-to-one>
+        <many-to-one name="tblBankCard" class="hotelfx.persistence.model.TblBankCard" fetch="select">
+            <column name="IDBankCard" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblReservation" class="hotelfx.persistence.model.TblReservation" fetch="select">
+            <column name="IDReservation" not-null="true" />
+        </many-to-one>
+        <property name="codeBill" type="string">
+            <column name="CodeBill" length="50" />
+        </property>
+        <property name="serviceChargePercentage" type="big_decimal">
+            <column name="ServiceChargePercentage" precision="10" scale="4" />
+        </property>
+        <property name="taxPercentage" type="big_decimal">
+            <column name="TaxPercentage" precision="10" scale="4" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblReservationPayments" table="tblReservationPayment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDBill" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationPayment" />
+        </set>
+    </class>
+    <query name="findAllTblReservationBillByIDReservationAndIDReservationBillType">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationBill t where t.tblReservation.idreservation=:idReservation and t.refReservationBillType.idtype=:idType and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblReservationBillByIDReservation">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationBill t where t.tblReservation.idreservation=:idReservation and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblReservationBill">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationBill t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

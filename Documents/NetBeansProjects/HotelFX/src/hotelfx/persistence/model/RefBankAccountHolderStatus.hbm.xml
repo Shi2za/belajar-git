@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 24, 2018 12:59:31 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.RefBankAccountHolderStatus" table="refBankAccountHolderStatus" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idstatus" type="int">
+            <column name="IDStatus" />
+            <generator class="assigned" />
+        </id>
+        <property name="statusName" type="string">
+            <column name="StatusName" length="100" />
+        </property>
+        <property name="statusNote" type="string">
+            <column name="StatusNote" />
+        </property>
+        <set name="tblEmployeeBankAccounts" table="tblEmployee_BankAccount" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_EmployeeBankAccountStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblEmployeeBankAccount" />
+        </set>
+        <set name="tblRestoBankAccounts" table="tblResto_BankAccount" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RestoBankAccountStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRestoBankAccount" />
+        </set>
+        <set name="tblSupplierBankAccounts" table="tblSupplier_BankAccount" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_SupplierBankAccountStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblSupplierBankAccount" />
+        </set>
+        <set name="tblPartnerBankAccounts" table="tblPartner_BankAccount" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_PartnerBankAccountStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPartnerBankAccount" />
+        </set>
+        <set name="tblCustomerBankAccounts" table="tblCustomer_BankAccount" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_CustomerBankAccountStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblCustomerBankAccount" />
+        </set>
+    </class>
+    <query name="findAllRefBankAccountHolderStatus">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from RefBankAccountHolderStatus]]>
+    </query>
+</hibernate-mapping>

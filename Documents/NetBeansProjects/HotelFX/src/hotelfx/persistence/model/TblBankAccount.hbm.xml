@@ -1,0 +1,185 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 24, 2018 12:59:31 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblBankAccount" table="tblBankAccount" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idbankAccount" type="long">
+            <column name="IDBankAccount" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refBankAccountStatus" class="hotelfx.persistence.model.RefBankAccountStatus" fetch="select">
+            <column name="_BankAccountStatus" />
+        </many-to-one>
+        <many-to-one name="refBankAccountType" class="hotelfx.persistence.model.RefBankAccountType" fetch="select">
+            <column name="_BankAccountType" />
+        </many-to-one>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblBank" class="hotelfx.persistence.model.TblBank" fetch="select">
+            <column name="IDBank" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <property name="codeBankAccount" type="string">
+            <column name="CodeBankAccount" length="50" />
+        </property>
+        <property name="bankAccountHolderName" type="string">
+            <column name="BankAccountHolderName" length="100" />
+        </property>
+        <property name="bankAccountNote" type="string">
+            <column name="BankAccountNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblHotelExpenseTransactionsForIdbankAccountReceiver" table="tblHotelExpenseTransaction" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDBankAccountReceiver" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblHotelExpenseTransaction" />
+        </set>
+        <set name="tblReservationPaymentWithCekGirosForReceiverBankAccount" table="tblReservationPaymentWithCekGiro" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ReceiverBankAccount" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationPaymentWithCekGiro" />
+        </set>
+        <set name="tblReservationPaymentWithBankCards" table="tblReservationPaymentWithBankCard" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="BalanceBankAccount" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationPaymentWithBankCard" />
+        </set>
+        <set name="tblSupplierBankAccounts" table="tblSupplier_BankAccount" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDBankAccount" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblSupplierBankAccount" />
+        </set>
+        <set name="tblHotelFinanceTransactionWithTransfersForReceiverBankAccount" table="tblHotelFinanceTransactionWithTransfer" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ReceiverBankAccount" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblHotelFinanceTransactionWithTransfer" />
+        </set>
+        <set name="tblEmployeeBankAccounts" table="tblEmployee_BankAccount" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDBankAccount" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblEmployeeBankAccount" />
+        </set>
+        <set name="tblReservationPaymentWithGuaranteePaymentsForSenderBankAccount" table="tblReservationPaymentWithGuaranteePayment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="SenderBankAccount" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationPaymentWithGuaranteePayment" />
+        </set>
+        <set name="tblBankEdcs" table="tblBankEDC" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDBankAccount" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblBankEdc" />
+        </set>
+        <set name="tblReservationPaymentWithTransfersForSenderBankAccount" table="tblReservationPaymentWithTransfer" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="SenderBankAccount" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationPaymentWithTransfer" />
+        </set>
+        <set name="tblHotelFinanceTransactionWithCekGirosForSenderBankAccount" table="tblHotelFinanceTransactionWithCekGiro" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="SenderBankAccount" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblHotelFinanceTransactionWithCekGiro" />
+        </set>
+        <set name="tblCompanyBalanceBankAccounts" table="tblCompanyBalance_BankAccount" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDBankAccount" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblCompanyBalanceBankAccount" />
+        </set>
+        <set name="logCompanyBalanceCashFlowsForIdreceiverCbbankAccount" table="logCompanyBalanceCashFlow" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDReceiverCBBankAccount" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.LogCompanyBalanceCashFlow" />
+        </set>
+        <set name="tblHotelExpenseTransactionsForIdbankAccount" table="tblHotelExpenseTransaction" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDBankAccount" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblHotelExpenseTransaction" />
+        </set>
+        <set name="tblPartnerBankAccounts" table="tblPartner_BankAccount" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDBankAccount" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPartnerBankAccount" />
+        </set>
+        <set name="tblReservationPaymentWithCekGirosForSenderBankAccount" table="tblReservationPaymentWithCekGiro" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="SenderBankAccount" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationPaymentWithCekGiro" />
+        </set>
+        <set name="tblRestoBankAccounts" table="tblResto_BankAccount" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDBankAccount" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRestoBankAccount" />
+        </set>
+        <set name="tblReservationPaymentWithTransfersForReceiverBankAccount" table="tblReservationPaymentWithTransfer" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ReceiverBankAccount" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationPaymentWithTransfer" />
+        </set>
+        <set name="tblHotelFinanceTransactionWithCekGirosForReceiverBankAccount" table="tblHotelFinanceTransactionWithCekGiro" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ReceiverBankAccount" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblHotelFinanceTransactionWithCekGiro" />
+        </set>
+        <set name="tblHotelFinanceTransactionWithTransfersForSenderBankAccount" table="tblHotelFinanceTransactionWithTransfer" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="SenderBankAccount" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblHotelFinanceTransactionWithTransfer" />
+        </set>
+        <set name="tblReservationPaymentWithGuaranteePaymentsForReceiverBankAccount" table="tblReservationPaymentWithGuaranteePayment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ReceiverBankAccount" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationPaymentWithGuaranteePayment" />
+        </set>
+        <set name="logCompanyBalanceCashFlowsForIdsenderCbbankAccount" table="logCompanyBalanceCashFlow" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDSenderCBBankAccount" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.LogCompanyBalanceCashFlow" />
+        </set>
+        <set name="tblCustomerBankAccounts" table="tblCustomer_BankAccount" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDBankAccount" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblCustomerBankAccount" />
+        </set>
+    </class>
+    <query name="findAllTblBankAccount">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblBankAccount t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblBankAccountByIDBank">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblBankAccount t where t.tblBank.idbank=:idBank and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

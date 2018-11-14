@@ -1,0 +1,4 @@
+Application Name : LENORA-HOTEL
+Application Logo Name : hotel-icon.png
+Login Header Name : LENORA
+

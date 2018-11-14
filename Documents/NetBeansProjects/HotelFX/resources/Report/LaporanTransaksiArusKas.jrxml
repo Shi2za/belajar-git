@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LaporanTransaksiArusKas" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2627d900-6baf-4161-9f3f-fbd0ff2751bf">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="NAMA_HOTEL" class="java.lang.String"/>
+	<parameter name="ALAMAT_HOTEL" class="java.lang.String"/>
+	<parameter name="TELEPON_HOTEL" class="java.lang.String"/>
+	<parameter name="LOGO_IMAGE" class="java.lang.String"/>
+	<parameter name="ListLaporanTransaksiArusKas" class="net.sf.jasperreports.engine.data.JRBeanCollectionDataSource"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["E:\\Data 20180825\\HotelFX\\resources\\Report\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="printedBy" class="java.lang.String"/>
+	<field name="periode" class="java.lang.String"/>
+	<field name="listLaporanTransaksiArusKasDetail" class="java.util.Collection"/>
+	<field name="tipeKas" class="java.lang.String"/>
+	<group name="LaporanTransaksiArusKasDetail">
+		<groupHeader>
+			<band height="30">
+				<subreport>
+					<reportElement x="-20" y="0" width="820" height="30" uuid="5263e9e1-ddb7-46ac-9d66-d58a56c3a3c1"/>
+					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listLaporanTransaksiArusKasDetail})]]></dataSourceExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "LaporanTransaksiArusKasDetail.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="75" splitType="Stretch">
+			<textField>
+				<reportElement x="60" y="20" width="320" height="15" uuid="09cd87ad-7cf8-41f9-b334-5ffd1759eaab"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ALAMAT_HOTEL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="35" width="320" height="15" uuid="2cf67903-962d-4d88-837b-b3f7e8972669">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TELEPON_HOTEL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="0" width="320" height="20" uuid="a7355563-d3c8-42ff-a3c3-53e41768b500"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{NAMA_HOTEL}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="0" y="0" width="60" height="50" uuid="64c58438-b32f-4228-9e46-08b091a699eb"/>
+				<imageExpression><![CDATA[$P{LOGO_IMAGE}]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="590" y="0" width="210" height="20" uuid="47a6a3ad-e0b5-46b6-95e4-bb37b46cebb2"/>
+				<box rightPadding="5"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Laporan Transaksi Arus Kas]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="60" width="40" height="15" uuid="657413e0-2714-49e8-bf04-b8bcf2a5a1c1">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Periode :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="40" y="60" width="340" height="15" uuid="1243cea7-2106-4628-ac50-d9b727a2f16c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{periode}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="552" y="60" width="24" height="15" uuid="533d7184-e203-4b16-9339-666ef06f8370"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Tipe :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="576" y="60" width="224" height="15" uuid="1c2fa076-d6ad-4834-aa37-afdee3cb48d2"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipeKas}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageFooter>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="60" height="15" uuid="f460f5ba-a6d7-4db2-bd6d-19b65fbb02fc"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[DICETAK OLEH]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="15" width="60" height="15" uuid="b24c3f0c-576c-4af2-b10c-8aa569206dae">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<text><![CDATA[TANGGAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="0" width="10" height="15" uuid="5304e835-a804-4504-ba77-78145fd2ecd6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="60" y="15" width="10" height="15" uuid="9d6b0dab-9644-4041-be4d-4e982f3c4b71"/>
+				<textElement textAlignment="Center">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="70" y="0" width="100" height="15" uuid="70b1cea3-6613-4db9-989a-d80960f02448"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{printedBy}]]></textFieldExpression>
+			</textField>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="70" y="15" width="100" height="15" uuid="5b0ae025-0791-4925-adfb-f652ac2ed930"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd MMM yyyy HH:mm",new java.util.Locale("id")).format(new java.util.Date())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="600" y="0" width="100" height="30" uuid="2f3ecf8a-c163-43b9-b8e3-2c93f9ae75cc"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Halaman " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="700" y="0" width="100" height="30" uuid="e0dfbda3-65d8-47a6-8036-ca610bbb2455"/>
+				<textElement textAlignment="Left">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" / " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

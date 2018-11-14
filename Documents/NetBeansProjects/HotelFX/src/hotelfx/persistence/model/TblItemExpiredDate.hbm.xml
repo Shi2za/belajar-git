@@ -1,0 +1,93 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 10, 2018 10:51:26 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblItemExpiredDate" table="tblItemExpiredDate" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="iditemExpiredDate" type="long">
+            <column name="IDItemExpiredDate" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUdapteBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUdapteBy" />
+        </many-to-one>
+        <many-to-one name="tblItem" class="hotelfx.persistence.model.TblItem" fetch="select">
+            <column name="IDItem" />
+        </many-to-one>
+        <property name="codeItemExpiredDate" type="string">
+            <column name="CodeItemExpiredDate" length="50" />
+        </property>
+        <property name="itemExpiredDate" type="timestamp">
+            <column name="ItemExpiredDate" length="23" />
+        </property>
+        <property name="note" type="string">
+            <column name="Note" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblStockOpnameItemExpiredDateDetails" table="tblStockOpnameItemExpiredDateDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDItemExpiredDate" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblStockOpnameItemExpiredDateDetail" />
+        </set>
+        <set name="tblItemMutationHistoryItemExpiredDates" table="tblItemMutationHistory_ItemExpiredDate" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDItemExpiredDate" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblItemMutationHistoryItemExpiredDate" />
+        </set>
+        <set name="tblStockOpnameDetailItemExpiredDates" table="tblStockOpnameDetail_ItemExpiredDate" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDItemExpiredDate" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblStockOpnameDetailItemExpiredDate" />
+        </set>
+        <set name="tblItemLocationItemExpiredDates" table="tblItem_Location_ItemExpiredDate" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDItemExpiredDate" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblItemLocationItemExpiredDate" />
+        </set>
+        <set name="tblReturDetailItemExpiredDates" table="tblReturDetail_ItemExpiredDate" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDItemExpiredDate" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReturDetailItemExpiredDate" />
+        </set>
+        <set name="tblStockOpnameDetails" table="tblStockOpnameDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDItemExpiredDate" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblStockOpnameDetail" />
+        </set>
+        <set name="tblMemorandumInvoiceDetailItemExpiredDates" table="tblMemorandumInvoiceDetail_ItemExpiredDate" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDItemExpiredDate" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblMemorandumInvoiceDetailItemExpiredDate" />
+        </set>
+    </class>
+    <query name="findAllTblItemExpiredDateByIDItem">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblItemExpiredDate t where t.tblItem.iditem=:idItem and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblItemExpiredDateByIDItemAndItemExpiredDate">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblItemExpiredDate t where t.tblItem.iditem=:idItem and t.itemExpiredDate=:itemExpiredDate and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblItemExpiredDate">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblItemExpiredDate t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

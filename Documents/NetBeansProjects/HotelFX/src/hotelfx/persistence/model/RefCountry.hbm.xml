@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 5, 2018 11:24:37 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.RefCountry" table="refCountry" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idcountry" type="int">
+            <column name="IDCountry" />
+            <generator class="assigned" />
+        </id>
+        <property name="countryName" type="string">
+            <column name="CountryName" length="100" />
+        </property>
+        <property name="countryNote" type="string">
+            <column name="CountryNote" />
+        </property>
+        <set name="tblPeoples" table="tblPeople" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_Country" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPeople" />
+        </set>
+    </class>
+    <query name="findAllRefCountry">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from RefCountry]]>
+    </query>
+</hibernate-mapping>

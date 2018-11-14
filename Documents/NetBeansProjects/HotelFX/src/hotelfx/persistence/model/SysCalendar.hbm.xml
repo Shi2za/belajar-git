@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 26, 2018 12:37:50 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.SysCalendar" table="sysCalendar" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idcalendar" type="long">
+            <column name="IDCalendar" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <property name="calendarDate" type="date">
+            <column name="CalendarDate" />
+        </property>
+        <property name="dayOffStatus" type="java.lang.Boolean">
+            <column name="DayOffStatus" />
+        </property>
+        <property name="calendarNote" type="string">
+            <column name="CalendarNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblCalendarEmployeeOvertimes" table="tblCalendar_EmployeeOvertime" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDCalendar" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblCalendarEmployeeOvertime" />
+        </set>
+        <set name="tblCalendarEmployeePaymentDebtHistories" table="tblCalendar_EmployeePaymentDebtHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDCalendar" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblCalendarEmployeePaymentDebtHistory" />
+        </set>
+        <set name="tblCalendarEmployeeLeaves" table="tblCalendar_EmployeeLeave" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDCalendar" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblCalendarEmployeeLeave" />
+        </set>
+        <set name="tblCalendarEmployeeAttendances" table="tblCalendar_EmployeeAttendance" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDCalendar" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblCalendarEmployeeAttendance" />
+        </set>
+        <set name="tblCalendarEmployeeSchedules" table="tblCalendar_EmployeeSchedule" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDCalendar" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblCalendarEmployeeSchedule" />
+        </set>
+    </class>
+    <!--    <query name="findAllSysCalendar">
+        <![CDATA[CALL GetStocks(:stockCode)]]>
+        <![CDATA[from SysCalendar t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>-->
+    
+    <query name="findAllSysCalendar">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from SysCalendar t where t.calendarDate between :startDate and :endDate and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+    <query name="findAllSysCalendarByDate">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from SysCalendar t where t.calendarDate=:date and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+    <sql-query name="createCalendar" callable="true">
+        <return-scalar column="err_msg" type="string"/>
+        <![CDATA[{CALL InsertCalendar(:dateStart,:dateEnd,:note,:idEmployee)}]]>
+    </sql-query>
+</hibernate-mapping>

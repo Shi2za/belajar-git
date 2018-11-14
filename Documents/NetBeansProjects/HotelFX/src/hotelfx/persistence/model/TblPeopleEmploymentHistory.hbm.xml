@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 21, 2017 1:49:37 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblPeopleEmploymentHistory" table="tblPeopleEmploymentHistory" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idhistory" type="long">
+            <column name="IDHistory" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblPeople" class="hotelfx.persistence.model.TblPeople" fetch="select">
+            <column name="IDPeople" />
+        </many-to-one>
+        <property name="job" type="string">
+            <column name="Job" length="100" />
+        </property>
+        <property name="jobDes" type="string">
+            <column name="JobDes" />
+        </property>
+        <property name="workPlace" type="string">
+            <column name="WorkPlace" length="100" />
+        </property>
+        <property name="companyName" type="string">
+            <column name="CompanyName" length="100" />
+        </property>
+        <property name="salary" type="java.lang.Long">
+            <column name="Salary" precision="18" scale="0" />
+        </property>
+        <property name="seniorContactNumber" type="string">
+            <column name="SeniorContactNumber" length="20" />
+        </property>
+        <property name="joinDate" type="date">
+            <column name="JoinDate" />
+        </property>
+        <property name="dropDate" type="date">
+            <column name="DropDate" />
+        </property>
+        <property name="dropReasons" type="string">
+            <column name="DropReasons" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lasUpdateDate" type="timestamp">
+            <column name="LasUpdateDate" length="23" />
+        </property>
+    </class>
+    <query name="findAllTblPeopleEmploymentHistory">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblPeopleEmploymentHistory t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

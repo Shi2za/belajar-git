@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 3, 2018 12:53:54 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblReturDetail" table="tblReturDetail" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="iddetailRetur" type="long">
+            <column name="IDDetailRetur" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblLocation" class="hotelfx.persistence.model.TblLocation" fetch="select">
+            <column name="IDLocation" />
+        </many-to-one>
+        <many-to-one name="tblMemorandumInvoice" class="hotelfx.persistence.model.TblMemorandumInvoice" fetch="select">
+            <column name="IDMI" />
+        </many-to-one>
+        <many-to-one name="tblRetur" class="hotelfx.persistence.model.TblRetur" fetch="select">
+            <column name="IDRetur" />
+        </many-to-one>
+        <many-to-one name="tblSupplierItem" class="hotelfx.persistence.model.TblSupplierItem" fetch="select">
+            <column name="IDSupplierItem" />
+        </many-to-one>
+        <property name="itemCost" type="big_decimal">
+            <column name="ItemCost" precision="18" scale="4" />
+        </property>
+        <property name="itemQuantity" type="big_decimal">
+            <column name="ItemQuantity" precision="10" scale="4" />
+        </property>
+        <property name="itemDiscount" type="big_decimal">
+            <column name="ItemDiscount" precision="18" scale="4" />
+        </property>
+        <property name="itemTaxPercentage" type="big_decimal">
+            <column name="ItemTaxPercentage" precision="10" scale="4" />
+        </property>
+        <property name="itemNote" type="string">
+            <column name="ItemNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblReturDetailItemExpiredDates" table="tblReturDetail_ItemExpiredDate" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDReturDetail" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReturDetailItemExpiredDate" />
+        </set>
+        <set name="tblReturDetailPropertyBarcodes" table="tblReturDetail_PropertyBarcode" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDReturDetail" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReturDetailPropertyBarcode" />
+        </set>
+    </class>
+    <sql-query name="deleteAllTblReturDetailByIDRetur" callable="true">
+        <return-scalar column="err_msg" type="string"/>
+        <![CDATA[{CALL DeleteAllReturDetailByIDRetur(:idRetur, :idEmployee)}]]>
+    </sql-query>
+    <query name="findAllTblReturDetailByIDRetur">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReturDetail t where t.tblRetur.idretur=:idRetur and t.tblMemorandumInvoice.refMemorandumInvoiceStatus.idstatus!=3 and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblReturDetailByIDMemorandumInvoice">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReturDetail t where t.tblMemorandumInvoice.idmi=:idMemorandumInvoice and t.tblMemorandumInvoice.refMemorandumInvoiceStatus.idstatus!=3 and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblReturDetailByIDMemorandumInvoiceAndIDItem">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReturDetail t where t.tblMemorandumInvoice.idmi=:idMemorandumInvoice and t.tblSupplierItem.tblItem.iditem=:idItem and t.tblMemorandumInvoice.refMemorandumInvoiceStatus.idstatus!=3 and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblReturDetailByIDMemorandumInvoiceAndIDSupplierItem">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReturDetail t where t.tblMemorandumInvoice.idmi=:idMemorandumInvoice and t.tblSupplierItem.idrelation=:idSupplierItem and t.tblMemorandumInvoice.refMemorandumInvoiceStatus.idstatus!=3 and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblReturDetail">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReturDetail t where t.tblMemorandumInvoice.refMemorandumInvoiceStatus.idstatus!=3 and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

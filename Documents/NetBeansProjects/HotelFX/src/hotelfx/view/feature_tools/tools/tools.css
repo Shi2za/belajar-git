@@ -1,0 +1,40 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Feb 12, 2018, 4:32:55 PM
+    Author     : Andreas
+*/
+
+@import "../feature_tools.css";
+
+.table-view .table-row-cell:tools{
+  -fx-border-color: #ec407a;
+  -fx-border-width: 0 0 1 0  ;
+}
+
+.table-view .table-row-cell:tools,
+.table-view .table-row-cell:tools .table-cell{
+  -fx-text-fill : black;
+  -fx-background-color : #ffcdd2; 
+}
+
+.table-view .table-row-cell:tools:selected,
+.table-view .table-row-cell:tools:selected .table-cell{
+    -fx-background-color: derive(gold,67%);
+    -fx-text-fill: black;
+}
+
+.table-view .table-row-cell:refresh:even,
+.table-view .table-row-cell:refresh:even .table-cell{
+   -fx-background-color: #dcedc8;
+   -fx-text-fill:black;
+}
+
+.table-view .table-row-cell:refresh:odd,
+.table-view .table-row-cell:refresh:odd .table-cell{
+   -fx-background-color: #f1f8e9;
+   -fx-text-fill:black;
+}

@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 29, 2018 4:55:39 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblHotelEvent" table="tblHotelEvent" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idevent" type="long">
+            <column name="IDEvent" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <property name="codeEvent" type="string">
+            <column name="CodeEvent" length="50" />
+        </property>
+        <property name="eventName" type="string">
+            <column name="EventName" length="100" />
+        </property>
+        <property name="dayOfWeek" type="java.lang.Integer">
+            <column name="DayOfWeek" />
+        </property>
+        <property name="beginEventDate" type="timestamp">
+            <column name="BeginEventDate" length="23" />
+        </property>
+        <property name="endEventDate" type="timestamp">
+            <column name="EndEventDate" length="23" />
+        </property>
+        <property name="eventNote" type="string">
+            <column name="EventNote" />
+        </property>
+        <property name="minTransaction" type="big_decimal">
+            <column name="MinTransaction" precision="18" scale="4" />
+        </property>
+        <property name="maxTransaction" type="big_decimal">
+            <column name="MaxTransaction" precision="18" scale="4" />
+        </property>
+        <property name="discountPercentage" type="big_decimal">
+            <column name="DiscountPercentage" precision="10" scale="4" />
+        </property>
+        <property name="roomDiscountPercentage" type="big_decimal">
+            <column name="RoomDiscountPercentage" precision="10" scale="4" />
+        </property>
+        <property name="itemDiscountPercentage" type="big_decimal">
+            <column name="ItemDiscountPercentage" precision="10" scale="4" />
+        </property>
+        <property name="serviceDiscountPercentage" type="big_decimal">
+            <column name="ServiceDiscountPercentage" precision="10" scale="4" />
+        </property>
+        <property name="discountNominal" type="big_decimal">
+            <column name="DiscountNominal" precision="18" scale="4" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblReservationRescheduleCanceleds" table="tblReservationRescheduleCanceled" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDHotelEvent" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationRescheduleCanceled" />
+        </set>
+        <set name="tblReservationAdditionalServices" table="tblReservationAdditionalService" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDHotelEvent" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationAdditionalService" />
+        </set>
+        <set name="tblReservationRoomPriceDetails" table="tblReservationRoomPriceDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDHotelEvent" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationRoomPriceDetail" />
+        </set>
+        <set name="tblReservationAdditionalItems" table="tblReservationAdditionalItem" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDHotelEvent" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationAdditionalItem" />
+        </set>
+    </class>
+    <query name="findAllTblHotelEventByDateInRangeOrderByMaxRoomDiscountPercentage">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblHotelEvent  t where (t.beginEventDate <= :detailDate and t.endEventDate >= :detailDate) and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3) order by t.roomDiscountPercentage desc]]>
+    </query>
+    <query name="findAllTblHotelEventByDateInRangeOrderByMaxItemDiscountPercentage">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblHotelEvent  t where (t.beginEventDate <= :detailDate and t.endEventDate >= :detailDate) and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3) order by t.itemDiscountPercentage desc]]>
+    </query>
+    <query name="findAllTblHotelEventByDateInRangeOrderByMaxServiceDiscountPercentage">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblHotelEvent  t where (t.beginEventDate <= :detailDate and t.endEventDate >= :detailDate) and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3) order by t.serviceDiscountPercentage desc]]>
+    </query>
+    <query name="findAllTblHotelEvent">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblHotelEvent  t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

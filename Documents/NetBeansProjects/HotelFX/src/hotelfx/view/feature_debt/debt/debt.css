@@ -1,0 +1,40 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jan 18, 2018, 11:39:22 AM
+    Author     : Andreas
+*/
+
+@import "../feature_debt.css";
+
+.label-info{
+    -fx-text-fill:#388E3C;
+    -fx-font-weight:bold;
+}
+
+.table-view .table-row-cell:halfPayment,
+.table-view .table-row-cell:halfPayment .table-cell{
+  -fx-text-fill : black;
+  -fx-background-color : #9fa8da; 
+}
+
+.table-view .table-row-cell:halfPayment:selected,
+.table-view .table-row-cell:halfPayment:selected .table-cell{
+  -fx-text-fill : black;
+  -fx-background-color : derive(gold, 67%);
+}
+
+.table-view .table-row-cell:fullPayment,
+.table-view .table-row-cell:fullPayment .table-cell{
+  -fx-text-fill : black;
+  -fx-background-color : #80deea; 
+}
+
+.table-view .table-row-cell:fullPayment:selected,
+.table-view .table-row-cell:fullPayment:selected .table-cell{
+  -fx-text-fill : black;
+  -fx-background-color : derive(gold, 67%);
+}

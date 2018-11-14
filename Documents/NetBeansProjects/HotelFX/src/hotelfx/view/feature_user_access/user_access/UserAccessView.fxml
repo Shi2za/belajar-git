@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TreeTableColumn?>
+<?import javafx.scene.control.TreeTableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="feature-layout" stylesheets="@user_access.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <AnchorPane fx:id="ancFunctionalUserAccessLayout" maxHeight="50.0" minHeight="50.0" prefHeight="50.0" prefWidth="200.0" styleClass="anchor-pane" BorderPane.alignment="CENTER">
+         <children>
+            <JFXButton fx:id="btnSave" buttonType="RAISED" layoutX="534.0" layoutY="13.0" prefHeight="30.0" prefWidth="30.0" styleClass="button-save" text=" " AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+            <Label layoutX="14.0" layoutY="17.0" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" styleClass="title-data" text="Role  :   " AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <AnchorPane fx:id="ancTreeTableViewUserAccessLayout" prefHeight="200.0" prefWidth="200.0" styleClass="anchor-pane" BorderPane.alignment="CENTER">
+         <children>
+            <TreeTableView fx:id="tableUserAccess" layoutX="-6.0" prefHeight="350.0" prefWidth="608.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+              <columns>
+                <TreeTableColumn prefWidth="75.0" text="C1" />
+                <TreeTableColumn prefWidth="75.0" text="C2" />
+              </columns>
+            </TreeTableView>
+         </children></AnchorPane>
+   </center>
+</BorderPane>

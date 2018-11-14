@@ -1,0 +1,22 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+@import "../feature_partner.css";
+
+.jfx-tab-pane .tab-label{ 
+    -fx-alignment: CENTER;
+    -fx-text-fill: white;
+}
+
+.jfx-tab-pane .headers-region {
+    -fx-background-color: #1B5E20;
+}
+.jfx-tab-pane .tab-header-background {
+    -fx-background-color: #1B5E20;
+}
+
+.jfx-tab-pane .tab-selected-line{
+    -fx-stroke: white;
+    -fx-stroke-width: 2pt;
+}

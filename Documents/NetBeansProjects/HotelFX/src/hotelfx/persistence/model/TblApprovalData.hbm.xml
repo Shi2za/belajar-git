@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 21, 2017 1:49:37 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblApprovalData" table="tblApprovalData" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="iddata" type="long">
+            <column name="IDData" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <property name="codeData" type="string">
+            <column name="CodeData" length="50" />
+        </property>
+        <property name="dataName" type="string">
+            <column name="DataName" length="100" />
+        </property>
+        <property name="dataNote" type="string">
+            <column name="DataNote" />
+        </property>
+        <property name="dataType" type="string">
+            <column name="_DataType" length="50" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblMemorandumInvoices" table="tblMemorandumInvoice" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDApprovalData" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblMemorandumInvoice" />
+        </set>
+        <set name="tblReturs" table="tblRetur" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDApprovalData" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRetur" />
+        </set>
+        <set name="tblApprovalApproves" table="tblApprovalApprove" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDData" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblApprovalApprove" />
+        </set>
+        <set name="tblPurchaseRequests" table="tblPurchaseRequest" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDApprovalData" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPurchaseRequest" />
+        </set>
+        <set name="tblPurchaseOrders" table="tblPurchaseOrder" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDApprovalData" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPurchaseOrder" />
+        </set>
+    </class>
+    <query name="findAllTblApprovalData">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblApprovalData t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

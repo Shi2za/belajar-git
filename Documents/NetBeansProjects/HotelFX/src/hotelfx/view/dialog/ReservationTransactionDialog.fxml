@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+
+<BorderPane maxHeight="650.0" maxWidth="720.0" minHeight="650.0" minWidth="720.0" prefHeight="650.0" prefWidth="720.0" styleClass="dialog-bp" stylesheets="@reservationrtransactiondialog.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hotelfx.view.dialog.ReservationTransactionDialogController">
+   <left>
+      <AnchorPane maxWidth="360.0" minWidth="360.0" prefHeight="200.0" prefWidth="360.0" styleClass="dialog-bp" BorderPane.alignment="CENTER">
+         <children>
+            <GridPane hgap="20.0" layoutX="14.0" layoutY="14.0" styleClass="input-form-left" vgap="20.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="10.0">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="5.0" minWidth="5.0" prefWidth="5.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="5.0" minWidth="5.0" prefWidth="5.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="5.0" minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="15.0" minHeight="15.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="15.0" minHeight="15.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="15.0" minHeight="15.0" prefHeight="15.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <JFXDatePicker prefHeight="28.0" prefWidth="297.0" promptText="Tanggal Pembayaran" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1" />
+                  <JFXTextField fx:id="txtUnitCost" labelFloat="true" promptText="Harga Satuan" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="4" />
+                  <JFXComboBox fx:id="cbPaymentType" labelFloat="true" prefHeight="25.0" prefWidth="318.0" promptText="Tipe Pembayaran" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" />
+                  <JFXTextField fx:id="txtUnitNumber" labelFloat="true" promptText="Jumlah" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="5" />
+                  <Separator prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="3" />
+                  <Separator prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="6" />
+                  <JFXTextField labelFloat="true" promptText="Sub-total" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="7" />
+                  <JFXTextField labelFloat="true" promptText="Discount" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="8" />
+                  <JFXTextField labelFloat="true" promptText="Discount. Pembayaran" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="9" />
+                  <JFXTextField labelFloat="true" promptText="Service Charge" GridPane.columnIndex="1" GridPane.rowIndex="10" />
+                  <JFXTextField labelFloat="true" promptText="Tax" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="10" />
+                  <Separator prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="11" />
+                  <JFXTextField labelFloat="true" promptText="Total Tagihan" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="12" />
+                  <JFXButton fx:id="btnGetRestOfBill" buttonType="RAISED" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" text="C" GridPane.columnIndex="3" GridPane.rowIndex="5">
+                     <styleClass>
+                        <String fx:value="button-icon" />
+                        <String fx:value="button-icon" />
+                     </styleClass></JFXButton>
+                  <JFXButton fx:id="btnSave" buttonType="RAISED" prefHeight="25.0" prefWidth="120.0" text="Simpan" GridPane.columnIndex="1" GridPane.rowIndex="13" />
+                  <JFXButton fx:id="btncCancel" buttonType="RAISED" prefHeight="25.0" prefWidth="118.0" text="Batal" GridPane.columnIndex="2" GridPane.rowIndex="13" />
+               </children>
+            </GridPane>
+         </children>
+      </AnchorPane>
+   </left>
+   <center>
+      <StackPane prefHeight="150.0" prefWidth="200.0" styleClass="dialog-bp" BorderPane.alignment="CENTER">
+         <children>
+            <AnchorPane fx:id="apCash" maxWidth="360.0" minWidth="360.0" prefHeight="200.0" prefWidth="360.0" styleClass="dialog-bp">
+               <children>
+                  <GridPane hgap="20.0" layoutX="-13.0" layoutY="104.0" styleClass="input-form-right" vgap="20.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="5.0" minWidth="5.0" prefWidth="5.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="5.0" minWidth="5.0" prefWidth="5.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="5.0" minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="295.0" minHeight="295.0" prefHeight="295.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <JFXTextField labelFloat="true" promptText="Total Bayar" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                        <JFXTextField labelFloat="true" promptText="Total Kembalian" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                        <JFXTextArea labelFloat="true" promptText="Keterangan" styleClass="input-form-right" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="apTransfer" maxWidth="360.0" minWidth="360.0" prefHeight="200.0" prefWidth="360.0" styleClass="dialog-bp">
+               <children>
+                  <GridPane hgap="20.0" layoutX="-13.0" layoutY="104.0" styleClass="input-form-right" vgap="20.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="5.0" minWidth="5.0" prefWidth="5.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="5.0" minWidth="5.0" prefWidth="5.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="5.0" minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="295.0" minHeight="295.0" prefHeight="295.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <JFXTextArea labelFloat="true" promptText="Keterangan" styleClass="input-form-right" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="apDebitCard" maxWidth="360.0" minWidth="360.0" prefHeight="200.0" prefWidth="360.0" styleClass="dialog-bp">
+               <children>
+                  <GridPane hgap="20.0" layoutX="-13.0" layoutY="104.0" styleClass="input-form-right" vgap="20.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="5.0" minWidth="5.0" prefWidth="5.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="5.0" minWidth="5.0" prefWidth="5.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="5.0" minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="182.0" minHeight="182.0" prefHeight="182.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <JFXTextArea labelFloat="true" promptText="Keterangan" styleClass="input-form-right" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="8" />
+                        <JFXComboBox labelFloat="true" prefHeight="25.0" prefWidth="299.0" promptText="EDC" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                        <JFXComboBox labelFloat="true" prefHeight="25.0" prefWidth="313.0" promptText="Kartu (Jaringan)" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                        <JFXComboBox labelFloat="true" prefHeight="25.0" prefWidth="303.0" promptText="Bank" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                        <JFXComboBox labelFloat="true" prefHeight="25.0" prefWidth="309.0" promptText="Event. Kartu" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+                        <JFXTextField labelFloat="true" promptText="Nomor" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+                        <JFXTextField labelFloat="true" promptText="Charge. EDC" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="7" />
+                        <JFXTextField labelFloat="true" promptText="Discount" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="5" />
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="apCreditCard" maxWidth="360.0" minWidth="360.0" prefHeight="200.0" prefWidth="360.0" styleClass="dialog-bp">
+               <children>
+                  <GridPane hgap="20.0" layoutX="-13.0" layoutY="104.0" styleClass="input-form-right" vgap="20.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="5.0" minWidth="5.0" prefWidth="5.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="5.0" minWidth="5.0" prefWidth="5.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="5.0" minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="130.0" minHeight="130.0" prefHeight="130.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <JFXTextArea labelFloat="true" promptText="Keterangan" styleClass="input-form-right" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="9" />
+                        <JFXComboBox labelFloat="true" prefHeight="25.0" prefWidth="299.0" promptText="EDC" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                        <JFXComboBox labelFloat="true" prefHeight="25.0" prefWidth="313.0" promptText="Kartu (Jaringan)" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                        <JFXComboBox labelFloat="true" prefHeight="25.0" prefWidth="303.0" promptText="Bank" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                        <JFXComboBox labelFloat="true" prefHeight="25.0" prefWidth="309.0" promptText="Event. Kartu" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="7" />
+                        <JFXTextField labelFloat="true" promptText="Nomor" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+                        <JFXTextField labelFloat="true" promptText="Charge. EDC" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="8" />
+                        <JFXTextField labelFloat="true" promptText="Discount" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+                        <JFXTextField labelFloat="true" promptText="Nama" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="5" />
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="apCek" maxWidth="360.0" minWidth="360.0" prefHeight="200.0" prefWidth="360.0" styleClass="dialog-bp">
+               <children>
+                  <GridPane hgap="20.0" layoutX="-13.0" layoutY="104.0" styleClass="input-form-right" vgap="20.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="5.0" minWidth="5.0" prefWidth="5.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="5.0" minWidth="5.0" prefWidth="5.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="5.0" minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="232.0" minHeight="232.0" prefHeight="232.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <JFXTextArea labelFloat="true" promptText="Keterangan" styleClass="input-form-right" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="7" />
+                        <JFXTextField labelFloat="true" promptText="No. Cek" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1" />
+                        <JFXDatePicker prefHeight="28.0" prefWidth="309.0" promptText="Jatuh Tempo" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" />
+                        <JFXTextField labelFloat="true" promptText="Nama Pengirim" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="3" />
+                        <JFXTextField labelFloat="true" promptText="Nama Penerima" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="5" />
+                        <JFXTextField labelFloat="true" promptText="No. Rekening" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <JFXTextField labelFloat="true" promptText="No. Rekening" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <JFXComboBox labelFloat="true" prefHeight="25.0" prefWidth="174.0" promptText="Bank" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+                        <JFXComboBox labelFloat="true" prefHeight="25.0" prefWidth="176.0" promptText="Bank" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="apGiro" maxWidth="360.0" minWidth="360.0" prefHeight="200.0" prefWidth="360.0" styleClass="dialog-bp">
+               <children>
+                  <GridPane hgap="20.0" layoutX="-13.0" layoutY="104.0" styleClass="input-form-right" vgap="20.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="5.0" minWidth="5.0" prefWidth="5.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="5.0" minWidth="5.0" prefWidth="5.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="5.0" minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="232.0" minHeight="232.0" prefHeight="232.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <JFXTextArea labelFloat="true" promptText="Keterangan" styleClass="input-form-right" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="7" />
+                        <JFXTextField labelFloat="true" promptText="No. Giro" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="1" />
+                        <JFXDatePicker prefHeight="28.0" prefWidth="309.0" promptText="Jatuh Tempo" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="2" />
+                        <JFXTextField labelFloat="true" promptText="Nama Pengirim" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="3" />
+                        <JFXTextField labelFloat="true" promptText="Nama Penerima" GridPane.columnIndex="1" GridPane.columnSpan="3" GridPane.rowIndex="5" />
+                        <JFXTextField labelFloat="true" promptText="No. Rekening" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <JFXTextField labelFloat="true" promptText="No. Rekening" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                        <JFXComboBox labelFloat="true" prefHeight="25.0" prefWidth="174.0" promptText="Bank" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+                        <JFXComboBox labelFloat="true" prefHeight="25.0" prefWidth="176.0" promptText="Bank" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="6" />
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="apTravelAgent" maxWidth="360.0" minWidth="360.0" prefHeight="200.0" prefWidth="360.0" styleClass="dialog-bp">
+               <children>
+                  <GridPane hgap="20.0" layoutX="-13.0" layoutY="104.0" styleClass="input-form-right" vgap="20.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="5.0" minWidth="5.0" prefWidth="5.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="5.0" minWidth="5.0" prefWidth="5.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="5.0" minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="326.0" minHeight="326.0" prefHeight="326.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <JFXTextArea labelFloat="true" promptText="Keterangan" styleClass="input-form-right" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="5" />
+                        <JFXTextField labelFloat="true" promptText="No. Voucher" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                        <JFXComboBox labelFloat="true" prefHeight="25.0" prefWidth="332.0" promptText="No. Agreement" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                        <JFXComboBox labelFloat="true" prefHeight="25.0" prefWidth="330.0" promptText="Travel Agent" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                        <JFXDatePicker prefHeight="28.0" prefWidth="302.0" promptText="Jatuh Tempo" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="apCorporate" maxWidth="360.0" minWidth="360.0" prefHeight="200.0" prefWidth="360.0" styleClass="dialog-bp">
+               <children>
+                  <GridPane hgap="20.0" layoutX="-13.0" layoutY="104.0" styleClass="input-form-right" vgap="20.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="5.0" minWidth="5.0" prefWidth="5.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="5.0" minWidth="5.0" prefWidth="5.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="5.0" minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="326.0" minHeight="326.0" prefHeight="326.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <JFXTextArea labelFloat="true" promptText="Keterangan" styleClass="input-form-right" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="5" />
+                        <JFXTextField labelFloat="true" promptText="No. Code" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                        <JFXComboBox labelFloat="true" prefHeight="25.0" prefWidth="332.0" promptText="No. Agreement" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                        <JFXComboBox labelFloat="true" prefHeight="25.0" prefWidth="330.0" promptText="Corporate" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                        <JFXDatePicker prefHeight="28.0" prefWidth="302.0" promptText="Jatuh Tempo" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="apGoverment" maxWidth="360.0" minWidth="360.0" prefHeight="200.0" prefWidth="360.0" styleClass="dialog-bp">
+               <children>
+                  <GridPane hgap="20.0" layoutX="-13.0" layoutY="104.0" styleClass="input-form-right" vgap="20.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="5.0" minWidth="5.0" prefWidth="5.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="5.0" minWidth="5.0" prefWidth="5.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="5.0" minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="326.0" minHeight="326.0" prefHeight="326.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <JFXTextArea labelFloat="true" promptText="Keterangan" styleClass="input-form-right" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="5" />
+                        <JFXTextField labelFloat="true" promptText="No. Code" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                        <JFXComboBox labelFloat="true" prefHeight="25.0" prefWidth="332.0" promptText="No. Agreement" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                        <JFXComboBox labelFloat="true" prefHeight="25.0" prefWidth="330.0" promptText="Goverment" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                        <JFXDatePicker prefHeight="28.0" prefWidth="302.0" promptText="Jatuh Tempo" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="apVoucher" maxWidth="360.0" minWidth="360.0" prefHeight="200.0" prefWidth="360.0" styleClass="dialog-bp">
+               <children>
+                  <GridPane hgap="20.0" layoutX="-13.0" layoutY="104.0" styleClass="input-form-right" vgap="20.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="5.0" minWidth="5.0" prefWidth="5.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="5.0" minWidth="5.0" prefWidth="5.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="5.0" minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="100.0" minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="260.0" minHeight="260.0" prefHeight="260.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <JFXTextArea labelFloat="true" promptText="Keterangan" styleClass="input-form-right" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="5" />
+                        <JFXTextField labelFloat="true" promptText="No. Voucher" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                        <JFXTextField labelFloat="true" promptText="Voucher" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                        <JFXTextField labelFloat="true" promptText="Nominal" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                        <JFXTextArea GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="apDrawDeposit" maxWidth="360.0" minWidth="360.0" prefHeight="200.0" prefWidth="360.0" styleClass="dialog-bp">
+               <children>
+                  <GridPane hgap="20.0" layoutX="-13.0" layoutY="104.0" styleClass="input-form-right" vgap="20.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="5.0" minWidth="5.0" prefWidth="5.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="5.0" minWidth="5.0" prefWidth="5.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="5.0" minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="294.0" minHeight="294.0" prefHeight="294.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <JFXTextArea labelFloat="true" promptText="Keterangan" styleClass="input-form-right" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                        <JFXTextField labelFloat="true" promptText="Total Deposit" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+         </children>
+      </StackPane>
+   </center>
+</BorderPane>

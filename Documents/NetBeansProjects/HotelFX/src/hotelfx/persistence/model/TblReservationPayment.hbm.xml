@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 15, 2018 9:33:43 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblReservationPayment" table="tblReservationPayment" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idpayment" type="long">
+            <column name="IDPayment" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refFinanceTransactionPaymentType" class="hotelfx.persistence.model.RefFinanceTransactionPaymentType" fetch="select">
+            <column name="_PaymentType" />
+        </many-to-one>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="refReservationBillType" class="hotelfx.persistence.model.RefReservationBillType" fetch="select">
+            <column name="_ReservationBillType" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByIdcashier" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="IDCashier" />
+        </many-to-one>
+        <many-to-one name="tblFinanceData" class="hotelfx.persistence.model.TblFinanceData" fetch="select">
+            <column name="IDFinanceData" />
+        </many-to-one>
+        <many-to-one name="tblReservationBill" class="hotelfx.persistence.model.TblReservationBill" fetch="select">
+            <column name="IDBill" />
+        </many-to-one>
+        <property name="codePayment" type="string">
+            <column name="CodePayment" length="50" />
+        </property>
+        <property name="paymentDate" type="timestamp">
+            <column name="PaymentDate" length="23" />
+        </property>
+        <property name="unitNominal" type="big_decimal">
+            <column name="UnitNominal" precision="18" scale="4" />
+        </property>
+        <property name="roundingValue" type="big_decimal">
+            <column name="RoundingValue" precision="18" scale="4" />
+        </property>
+        <property name="paymentNote" type="string">
+            <column name="PaymentNote" length="1000" />
+        </property>
+        <property name="settleDate" type="timestamp">
+            <column name="SettleDate" length="23" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblOpenCloseCashierBalanceDetails" table="tblOpenCloseCashierBalanceDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDReservationPayment" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblOpenCloseCashierBalanceDetail" />
+        </set>
+        <set name="tblReservationPaymentWithBankCards" table="tblReservationPaymentWithBankCard" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPayment" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationPaymentWithBankCard" />
+        </set>
+        <set name="tblReservationPaymentWithDeposits" table="tblReservationPaymentWithDeposit" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPayment" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationPaymentWithDeposit" />
+        </set>
+        <set name="tblReservationPaymentWithReservationVouchers" table="tblReservationPaymentWithReservationVoucher" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPayment" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationPaymentWithReservationVoucher" />
+        </set>
+        <set name="tblReservationPaymentWithTransfers" table="tblReservationPaymentWithTransfer" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPayment" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationPaymentWithTransfer" />
+        </set>
+        <set name="tblReservationPaymentWithGuaranteePayments" table="tblReservationPaymentWithGuaranteePayment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPayment" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationPaymentWithGuaranteePayment" />
+        </set>
+        <set name="tblReservationPaymentWithCekGiros" table="tblReservationPaymentWithCekGiro" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPayment" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationPaymentWithCekGiro" />
+        </set>
+    </class>
+    <query name="findAllTblReservationPaymentByIDReservationBill">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationPayment t where t.tblReservationBill.idbill=:idReservationBill and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblReservationPaymentByIDReservationBillAndIDReservationBillType">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationPayment t where t.tblReservationBill.idbill=:idReservationBill and t.refReservationBillType.idtype=:idType and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblReservationPaymentByIDCashierAndSettleDateNull">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationPayment t where t.tblEmployeeByIdcashier.idemployee=:idCashier and t.settleDate is null and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblReservationPaymentByIDReservationAndIDReservationBillType">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationPayment t where t.tblReservationBill.tblReservation.idreservation=:idReservation and t.refReservationBillType.idtype=:idReservationBillType and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblReservationPayment">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationPayment t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

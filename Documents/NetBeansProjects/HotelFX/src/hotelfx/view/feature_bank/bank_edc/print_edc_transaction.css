@@ -1,0 +1,28 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+@import "bank_edc.css";
+
+.input-form-left{
+    -fx-background-color:#f1f8e9;
+    -fx-background-radius: 10 0 0 10;
+}
+
+.input-form-right{
+    -fx-background-color:#f1f8e9;
+    -fx-background-radius: 0 10 10 0;
+}
+
+.title-data-edc-transaction{
+    -fx-font-family:"Helvetica";
+    -fx-font-weight: bolder;
+    -fx-text-fill:#388E3C;
+    -fx-font-size: 11pt;
+    -fx-effect: dropshadow( two-pass-box , rgba(255, 255, 255, 1) , 4, 5 , 0 , 0 );
+}
+
+.button-arrow-back{
+    -fx-background-color:#388E3C;
+    -fx-shape: "M17.961 11.954v-9.954l14.039 14-14.039 14v-10.042c-7.135 0-14.177 1.242-17.961 7.136 0.394-10.741 8.43-13.298 17.961-15.14z";
+}

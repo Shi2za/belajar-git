@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 19, 2018 12:58:28 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblGuaranteeLetterItemDetail" table="tblGuaranteeLetterItemDetail" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="iddetail" type="long">
+            <column name="IDDetail" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblReservationPaymentWithGuaranteePayment" class="hotelfx.persistence.model.TblReservationPaymentWithGuaranteePayment" fetch="select">
+            <column name="IDRPGL" />
+        </many-to-one>
+        <property name="codeRtd" type="string">
+            <column name="CodeRTD" length="50" />
+        </property>
+        <property name="detailName" type="string">
+            <column name="DetailName" length="100" />
+        </property>
+        <property name="roomName" type="string">
+            <column name="RoomName" length="100" />
+        </property>
+        <property name="detailDate" type="date">
+            <column name="DetailDate" />
+        </property>
+        <property name="detailCost" type="big_decimal">
+            <column name="DetailCost" precision="18" scale="4" />
+        </property>
+        <property name="detailQuantity" type="big_decimal">
+            <column name="DetailQuantity" precision="10" scale="4" />
+        </property>
+        <property name="totalDiscountNominal" type="big_decimal">
+            <column name="TotalDiscountNominal" precision="18" scale="4" />
+        </property>
+        <property name="serviceChargePercentage" type="big_decimal">
+            <column name="ServiceChargePercentage" precision="10" scale="4" />
+        </property>
+        <property name="taxPercentage" type="big_decimal">
+            <column name="TaxPercentage" precision="10" scale="4" />
+        </property>
+        <property name="detailType" type="string">
+            <column name="DetailType" length="50" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+    </class>
+    <query name="findAllTblGuaranteeLetterItemDetailByIDGuaranteeLetter">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblGuaranteeLetterItemDetail t where t.tblReservationPaymentWithGuaranteePayment.iddetail=:idGuaranteeLetter and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblGuaranteeLetterItemDetail">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblGuaranteeLetterItemDetail t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblGuaranteeLetterItemDetailByIDReservationAndCodeRTDAndDetailDate">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblGuaranteeLetterItemDetail t where t.tblReservationPaymentWithGuaranteePayment.tblReservationPayment.tblReservationBill.tblReservation.idreservation=:idReservation and t.codeRtd=:codeRTD and t.detailDate=:detailDate and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

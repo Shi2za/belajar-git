@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="KuitansiHotelDetailCredit" pageWidth="595" pageHeight="842" whenNoDataType="BlankPage" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="185cbdc7-c902-44b3-85e7-8437d7c6afd3">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DBHotel"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<parameter name="idReservation" class="java.lang.Long"/>
+	<parameter name="billType" class="java.lang.Integer"/>
+	<parameter name="idLanguage" class="java.lang.Integer"/>
+	<queryString language="plsql">
+		<![CDATA[{call ReservationReceiptPrintDetail($P{idReservation},$P{billType},3,$P{idLanguage})}]]>
+	</queryString>
+	<field name="keterangan" class="java.lang.String"/>
+	<field name="nominal" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="65" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="210" height="65" uuid="a666ec00-42f2-41ef-93cb-5516c2f7158a"/>
+				<textElement verticalAlignment="Top">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{keterangan}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="210" y="0" width="10" height="65" uuid="622661e0-62ef-4165-a228-cf5d91c8ef2b">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="220" y="0" width="375" height="65" uuid="ef3f9471-10a5-4d35-825b-1efc1de666ba"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Rp. "+new java.text.DecimalFormat("#,##0").format($F{nominal})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

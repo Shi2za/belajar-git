@@ -1,0 +1,23 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+@import "../room_check.css";
+
+.table-view .table-row-cell:uneditable,
+.table-view .table-row-cell:uneditable .table-cell{
+  -fx-text-fill : white;
+  -fx-background-color : red; 
+}
+
+.title-note-disable-data{
+    -fx-font-family:"Helvetica";
+    -fx-font-weight: bolder;
+    -fx-text-fill : red;
+}
+
+/*.table-view .table-row-cell:uneditable:selected,
+.table-view .table-row-cell:uneditable:selected .table-cell{
+  -fx-text-fill : black;
+  -fx-background-color : derive(gold,67%); 
+}*/

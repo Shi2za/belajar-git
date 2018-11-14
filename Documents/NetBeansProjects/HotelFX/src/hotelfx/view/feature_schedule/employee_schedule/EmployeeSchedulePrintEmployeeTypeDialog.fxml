@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane id="AnchorPane" maxHeight="300.0" maxWidth="365.0" minHeight="300.0" minWidth="365.0" prefHeight="300.0" prefWidth="365.0" styleClass="dialog-bp" stylesheets="@employee_schedule_dialog.css" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.111">
+    
+</AnchorPane>

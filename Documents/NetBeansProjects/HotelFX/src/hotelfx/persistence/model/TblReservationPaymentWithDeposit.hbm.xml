@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 29, 2017 12:47:08 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblReservationPaymentWithDeposit" table="tblReservationPaymentWithDeposit" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="iddetail" type="long">
+            <column name="IDDetail" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblReservationCheckInOut" class="hotelfx.persistence.model.TblReservationCheckInOut" fetch="select">
+            <column name="IDCheckInOut" />
+        </many-to-one>
+        <many-to-one name="tblReservationPayment" class="hotelfx.persistence.model.TblReservationPayment" fetch="select">
+            <column name="IDPayment" />
+        </many-to-one>
+        <property name="codeDeposit" type="string">
+            <column name="CodeDeposit" length="50" />
+        </property>
+        <property name="depositNote" type="string">
+            <column name="DepositNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+    </class>
+    <query name="findAllTblReservationPaymentWithDeposit">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationPaymentWithDeposit t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

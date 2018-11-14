@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCDatePicker?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+
+<AnchorPane maxHeight="670.0" maxWidth="1300.0" minHeight="670.0" minWidth="1300.0" prefHeight="670.0" prefWidth="1300.0" styleClass="anchor-pane" stylesheets="@travel_agent_room_type_setting_input.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <SplitPane fx:id="spDataTARTS" dividerPositions="0.29797979797979796" layoutX="10.0" layoutY="10.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="570.0" minWidth="1020.0" prefHeight="570.0" prefWidth="1020.0" styleClass="selected-layout" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <AnchorPane fx:id="contentLayout" prefHeight="200.0" prefWidth="200.0" styleClass="anchor-pane" SplitPane.resizableWithParent="false">
+               <children>
+                  <StackPane prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <AnchorPane fx:id="calendarDataRTAvailableLayout" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="anchor-pane">
+                           <children>
+                              <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <top>
+                                    <BorderPane maxHeight="100.0" minHeight="100.0" prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <bottom>
+                                          <AnchorPane fx:id="apCalendarTitle" maxHeight="40.0" minHeight="40.0" prefHeight="40.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                             <children>
+                                                <GridPane fx:id="gpCalendarTitle" styleClass="calendarTitle" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="5.0">
+                                                   <columnConstraints>
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="0.0" />
+                                                   </columnConstraints>
+                                                   <rowConstraints>
+                                                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                   </rowConstraints>
+                                                   <children>
+                                                      <Label fx:id="lblCalendarTitleMin3" contentDisplay="CENTER" styleClass="title-dayofweek" text="Label" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                                      <Label fx:id="lblCalendarTitleMin2" styleClass="title-dayofweek" text="Label" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                                      <Label fx:id="lblCalendarTitleMin1" styleClass="title-dayofweek" text="Label" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                                      <Label fx:id="lblCalendarTitle" styleClass="title-dayofweek" text="Label" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                                      <Label fx:id="lblCalendarTitlePlus1" styleClass="title-dayofweek" text="Label" GridPane.columnIndex="8" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                                      <Label fx:id="lblCalendarTitlePlus2" styleClass="title-dayofweek" text="Label" GridPane.columnIndex="10" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                                      <Label fx:id="lblCalendarTitlePlus3" styleClass="title-dayofweek" text="Label" GridPane.columnIndex="12" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                                      <Label fx:id="lblCalendarTitlePlus4" styleClass="title-dayofweek" text="Label" GridPane.columnIndex="14" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                                   </children>
+                                                </GridPane>
+                                                <JFXButton fx:id="btnGotToCurrentDatePosition" buttonType="RAISED" layoutX="14.0" layoutY="8.0" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" text="25/03/2017" textAlignment="CENTER" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                                             </children>
+                                          </AnchorPane>
+                                       </bottom>
+                                       <center>
+                                          <AnchorPane maxHeight="60.0" minHeight="60.0" prefHeight="60.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                             <children>
+                                                <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="115.0" AnchorPane.rightAnchor="18.0" AnchorPane.topAnchor="10.0">
+                                                   <center>
+                                                      <GridPane fx:id="gpHeaderLayout" hgap="5.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" BorderPane.alignment="CENTER">
+                                                         <columnConstraints>
+                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
+                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
+                                                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
+                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                         </columnConstraints>
+                                                         <rowConstraints>
+                                                            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                         </rowConstraints>
+                                                         <padding>
+                                                            <Insets left="10.0" right="10.0" />
+                                                         </padding>
+                                                         <children>
+                                                            <JFXButton fx:id="btnPrevious" buttonType="RAISED" maxWidth="25.0" minWidth="25.0" prefWidth="25.0" styleClass="button-arrow-left" text=" " GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                                            <JFXButton fx:id="btnNext" buttonType="RAISED" maxWidth="25.0" minWidth="25.0" prefWidth="25.0" styleClass="button-arrow-right" text=" " GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                                            <JFXCDatePicker fx:id="btnGoToDate" styleClass="jfx-date-picker-custom" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                                            <JFXButton fx:id="btnFastSetting" buttonType="RAISED" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" styleClass="button-fast-setting" text=" " GridPane.columnIndex="6" GridPane.halignment="RIGHT" />
+                                                         </children>
+                                                      </GridPane>
+                                                   </center>
+                                                </BorderPane>
+                                             </children>
+                                          </AnchorPane>
+                                       </center>
+                                    </BorderPane>
+                                 </top>
+                                 <center>
+                                    <AnchorPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+                                       <children>
+                                          <ScrollPane fx:id="scrollPane" fitToWidth="true" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="travel-agent-room-type-cldr-sp" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <content>
+                                                <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                                                   <left>
+                                                      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="110.0" minWidth="110.0" prefWidth="110.0" styleClass="reservation-bp" BorderPane.alignment="CENTER">
+                                                         <children>
+                                                            <GridPane fx:id="gpRoomTypes" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                                               <columnConstraints>
+                                                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                               </columnConstraints>
+                                                               <rowConstraints>
+                                                                  <RowConstraints minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+                                                               </rowConstraints>
+                                                            </GridPane>
+                                                         </children>
+                                                      </AnchorPane>
+                                                   </left>
+                                                   <center>
+                                                      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="reservation-bp" BorderPane.alignment="CENTER">
+                                                         <children>
+                                                            <GridPane fx:id="gpCalendars" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                                               <columnConstraints>
+                                                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                               </columnConstraints>
+                                                               <rowConstraints>
+                                                                  <RowConstraints minHeight="10.0" prefHeight="80.0" vgrow="SOMETIMES" />
+                                                               </rowConstraints>
+                                                            </GridPane>
+                                                         </children>
+                                                      </AnchorPane>
+                                                   </center>
+                                                </BorderPane>
+                                             </content>
+                                          </ScrollPane>
+                                       </children>
+                                    </AnchorPane>
+                                 </center>
+                              </BorderPane>
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="calendarDataRTAvailableLayoutDisableLayer" prefHeight="200.0" prefWidth="200.0" styleClass="anchor-pane-disable-layer" />
+                     </children>
+                  </StackPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="formAnchor" maxHeight="1.7976931348623157E308" maxWidth="360.0" minHeight="545.0" minWidth="0.0" prefHeight="545.0" prefWidth="360.0" styleClass="input-form-from-right" SplitPane.resizableWithParent="false">
+               <children>
+                  <ScrollPane fx:id="spFormDataTARTS" fitToWidth="true" prefViewportHeight="540.0" styleClass="input-scroll" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
+                     <content>
+                        <GridPane fx:id="gpFormDataTARTS" hgap="15.0" maxHeight="1.7976931348623157E308" maxWidth="350.0" minHeight="570.0" minWidth="0.0" prefWidth="350.0" styleClass="input-form" vgap="20.0">
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="5.0" minWidth="5.0" prefWidth="5.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="5.0" minWidth="5.0" prefWidth="5.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints maxHeight="5.0" minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="1.7976931348623157E308" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <JFXTextField fx:id="txtRoomNumber" labelFloat="true" promptText="Jumlah Kamar *" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                              <JFXDatePicker fx:id="dtpBeginPeriodeDate" editable="false" labelFloat="true" promptText="Tgl. Awal *" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                              <JFXDatePicker fx:id="dtpEndPeriodeDate" editable="false" labelFloat="true" promptText="Tgl. Akhir *" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+                              <JFXButton fx:id="btnSave" buttonType="RAISED" prefHeight="25.0" prefWidth="159.0" styleClass="input-button" text="Simpan" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="6" />
+                              <JFXButton fx:id="btnCancel" buttonType="RAISED" prefHeight="25.0" prefWidth="155.0" styleClass="input-button" text="Batal" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="6" />
+                           </children>
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

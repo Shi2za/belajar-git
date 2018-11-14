@@ -1,0 +1,19 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+@import "../root.css";
+
+.title-transfer{
+    -fx-font-family:"Helvetica";
+    -fx-font-weight: bolder;
+    -fx-text-fill:#388E3C;
+    -fx-font-size: 10pt;
+    -fx-effect: dropshadow( two-pass-box , rgba(255, 255, 255, 1) , 4, 5 , 0 , 0 );
+}
+
+.button-transfer{
+    -fx-background-color:#388E3C;
+    /*"M31.998 24h-24.006v4l-7.992-6 7.992-6v4h24.006zM0 12h23.998v4l8-6-8-6v4h-23.998z"*/
+    -fx-shape:"M31.998 24h-24.006v4l-7.992-6 7.992-6v4h24.006z M0 12h23.998v4l8-6-8-6v4h-23.998z";
+}

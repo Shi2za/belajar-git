@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 5, 2018 4:28:02 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblOutGoing" table="tblOutGoing" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idog" type="long">
+            <column name="IDOG" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByIdreceiver" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="IDReceiver" />
+        </many-to-one>
+        <many-to-one name="tblLocationByIdlocationDestination" class="hotelfx.persistence.model.TblLocation" fetch="select">
+            <column name="IDLocationDestination" />
+        </many-to-one>
+        <many-to-one name="tblLocationByIdlocationSource" class="hotelfx.persistence.model.TblLocation" fetch="select">
+            <column name="IDLocationSource" />
+        </many-to-one>
+        <many-to-one name="tblStoreRequest" class="hotelfx.persistence.model.TblStoreRequest" fetch="select">
+            <column name="IDStoreRequest" />
+        </many-to-one>
+        <property name="codeOg" type="string">
+            <column name="CodeOG" length="50" />
+        </property>
+        <property name="ogdate" type="timestamp">
+            <column name="OGDate" length="23" />
+        </property>
+        <property name="ognote" type="string">
+            <column name="OGNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblOutGoingDetails" table="tblOutGoingDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDOutGoing" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblOutGoingDetail" />
+        </set>
+    </class>
+    <query name="findAllTblOutGoing">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblOutGoing t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3) order by t.idog desc]]>
+    </query>
+</hibernate-mapping>

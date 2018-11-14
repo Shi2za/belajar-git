@@ -1,0 +1,48 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+@import "root.css";
+
+.root{
+
+}
+
+.background-root{
+    /*-fx-background-color:yellow;*/
+}
+
+.jfx-toggle-button{
+    -jfx-toggle-color: #64DD17;
+    -jfx-untoggle-color: #64DD17;
+    -jfx-toggle-line-color: whitesmoke;
+    -jfx-untoggle-line-color: whitesmoke;
+}
+
+.jfx-toggle-button .jfx-rippler{
+    -jfx-rippler-fill: #CCFF90;
+}
+
+.jfx-toggle-button:selected .jfx-rippler{
+    -jfx-rippler-fill: #CCFF90;
+}
+
+.background-login{
+    /*-fx-effect: dropshadow(gaussian , rgba(0,0,0,0.5) , 10, 0, 4, 4);*/
+    
+    -fx-background-radius: 15;
+    -fx-background-color:#ffffffBB;
+
+}
+
+.background-db-connection{
+    /*-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 10, 0, 4, 4);*/ 
+    
+    -fx-background-radius: 15;
+    -fx-background-color:#ffffffBB;
+}
+
+.button{
+    -fx-background-color:#21AE2F;
+    -fx-text-fill: white;
+}

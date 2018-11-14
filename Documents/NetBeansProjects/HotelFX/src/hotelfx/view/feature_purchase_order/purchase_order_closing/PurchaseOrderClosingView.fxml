@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="anchor-pane" stylesheets="@purchase_order_closing.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <SplitPane fx:id="spDataPO" dividerPositions="0.29797979797979796" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="600.0" minWidth="1020.0" prefHeight="600.0" prefWidth="1020.0" styleClass="selected-layout" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <AnchorPane fx:id="contentLayout" prefHeight="200.0" prefWidth="200.0" styleClass="anchor-pane">
+               <children>
+                  <StackPane prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <AnchorPane fx:id="tableDataPOLayout" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="anchor-pane">
+                           <children>
+                              <AnchorPane fx:id="ancHeaderLayout" prefHeight="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <AnchorPane fx:id="ancBodyLayout" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane fx:id="tableDataPOLayoutDisableLayer" prefHeight="200.0" prefWidth="200.0" styleClass="anchor-pane-disable-layer" />
+                     </children>
+                  </StackPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="formAnchor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="570.0" minWidth="0.0" styleClass="anchor-pane">
+               <children>
+                  <AnchorPane prefHeight="45.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <Label fx:id="lblCodeData" styleClass="title-code-status" text="Label" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="5.0" />
+                        <HBox prefHeight="25.0" prefWidth="25.0" spacing="15.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
+                           <children>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <JFXButton fx:id="btnSave" buttonType="RAISED" prefHeight="25.0" prefWidth="25.0" styleClass="button-save" text=" " AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                                 </children>
+                              </AnchorPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <JFXButton fx:id="btnBack" buttonType="RAISED" prefHeight="25.0" prefWidth="25.0" styleClass="button-back" text=" " AnchorPane.bottomAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0" />
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass="po-closing" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="45.0">
+                     <children>
+                        <TabPane fx:id="tabPaneFormLayout" layoutX="112.0" layoutY="70.0" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
+                          <tabs>
+                            <Tab fx:id="tabDataPO" text="Data Purchase Order">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <GridPane fx:id="gpFormDataPO" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="405.0" minWidth="1000.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints maxHeight="145.0" minHeight="145.0" prefHeight="145.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                                   <children>
+                                                      <TitledPane animated="false" collapsible="false" text="Data PO" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <content>
+                                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <GridPane hgap="15.0" vgap="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="10.0">
+                                                                     <columnConstraints>
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="200.0" minWidth="200.0" prefWidth="200.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0" minWidth="110.0" prefWidth="110.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="160.0" prefWidth="160.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="20.0" minWidth="20.0" prefWidth="20.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" minWidth="260.0" prefWidth="260.0" />
+                                                                     </columnConstraints>
+                                                                     <rowConstraints>
+                                                                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                     </rowConstraints>
+                                                                     <children>
+                                                                        <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.rowSpan="2" />
+                                                                        <JFXTextField fx:id="txtSubTotal" disable="true" editable="false" labelFloat="true" promptText="Subtotal" GridPane.columnIndex="3" GridPane.columnSpan="2" />
+                                                                        <JFXTextField fx:id="txtTax" disable="true" editable="false" labelFloat="true" promptText="Tax" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                                                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                                                           <children>
+                                                                              <Spinner fx:id="spnTaxPercentage" editable="true" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                                                                              <Label fx:id="lblTaxPercentage" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="   %" />
+                                                                           </children>
+                                                                        </HBox>
+                                                                        <JFXTextField fx:id="txtDiscount" labelFloat="true" promptText="Diskon (Nominal)" GridPane.columnIndex="5" />
+                                                                        <JFXTextField fx:id="txtDeliveryCost" labelFloat="true" promptText="Biaya Pengiriman" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                                                                        <Label fx:id="lblTotal" alignment="CENTER_RIGHT" maxHeight="80.0" maxWidth="260.0" minHeight="80.0" minWidth="260.0" prefHeight="80.0" prefWidth="260.0" styleClass="label-total" text="A" textAlignment="CENTER" GridPane.columnIndex="7" GridPane.rowSpan="2">
+                                                                           <padding>
+                                                                              <Insets right="10.0" />
+                                                                           </padding>
+                                                                        </Label>
+                                                                        <JFXTextField fx:id="txtPOPaymentTypeInformation" labelFloat="true" promptText="Tipe Pembayaran" GridPane.rowIndex="1" />
+                                                                        <JFXTextField fx:id="txtDueDate" disable="true" editable="false" labelFloat="true" promptText="Estimasi Tgl. Kirim" />
+                                                                        <JFXTextArea fx:id="txtPONote" disable="true" labelFloat="true" promptText="Keterangan" GridPane.columnIndex="1" GridPane.rowSpan="2">
+                                                                           <GridPane.margin>
+                                                                              <Insets bottom="5.0" />
+                                                                           </GridPane.margin>
+                                                                        </JFXTextArea>
+                                                                     </children>
+                                                                  </GridPane>
+                                                               </children>
+                                                            </AnchorPane>
+                                                         </content>
+                                                      </TitledPane>
+                                                   </children>
+                                                </AnchorPane>
+                                                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                                                   <children>
+                                                      <TitledPane animated="false" collapsible="false" prefHeight="200.0" prefWidth="200.0" text="Data Barang" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <content>
+                                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <AnchorPane fx:id="ancDetailLayout" layoutX="93.0" layoutY="35.0" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                               </children>
+                                                            </AnchorPane>
+                                                         </content>
+                                                      </TitledPane>
+                                                   </children>
+                                                </AnchorPane>
+                                             </children>
+                                          </GridPane>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                            <Tab fx:id="tabDataRecevingAndRetur" text="Data Penerimaan &amp; Retur">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <SplitPane fx:id="spFormDataReceivingAndRetur" dividerPositions="0.29797979797979796" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+                                            <items>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                                   <children>
+                                                      <GridPane fx:id="gpFormDataReceiving" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="525.0" minWidth="1000.0" styleClass="input-form" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="0.0">
+                                                         <columnConstraints>
+                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                            <ColumnConstraints />
+                                                         </columnConstraints>
+                                                         <rowConstraints>
+                                                            <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                                                         </rowConstraints>
+                                                         <children>
+                                                            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <TitledPane animated="false" collapsible="false" text="Data Barang" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <content>
+                                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                                           <children>
+                                                                              <AnchorPane fx:id="ancDataTableDetail" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                           </children>
+                                                                        </AnchorPane>
+                                                                     </content>
+                                                                  </TitledPane>
+                                                               </children>
+                                                            </AnchorPane>
+                                                         </children>
+                                                      </GridPane>
+                                                      <JFXButton fx:id="btnShowReceivingAndReturHistory" buttonType="RAISED" maxWidth="25.0" minWidth="25.0" prefWidth="25.0" text="&lt;" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                   </children>
+                                                </AnchorPane>
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                                   <children>
+                                                      <JFXButton fx:id="btnShowReceivingAndReturSummary" buttonType="RAISED" maxWidth="25.0" minWidth="25.0" prefWidth="25.0" text="&gt;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                      <GridPane fx:id="gpFormDataReceivingReturHistory" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="525.0" minWidth="1000.0" styleClass="input-form" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="35.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <columnConstraints>
+                                                            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                            <ColumnConstraints />
+                                                         </columnConstraints>
+                                                         <rowConstraints>
+                                                            <RowConstraints minHeight="10.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                                                         </rowConstraints>
+                                                         <children>
+                                                            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <TitledPane animated="false" collapsible="false" text="Data History Penerimaan &amp; Retur Barang" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                                     <content>
+                                                                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                                           <children>
+                                                                              <AnchorPane fx:id="ancDataTableHistory" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                                           </children>
+                                                                        </AnchorPane>
+                                                                     </content>
+                                                                  </TitledPane>
+                                                               </children>
+                                                            </AnchorPane>
+                                                         </children>
+                                                      </GridPane>
+                                                   </children>
+                                                </AnchorPane>
+                                            </items>
+                                          </SplitPane>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                              <Tab fx:id="tabPOPayment" text="Data Tagihan &amp; Pembayaran">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <GridPane fx:id="gpFormDataPOPayment" hgap="15.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+                                             <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" maxWidth="180.0" minWidth="180.0" prefWidth="180.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                             </columnConstraints>
+                                             <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                             </rowConstraints>
+                                             <children>
+                                                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2">
+                                                   <children>
+                                                      <TitledPane animated="false" collapsible="false" layoutX="14.0" layoutY="23.0" text="Data Tagihan" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <content>
+                                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <GridPane hgap="15.0" layoutX="20.0" layoutY="24.0" vgap="20.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="15.0">
+                                                                     <columnConstraints>
+                                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                     </columnConstraints>
+                                                                     <rowConstraints>
+                                                                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                     </rowConstraints>
+                                                                     <children>
+                                                                        <JFXTextField fx:id="txtCodeInvoice" disable="true" editable="false" labelFloat="true" promptText="No. Invoice" />
+                                                                        <JFXTextField fx:id="txtPaymentDueDate" disable="true" editable="false" labelFloat="true" promptText="Tgl. Estimasi Bayar" GridPane.columnIndex="1" />
+                                                                        <JFXTextField fx:id="txtTotalHotelPayableBySupplier" disable="true" editable="false" labelFloat="true" promptText="Total Tagihan (Supplier)" GridPane.rowIndex="1" />
+                                                                        <JFXTextField fx:id="txtTotalHotelPayableBySystem" disable="true" editable="false" labelFloat="true" promptText="Total Tagihan (Sistem)" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                                        <JFXTextField fx:id="txtTotalHotelPayment" disable="true" editable="false" labelFloat="true" promptText="Total Pembayaran" GridPane.rowIndex="2" />
+                                                                        <JFXTextField fx:id="txtTotalHotelRestOfBill" disable="true" editable="false" labelFloat="true" promptText="Total Sisa Tagihan" GridPane.rowIndex="3" />
+                                                                        <Label fx:id="lblPaymentStatus" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                                                     </children>
+                                                                  </GridPane>
+                                                               </children>
+                                                            </AnchorPane>
+                                                         </content>
+                                                      </TitledPane>
+                                                   </children>
+                                                </AnchorPane>
+                                                <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2">
+                                                   <children>
+                                                      <TitledPane animated="false" collapsible="false" layoutX="20.0" layoutY="33.0" text="Data Transaksi Pembayaran" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0">
+                                                         <content>
+                                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                               <children>
+                                                                  <AnchorPane fx:id="ancHotelTransactionPaymentLayout" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                               </children>
+                                                            </AnchorPane>
+                                                         </content>
+                                                      </TitledPane>
+                                                   </children>
+                                                </AnchorPane>
+                                             </children>
+                                          </GridPane>
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </Tab>
+                          </tabs>
+                        </TabPane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

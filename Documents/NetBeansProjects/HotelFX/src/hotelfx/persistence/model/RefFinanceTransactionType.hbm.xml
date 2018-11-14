@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Dec 11, 2017 10:28:40 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.RefFinanceTransactionType" table="refFinanceTransactionType" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idtype" type="int">
+            <column name="IDType" />
+            <generator class="assigned" />
+        </id>
+        <property name="typeName" type="string">
+            <column name="TypeName" length="100" />
+        </property>
+        <property name="typeNote" type="string">
+            <column name="TypeNote" />
+        </property>
+        <set name="tblFinanceTransactions" table="tblFinanceTransaction" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_TransactionType" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblFinanceTransaction" />
+        </set>
+        <set name="tblHotelFinanceTransactions" table="tblHotelFinanceTransaction" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_TransactionType" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblHotelFinanceTransaction" />
+        </set>
+    </class>
+    <query name="findAllRefFinanceTransactionType">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from RefFinanceTransactionType]]>
+    </query>
+</hibernate-mapping>

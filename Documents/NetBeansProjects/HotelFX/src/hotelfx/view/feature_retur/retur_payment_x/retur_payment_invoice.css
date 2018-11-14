@@ -1,0 +1,17 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+@import "retur_payment_layout.css";
+
+.label-total{
+    -fx-font-family:"Helvetica";
+    -fx-font-weight: bolder;
+    -fx-text-fill:#388E3C;
+    -fx-font-size: 24pt;
+    -fx-effect: dropshadow( two-pass-box , rgba(255, 255, 255, 1) , 4, 5 , 0 , 0 );
+}
+
+.anchor-data-content{
+    -fx-background-color:#1B5E20;
+}

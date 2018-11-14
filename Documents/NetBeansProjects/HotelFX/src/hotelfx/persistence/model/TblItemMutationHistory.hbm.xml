@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 18, 2018 4:38:32 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblItemMutationHistory" table="tblItemMutationHistory" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idmutation" type="long">
+            <column name="IDMutation" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refItemMutationType" class="hotelfx.persistence.model.RefItemMutationType" fetch="select">
+            <column name="_MutationType" />
+        </many-to-one>
+        <many-to-one name="refItemObsoleteBy" class="hotelfx.persistence.model.RefItemObsoleteBy" fetch="select">
+            <column name="_ObsoleteBy" />
+        </many-to-one>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByIdemployee" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="IDEmployee" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblItem" class="hotelfx.persistence.model.TblItem" fetch="select">
+            <column name="IDItem" />
+        </many-to-one>
+        <many-to-one name="tblLocationByIdlocationOfDestination" class="hotelfx.persistence.model.TblLocation" fetch="select">
+            <column name="IDLocationOfDestination" />
+        </many-to-one>
+        <many-to-one name="tblLocationByIdlocationOfSource" class="hotelfx.persistence.model.TblLocation" fetch="select">
+            <column name="IDLocationOfSource" />
+        </many-to-one>
+        <property name="codeMutation" type="string">
+            <column name="CodeMutation" length="50" />
+        </property>
+        <property name="itemQuantity" type="big_decimal">
+            <column name="ItemQuantity" precision="10" scale="4" />
+        </property>
+        <property name="mutationDate" type="timestamp">
+            <column name="MutationDate" length="23" />
+        </property>
+        <property name="mutationNote" type="string">
+            <column name="MutationNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblBrokenItemDetailItemMutationHistories" table="tblBrokenItemDetail_ItemMutationHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDMutation" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblBrokenItemDetailItemMutationHistory" />
+        </set>
+        <set name="tblStoreRequestDetailItemMutationHistories" table="tblStoreRequestDetail_ItemMutationHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDMutation" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblStoreRequestDetailItemMutationHistory" />
+        </set>
+        <set name="tblRoomCheckItemMutationHistories" table="tblRoomCheck_ItemMutationHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDMutation" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRoomCheckItemMutationHistory" />
+        </set>
+        <set name="tblInComingDetailItemMutationHistories" table="tblInComingDetail_ItemMutationHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDMutation" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblInComingDetailItemMutationHistory" />
+        </set>
+        <set name="tblItemMutationHistoryPropertyBarcodes" table="tblItemMutationHistory_PropertyBarcode" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDItemMutationHistory" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblItemMutationHistoryPropertyBarcode" />
+        </set>
+        <set name="tblItemMutationHistoryItemExpiredDates" table="tblItemMutationHistory_ItemExpiredDate" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDItemMutationHistory" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblItemMutationHistoryItemExpiredDate" />
+        </set>
+        <set name="tblOutGoingDetailItemMutationHistories" table="tblOutGoingDetail_ItemMutationHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDMutation" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblOutGoingDetailItemMutationHistory" />
+        </set>
+    </class>
+    <sql-query name="getStock" callable="true">
+        <return-scalar column="totalStock" type="string"/>
+        <![CDATA[{CALL GetAllStockItem(:idLocation,:idItem,:date)}]]>
+    </sql-query>
+    
+    <query name="findAllTblItemMutationHistory">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblItemMutationHistory t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3) order by t.mutationDate desc]]>
+    </query>
+    
+    <query name="findAllTblItemMutationHistoryByLocationSource">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblItemMutationHistory tm where tm.tblLocationByIdlocationOfSource.refLocationType.idtype=:idType and (tm.refRecordStatus.idstatus=1 or tm.refRecordStatus.idstatus=3) order by tm.mutationDate desc]]>
+    </query>
+    
+    <query name="findAllTblItemMutationHistoryByLocationDestination">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblItemMutationHistory tm where tm.tblLocationByIdlocationOfDestination.refLocationType.idtype=:idType and (tm.refRecordStatus.idstatus=1 or tm.refRecordStatus.idstatus=3) order by tm.mutationDate desc]]>
+    </query>
+</hibernate-mapping>

@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 29, 2018 9:21:53 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblCalendarEmployeeWarningLetter" table="tblCalendar_EmployeeWarningLetter" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idrelation" type="long">
+            <column name="IDRelation" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdatedBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdatedBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByIdemployee" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="IDEmployee" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreatedBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreatedBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeWarningLetterType" class="hotelfx.persistence.model.TblEmployeeWarningLetterType" fetch="select">
+            <column name="IDWarningLetter" />
+        </many-to-one>
+        <property name="startDate" type="date">
+            <column name="StartDate" />
+        </property>
+        <property name="endDate" type="date">
+            <column name="EndDate" />
+        </property>
+        <property name="noteWarningLetter" type="string">
+            <column name="NoteWarningLetter" />
+        </property>
+        <property name="createdDate" type="timestamp">
+            <column name="CreatedDate" length="23" />
+        </property>
+        <property name="lastUpdatedDate" type="timestamp">
+            <column name="LastUpdatedDate" length="23" />
+        </property>
+    </class>
+    <query name="findAllTblCalendarEmployeeWarningLetterByIDEmployee">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblCalendarEmployeeWarningLetter t where t.tblEmployeeByIdemployee.idemployee=:idEmployee and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

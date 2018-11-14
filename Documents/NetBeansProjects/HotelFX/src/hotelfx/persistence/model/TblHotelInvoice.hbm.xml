@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 9, 2018 1:46:10 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblHotelInvoice" table="tblHotelInvoice" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idhotelInvoice" type="long">
+            <column name="IDHotelInvoice" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refHotelInvoiceType" class="hotelfx.persistence.model.RefHotelInvoiceType" fetch="select">
+            <column name="_HotelInvoiceType" />
+        </many-to-one>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblPartner" class="hotelfx.persistence.model.TblPartner" fetch="select">
+            <column name="IDPartner" />
+        </many-to-one>
+        <many-to-one name="tblSupplier" class="hotelfx.persistence.model.TblSupplier" fetch="select">
+            <column name="IDSupplier" />
+        </many-to-one>
+        <property name="codeHotelInvoice" type="string">
+            <column name="CodeHotelInvoice" length="50" />
+        </property>
+        <property name="hotelInvoiceSubject" type="string">
+            <column name="HotelInvoiceSubject" length="100" />
+        </property>
+        <property name="issueDate" type="timestamp">
+            <column name="IssueDate" length="23" />
+        </property>
+        <property name="dueDate" type="timestamp">
+            <column name="DueDate" length="23" />
+        </property>
+        <property name="hotelInvoiceNote" type="string">
+            <column name="HotelInvoiceNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblHotelPayables" table="tblHotelPayable" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDHotelInvoice" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblHotelPayable" />
+        </set>
+        <set name="tblHotelReceivables" table="tblHotelReceivable" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDHotelInvoice" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblHotelReceivable" />
+        </set>
+    </class>
+    <query name="findAllTblHotelInvoice">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblHotelInvoice t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblHotelInvoiceByIDPartnerNotNullAndIDHotelInvoiceType">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblHotelInvoice t where t.tblPartner is not null and t.refHotelInvoiceType.idtype=:idHotelInvoiceType and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblHotelInvoiceByIDSupplierNotNullAndIDHotelInvoiceType">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblHotelInvoice t where t.tblSupplier is not null and t.refHotelInvoiceType.idtype=:idHotelInvoiceType and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

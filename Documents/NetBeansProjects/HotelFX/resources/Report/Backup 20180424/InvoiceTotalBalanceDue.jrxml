@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="InvoiceTotalBalanceDue" pageWidth="595" pageHeight="842" whenNoDataType="NoDataSection" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="0" uuid="002625c9-c103-4d66-9ed1-a0d0d3d384db">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DBHotel"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idInvoice" class="java.lang.Long"/>
+	<parameter name="invoiceType" class="java.lang.Long"/>
+	<queryString language="plsql">
+		<![CDATA[{call InvoicePrintBalanceDue($P{idInvoice},$P{invoiceType})}]]>
+	</queryString>
+	<field name="subtotal" class="java.math.BigDecimal"/>
+	<field name="totalDiscount" class="java.math.BigDecimal"/>
+	<field name="totalServiceCharge" class="java.math.BigDecimal"/>
+	<field name="totalTax" class="java.math.BigDecimal"/>
+	<field name="totalInvoice" class="java.math.BigDecimal"/>
+	<field name="totalPayment" class="java.math.BigDecimal"/>
+	<field name="balanceDue" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<summary>
+		<band height="150" splitType="Stretch">
+			<textField>
+				<reportElement x="430" y="40" width="114" height="20" isRemoveLineWhenBlank="true" uuid="8e295576-76fc-4e9b-81ba-c71bd6929d18">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{invoiceType}==1 ? "" : $F{totalServiceCharge}==null ? "Rp. 0" : "Rp. "+ new DecimalFormat("#,###.##").format($F{totalServiceCharge})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="420" y="0" width="10" height="20" uuid="65207620-3cca-4b1b-b623-ffc4f0d018ab">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="430" y="0" width="114" height="20" uuid="d0652270-99ff-40eb-9f1e-5fe3bf960d12">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{subtotal}==null ? "Rp.0" : "Rp. "+new DecimalFormat("#,###.##").format($F{subtotal})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="320" y="0" width="100" height="20" uuid="d86b5bec-c70d-41fe-9407-1ac67908e887">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[SUBTOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="20" width="10" height="20" uuid="bab5a117-5d22-42fb-b6a7-66ccd899c20a">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="430" y="20" width="114" height="20" uuid="3fbd3da8-de48-44a7-9471-fd15d2664d7f">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{totalDiscount} == null ? "Rp. 0" : "Rp. "+new DecimalFormat("#,###.##").format($F{totalDiscount})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="320" y="40" width="100" height="20" isRemoveLineWhenBlank="true" uuid="dcdf9e2d-8dea-472e-aac1-e53fdc355709">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{invoiceType}==1 ? "" : "SERVICE CHARGE"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="420" y="40" width="10" height="20" isRemoveLineWhenBlank="true" uuid="839e984f-1b36-4f7f-8531-dcb96afb5cac">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{invoiceType}==1 ? "" : ":"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="320" y="60" width="100" height="20" uuid="1fb9d759-2ef5-482f-b26b-e20e226064ae">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[TAX]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="60" width="10" height="20" uuid="f1969d94-3ca9-49c7-bd83-7f9b2d2ad018">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="430" y="60" width="114" height="20" uuid="8bf13ed5-b433-4e3d-a076-da061e187446">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{totalTax}==null ? "Rp. 0" : "Rp. "+new DecimalFormat("#,###.##").format($F{totalTax})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="320" y="130" width="100" height="20" uuid="5b79d783-124e-498f-8285-7838446a4b7f">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[BALANCE DUE]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="80" width="10" height="20" uuid="4da53a9b-06e7-40dd-a97c-d2d0920beb8c">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="430" y="130" width="114" height="20" uuid="d1d1e7a8-410d-4e36-88d3-82b40694348b">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{balanceDue} == null ? "Rp. 0" : "Rp. "+new DecimalFormat("#,###.##").format($F{balanceDue})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="320" y="20" width="100" height="20" uuid="736ec4c5-751d-41be-8cad-8d72e56379e6">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[DISCOUNT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="80" width="100" height="20" uuid="db3e0501-ecd2-4ef4-8e26-2c21eedd9969">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="320" y="110" width="100" height="20" uuid="62e8a727-3015-427f-8069-38af5ec7d289">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[ALREADY PAID]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="110" width="10" height="20" uuid="c346f576-3219-494c-b0db-660d6978026b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="420" y="130" width="10" height="20" uuid="13ee1874-5f73-4669-9f7c-7d6061f77414">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="430" y="80" width="114" height="20" uuid="900af337-f041-4452-a869-d840614004f1"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{totalInvoice}==null ? "Rp. 0":"Rp. "+new DecimalFormat("#,###.##").format($F{totalInvoice})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="430" y="110" width="114" height="20" uuid="11fda3cf-4745-4839-8345-629a0402438b"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{totalPayment}==null ? "Rp. 0":"Rp. "+new DecimalFormat("#,###.##").format($F{totalPayment})]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

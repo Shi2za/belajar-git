@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 27, 2018 10:59:59 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblEmployeeBankAccount" table="tblEmployee_BankAccount" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idrelation" type="long">
+            <column name="IDRelation" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refBankAccountHolderStatus" class="hotelfx.persistence.model.RefBankAccountHolderStatus" fetch="select">
+            <column name="_EmployeeBankAccountStatus" />
+        </many-to-one>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblBankAccount" class="hotelfx.persistence.model.TblBankAccount" fetch="select">
+            <column name="IDBankAccount" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByIdemployee" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="IDEmployee" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <property name="employeeBankAccountNote" type="string">
+            <column name="EmployeeBankAccountNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblCalendarEmployeeDebts" table="tblCalendar_EmployeeDebt" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDEmployeeBankAccount" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblCalendarEmployeeDebt" />
+        </set>
+        <set name="tblCalendarEmployeePaymentHistories" table="tblCalendar_EmployeePaymentHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDBankAccountSender" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblCalendarEmployeePaymentHistory" />
+        </set>
+    </class>
+    <sql-query name="deleteAllTblEmployeeBankAccount" callable="true">
+        <return-scalar column="err_msg" type="string"/>
+        <![CDATA[{CALL DeleteAllEmployeeBankAccount(:idEmployeeHolder, :idEmployee)}]]>
+    </sql-query>
+    <query name="findAllTblEmployeeBankAccountByIDEmployee">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblEmployeeBankAccount t where t.tblEmployeeByIdemployee.idemployee=:idEmployee and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblEmployeeBankAccount">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblEmployeeBankAccount t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

@@ -1,0 +1,16 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+@import "reservation.css";
+
+.input-form-left{
+    -fx-background-color:#f1f8e9;
+    -fx-background-radius: 10 0 0 10;
+}
+
+.input-form-right{
+    -fx-background-color:#f1f8e9;
+    -fx-background-radius: 0 10 10 0;
+}
+

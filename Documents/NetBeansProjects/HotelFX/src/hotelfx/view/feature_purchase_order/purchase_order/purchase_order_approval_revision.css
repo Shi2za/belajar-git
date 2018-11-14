@@ -1,0 +1,45 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+@import "purchase_order.css";
+
+.input-form-left{
+    -fx-background-color:#f1f8e9;
+    -fx-background-radius: 10 0 0 10;
+}
+
+.input-form-right{
+    -fx-background-color:#f1f8e9;
+    -fx-background-radius: 0 10 10 0;
+}
+
+.anc-current-payment-nominal{
+    -fx-background-color:#dcedc8;;
+}
+
+.label-current-payment-nominal{
+    -fx-font-family:"Helvetica";
+    -fx-font-weight: bolder;
+    -fx-text-fill:#388E3C;
+    -fx-font-size: 10.5pt;
+    -fx-effect: dropshadow( two-pass-box , rgba(255, 255, 255, 1) , 4, 5 , 0 , 0 );
+}
+
+.title-revision-infomation{
+    -fx-font-family:"Helvetica";
+    -fx-font-weight: bolder;
+    -fx-text-fill:#388E3C;
+    -fx-font-size: 10.5pt;
+    -fx-effect: dropshadow( two-pass-box , rgba(255, 255, 255, 1) , 4, 5 , 0 , 0 );
+}
+
+.button-revision-infomation{
+    -fx-font-family:"Helvetica";
+    -fx-font-weight: bolder;
+    -fx-text-fill:#388E3C;
+    -fx-font-size: 10.5pt;
+    -fx-effect: dropshadow( two-pass-box , rgba(255, 255, 255, 1) , 4, 5 , 0 , 0 );
+    
+    -fx-background-color: ffffffAA;
+}

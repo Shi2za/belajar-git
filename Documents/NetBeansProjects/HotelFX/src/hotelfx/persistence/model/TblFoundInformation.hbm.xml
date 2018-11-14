@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 22, 2018 11:08:44 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblFoundInformation" table="tblFoundInformation" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idfound" type="long">
+            <column name="IDFound" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refFounderType" class="hotelfx.persistence.model.RefFounderType" fetch="select">
+            <column name="_FounderType" />
+        </many-to-one>
+        <many-to-one name="refLostFoundStatus" class="hotelfx.persistence.model.RefLostFoundStatus" fetch="select">
+            <column name="_LostFoundStatus" />
+        </many-to-one>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreatedBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreatedBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByIdemployeeFounder" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="IDEmployeeFounder" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByUpdatedBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="UpdatedBy" />
+        </many-to-one>
+        <property name="codeFound" type="string">
+            <column name="CodeFound" />
+        </property>
+        <property name="foundDate" type="date">
+            <column name="FoundDate" />
+        </property>
+        <property name="foundLocation" type="string">
+            <column name="FoundLocation" />
+        </property>
+        <property name="itemName" type="string">
+            <column name="ItemName" />
+        </property>
+        <property name="founderName" type="string">
+            <column name="FounderName" />
+        </property>
+        <property name="foundNote" type="string">
+            <column name="FoundNote" />
+        </property>
+        <property name="createdDate" type="timestamp">
+            <column name="CreatedDate" length="23" />
+        </property>
+        <property name="updatedDate" type="timestamp">
+            <column name="UpdatedDate" length="23" />
+        </property>
+        <set name="tblLostFoundInformationDetails" table="tblLostFoundInformationDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDFound" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblLostFoundInformationDetail" />
+        </set>
+    </class>
+    <query name= "findAllTblFoundInformation">
+         <![CDATA[from TblFoundInformation t where (t.refRecordStatus.idstatus = 1 or t.refRecordStatus.idstatus = 3)order by t.foundDate desc,t.codeFound desc]]>
+    </query>
+    
+    <query name="findAllTblFoundInformationReturn">
+        <![CDATA[from TblFoundInformation t where t.refLostFoundStatus.idstatus = 1 and (t.refRecordStatus.idstatus = 1 or t.refRecordStatus.idstatus = 3)]]>
+    </query>
+</hibernate-mapping>

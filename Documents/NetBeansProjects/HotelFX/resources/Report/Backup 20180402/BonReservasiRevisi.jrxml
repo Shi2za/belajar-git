@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="BonReservasi" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="67b81a2b-0f7f-4a76-bf14-d3d9855680fa">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DBHotel"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="3"/>
+	<property name="ireport.y" value="70"/>
+	<parameter name="idReservation" class="java.lang.Long"/>
+	<parameter name="NamaHotel" class="java.lang.String"/>
+	<parameter name="AlamatHotel" class="java.lang.String"/>
+	<parameter name="NoTeleponHotel" class="java.lang.String"/>
+	<parameter name="billType" class="java.lang.Integer"/>
+	<parameter name="emailHotel" class="java.lang.String">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["E:\\Data 20180321\\HotelFX\\resources\\Report\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="logoImage" class="java.lang.String"/>
+	<queryString language="plsql">
+		<![CDATA[{call ReservationBillBonPrintHeader($P{idReservation},$P{billType})}]]>
+	</queryString>
+	<field name="cashier" class="java.lang.String"/>
+	<field name="customerName" class="java.lang.String"/>
+	<field name="checkInCheckOut" class="java.lang.String"/>
+	<variable name="varCurrentPage" class="java.lang.Integer" resetType="Page">
+		<variableExpression><![CDATA[1]]></variableExpression>
+		<initialValueExpression><![CDATA[$V{PAGE_NUMBER}]]></initialValueExpression>
+	</variable>
+	<group name="BillRoom">
+		<groupHeader>
+			<band height="50">
+				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				<subreport>
+					<reportElement x="-18" y="0" width="594" height="50" uuid="72d70322-f16d-4fcb-9e8b-5aee7b49bedc"/>
+					<subreportParameter name="idReservation">
+						<subreportParameterExpression><![CDATA[$P{idReservation}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="billType">
+						<subreportParameterExpression><![CDATA[$P{billType}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="AlamatHotel">
+						<subreportParameterExpression><![CDATA[$P{AlamatHotel}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="NoTeleponHotel">
+						<subreportParameterExpression><![CDATA[$P{NoTeleponHotel}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="emailHotel">
+						<subreportParameterExpression><![CDATA[$P{emailHotel}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "BonReservasiDetailRevisi.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="70">
+				<staticText>
+					<reportElement x="0" y="0" width="260" height="70" uuid="c1aabfbd-d216-4471-9736-3a5c6b53d26f"/>
+					<textElement>
+						<font isBold="false" isItalic="true" pdfFontName="Helvetica-Oblique"/>
+					</textElement>
+					<text><![CDATA[I agree to remain personally liable for the payment of the account if the corporation or other third party billed fails to pay part or all of these charges]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="375" y="21" width="180" height="37" uuid="5d2b9c0c-ab67-4ea1-8d5a-329417354e73"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle"/>
+					<text><![CDATA[SIGNATURE____________________]]></text>
+				</staticText>
+			</band>
+		</groupFooter>
+	</group>
+	<group name="BonItem"/>
+	<group name="BonService"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="130" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField>
+				<reportElement x="90" y="0" width="310" height="30" uuid="64c7a466-ea53-4a37-b579-7b6835842525">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{NamaHotel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="30" width="310" height="23" uuid="a118a91e-dc56-42bd-81ec-c2a46e4b5a2a">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{AlamatHotel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="53" width="310" height="23" uuid="ff7574a1-203e-4cff-87de-c6a60f836589">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{NoTeleponHotel}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="110" width="100" height="20" uuid="463dc062-9d55-46bd-ad75-41eb1baf7298">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Cashier       	 :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="310" y="110" width="100" height="20" uuid="cc1b51cf-cb59-46a1-8ab9-fa58528a01f9"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Customer Name :]]></text>
+			</staticText>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="410" y="0" width="130" height="30" uuid="ebc73fb4-43da-4f91-a8c0-6ba6c7ca06d6"/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("EEEE,dd MMM yyyy").format(new Date())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="410" y="110" width="120" height="20" uuid="ea712c4d-0c78-4a60-930f-dd620e7bddd7"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{customerName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="100" y="110" width="120" height="20" uuid="f0feec14-fb1d-4a18-9ab5-7a0b7b534f65"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cashier}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="19" y="0" width="71" height="76" uuid="99f37414-48e4-43f1-b014-0db3a38bb8ef"/>
+				<imageExpression><![CDATA[$P{logoImage}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<columnFooter>
+		<band height="30">
+			<textField>
+				<reportElement x="370" y="0" width="100" height="30" uuid="56147b17-4ca8-4242-a510-2f058cbbc5ab"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="470" y="0" width="80" height="30" uuid="a5e23e55-62f8-4fbc-b08f-218a01f66285"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" / " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<lastPageFooter>
+		<band height="30">
+			<textField>
+				<reportElement x="9" y="0" width="521" height="30" uuid="4b99036c-da0e-43a0-8c3e-700e582389cb"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$P{AlamatHotel}+", "+"Telepon:"+$P{NoTeleponHotel}+"\nEmail:"+$P{emailHotel}]]></textFieldExpression>
+			</textField>
+		</band>
+	</lastPageFooter>
+	<summary>
+		<band height="50">
+			<staticText>
+				<reportElement x="100" y="20" width="370" height="30" uuid="83363fba-a182-4e89-8e70-c81a3eb5e8e5"/>
+				<textElement textAlignment="Center">
+					<font isItalic="true" pdfFontName="Helvetica-Oblique"/>
+				</textElement>
+				<text><![CDATA[Please check that you have not left any valuable in the in room personal safe. Thank you for choosing to stay with us and we wish you pleasant on ward journey.]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

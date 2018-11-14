@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PrintPurchaseRequest" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="f5e418da-e851-41d2-88aa-0a448020a028">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DBHotel"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="397"/>
+	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="591"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idPR" class="java.lang.Long"/>
+	<parameter name="namaHotel" class="java.lang.String"/>
+	<parameter name="alamatHotel" class="java.lang.String"/>
+	<parameter name="noTeleponHotel" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["E:\\Data 20180215\\HotelFX\\resources\\Report\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="logoImage" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select te.CodeEmployee+'-'+tp.FullName userLogin
+from tblPurchaseRequest tpr join tblEmployee te on te.IDEmployee = tpr.CreateBy 
+join tblPeople tp on tp.IDPeople = te.IDPeople 
+where tpr.IDPR =  $P{idPR}]]>
+	</queryString>
+	<field name="userLogin" class="java.lang.String"/>
+	<group name="PurchaseRequestDetail">
+		<groupHeader>
+			<band height="100">
+				<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				<subreport>
+					<reportElement x="0" y="0" width="555" height="100" uuid="31c577fb-a077-4980-b48a-400fb890c088"/>
+					<subreportParameter name="idPR">
+						<subreportParameterExpression><![CDATA[$P{idPR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "PrintPurchaseRequestDetail.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="164" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField pattern="MMMMM dd, yyyy">
+				<reportElement x="420" y="0" width="130" height="30" uuid="d9c0e3dc-39ab-494c-a5a1-38a07f17d78c"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("EEEE,dd MMMM yyyy",new java.util.Locale("id")).format(new Date())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="90" y="0" width="310" height="30" uuid="9bbd3354-954a-45ef-86e2-a1925a34a778"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[FORM PERMINTAAN PEMBELIAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="140" width="100" height="20" uuid="13a7d649-107b-4940-9d98-d0f557592f4e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[Dibuat oleh :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="140" width="100" height="20" uuid="bc600b1b-c3c9-4573-b1d5-f88eeb4e49b9"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{userLogin}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="30" width="310" height="30" uuid="434f9450-7784-4215-8e1c-429912080de5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{namaHotel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="60" width="310" height="30" uuid="5b843d2f-f9b7-4dd4-8e75-ed3460d63096"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{alamatHotel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="90" width="310" height="30" uuid="dda24580-1577-4852-ace4-64c069c01578"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{noTeleponHotel}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="10" y="0" width="80" height="74" uuid="82bccaad-b4c0-471c-b924-8d2536c3b537"/>
+				<imageExpression><![CDATA[$P{logoImage}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageFooter>
+		<band height="20" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField>
+				<reportElement x="350" y="0" width="100" height="20" uuid="aec67fd8-a39a-49b4-8cea-7862fbcbbb11"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Halaman " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="450" y="0" width="100" height="20" uuid="3292d9f2-1faa-4938-8e1c-882e20d9d5bf"/>
+				<textElement textAlignment="Left"/>
+				<textFieldExpression><![CDATA[" / " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

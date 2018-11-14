@@ -1,0 +1,22 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+@import "partner_receivable_and_payment.css";
+
+.table-view .table-row-cell:notpaid{
+  -fx-border-color: #ec407a;
+  -fx-border-width: 0 0 1 0  ;
+}
+
+.table-view .table-row-cell:notpaid,
+.table-view .table-row-cell:notpaid .table-cell{
+  -fx-text-fill : black;
+  -fx-background-color : #ffcdd2; 
+}
+
+.table-view .table-row-cell:notpaid:selected,
+.table-view .table-row-cell:notpaid:selected .table-cell{
+   -fx-background-color: derive(gold,67%);
+   -fx-text-fill: black;
+}

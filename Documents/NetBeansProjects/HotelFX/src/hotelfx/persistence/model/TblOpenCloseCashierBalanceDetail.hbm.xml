@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 20, 2018 9:55:23 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblOpenCloseCashierBalanceDetail" table="tblOpenCloseCashierBalanceDetail" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="iddetail" type="long">
+            <column name="IDDetail" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="logCompanyBalanceCashFlow" class="hotelfx.persistence.model.LogCompanyBalanceCashFlow" fetch="select">
+            <column name="IDLogCompanyBalanceCashFlow" />
+        </many-to-one>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblHotelExpenseTransaction" class="hotelfx.persistence.model.TblHotelExpenseTransaction" fetch="select">
+            <column name="IDHotelExpenseTransaction" />
+        </many-to-one>
+        <many-to-one name="tblOpenCloseCashierBalance" class="hotelfx.persistence.model.TblOpenCloseCashierBalance" fetch="select">
+            <column name="IDOpenCloseCashierBalance" />
+        </many-to-one>
+        <many-to-one name="tblReservationPayment" class="hotelfx.persistence.model.TblReservationPayment" fetch="select">
+            <column name="IDReservationPayment" />
+        </many-to-one>
+        <property name="detailData" type="string">
+            <column name="DetailData" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+    </class>
+    <sql-query name="deleteAllTblOpenCloseCashierBalanceDetail" callable="true">
+        <return-scalar column="err_msg" type="string"/>
+        <![CDATA[{CALL DeleteAllOpenCloseCashierBalanceDetail(:idOCCB, :idEmployee)}]]>
+    </sql-query>
+    <query name="findAllTblOpenCloseCashierBalanceDetail">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblOpenCloseCashierBalanceDetail t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblOpenCloseCashierBalanceDetailByIDOpenCloseCashierBalance">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblOpenCloseCashierBalanceDetail t where t.tblOpenCloseCashierBalance.idopenCloseCashierBalance=:idOCCB and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblOpenCloseCashierBalanceDetailByIDHotelExpenseTransaction">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblOpenCloseCashierBalanceDetail t where t.tblHotelExpenseTransaction.idexpenseTransaction=:idHET and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

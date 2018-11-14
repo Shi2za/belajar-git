@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 21, 2017 1:49:37 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblReservationBar" table="tblReservationBAR" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idbar" type="long">
+            <column name="IDBAR" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <property name="codeBar" type="string">
+            <column name="CodeBAR" length="50" />
+        </property>
+        <property name="barname" type="string">
+            <column name="BARName" length="100" />
+        </property>
+        <property name="barpercentage" type="big_decimal">
+            <column name="BARPercentage" precision="10" scale="4" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblReservationDefaultBars" table="tblReservationDefaultBAR" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDBAR" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationDefaultBar" />
+        </set>
+        <set name="tblReservationCalendarBars" table="tblReservationCalendarBAR" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDBAR" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationCalendarBar" />
+        </set>
+    </class>
+    <query name="findAllTblReservationBar">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationBar t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

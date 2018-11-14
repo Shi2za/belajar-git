@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="anchor-pane" stylesheets="@report_receiving_po.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="570.0" minWidth="1020.0" prefHeight="570.0" prefWidth="1020.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <AnchorPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <GridPane hgap="15.0" layoutX="41.0" layoutY="30.0" vgap="10.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="130.0" prefWidth="130.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER" prefHeight="50.0" prefWidth="130.0" text="Periode" GridPane.rowIndex="1" />
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="45.0" text="s / d" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <JFXDatePicker fx:id="dpStartDate" labelFloat="true" promptText="Periode Awal" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <JFXDatePicker fx:id="dpEndDate" labelFloat="true" promptText="Periode Akhir" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                           <children>
+                              <JFXCheckBox fx:id="chbCodePO" prefHeight="30.0" prefWidth="109.0" text="Nomor PO" />
+                              <AnchorPane fx:id="ancCbpCodePO" prefHeight="200.0" prefWidth="200.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="3">
+                           <children>
+                              <JFXCheckBox fx:id="chbSupplier" prefHeight="30.0" prefWidth="109.0" text="Supplier" />
+                              <AnchorPane fx:id="ancCbpSupplier" prefHeight="200.0" prefWidth="200.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="2">
+                           <children>
+                              <JFXCheckBox fx:id="chbItem" prefHeight="30.0" prefWidth="102.0" text="Barang" />
+                              <AnchorPane fx:id="ancCbpItem" prefHeight="30.0" prefWidth="227.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.columnSpan="3" GridPane.rowIndex="3">
+                           <children>
+                              <JFXCheckBox fx:id="chbBonus" prefHeight="30.0" prefWidth="102.0" text="Bonus" />
+                              <AnchorPane fx:id="ancCbpBonus" prefHeight="30.0" prefWidth="224.0" />
+                           </children>
+                        </HBox>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="6" GridPane.rowIndex="1" GridPane.rowSpan="3">
+                           <children>
+                              <JFXButton fx:id="btnShow" layoutX="3.0" layoutY="38.0" prefHeight="30.0" prefWidth="91.0" text="Tampilkan" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+         </top>
+         <center>
+            <AnchorPane fx:id="reportReceivingPOLayout" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

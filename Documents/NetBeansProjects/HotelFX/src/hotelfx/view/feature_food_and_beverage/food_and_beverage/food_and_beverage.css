@@ -1,0 +1,34 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+@import "../feature_food_and_beverage.css";
+
+.table-view .table-row-cell:foodnbeverage{
+  -fx-border-color: #ec407a;
+  -fx-border-width: 0 0 1 0  ;
+}
+
+.table-view .table-row-cell:foodnbeverage,
+.table-view .table-row-cell:foodnbeverage .table-cell{
+  -fx-text-fill : black;
+  -fx-background-color : #ffcdd2; 
+}
+
+.table-view .table-row-cell:foodnbeverage:selected,
+.table-view .table-row-cell:foodnbeverage:selected .table-cell{
+   -fx-background-color: derive(gold,67%);
+   -fx-text-fill: black;
+}
+
+.table-view .table-row-cell:refresh:even,
+.table-view .table-row-cell:refresh:even .table-cell{
+   -fx-background-color: #dcedc8;
+   -fx-text-fill:black;
+}
+
+.table-view .table-row-cell:refresh:odd,
+.table-view .table-row-cell:refresh:odd .table-cell{
+   -fx-background-color: #f1f8e9;
+   -fx-text-fill:black;
+}

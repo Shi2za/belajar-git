@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 16, 2018 9:09:26 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblRoomType" table="tblRoomType" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idroomType" type="long">
+            <column name="IDRoomType" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <property name="codeRoomType" type="string">
+            <column name="CodeRoomType" length="50" />
+        </property>
+        <property name="roomTypeName" type="string">
+            <column name="RoomTypeName" length="100" />
+        </property>
+        <property name="adultNumber" type="java.lang.Integer">
+            <column name="AdultNumber" />
+        </property>
+        <property name="childNumber" type="java.lang.Integer">
+            <column name="ChildNumber" />
+        </property>
+        <property name="roomTypePrice" type="big_decimal">
+            <column name="RoomTypePrice" precision="18" scale="4" />
+        </property>
+        <property name="roomTypeNote" type="string">
+            <column name="RoomTypeNote" />
+        </property>
+        <property name="hotelDiscountable" type="java.lang.Boolean">
+            <column name="HotelDiscountable" />
+        </property>
+        <property name="cardDiscountable" type="java.lang.Boolean">
+            <column name="CardDiscountable" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblTravelAgentRoomTypes" table="tblTravelAgent_RoomType" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDRoomType" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblTravelAgentRoomType" />
+        </set>
+        <set name="tblRoomTypeRoomServices" table="tblRoomType_RoomService" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDRoomType" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRoomTypeRoomService" />
+        </set>
+        <set name="tblReservationRoomTypeDetails" table="tblReservationRoomTypeDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDRoomType" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationRoomTypeDetail" />
+        </set>
+        <set name="logRoomTypePriceChangedHistories" table="logRoomTypePriceChangedHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDRoomType" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.LogRoomTypePriceChangedHistory" />
+        </set>
+        <set name="tblRoomTypeItems" table="tblRoomType_Item" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDRoomType" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRoomTypeItem" />
+        </set>
+        <set name="tblRooms" table="tblRoom" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDRoomType" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRoom" />
+        </set>
+        <set name="logRoomTypeHistories" table="logRoomTypeHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDRoomType" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.LogRoomTypeHistory" />
+        </set>
+    </class>
+    <query name="findAllTblRoomType">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblRoomType t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

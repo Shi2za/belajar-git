@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 18, 2018 4:38:32 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblBrokenItem" table="tblBrokenItem" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idbi" type="long">
+            <column name="IDBI" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblLocationByIdlocationDestination" class="hotelfx.persistence.model.TblLocation" fetch="select">
+            <column name="IDLocationDestination" />
+        </many-to-one>
+        <many-to-one name="tblLocationByIdlocationSource" class="hotelfx.persistence.model.TblLocation" fetch="select">
+            <column name="IDLocationSource" />
+        </many-to-one>
+        <property name="codeBi" type="string">
+            <column name="CodeBI" length="50" />
+        </property>
+        <property name="bidate" type="timestamp">
+            <column name="BIDate" length="23" />
+        </property>
+        <property name="binote" type="string">
+            <column name="BINote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblBrokenItemDetails" table="tblBrokenItemDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDBrokenItem" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblBrokenItemDetail" />
+        </set>
+    </class>
+    <query name="findAllTblBrokenItem">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblBrokenItem t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

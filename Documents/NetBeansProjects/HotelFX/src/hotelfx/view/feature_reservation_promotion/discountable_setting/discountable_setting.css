@@ -1,0 +1,13 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+@import "../feature_reservation_promotion.css";
+
+.title-table{
+    -fx-font-family:"Helvetica";
+    -fx-font-weight: bolder;
+    -fx-text-fill:#388E3C;
+    -fx-font-size: 12pt;
+    -fx-effect: dropshadow( two-pass-box , rgba(240, 240, 240, 1) , 4, 5 , 0 , 0 );
+}

@@ -1,0 +1,52 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+@import "purchase_order_payable_and_payment.css";
+
+.table-view .table-row-cell:notpaid{
+  -fx-border-color: #ec407a;
+  -fx-border-width: 0 0 1 0  ;
+}
+
+.table-view .table-row-cell:notpaid,
+.table-view .table-row-cell:notpaid .table-cell{
+  -fx-text-fill : black;
+  -fx-background-color : #ffcdd2; 
+}
+
+.table-view .table-row-cell:overpayment{
+  -fx-border-color: #29b6f6;
+  -fx-border-width: 0 0 1 0  ;
+}
+
+.table-view .table-row-cell:overpayment,
+.table-view .table-row-cell:overpayment .table-cell{
+  -fx-text-fill : black;
+  -fx-background-color : #bbdefb; 
+}
+
+.table-view .table-row-cell:notpaid:selected,
+.table-view .table-row-cell:notpaid:selected .table-cell{
+   -fx-background-color: derive(gold,67%);
+   -fx-text-fill: black;
+}
+
+.table-view .table-row-cell:overpayment:selected,
+.table-view .table-row-cell:overpayment:selected .table-cell{
+   -fx-background-color: derive(gold,67%);
+   -fx-text-fill: black;
+}
+
+.table-view .table-row-cell:notpaid:overpayment:selected,
+.table-view .table-row-cell:notpaid:overpayment:selected .table-cell{
+   -fx-background-color: derive(gold,67%);
+   -fx-text-fill: black;
+}
+
+.button-mark-valid{
+    -fx-background-color:#388E3C;
+    -fx-shape:"M14 9.5c0-0.825 0.675-1.5 1.5-1.5h1c0.825 0 1.5 0.675 1.5 1.5v1c0 0.825-0.675 1.5-1.5 1.5h-1c-0.825 0-1.5-0.675-1.5-1.5v-1z 
+        M20 24h-8v-2h2v-6h-2v-2h6v8h2z 
+        M16 0c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16zM16 29c-7.18 0-13-5.82-13-13s5.82-13 13-13 13 5.82 13 13-5.82 13-13 13z";
+}

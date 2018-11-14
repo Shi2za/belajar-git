@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 22, 2018 11:08:44 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblLostFoundInformationDetail" table="tblLostFoundInformationDetail" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idrelation" type="long">
+            <column name="IDRelation" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByUpdatedBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="UpdatedBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreatedBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreatedBy" />
+        </many-to-one>
+        <many-to-one name="tblFoundInformation" class="hotelfx.persistence.model.TblFoundInformation" fetch="select">
+            <column name="IDFound" />
+        </many-to-one>
+        <many-to-one name="tblLostInformation" class="hotelfx.persistence.model.TblLostInformation" fetch="select">
+            <column name="IDLost" />
+        </many-to-one>
+        <property name="returnName" type="string">
+            <column name="ReturnName" />
+        </property>
+        <property name="returnAddress" type="string">
+            <column name="ReturnAddress" />
+        </property>
+        <property name="returnPhone" type="string">
+            <column name="ReturnPhone" />
+        </property>
+        <property name="returnDate" type="date">
+            <column name="ReturnDate" />
+        </property>
+        <property name="note" type="string">
+            <column name="Note" />
+        </property>
+        <property name="createdDate" type="timestamp">
+            <column name="CreatedDate" length="23" />
+        </property>
+        <property name="updatedDate" type="timestamp">
+            <column name="UpdatedDate" length="23" />
+        </property>
+    </class>
+    <query name= "findAllTblLostFoundInformationDetailByIdLost">
+         <![CDATA[from TblLostFoundInformationDetail t where t.tblLostInformation.idlost =:idLost and (t.refRecordStatus.idstatus = 1 or t.refRecordStatus.idstatus = 3)]]>
+    </query>
+     <query name= "findAllTblLostFoundInformationDetailByIdFound">
+         <![CDATA[from TblLostFoundInformationDetail t where t.tblFoundInformation.idfound =:idFound and (t.refRecordStatus.idstatus = 1 or t.refRecordStatus.idstatus = 3)]]>
+    </query>
+     <query name= "findAllTblLostFoundInformationDetail">
+         <![CDATA[from TblLostFoundInformationDetail t where (t.refRecordStatus.idstatus = 1 or t.refRecordStatus.idstatus = 3)]]>
+    </query>
+</hibernate-mapping>

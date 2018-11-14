@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PrintHotelReservationFooter" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="0" uuid="dd45c6dc-e350-4835-af14-4eab99aa8599">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DBHotel"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<parameter name="idLanguage" class="java.lang.Integer"/>
+	<queryString language="plsql">
+		<![CDATA[{call PrintHotelHeaderFooter($P{idLanguage})}]]>
+	</queryString>
+	<field name="hotelName" class="java.lang.String"/>
+	<field name="hotelAddress" class="java.lang.String"/>
+	<field name="hotelPhoneNumber" class="java.lang.String"/>
+	<field name="logoImage" class="java.lang.String"/>
+	<field name="hotelFooter" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="20">
+			<textField>
+				<reportElement x="0" y="0" width="550" height="20" uuid="35d11f47-48a3-4d4b-80b2-8119aeb556c9"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$F{hotelFooter}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+</jasperReport>

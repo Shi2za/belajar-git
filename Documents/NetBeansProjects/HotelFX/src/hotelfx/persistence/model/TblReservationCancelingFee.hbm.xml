@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 30, 2018 10:46:02 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblReservationCancelingFee" table="tblReservationCancelingFee" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idreservationCancelingFee" type="long">
+            <column name="IDReservationCancelingFee" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refEndOfDayDataStatus" class="hotelfx.persistence.model.RefEndOfDayDataStatus" fetch="select">
+            <column name="_EoDDataStatus" />
+        </many-to-one>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblReservation" class="hotelfx.persistence.model.TblReservation" fetch="select">
+            <column name="IDReservation" />
+        </many-to-one>
+        <property name="cancelingFeeNominal" type="big_decimal">
+            <column name="CancelingFeeNominal" precision="18" scale="4" />
+        </property>
+        <property name="note" type="string">
+            <column name="Note" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+    </class>
+    <query name="findAllTblReservationCancelingFee">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationCancelingFee t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblReservationCancelingFeeByIDReservation">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationCancelingFee t where t.tblReservation.idreservation=:idReservation and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

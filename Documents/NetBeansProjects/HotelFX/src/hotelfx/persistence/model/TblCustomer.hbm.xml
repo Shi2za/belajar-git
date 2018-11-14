@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 20, 2018 10:16:02 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblCustomer" table="tblCustomer" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idcustomer" type="long">
+            <column name="IDCustomer" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refCustomerStatus" class="hotelfx.persistence.model.RefCustomerStatus" fetch="select">
+            <column name="_CustomerStatus" />
+        </many-to-one>
+        <many-to-one name="refCustomerType" class="hotelfx.persistence.model.RefCustomerType" fetch="select">
+            <column name="_CustomerType" />
+        </many-to-one>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblPeople" class="hotelfx.persistence.model.TblPeople" fetch="select">
+            <column name="IDPeople" />
+        </many-to-one>
+        <property name="codeCustomer" type="string">
+            <column name="CodeCustomer" length="50" />
+        </property>
+        <property name="deposit" type="big_decimal">
+            <column name="Deposit" precision="18" scale="4" />
+        </property>
+        <property name="registrationDate" type="timestamp">
+            <column name="RegistrationDate" length="23" />
+        </property>
+        <property name="customerNote" type="string">
+            <column name="CustomerNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblCustomerBankAccounts" table="tblCustomer_BankAccount" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDCustomer" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblCustomerBankAccount" />
+        </set>
+        <set name="tblReservations" table="tblReservation" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDCustomer" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservation" />
+        </set>
+    </class>
+    <query name="findAllTblCustomer">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblCustomer t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblCustomerForPrintPeriode">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblCustomer t where convert(date,t.registrationDate) between :startDate and :endDate and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+    <query name="findAllTblCustomerForPrintPeriodeAndCustomerType">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblCustomer t where convert(date,t.registrationDate) between :startDate and :endDate and t.refCustomerType.idtype=:typeCustomer and(t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+    <query name="findAllTblCustomerForPrintPeriodeAndCustomerName">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblCustomer t where convert(date,t.registrationDate) between :startDate and :endDate and t.idcustomer=:customer and(t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+     <query name="findAllTblCustomerForPrintPeriodeAndCountry">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblCustomer t where convert(date,t.registrationDate) between :startDate and :endDate and t.tblPeople.refCountry.idcountry=:country and(t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

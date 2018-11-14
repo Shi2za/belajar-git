@@ -1,0 +1,184 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 18, 2018 4:38:32 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblLocation" table="tblLocation" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idlocation" type="long">
+            <column name="IDLocation" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refLocationType" class="hotelfx.persistence.model.RefLocationType" fetch="select">
+            <column name="_LocationType" />
+        </many-to-one>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblBuilding" class="hotelfx.persistence.model.TblBuilding" fetch="select">
+            <column name="IDBuilding" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblFloor" class="hotelfx.persistence.model.TblFloor" fetch="select">
+            <column name="IDFloor" />
+        </many-to-one>
+        <many-to-one name="tblGroup" class="hotelfx.persistence.model.TblGroup" fetch="select">
+            <column name="IDGroup" />
+        </many-to-one>
+        <property name="codeLocation" type="string">
+            <column name="CodeLocation" length="50" />
+        </property>
+        <property name="locationName" type="string">
+            <column name="LocationName" length="100" />
+        </property>
+        <property name="locationNote" type="string">
+            <column name="LocationNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblInComingsForIdlocationDestination" table="tblInComing" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDLocationDestination" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblInComing" />
+        </set>
+        <set name="tblItemMutationHistoriesForIdlocationOfDestination" table="tblItemMutationHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDLocationOfDestination" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblItemMutationHistory" />
+        </set>
+        <set name="tblMemorandumInvoiceDetails" table="tblMemorandumInvoiceDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDLocation" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblMemorandumInvoiceDetail" />
+        </set>
+        <set name="tblStockOpnames" table="tblStockOpname" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDLocation" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblStockOpname" />
+        </set>
+        <set name="tblBrokenItemsForIdlocationDestination" table="tblBrokenItem" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDLocationDestination" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblBrokenItem" />
+        </set>
+        <set name="tblLocationOfBins" table="tblLocationOfBin" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDLocation" not-null="true" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblLocationOfBin" />
+        </set>
+        <set name="tblFixedTangibleAssetLocations" table="tblFixedTangibleAsset_Location" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDLocation" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblFixedTangibleAssetLocation" />
+        </set>
+        <set name="tblOutGoingsForIdlocationDestination" table="tblOutGoing" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDLocationDestination" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblOutGoing" />
+        </set>
+        <set name="tblBrokenItemsForIdlocationSource" table="tblBrokenItem" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDLocationSource" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblBrokenItem" />
+        </set>
+        <set name="tblSuppliers" table="tblSupplier" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDLocation" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblSupplier" />
+        </set>
+        <set name="tblLocationOfLaundries" table="tblLocationOfLaundry" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDLocation" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblLocationOfLaundry" />
+        </set>
+        <set name="tblOutGoingsForIdlocationSource" table="tblOutGoing" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDLocationSource" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblOutGoing" />
+        </set>
+        <set name="tblItemLocations" table="tblItem_Location" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDLocation" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblItemLocation" />
+        </set>
+        <set name="tblReturDetails" table="tblReturDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDLocation" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReturDetail" />
+        </set>
+        <set name="tblInComingsForIdlocationSource" table="tblInComing" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDLocationSource" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblInComing" />
+        </set>
+        <set name="tblLocationOfWarehouses" table="tblLocationOfWarehouse" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDLocation" not-null="true" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblLocationOfWarehouse" />
+        </set>
+        <set name="tblRooms" table="tblRoom" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDLocation" not-null="true" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRoom" />
+        </set>
+        <set name="tblStoreRequestsForIdlocationSource" table="tblStoreRequest" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDLocationSource" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblStoreRequest" />
+        </set>
+        <set name="tblStoreRequestsForIdlocationDestination" table="tblStoreRequest" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDLocationDestination" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblStoreRequest" />
+        </set>
+        <set name="tblItemMutationHistoriesForIdlocationOfSource" table="tblItemMutationHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDLocationOfSource" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblItemMutationHistory" />
+        </set>
+    </class>
+    <query name="findAllTblLocation">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblLocation t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblLocationByLocationTypeName">
+        <![CDATA[from TblLocation t where t.refLocationType.typeName=:typeName and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblLocationByLocationTypeId">
+        <![CDATA[from TblLocation t where t.refLocationType.idtype=:typeId and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblLocationByIDLocationType">
+        <![CDATA[from TblLocation t where t.refLocationType.idtype=:idLocationType and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblLocationByIDGroup">
+        <![CDATA[from TblLocation t where t.tblGroup.idgroup=:idGroup and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 8, 2018 2:53:21 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblFinanceTransaction" table="tblFinanceTransaction" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idtransaction" type="long">
+            <column name="IDTransaction" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refFinanceTransactionType" class="hotelfx.persistence.model.RefFinanceTransactionType" fetch="select">
+            <column name="_TransactionType" />
+        </many-to-one>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByIdemployee" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="IDEmployee" />
+        </many-to-one>
+        <many-to-one name="tblFinanceData" class="hotelfx.persistence.model.TblFinanceData" fetch="select">
+            <column name="IDData" />
+        </many-to-one>
+        <property name="codeTransaction" type="string">
+            <column name="CodeTransaction" length="50" />
+        </property>
+        <property name="transactionName" type="string">
+            <column name="TransactionName" length="100" />
+        </property>
+        <property name="transactionNominal" type="java.lang.Long">
+            <column name="TransactionNominal" precision="18" scale="0" />
+        </property>
+        <property name="transactionDate" type="timestamp">
+            <column name="TransactionDate" length="23" />
+        </property>
+        <property name="dueDate" type="timestamp">
+            <column name="DueDate" length="23" />
+        </property>
+        <property name="transactionNote" type="string">
+            <column name="TransactionNote" />
+        </property>
+        <property name="settleDate" type="timestamp">
+            <column name="SettleDate" length="23" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+    </class>
+    <query name="findAllTblFinanceTransaction">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblFinanceTransaction t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

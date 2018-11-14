@@ -1,0 +1,75 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 3, 2018 12:53:54 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblSupplierItem" table="tblSupplier_Item" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idrelation" type="long">
+            <column name="IDRelation" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblItem" class="hotelfx.persistence.model.TblItem" fetch="select">
+            <column name="IDItem" />
+        </many-to-one>
+        <many-to-one name="tblSupplier" class="hotelfx.persistence.model.TblSupplier" fetch="select">
+            <column name="IDSupplier" />
+        </many-to-one>
+        <property name="supllierItemCode" type="string">
+            <column name="SupllierItemCode" length="50" />
+        </property>
+        <property name="supplierItemName" type="string">
+            <column name="SupplierItemName" length="100" />
+        </property>
+        <property name="itemCost" type="big_decimal">
+            <column name="ItemCost" precision="18" scale="4" />
+        </property>
+        <property name="note" type="string">
+            <column name="Note" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblPurchaseOrderDetails" table="tblPurchaseOrderDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDSupplierItem" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPurchaseOrderDetail" />
+        </set>
+        <set name="tblMemorandumInvoiceDetails" table="tblMemorandumInvoiceDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDSupplierItem" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblMemorandumInvoiceDetail" />
+        </set>
+        <set name="tblReturDetails" table="tblReturDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDSupplierItem" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReturDetail" />
+        </set>
+    </class>
+    <sql-query name="deleteAllTblSupplierItem" callable="true">
+        <return-scalar column="err_msg" type="string"/>
+        <![CDATA[{CALL DeleteAllSupplierItem(:idSupplier, :idEmployee)}]]>
+    </sql-query>
+    <query name="findAllTblSupplierItemByIDSupplier">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblSupplierItem t where t.tblSupplier.idsupplier=:idSupplier and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblSupplierItem">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblSupplierItem t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

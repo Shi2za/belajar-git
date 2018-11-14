@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane id="AnchorPane" maxHeight="470.0" maxWidth="335.0" minHeight="470.0" minWidth="335.0" prefHeight="470.0" prefWidth="335.0" stylesheets="@rcr_rcti_cash.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <GridPane fx:id="gpRCTICash" hgap="15.0" layoutX="-8.0" layoutY="21.0" vgap="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="160.0" prefWidth="160.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="160.0" prefWidth="160.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <JFXTextField fx:id="txtTotalBill" labelFloat="true" promptText="Nominal Transaksi *" />
+            <JFXCheckBox fx:id="chbGetRestOfBill" maxHeight="30.0" maxWidth="160.0" minHeight="30.0" minWidth="160.0" prefHeight="30.0" prefWidth="160.0" text="Sisa Tagihan" GridPane.columnIndex="1" />
+            <JFXTextField fx:id="txtTotalPayment" labelFloat="true" promptText="Total Pembayaran *" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+            <JFXTextField fx:id="txtTotalCashBack" editable="false" labelFloat="true" promptText="Total Kembalian" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+            <JFXButton fx:id="btnSave" buttonType="RAISED" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" prefWidth="335.0" text="Simpan" GridPane.columnSpan="2" GridPane.rowIndex="9" />
+            <JFXTextField fx:id="txtTotalBillAfterRounding" disable="true" labelFloat="true" promptText="Nominal Transaksi (Setelah Pembulatan)" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

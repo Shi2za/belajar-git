@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 21, 2017 1:49:37 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblItemMutationHistoryPropertyBarcode" table="tblItemMutationHistory_PropertyBarcode" schema="dbo" catalog="Hotel"
+    optimistic-lock="version">
+        <id name="idrelation" type="long">
+            <column name="IDRelation" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblItemMutationHistory" class="hotelfx.persistence.model.TblItemMutationHistory" fetch="select">
+            <column name="IDItemMutationHistory" />
+        </many-to-one>
+        <many-to-one name="tblPropertyBarcode" class="hotelfx.persistence.model.TblPropertyBarcode" fetch="select">
+            <column name="IDPropertyBarcode" />
+        </many-to-one>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+    </class>
+    <query name="findAllTblItemMutationHistoryPropertyBarcode">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblItemMutationHistoryPropertyBarcode t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+    <query name="findAllTblItemMutationHistoryPropertyBarcodeByIdItemMutationHistory">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblItemMutationHistoryPropertyBarcode t where t.tblItemMutationHistory.idmutation=:idItemMutationHistory and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+    <query name="findAllTblItemMutationHistoryPropertyBarcodeByIdLocation">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblItemMutationHistoryPropertyBarcode tmpb where tmpb.tblItemMutationHistory.tblLocationByIdlocationOfSource.refLocationType.idtype=:idType
+                  and (tmpb.refRecordStatus.idstatus=1 or tmpb.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+    <query name="findAllTblItemMutationHistoryPropertyBarcodeByIdLocationDestination">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblItemMutationHistoryPropertyBarcode tmpb where tmpb.tblItemMutationHistory.tblLocationByIdlocationOfDestination.refLocationType.idtype=:idType
+                  and (tmpb.refRecordStatus.idstatus=1 or tmpb.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

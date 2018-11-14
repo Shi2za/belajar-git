@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 25, 2018 8:41:08 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblRoom" table="tblRoom" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idroom" type="long">
+            <column name="IDRoom" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="refRoomStatus" class="hotelfx.persistence.model.RefRoomStatus" fetch="select">
+            <column name="_RoomStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblLocation" class="hotelfx.persistence.model.TblLocation" fetch="select">
+            <column name="IDLocation" not-null="true" />
+        </many-to-one>
+        <many-to-one name="tblRoomType" class="hotelfx.persistence.model.TblRoomType" fetch="select">
+            <column name="IDRoomType" />
+        </many-to-one>
+        <property name="codeRoom" type="string">
+            <column name="CodeRoom" length="50" />
+        </property>
+        <property name="roomName" type="string">
+            <column name="RoomName" length="100" />
+        </property>
+        <property name="smokingStatus" type="java.lang.Integer">
+            <column name="SmokingStatus" />
+        </property>
+        <property name="roomNote" type="string">
+            <column name="RoomNote" />
+        </property>
+        <property name="roomStatusNote" type="string">
+            <column name="RoomStatusNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblReservationCheckInOuts" table="tblReservationCheckInOut" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDRoom" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationCheckInOut" />
+        </set>
+        <set name="tblRoomStatusDetails" table="tblRoomStatusDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDRoom" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRoomStatusDetail" />
+        </set>
+        <set name="tblRoomCheckHouseKeepingAttendances" table="tblRoomCheck_HouseKeepingAttendance" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDRoom" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRoomCheckHouseKeepingAttendance" />
+        </set>
+        <set name="tblRoomChecks" table="tblRoomCheck" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDRoom" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRoomCheck" />
+        </set>
+        <set name="tblRoomStatusChangeHistories" table="tblRoomStatusChangeHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDRoom" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRoomStatusChangeHistory" />
+        </set>
+    </class>
+    <query name="findAllTblRoomByIDRoomType">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblRoom t where t.tblRoomType.idroomType=:idRoomType and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblRoomByIDRoomStatus">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblRoom t where t.refRoomStatus.idstatus=:idRoomStatus and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblRoom">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblRoom t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblRoomByIdLocation">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblRoom tr where tr.tblLocation.idlocation=:id and 
+                (tr.refRecordStatus.idstatus=1 or tr.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

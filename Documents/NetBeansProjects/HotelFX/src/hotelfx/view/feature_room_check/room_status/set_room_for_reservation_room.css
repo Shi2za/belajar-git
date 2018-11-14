@@ -1,0 +1,66 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+@import "room_status.css";
+
+.input-form-left{
+    -fx-background-color:#f1f8e9;
+    -fx-background-radius: 10 0 0 10;
+}
+
+.input-form-right{
+    -fx-background-color:#f1f8e9;
+    -fx-background-radius: 0 10 10 0;
+}
+
+.cell-input-odd{
+    /*-fx-background-color: #e1f5fe;*/
+/*    -fx-background-color: #b3e5fc;
+    -fx-text-fill:black;
+    -fx-background-insets: 1, 1, 1, 1;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );*/
+    /*-fx-padding: 1;*/
+    -fx-border-color: red;
+    -fx-border-width: 0 0 1 0;
+    /*-fx-background-insets: 8, 8, 8, 8;*/
+/*    -fx-underline: true;*/
+}
+
+.cell-input-even{
+    /*-fx-background-color: #b3e5fc;*/
+/*    -fx-background-color: #81d4fa;
+    -fx-text-fill:black;
+    -fx-background-insets: 1, 1, 1, 1;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );*/
+    /*-fx-padding: 1;*/
+    -fx-border-color: red;
+    -fx-border-width: 0 0 1 0;
+    /*-fx-background-insets: 8, 8, 8, 8;*/
+}
+
+
+.cell-input-odd-edit{
+    /*-fx-background-color: #e1f5fe;*/
+/*    -fx-background-color: #b3e5fc;
+    -fx-text-fill:black;
+    -fx-background-insets: 1, 1, 1, 1;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );*/
+    /*-fx-padding: 1;*/
+    -fx-border-color: black;
+    -fx-border-width: 0 0 0 0;
+    /*-fx-background-insets: 8, 8, 8, 8;*/
+/*    -fx-underline: true;*/
+}
+
+.cell-input-even-edit{
+    /*-fx-background-color: #b3e5fc;*/
+/*    -fx-background-color: #81d4fa;
+    -fx-text-fill:black;
+    -fx-background-insets: 1, 1, 1, 1;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );*/
+    /*-fx-padding: 1;*/
+    -fx-border-color: black;
+    -fx-border-width: 0 0 0 0;
+    /*-fx-background-insets: 8, 8, 8, 8;*/
+}

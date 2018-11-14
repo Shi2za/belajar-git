@@ -1,0 +1,443 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PrintRetur" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="edafed16-5d27-4546-84f9-e08982761f17">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DBHotel"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["E:\\Data 20180215\\HotelFX\\resources\\Report\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="NAMA_HOTEL" class="java.lang.String"/>
+	<parameter name="ALAMAT_HOTEL" class="java.lang.String"/>
+	<parameter name="TELEPON_HOTEL" class="java.lang.String"/>
+	<parameter name="LOGO_IMAGE" class="java.lang.String"/>
+	<queryString language="plsql">
+		<![CDATA[]]>
+	</queryString>
+	<field name="noTeleponSupplier" class="java.lang.String"/>
+	<field name="kodePO" class="java.lang.String"/>
+	<field name="namaSupplier" class="java.lang.String"/>
+	<field name="alamatSupplier" class="java.lang.String"/>
+	<field name="namaPembuat" class="java.lang.String"/>
+	<field name="jabatanPembuat" class="java.lang.String"/>
+	<field name="listReturDetail" class="java.util.Collection"/>
+	<field name="keterangan" class="java.lang.String"/>
+	<field name="pajak" class="java.math.BigDecimal"/>
+	<field name="ongkosKirim" class="java.math.BigDecimal"/>
+	<field name="namaApproval" class="java.lang.String"/>
+	<field name="jabatanApproval" class="java.lang.String"/>
+	<field name="namaPIC" class="java.lang.String"/>
+	<field name="noTeleponPIC" class="java.lang.String"/>
+	<field name="kodeRetur" class="java.lang.String"/>
+	<field name="kodeSuratJalan" class="java.lang.String"/>
+	<group name="DataReturDetail">
+		<groupHeader>
+			<band height="22">
+				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				<subreport>
+					<reportElement x="-20" y="0" width="596" height="22" uuid="fee33673-8391-485e-9e8f-54cf14665917"/>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="Keterangan">
+						<subreportParameterExpression><![CDATA[$F{keterangan}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="pajak">
+						<subreportParameterExpression><![CDATA[$F{pajak}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="biayaPengiriman">
+						<subreportParameterExpression><![CDATA[$F{ongkosKirim}]]></subreportParameterExpression>
+					</subreportParameter>
+					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{listReturDetail})]]></dataSourceExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "PrintReturDetail.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="129" splitType="Immediate">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<image>
+				<reportElement stretchType="RelativeToBandHeight" x="0" y="0" width="50" height="46" uuid="b02111ea-9a14-4c0d-9faf-7c0113f9f928"/>
+				<imageExpression><![CDATA[$P{LOGO_IMAGE}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="406" y="0" width="134" height="15" uuid="6af96482-ceb4-468b-8e4f-672b1151bef3"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Bandung,"+new SimpleDateFormat("dd MMMM yyyy",new java.util.Locale("id")).format(new java.util.Date())]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="50" y="16" width="150" height="15" isPrintWhenDetailOverflows="true" uuid="ffe9e471-39d4-4a7d-a7df-ec720ca58157">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ALAMAT_HOTEL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="218" y="16" width="150" height="20" uuid="a320e2e3-524f-4c50-bbbb-64a678480a28"/>
+				<textElement>
+					<font size="14" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[RETUR PEMBELIAN]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="50" y="31" width="150" height="15" isPrintWhenDetailOverflows="true" uuid="a3fed5af-f541-4c56-80d7-f976545b7e69">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TELEPON_HOTEL}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="50" y="0" width="150" height="16" isPrintWhenDetailOverflows="true" uuid="57c9ce6b-f12f-47dd-9349-cf3adf669380">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{NAMA_HOTEL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="283" y="65" width="97" height="15" uuid="289df4c6-56bb-4fe3-ac97-1cee065c880a"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Nama Supplier]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="283" y="95" width="97" height="15" isPrintWhenDetailOverflows="true" uuid="e5c253e6-d6a6-4675-9863-a4f004a9a6aa"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Nama PIC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="380" y="80" width="10" height="15" isPrintWhenDetailOverflows="true" uuid="6ce58a18-9abc-4476-a812-fcad35d7a791">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="283" y="80" width="97" height="15" isPrintWhenDetailOverflows="true" uuid="0dc17cec-77e9-4a11-b9d6-64ee03ff8fc0"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Alamat Supplier]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="390" y="95" width="160" height="15" isPrintWhenDetailOverflows="true" uuid="8b285937-7e7d-47d7-8834-446e96273c08"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{namaPIC}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="380" y="65" width="10" height="15" uuid="b643864b-23a6-4b5a-b5da-8bc5bbe39a00">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="390" y="80" width="160" height="15" isPrintWhenDetailOverflows="true" uuid="3b8e6e5c-de26-4cbf-93dd-0aed92d982c7"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{alamatSupplier}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="390" y="65" width="160" height="15" isPrintWhenDetailOverflows="true" uuid="ee135c7b-7e2f-42fc-ac85-15c230854b98"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{namaSupplier}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="283" y="110" width="97" height="15" isPrintWhenDetailOverflows="true" uuid="2710e8f3-b03b-47ab-978c-4e0bf8d5b1d9">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[No Telp Supplier / PIC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="380" y="110" width="10" height="15" isPrintWhenDetailOverflows="true" uuid="36de4507-2a24-448d-a752-60ca638e8ee2">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="380" y="95" width="10" height="15" isPrintWhenDetailOverflows="true" uuid="46b114bc-ac4e-4d2d-bf64-6ca67889cacb">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="96" y="80" width="122" height="15" uuid="d498eea3-58f5-45e5-9781-a1babc40004a"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kodePO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="88" y="80" width="8" height="15" isPrintWhenDetailOverflows="true" uuid="72b74601-5206-4669-a7c3-7150edfe8407">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="FixRelativeToBottom" stretchType="RelativeToTallestObject" x="390" y="110" width="160" height="15" isPrintWhenDetailOverflows="true" uuid="517a805d-a08e-4aaf-a45a-b1c24ef12c8d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{noTeleponSupplier}+" / "+$F{noTeleponPIC}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="80" width="88" height="15" isPrintWhenDetailOverflows="true" uuid="42e51c28-f367-4a47-9dae-6f5c029d83ee">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box leftPadding="5" rightPadding="5"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Nomor PO ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="65" width="88" height="15" uuid="264b0b2f-f937-4f3c-89dd-6330e19c5711"/>
+				<box leftPadding="5" rightPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Nomor Retur]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="88" y="65" width="8" height="15" isPrintWhenDetailOverflows="true" uuid="fdba3616-2d65-4395-aa89-f14f6af3c27d">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="95" width="88" height="15" uuid="be6c70af-4436-4d74-b43e-26707277f091"/>
+				<box leftPadding="5" rightPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[Nomor Surat Jalan ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToTallestObject" x="88" y="95" width="8" height="15" isPrintWhenDetailOverflows="true" uuid="ee945eeb-a52c-41a3-b08e-2dd8d976d4ff">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="96" y="65" width="122" height="15" uuid="b386eee8-81fb-4e39-a0b2-b6f5aa153812"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kodeRetur}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="96" y="95" width="122" height="15" uuid="00b63a67-2fb4-4b97-af41-8590c1d305cc"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kodeSuratJalan}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageFooter>
+		<band height="19" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField>
+				<reportElement x="355" y="0" width="100" height="19" uuid="b87f8d1e-318b-4641-beef-cc2e817c6d74"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Halaman " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="455" y="0" width="100" height="19" uuid="d999e5f9-640f-40d4-9ec4-ae6758e0df5d"/>
+				<textElement textAlignment="Left">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["/ " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="90" splitType="Stretch">
+			<staticText>
+				<reportElement x="35" y="59" width="8" height="15" uuid="88a025e7-7c7e-4103-af8c-e1233d500295"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="0" width="60" height="15" uuid="a125ca3d-943b-4f7e-a204-148032007cea"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Dibuat oleh :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="43" y="59" width="102" height="15" uuid="a0689ae4-58be-4a78-990c-354d0df5c61e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{namaPembuat}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="59" width="35" height="15" uuid="79439e7a-d126-4713-950f-a5e9c1c1919d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="183" y="0" width="100" height="15" uuid="40c399ea-d46f-40c4-b251-9479bd9d84d7"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Disetujui Oleh  :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="183" y="74" width="149" height="1" uuid="047a00c9-963c-44c0-9262-3edfca4aeeef"/>
+				<graphicElement>
+					<pen lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="0" y="74" width="145" height="1" uuid="957f2403-7f95-4e5d-8ec2-0468de1c0427"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="74" width="35" height="15" uuid="1e3977f3-cb30-470f-8174-acb15a80779e"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jabatan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="35" y="74" width="8" height="15" uuid="01b878a1-b699-4ab5-bceb-82e1b7281115"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="183" y="59" width="35" height="15" uuid="62257588-548b-47b5-ac60-a47ff511997d"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="218" y="75" width="8" height="15" uuid="f82a6dd0-a240-4bba-8067-99ff4d863ea1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="183" y="75" width="35" height="15" uuid="86c153e0-fed4-4bda-ad4c-48b7987e12df"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jabatan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="218" y="59" width="8" height="15" uuid="535845e6-37b5-40e7-adea-aff63b76470e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="43" y="74" width="102" height="15" uuid="2e6a6c9d-599d-4acc-878f-47dd6db45d86"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jabatanPembuat}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="405" y="0" width="150" height="15" uuid="76e2ea01-f893-47e7-930a-83e3e0deb6f0"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Dikonfirmasi Oleh :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="440" y="59" width="8" height="15" uuid="c73a29fd-ce11-4538-a7b8-e7d27c1c339b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="405" y="74" width="150" height="1" uuid="d342bb04-3d09-438f-a06f-bbed4b45c518"/>
+				<graphicElement>
+					<pen lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="405" y="59" width="35" height="15" uuid="1d627e7d-83c5-4ef6-b07a-486e474e14a8"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="406" y="75" width="149" height="15" isPrintWhenDetailOverflows="true" uuid="51ad8a43-9089-499b-9020-33ede20d9e53"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{namaSupplier}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="226" y="59" width="106" height="15" uuid="8cde1a36-d891-4b12-806c-11e5ca289330"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{namaApproval}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="226" y="74" width="106" height="15" uuid="dae495a9-3bd3-44ca-a611-576d639e3182"/>
+				<textElement verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jabatanApproval}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LaporanCustomer(Detail)" pageWidth="500" pageHeight="595" orientation="Landscape" columnWidth="480" leftMargin="10" rightMargin="10" topMargin="0" bottomMargin="10" uuid="f24d4f0f-15dc-498c-bbd3-9c080d97067a">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["E:\\Data 20180514\\HotelFX\\resources\\Report\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="identitasCustomer" class="java.util.Collection"/>
+	<field name="kontakCustomer" class="java.util.Collection"/>
+	<field name="rekeningCustomer" class="java.util.Collection"/>
+	<group name="IdentitasCustomer">
+		<groupHeader>
+			<band height="20" splitType="Prevent">
+				<subreport>
+					<reportElement x="0" y="2" width="480" height="18" uuid="87d8ffb2-0e83-47f2-aac3-41171a99a1ee"/>
+					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{identitasCustomer})]]></dataSourceExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "LaporanCustomer(Identitas).jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="KontakCustomer">
+		<groupHeader>
+			<band height="20" splitType="Prevent">
+				<subreport>
+					<reportElement x="0" y="0" width="480" height="20" uuid="c0b65cce-3096-4e93-a7e3-c0358ad36c93"/>
+					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{kontakCustomer})]]></dataSourceExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "LaporanCustomer(kontak).jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="RekeningCustomer">
+		<groupHeader>
+			<band height="20" splitType="Prevent">
+				<subreport>
+					<reportElement x="0" y="0" width="480" height="20" uuid="c1516248-08a6-4a66-b41c-80425d3c8cb8"/>
+					<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{rekeningCustomer})]]></dataSourceExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "LaporanCustomer(Rekening).jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+</jasperReport>

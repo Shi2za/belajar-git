@@ -1,0 +1,40 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Sep 4, 2017, 1:17:59 PM
+    Author     : Andreas
+*/
+@import "../feature_warehouse.css";
+
+.label-data-warehouse{
+    -fx-font-weight:bold;
+    -fx-font-size: 12;
+}
+
+.title-data{
+    -fx-font-family:"Helvetica";
+    -fx-font-weight: bolder;
+    -fx-text-fill:#388E3C;
+    -fx-font-size: 11pt;
+    -fx-effect: dropshadow( two-pass-box , rgba(255, 255, 255, 1) , 4, 5 , 0 , 0 );
+}
+
+.table-view .table-row-cell:expired{
+  -fx-border-color: #ec407a;
+  -fx-border-width: 0 0 1 0  ;
+}
+
+.table-view .table-row-cell:expired,
+.table-view .table-row-cell:expired .table-cell{
+  -fx-text-fill : black;
+  -fx-background-color : #ffcdd2; 
+}
+
+.table-view .table-row-cell:expired:selected,
+.table-view .table-row-cell:expired:selected .table-cell{
+   -fx-background-color: derive(gold,67%);
+   -fx-text-fill: black;
+}

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import java.net.URL?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: transparent;" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hotelfx.view.feature_end_of_day.EndOfDayController">
+    <stylesheets>
+        <URL value="@end_of_day.css" />
+    </stylesheets>
+   <children>
+      <SplitPane fx:id="spData" dividerPositions="0.29797979797979796, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5" prefHeight="160.0" prefWidth="200.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" styleClass="anchor-pane-odd">
+               <children>
+                  <AnchorPane fx:id="ancLayoutL1" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                  <JFXButton fx:id="btnNext1" buttonType="RAISED" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" styleClass="button-arrow-right" text=" " AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="0.0" styleClass="anchor-pane-even">
+               <children>
+                  <AnchorPane fx:id="ancLayoutL2" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                  <JFXButton fx:id="btnPrevious2" buttonType="RAISED" layoutX="14.0" layoutY="361.0" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" styleClass="button-arrow-left" text=" " AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
+                  <JFXButton fx:id="btnClosingEoD" buttonType="RAISED" layoutX="73.0" layoutY="345.0" maxHeight="30.0" maxWidth="100.0" minHeight="30.0" minWidth="100.0" prefHeight="30.0" prefWidth="100.0" text=" Posting Data" AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="0.0" styleClass="anchor-pane-odd">
+               <children>
+                  <AnchorPane fx:id="ancLayoutL3" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                  <JFXButton fx:id="btnPrevious3" buttonType="RAISED" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" styleClass="button-arrow-left" text=" " AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
+                  <JFXButton fx:id="btnNext3" buttonType="RAISED" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" styleClass="button-arrow-right" text=" " AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="0.0" styleClass="anchor-pane-even">
+               <children>
+                  <AnchorPane fx:id="ancLayoutL4" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                  <JFXButton fx:id="btnPrevious4" buttonType="RAISED" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" styleClass="button-arrow-left" text=" " AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
+                  <JFXButton fx:id="btnNext4" buttonType="RAISED" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" styleClass="button-arrow-right" text=" " AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="0.0" styleClass="anchor-pane-odd">
+               <children>
+                  <AnchorPane fx:id="ancLayoutL5" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                  <JFXButton fx:id="btnPrevious5" buttonType="RAISED" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" styleClass="button-arrow-left" text=" " AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
+                  <JFXButton fx:id="btnNext5" buttonType="RAISED" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" styleClass="button-arrow-right" text=" " AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="0.0" styleClass="anchor-pane-even">
+               <children>
+                  <AnchorPane fx:id="ancLayoutL6" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                  <JFXButton fx:id="btnPrevious6" buttonType="RAISED" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" styleClass="button-arrow-left" text=" " AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
+                  <JFXButton fx:id="btnNext6" buttonType="RAISED" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" styleClass="button-arrow-right" text=" " AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="0.0" styleClass="anchor-pane-odd">
+               <children>
+                  <AnchorPane fx:id="ancLayoutL7" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                  <JFXButton fx:id="btnPrevious7" buttonType="RAISED" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" styleClass="button-arrow-left" text=" " AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
+                  <JFXButton fx:id="btnNext7" buttonType="RAISED" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" styleClass="button-arrow-right" text=" " AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="0.0" styleClass="anchor-pane-even">
+               <children>
+                  <AnchorPane fx:id="ancLayoutL8" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                  <JFXButton fx:id="btnPrevious8" buttonType="RAISED" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" styleClass="button-arrow-left" text=" " AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
+                  <JFXButton fx:id="btnNext8" buttonType="RAISED" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" styleClass="button-arrow-right" text=" " AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="0.0" styleClass="anchor-pane-odd">
+               <children>
+                  <AnchorPane fx:id="ancLayoutL9" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                  <JFXButton fx:id="btnPrevious9" buttonType="RAISED" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" styleClass="button-arrow-left" text=" " AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
+                  <JFXButton fx:id="btnNext9" buttonType="RAISED" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" styleClass="button-arrow-right" text=" " AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="0.0" styleClass="anchor-pane-even">
+               <children>
+                  <AnchorPane fx:id="ancLayoutL10" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                  <JFXButton fx:id="btnPrevious10" buttonType="RAISED" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" styleClass="button-arrow-left" text=" " AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
+                  <JFXButton fx:id="btnNext10" buttonType="RAISED" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" styleClass="button-arrow-right" text=" " AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+               </children>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="0.0" prefWidth="0.0" styleClass="anchor-pane-odd">
+               <children>
+                  <AnchorPane fx:id="ancLayoutL11" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="60.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                  <JFXButton fx:id="btnPrevious11" buttonType="RAISED" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" styleClass="button-arrow-left" text=" " AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" />
+                  <JFXButton fx:id="btnNext2" buttonType="RAISED" maxHeight="30.0" maxWidth="30.0" minHeight="30.0" minWidth="30.0" prefHeight="30.0" prefWidth="30.0" styleClass="button-save" text=" " AnchorPane.bottomAnchor="15.0" AnchorPane.rightAnchor="15.0" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

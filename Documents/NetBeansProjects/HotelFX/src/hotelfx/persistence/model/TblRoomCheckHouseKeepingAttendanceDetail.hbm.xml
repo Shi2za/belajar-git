@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 1, 2018 9:11:14 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblRoomCheckHouseKeepingAttendanceDetail" table="tblRoomCheck_HouseKeepingAttendance_Detail" schema="dbo" catalog="Hotel"
+    optimistic-lock="version">
+        <id name="idrelation" type="long">
+            <column name="IDRelation" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdatedBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdatedBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreatedBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreatedBy" />
+        </many-to-one>
+        <many-to-one name="tblItem" class="hotelfx.persistence.model.TblItem" fetch="select">
+            <column name="IDItem" />
+        </many-to-one>
+        <many-to-one name="tblRoomCheckHouseKeepingAttendance" class="hotelfx.persistence.model.TblRoomCheckHouseKeepingAttendance" fetch="select">
+            <column name="IDRoomCheck" />
+        </many-to-one>
+        <property name="codeWorkSheet" type="string">
+            <column name="CodeWorkSheet" />
+        </property>
+        <property name="qtySistem" type="big_decimal">
+            <column name="QtySistem" precision="18" scale="4" />
+        </property>
+        <property name="qtyReal" type="big_decimal">
+            <column name="QtyReal" precision="18" scale="4" />
+        </property>
+        <property name="createdDate" type="timestamp">
+            <column name="CreatedDate" length="23" />
+        </property>
+        <property name="lastUpdatedDate" type="timestamp">
+            <column name="LastUpdatedDate" length="23" />
+        </property>
+    </class>
+</hibernate-mapping>

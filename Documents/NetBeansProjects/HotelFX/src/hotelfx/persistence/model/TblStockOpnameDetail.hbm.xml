@@ -1,0 +1,72 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 10, 2018 10:51:26 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblStockOpnameDetail" table="tblStockOpnameDetail" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="iddetail" type="long">
+            <column name="IDDetail" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblItem" class="hotelfx.persistence.model.TblItem" fetch="select">
+            <column name="IDItem" />
+        </many-to-one>
+        <many-to-one name="tblItemExpiredDate" class="hotelfx.persistence.model.TblItemExpiredDate" fetch="select">
+            <column name="IDItemExpiredDate" />
+        </many-to-one>
+        <many-to-one name="tblPropertyBarcode" class="hotelfx.persistence.model.TblPropertyBarcode" fetch="select">
+            <column name="IDPropertyBarcode" />
+        </many-to-one>
+        <many-to-one name="tblStockOpname" class="hotelfx.persistence.model.TblStockOpname" fetch="select">
+            <column name="IDStockOpname" />
+        </many-to-one>
+        <property name="itemQuantitySystem" type="big_decimal">
+            <column name="ItemQuantitySystem" precision="10" scale="4" />
+        </property>
+        <property name="itemQuantityReal" type="big_decimal">
+            <column name="ItemQuantityReal" precision="10" scale="4" />
+        </property>
+        <property name="detailNote" type="string">
+            <column name="DetailNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblStockOpnameDetailItemExpiredDates" table="tblStockOpnameDetail_ItemExpiredDate" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDStockOpnameDetail" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblStockOpnameDetailItemExpiredDate" />
+        </set>
+        <set name="tblStockOpnameDetailPropertyBarcodes" table="tblStockOpnameDetail_PropertyBarcode" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDStockOpnameDetail" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblStockOpnameDetailPropertyBarcode" />
+        </set>
+    </class>
+    <sql-query name="deleteAllTblStockOpnameDetail" callable="true">
+        <return-scalar column="err_msg" type="string"/>
+        <![CDATA[{CALL DeleteAllStockOpnameDetail(:idStockOpname, :idEmployee)}]]>
+    </sql-query>
+    <query name="findAllTblStockOpnameDetailByIDStockOpname">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblStockOpnameDetail t where t.tblStockOpname.idstockOpname=:idStockOpname and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblStockOpnameDetail">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblStockOpnameDetail t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

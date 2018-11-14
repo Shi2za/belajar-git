@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 3, 2018 4:36:52 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.RefRoomStatus" table="refRoomStatus" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idstatus" type="int">
+            <column name="IDStatus" />
+            <generator class="assigned" />
+        </id>
+        <property name="statusName" type="string">
+            <column name="StatusName" length="100" />
+        </property>
+        <property name="statusNote" type="string">
+            <column name="StatusNote" />
+        </property>
+        <set name="tblRoomStatusChangeHistoriesForRoomStatusOld" table="tblRoomStatusChangeHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RoomStatusOld" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRoomStatusChangeHistory" />
+        </set>
+        <set name="tblRooms" table="tblRoom" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RoomStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRoom" />
+        </set>
+        <set name="tblRoomCheckHouseKeepingAttendancesForRoomStatusBefore" table="tblRoomCheck_HouseKeepingAttendance" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RoomStatusBefore" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRoomCheckHouseKeepingAttendance" />
+        </set>
+        <set name="tblRoomCheckHouseKeepingAttendancesForRoomStatusAfter" table="tblRoomCheck_HouseKeepingAttendance" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RoomStatusAfter" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRoomCheckHouseKeepingAttendance" />
+        </set>
+        <set name="tblRoomStatusChangeHistoriesForRoomStatusNew" table="tblRoomStatusChangeHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RoomStatusNew" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRoomStatusChangeHistory" />
+        </set>
+    </class>
+    <query name="findAllRefRoomStatus">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from RefRoomStatus]]>
+    </query>
+</hibernate-mapping>

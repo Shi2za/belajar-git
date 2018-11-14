@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 30, 2018 10:46:02 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.RefEndOfDayDataStatus" table="refEndOfDayDataStatus" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idstatus" type="int">
+            <column name="IDStatus" />
+            <generator class="assigned" />
+        </id>
+        <property name="statusName" type="string">
+            <column name="StatusName" length="100" />
+        </property>
+        <property name="statusNote" type="string">
+            <column name="StatusNote" />
+        </property>
+        <set name="tblReservationRoomPriceDetails" table="tblReservationRoomPriceDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_EoDDataStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationRoomPriceDetail" />
+        </set>
+        <set name="tblReservationBreakfastVouchers" table="tblReservationBreakfastVoucher" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_EoDDataStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationBreakfastVoucher" />
+        </set>
+        <set name="tblReservationCancelingFees" table="tblReservationCancelingFee" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_EoDDataStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationCancelingFee" />
+        </set>
+        <set name="tblReservationRoomTypeDetails" table="tblReservationRoomTypeDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_EoDDataStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationRoomTypeDetail" />
+        </set>
+        <set name="tblReservationAdditionalItems" table="tblReservationAdditionalItem" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_EoDDataStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationAdditionalItem" />
+        </set>
+        <set name="tblReservationBrokenItems" table="tblReservationBrokenItem" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_EoDDataStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationBrokenItem" />
+        </set>
+        <set name="tblReservationAdditionalServices" table="tblReservationAdditionalService" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_EoDDataStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationAdditionalService" />
+        </set>
+    </class>
+    <query name="findAllRefEndOfDayDataStatus">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from RefEndOfDayDataStatus]]>
+    </query>
+</hibernate-mapping>

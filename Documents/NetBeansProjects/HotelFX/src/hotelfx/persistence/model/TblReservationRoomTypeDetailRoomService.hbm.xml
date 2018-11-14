@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 25, 2018 3:21:47 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblReservationRoomTypeDetailRoomService" table="tblReservationRoomTypeDetail_RoomService" schema="dbo" catalog="Hotel"
+    optimistic-lock="version">
+        <id name="idrelation" type="long">
+            <column name="IDRelation" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblReservationRoomTypeDetail" class="hotelfx.persistence.model.TblReservationRoomTypeDetail" fetch="select">
+            <column name="IDRRTD" />
+        </many-to-one>
+        <many-to-one name="tblRoomService" class="hotelfx.persistence.model.TblRoomService" fetch="select">
+            <column name="IDRoomService" />
+        </many-to-one>
+        <property name="roomServiceCost" type="big_decimal">
+            <column name="RoomServiceCost" precision="18" scale="4" />
+        </property>
+        <property name="peopleNumber" type="java.lang.Integer">
+            <column name="PeopleNumber" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+    </class>
+    <sql-query name="deleteAllTblReservationRoomTypeDetailRoomServiceByIDRoomTypeDetail" callable="true">
+        <return-scalar column="err_msg" type="string"/>
+        <![CDATA[{CALL DeleteAllReservationRoomTypeDetailRoomServiceByIDRoomTypeDetail(:idRoomTypeDetail, :idEmployee)}]]>
+    </sql-query>
+    <query name="findAllTblReservationRoomTypeDetailRoomService">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationRoomTypeDetailRoomService t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

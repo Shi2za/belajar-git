@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 4, 2018 9:07:32 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.LogSystem" table="logSystem" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idlog" type="long">
+            <column name="IDLog" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tblEmployee" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="IDEmployee" />
+        </many-to-one>
+        <many-to-one name="tblSystemUser" class="hotelfx.persistence.model.TblSystemUser" fetch="select">
+            <column name="IDUser" />
+        </many-to-one>
+        <property name="logDateTime" type="timestamp">
+            <column name="LogDateTime" length="23" />
+        </property>
+        <property name="hostName" type="string">
+            <column name="HostName" length="100" />
+        </property>
+        <property name="logHeader" type="string">
+            <column name="LogHeader" length="100" />
+        </property>
+        <property name="logDetail" type="string">
+            <column name="LogDetail" />
+        </property>
+    </class>
+    <query name="findAllLogSystem">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from LogSystem t order by t.logDateTime desc]]>
+    </query>
+</hibernate-mapping>

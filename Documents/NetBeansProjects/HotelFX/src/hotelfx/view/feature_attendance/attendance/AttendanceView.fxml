@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Rectangle?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@attendance.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <StackPane prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="570.0" minWidth="1020.0" prefHeight="570.0" prefWidth="1020.0" styleClass="anchor-pane">
+               <top>
+                  <GridPane hgap="15.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="110.0" minWidth="0.0" prefHeight="110.0" prefWidth="1020.0" vgap="20.0" BorderPane.alignment="CENTER">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="60.0" minWidth="60.0" prefWidth="60.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="20.0" minWidth="100.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="25.0" minHeight="1.0" prefHeight="13.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="134.0" styleClass="title-top" text="Periode" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="117.0" styleClass="title-top" text="s/d" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                        <JFXDatePicker fx:id="dpStartPeriode" prefHeight="28.0" prefWidth="178.0" promptText="Periode Awal *" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <JFXDatePicker fx:id="dpEndPeriode" promptText="Periode Akhir *" GridPane.columnIndex="5" GridPane.rowIndex="1" />
+                        <JFXButton fx:id="btnSetting" prefHeight="21.0" prefWidth="130.0" text="Finger Print" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+                        <JFXTextField fx:id="txtNamePath" labelFloat="true" promptText="File *" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                        <JFXButton fx:id="btnBrowseFile" prefHeight="25.0" prefWidth="150.0" text="Browse" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                        <JFXButton fx:id="btnUploadFile" prefHeight="25.0" prefWidth="137.0" text="Upload" GridPane.columnIndex="5" GridPane.rowIndex="2" />
+                        <JFXButton fx:id="btnSave" prefHeight="18.0" prefWidth="103.0" text="Simpan" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                     </children>
+                  </GridPane>
+               </top>
+               <center>
+                  <AnchorPane fx:id="tableAttendanceLayout" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+               </center>
+            </BorderPane>
+            <TitledPane animated="false" expanded="false" maxHeight="100.0" maxWidth="300.0" minHeight="170.0" minWidth="0.0" prefHeight="100.0" prefWidth="200.0" styleClass="titled-pane-status-attendance" text="Informasi Status Absen" StackPane.alignment="TOP_RIGHT">
+               <StackPane.margin>
+                  <Insets right="20.0" top="20.0" />
+               </StackPane.margin>
+               <content>
+                  <GridPane hgap="10.0" styleClass="input-form" vgap="10.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="0.0" prefWidth="0.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="110.0" minWidth="100.0" prefWidth="110.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="0.0" prefWidth="0.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="25.0" minHeight="25.0" prefHeight="25.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <children>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#ffc107" height="20.0" layoutX="-86.0" layoutY="-86.0" stroke="BLACK" strokeType="INSIDE" width="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <children>
+                              <Rectangle arcHeight="5.0" arcWidth="5.0" fill="RED" height="20.0" layoutX="-85.0" layoutY="-90.0" stroke="BLACK" strokeType="INSIDE" width="30.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                           </children>
+                        </AnchorPane>
+                        <Label prefHeight="24.0" prefWidth="100.0" text="Lebih Awal" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <Label prefHeight="28.0" prefWidth="100.0" text="Telat" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                        <Label prefHeight="29.0" prefWidth="100.0" styleClass="label-info" text="Masuk " GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Label prefHeight="47.0" prefWidth="100.0" styleClass="label-info" text="Keluar" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <Label prefHeight="28.0" prefWidth="100.0" text="Telat" GridPane.columnIndex="2" GridPane.rowIndex="3" />
+                        <Label prefHeight="27.0" prefWidth="108.0" text="Lebih Awal" GridPane.columnIndex="3" GridPane.rowIndex="3" />
+                        <Label alignment="CENTER" prefHeight="25.0" prefWidth="256.0" styleClass="label-data" text="Keterangan Warna" GridPane.columnIndex="1" GridPane.columnSpan="3" />
+                     </children>
+                  </GridPane>
+               </content>
+            </TitledPane>
+         </children>
+      </StackPane>
+   </children>
+</AnchorPane>

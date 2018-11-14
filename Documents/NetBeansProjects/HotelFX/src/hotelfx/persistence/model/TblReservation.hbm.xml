@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 30, 2018 10:46:02 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblReservation" table="tblReservation" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idreservation" type="long">
+            <column name="IDReservation" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="refReservationStatus" class="hotelfx.persistence.model.RefReservationStatus" fetch="select">
+            <column name="_ReservationStatus" />
+        </many-to-one>
+        <many-to-one name="tblCustomer" class="hotelfx.persistence.model.TblCustomer" fetch="select">
+            <column name="IDCustomer" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblPartner" class="hotelfx.persistence.model.TblPartner" fetch="select">
+            <column name="IDPartner" />
+        </many-to-one>
+        <property name="codeReservation" type="string">
+            <column name="CodeReservation" length="50" />
+        </property>
+        <property name="reservationDate" type="timestamp">
+            <column name="ReservationDate" length="23" />
+        </property>
+        <property name="planningArrivalTime" type="timestamp">
+            <column name="PlanningArrivalTime" length="23" />
+        </property>
+        <property name="arrivalTime" type="timestamp">
+            <column name="ArrivalTime" length="23" />
+        </property>
+        <property name="departureTime" type="timestamp">
+            <column name="DepartureTime" length="23" />
+        </property>
+        <property name="maxPaymentDate" type="timestamp">
+            <column name="MaxPaymentDate" length="23" />
+        </property>
+        <property name="maxCancelDate" type="timestamp">
+            <column name="MaxCancelDate" length="23" />
+        </property>
+        <property name="note" type="string">
+            <column name="Note" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblReservationRoomTypeDetails" table="tblReservationRoomTypeDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDReservation" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationRoomTypeDetail" />
+        </set>
+        <set name="tblReservationCancelingFees" table="tblReservationCancelingFee" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDReservation" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationCancelingFee" />
+        </set>
+        <set name="tblReservationRescheduleCanceleds" table="tblReservationRescheduleCanceled" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDReservation" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationRescheduleCanceled" />
+        </set>
+        <set name="tblReservationBills" table="tblReservationBill" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDReservation" not-null="true" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationBill" />
+        </set>
+        <set name="tblReservationCanceleds" table="tblReservationCanceled" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDReservation" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationCanceled" />
+        </set>
+    </class>
+    <query name="findAllTblReservation">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservation t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3) order by t.idreservation desc]]>
+    </query>
+    <query name="findAllTblReservationByIDReservationStatus">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservation t where t.refReservationStatus.idstatus=:idReservationStatus and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3) order by t.idreservation desc]]>
+    </query>
+</hibernate-mapping>

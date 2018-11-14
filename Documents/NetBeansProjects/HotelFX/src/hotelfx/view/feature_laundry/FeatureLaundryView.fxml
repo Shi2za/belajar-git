@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@feature_laundry.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hotelfx.view.feature_laundry.FeatureLaundryController">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <left>
+            <VBox maxWidth="150.0" minWidth="150.0" prefWidth="150.0" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane fx:id="btnShowLaundryTransferItemLayout" maxHeight="70.0" maxWidth="150.0" minHeight="70.0" minWidth="150.0" prefHeight="70.0" prefWidth="150.0">
+                     <children>
+                        <JFXButton fx:id="btnShowLaundryTransferItem" buttonType="RAISED" layoutX="27.0" layoutY="37.0" text="Laundy" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="btnShowLaundryInComingLayout" maxHeight="70.0" maxWidth="150.0" minHeight="70.0" minWidth="150.0" prefHeight="70.0" prefWidth="150.0">
+                     <children>
+                        <JFXButton fx:id="btnShowLaundryInComing" buttonType="RAISED" layoutX="27.0" layoutY="37.0" lineSpacing="1.0" text="Incoming" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="btnShowLaundryOutGoingLayout" maxHeight="70.0" maxWidth="150.0" minHeight="70.0" minWidth="150.0" prefHeight="70.0" prefWidth="150.0">
+                     <children>
+                        <JFXButton fx:id="btnShowLaundryOutGoing" buttonType="RAISED" layoutX="27.0" layoutY="37.0" lineSpacing="1.0" text="Outgoing" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="btnShowLaundryStockOpnameLayout" maxHeight="70.0" maxWidth="150.0" minHeight="70.0" minWidth="150.0" prefHeight="70.0" prefWidth="150.0">
+                     <children>
+                        <JFXButton fx:id="btnShowLaundryStockOpname" buttonType="RAISED" layoutX="27.0" layoutY="37.0" lineSpacing="1.0" text="Stock Opname" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="btnShowLaundryMutationHistoryLayout" maxHeight="70.0" maxWidth="150.0" minHeight="70.0" minWidth="150.0" prefHeight="70.0" prefWidth="150.0">
+                     <children>
+                        <JFXButton fx:id="btnShowLaundryMutationHistory" buttonType="RAISED" layoutX="27.0" layoutY="37.0" lineSpacing="1.0" text="History (Mutasi)" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <AnchorPane fx:id="subFeatureContent" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

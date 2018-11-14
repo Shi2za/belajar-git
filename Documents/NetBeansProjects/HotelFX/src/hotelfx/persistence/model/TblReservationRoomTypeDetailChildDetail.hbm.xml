@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 28, 2017 1:30:07 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblReservationRoomTypeDetailChildDetail" table="tblReservationRoomTypeDetailChildDetail" schema="dbo" catalog="Hotel"
+    optimistic-lock="version">
+        <id name="iddetail" type="long">
+            <column name="IDDetail" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblReservationRoomTypeDetail" class="hotelfx.persistence.model.TblReservationRoomTypeDetail" fetch="select">
+            <column name="IDRoomTypeDetail" />
+        </many-to-one>
+        <property name="childName" type="string">
+            <column name="ChildName" length="50" />
+        </property>
+        <property name="childAge" type="java.lang.Integer">
+            <column name="ChildAge" />
+        </property>
+        <property name="childNote" type="string">
+            <column name="ChildNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+    </class>
+    <query name="findAllTblReservationRoomTypeDetailChildDetailByIDReservationRoomTypeDetail">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationRoomTypeDetailChildDetail t where t.tblReservationRoomTypeDetail.iddetail=:idReservationRoomTypeDetail and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblReservationRoomTypeDetailChildDetail">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationRoomTypeDetailChildDetail t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

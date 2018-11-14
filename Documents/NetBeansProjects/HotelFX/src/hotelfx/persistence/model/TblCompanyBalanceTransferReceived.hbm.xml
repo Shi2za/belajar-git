@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 6, 2018 9:53:50 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblCompanyBalanceTransferReceived" table="tblCompanyBalance_TransferReceived" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idrelation" type="long">
+            <column name="IDRelation" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblCompanyBalanceByIdcompanyBalanceSender" class="hotelfx.persistence.model.TblCompanyBalance" fetch="select">
+            <column name="IDCompanyBalanceSender" />
+        </many-to-one>
+        <many-to-one name="tblCompanyBalanceByIdcompanyBalanceReceived" class="hotelfx.persistence.model.TblCompanyBalance" fetch="select">
+            <column name="IDCompanyBalanceReceived" />
+        </many-to-one>
+        <many-to-one name="tblCompanyBalanceBankAccountByIdcbbankAccountSender" class="hotelfx.persistence.model.TblCompanyBalanceBankAccount" fetch="select">
+            <column name="IDCBBankAccountSender" />
+        </many-to-one>
+        <many-to-one name="tblCompanyBalanceBankAccountByIdcbbankAccountReceived" class="hotelfx.persistence.model.TblCompanyBalanceBankAccount" fetch="select">
+            <column name="IDCBBankAccountReceived" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreatedBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreatedBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByReceivedBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="ReceivedBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdatedBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdatedBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByTransferBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="TransferBy" />
+        </many-to-one>
+        <property name="nominal" type="big_decimal">
+            <column name="Nominal" precision="18" scale="4" />
+        </property>
+        <property name="transferDate" type="timestamp">
+            <column name="TransferDate" length="23" />
+        </property>
+        <property name="receivedDate" type="timestamp">
+            <column name="ReceivedDate" length="23" />
+        </property>
+        <property name="isReceived" type="java.lang.Boolean">
+            <column name="IsReceived" />
+        </property>
+        <property name="createdDate" type="timestamp">
+            <column name="CreatedDate" length="23" />
+        </property>
+        <property name="lastUpdatedDate" type="timestamp">
+            <column name="LastUpdatedDate" length="23" />
+        </property>
+    </class>
+    <query name="findAllTblCompanyBalanceTransferReceived">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblCompanyBalanceTransferReceived t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblCompanyBalanceTransferReceivedByIDSender">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblCompanyBalanceTransferReceived t where t.tblCompanyBalanceByIdcompanyBalanceSender.idbalance=:idBalance and t.isReceived='false' and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+    <query name="findAllTblCompanyBalanceTransferReceivedByIDReceived">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblCompanyBalanceTransferReceived t where t.tblCompanyBalanceByIdcompanyBalanceReceived.idbalance=:idBalance and t.isReceived='false' and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+</hibernate-mapping>

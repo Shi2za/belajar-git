@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCToggleButton?>
+<?import com.jfoenix.controls.JFXPasswordField?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane fx:id="bpBaseBackground" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="648.0" minWidth="1152.0" prefHeight="648.0" prefWidth="1152.0" stylesheets="@login.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hotelfx.view.LoginController">
+   <top>
+      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="60.0" minWidth="1152.0" prefHeight="60.0" prefWidth="1152.0" BorderPane.alignment="CENTER">
+         <children>
+            <JFXCToggleButton fx:id="tbtnLogin_DBConnection" text=" " AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+         </children>
+      </AnchorPane>
+   </top>
+   <center>
+      <StackPane maxHeight="500.0" maxWidth="550.0" minHeight="500.0" minWidth="550.0" prefHeight="500.0" prefWidth="550.0" BorderPane.alignment="CENTER">
+         <children>
+            <GridPane fx:id="gpDBConnection" hgap="10.0" maxHeight="400.0" maxWidth="510.0" minHeight="400.0" minWidth="510.0" prefHeight="400.0" prefWidth="510.0" styleClass="background-db-connection" vgap="15.0" StackPane.alignment="CENTER">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="20.0" minWidth="20.0" prefWidth="20.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="20.0" minWidth="20.0" prefWidth="20.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <JFXTextField fx:id="txtPort" labelFloat="true" promptText="Port" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+                  <JFXTextField fx:id="txtHostname" labelFloat="true" promptText="Hostname" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                  <JFXTextField fx:id="txtDatabaseName" labelFloat="true" promptText="Database" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="5" />
+                  <JFXTextField fx:id="txtDBUserName" labelFloat="true" promptText="Username" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                  <JFXPasswordField fx:id="txtDBPassword" labelFloat="true" promptText="Password" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+                  <JFXButton fx:id="btnTestConnection" buttonType="RAISED" onMouseClicked="#testDataDBConnection" prefHeight="25.0" prefWidth="219.0" text="Test Connection" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+                  <Label text="DB - Connection" textFill="#21ae2f" GridPane.columnIndex="1" GridPane.columnSpan="5" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="Batang" size="40.0" />
+                     </font>
+                  </Label>
+                  <JFXButton fx:id="btnSaveChanged" buttonType="RAISED" onMouseClicked="#saveDataDBConnection" prefHeight="25.0" prefWidth="220.0" text="Save Changed" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="6" GridPane.valignment="CENTER" />
+               </children>
+            </GridPane>
+            <GridPane fx:id="gpLogin" alignment="CENTER" hgap="10.0" maxHeight="400.0" maxWidth="300.0" minHeight="400.0" minWidth="300.0" prefHeight="400.0" prefWidth="300.0" styleClass="background-login" vgap="15.0" StackPane.alignment="CENTER">
+              <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="20.0" minWidth="20.0" prefWidth="20.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="1.7976931348623157E308" minWidth="100.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="20.0" minWidth="20.0" prefWidth="20.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="50.0" minHeight="50.0" prefHeight="50.0" vgrow="SOMETIMES" />
+                  <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                  <JFXTextField fx:id="txtUserLogin" labelFloat="true" promptText="Username" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                  <JFXPasswordField fx:id="txtPasswordLogin" labelFloat="true" promptText="Password" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                  <JFXButton fx:id="btnLogin" alignment="CENTER" buttonType="RAISED" contentDisplay="CENTER" maxHeight="25.0" maxWidth="72.0" minHeight="25.0" minWidth="72.0" onMouseClicked="#doLogin" prefHeight="25.0" prefWidth="72.0" text="LOGIN" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="TOP">
+                     <GridPane.margin>
+                        <Insets />
+                     </GridPane.margin>
+                  </JFXButton>
+                  <Label fx:id="lblLogo" text="LENORA" textFill="#21ae2f" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+                     <font>
+                        <Font name="Batang" size="40.0" />
+                     </font>
+                  </Label>
+               </children>
+            </GridPane>
+         </children>
+      </StackPane>
+   </center>
+   <styleClass>
+      <String fx:value="background-root" />
+      <String fx:value="root-color" />
+   </styleClass>
+</BorderPane>

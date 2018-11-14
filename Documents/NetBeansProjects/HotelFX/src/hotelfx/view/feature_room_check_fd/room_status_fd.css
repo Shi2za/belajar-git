@@ -1,0 +1,23 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+@import "../root.css";
+
+.table-view .table-row-cell:uneditable,
+.table-view .table-row-cell:uneditable .table-cell{
+  -fx-text-fill : white;
+  -fx-background-color : blue; 
+}
+
+.button-check-in-progress{
+    -fx-background-color:red;
+    -fx-shape:"M16 0c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16zM16 29c-7.18 0-13-5.82-13-13s5.82-13 13-13 13 5.82 13 13-5.82 13-13 13z 
+        M21 8l-5 5-5-5-3 3 5 5-5 5 3 3 5-5 5 5 3-3-5-5 5-5z";
+}
+
+/*.table-view .table-row-cell:uneditable:selected,
+.table-view .table-row-cell:uneditable:selected .table-cell{
+  -fx-text-fill : black;
+  -fx-background-color : derive(gold,67%); 
+}*/

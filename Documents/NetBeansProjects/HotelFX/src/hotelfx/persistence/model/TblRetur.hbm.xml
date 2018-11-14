@@ -1,0 +1,124 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 24, 2018 1:55:01 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblRetur" table="tblRetur" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idretur" type="long">
+            <column name="IDRetur" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="refReturPaymentStatus" class="hotelfx.persistence.model.RefReturPaymentStatus" fetch="select">
+            <column name="_ReturPaymentStatus" />
+        </many-to-one>
+        <many-to-one name="refReturStatus" class="hotelfx.persistence.model.RefReturStatus" fetch="select">
+            <column name="_ReturStatus" />
+        </many-to-one>
+        <many-to-one name="refReturType" class="hotelfx.persistence.model.RefReturType" fetch="select">
+            <column name="_ReturType" />
+        </many-to-one>
+        <many-to-one name="tblApprovalData" class="hotelfx.persistence.model.TblApprovalData" fetch="select">
+            <column name="IDApprovalData" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCanceledBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CanceledBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreatedBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreatedBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByApprovedBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="ApprovedBy" />
+        </many-to-one>
+        <many-to-one name="tblFinanceData" class="hotelfx.persistence.model.TblFinanceData" fetch="select">
+            <column name="IDFinanceData" />
+        </many-to-one>
+        <many-to-one name="tblHotelReceivable" class="hotelfx.persistence.model.TblHotelReceivable" fetch="select">
+            <column name="IDHotelReceivable" />
+        </many-to-one>
+        <many-to-one name="tblSupplier" class="hotelfx.persistence.model.TblSupplier" fetch="select">
+            <column name="IDSupplier" />
+        </many-to-one>
+        <property name="codeRetur" type="string">
+            <column name="CodeRetur" length="50" />
+        </property>
+        <property name="returDate" type="timestamp">
+            <column name="ReturDate" length="23" />
+        </property>
+        <property name="deliveryNumber" type="string">
+            <column name="DeliveryNumber" length="50" />
+        </property>
+        <property name="deliveryCost" type="big_decimal">
+            <column name="DeliveryCost" precision="18" scale="4" />
+        </property>
+        <property name="taxPercentage" type="big_decimal">
+            <column name="TaxPercentage" precision="10" scale="4" />
+        </property>
+        <property name="maxReturDate" type="timestamp">
+            <column name="MaxReturDate" length="23" />
+        </property>
+        <property name="maxReturPaymentDate" type="timestamp">
+            <column name="MaxReturPaymentDate" length="23" />
+        </property>
+        <property name="updateStockStatus" type="java.lang.Boolean">
+            <column name="UpdateStockStatus" />
+        </property>
+        <property name="returNote" type="string">
+            <column name="ReturNote" />
+        </property>
+        <property name="createdDate" type="timestamp">
+            <column name="CreatedDate" length="23" />
+        </property>
+        <property name="approvedDate" type="timestamp">
+            <column name="ApprovedDate" length="23" />
+        </property>
+        <property name="canceledDate" type="timestamp">
+            <column name="CanceledDate" length="23" />
+        </property>
+        <property name="canceledNote" type="string">
+            <column name="CanceledNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblPurchaseOrders" table="tblPurchaseOrder" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDRetur" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPurchaseOrder" />
+        </set>
+        <set name="tblReturDetails" table="tblReturDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDRetur" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReturDetail" />
+        </set>
+    </class>
+    <!--    <sql-query name="updateTblReturPaymentStatusByIDRetur" callable="true">
+        <return-scalar column="err_msg" type="string"/>
+        <![CDATA[{CALL UpdateReturPaymentStatus(:idRetur)}]]>
+    </sql-query>-->
+    <query name="findAllTblRetur">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblRetur t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3) order by t.idretur desc]]>
+    </query>
+    <query name="findAllTblReturByIDHotelReceivable">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblRetur t where t.tblHotelReceivable.idhotelReceivable=:idHotelReceivable and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblReturByIDSupplier">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblRetur t where t.tblSupplier.idsupplier=:idSupplier and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 21, 2017 1:49:37 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblSystemRole" table="tblSystemRole" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idrole" type="long">
+            <column name="IDRole" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <property name="codeRole" type="string">
+            <column name="CodeRole" length="50" />
+        </property>
+        <property name="roleName" type="string">
+            <column name="RoleName" length="100" not-null="true" />
+        </property>
+        <property name="roleNote" type="string">
+            <column name="RoleNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblSystemUsers" table="tblSystemUser" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDRole" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblSystemUser" />
+        </set>
+        <set name="tblSystemRoleSystemFeatures" table="tblSystemRole_SystemFeature" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDRole" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblSystemRoleSystemFeature" />
+        </set>
+    </class>
+    <query name="findAllTblSystemRoleByRoleName">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblSystemRole t where t.roleName=:roleName and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblSystemRole">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblSystemRole t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

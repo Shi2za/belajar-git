@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 11, 2018 9:25:19 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblInComing" table="tblInComing" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idic" type="long">
+            <column name="IDIC" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByIdsender" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="IDSender" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblLocationByIdlocationDestination" class="hotelfx.persistence.model.TblLocation" fetch="select">
+            <column name="IDLocationDestination" />
+        </many-to-one>
+        <many-to-one name="tblLocationByIdlocationSource" class="hotelfx.persistence.model.TblLocation" fetch="select">
+            <column name="IDLocationSource" />
+        </many-to-one>
+        <property name="codeIc" type="string">
+            <column name="CodeIC" length="50" />
+        </property>
+        <property name="icdate" type="timestamp">
+            <column name="ICDate" length="23" />
+        </property>
+        <property name="icnote" type="string">
+            <column name="ICNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblInComingDetails" table="tblInComingDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDInComing" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblInComingDetail" />
+        </set>
+    </class>
+    <query name="findAllTblInComing">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblInComing t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3) order by t.idic desc]]>
+    </query>
+</hibernate-mapping>

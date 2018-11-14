@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 25, 2018 4:02:01 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblCompanyBalanceBankAccount" table="tblCompanyBalance_BankAccount" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idrelation" type="long">
+            <column name="IDRelation" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblBankAccount" class="hotelfx.persistence.model.TblBankAccount" fetch="select">
+            <column name="IDBankAccount" />
+        </many-to-one>
+        <many-to-one name="tblCompanyBalance" class="hotelfx.persistence.model.TblCompanyBalance" fetch="select">
+            <column name="IDCompanyBalance" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <property name="companyBalanceBankAccountNominal" type="big_decimal">
+            <column name="CompanyBalanceBankAccountNominal" precision="18" scale="4" />
+        </property>
+        <property name="companyBalanceBankAccountNote" type="string">
+            <column name="CompanyBalanceBankAccountNote" />
+        </property>
+        <property name="companyBalanceBankAccountStatus" type="java.lang.Integer">
+            <column name="_CompanyBalanceBankAccountStatus" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblCalendarEmployeeDebts" table="tblCalendar_EmployeeDebt" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDCompanyBankAccount" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblCalendarEmployeeDebt" />
+        </set>
+        <set name="tblCalendarEmployeePaymentDebtHistories" table="tblCalendar_EmployeePaymentDebtHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDCompanyBankAccount" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblCalendarEmployeePaymentDebtHistory" />
+        </set>
+        <set name="tblCompanyBalanceTransferReceivedsForIdcbbankAccountSender" table="tblCompanyBalance_TransferReceived" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDCBBankAccountSender" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblCompanyBalanceTransferReceived" />
+        </set>
+        <set name="tblCalendarEmployeePaymentHistories" table="tblCalendar_EmployeePaymentHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDCompanyBalanceBankAccount" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblCalendarEmployeePaymentHistory" />
+        </set>
+        <set name="tblCompanyBalanceTransferReceivedsForIdcbbankAccountReceived" table="tblCompanyBalance_TransferReceived" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDCBBankAccountReceived" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblCompanyBalanceTransferReceived" />
+        </set>
+    </class>
+    <query name="findAllTblCompanyBalanceBankAccount">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblCompanyBalanceBankAccount t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblCompanyBalanceBankAccountByIDCompanyBalance">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblCompanyBalanceBankAccount t where t.tblCompanyBalance.idbalance=:idCompanyBalance and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblCompanyBalanceBankAccountByIDCompanyBalanceAndIDBankAccount">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblCompanyBalanceBankAccount t where t.tblCompanyBalance.idbalance=:idCompanyBalance and t.tblBankAccount.idbankAccount=:idBankAccount and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

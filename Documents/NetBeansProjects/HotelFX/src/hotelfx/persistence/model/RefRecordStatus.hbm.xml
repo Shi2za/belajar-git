@@ -1,0 +1,1272 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 1, 2018 9:11:14 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.RefRecordStatus" table="refRecordStatus" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idstatus" type="int">
+            <column name="IDStatus" />
+            <generator class="assigned" />
+        </id>
+        <property name="statusName" type="string">
+            <column name="StatusName" length="100" />
+        </property>
+        <property name="statusNote" type="string">
+            <column name="StatusNote" />
+        </property>
+        <set name="tblStockOpnameItemExpiredDates" table="tblStockOpnameItemExpiredDate" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblStockOpnameItemExpiredDate" />
+        </set>
+        <set name="tblReservationPaymentWithDeposits" table="tblReservationPaymentWithDeposit" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationPaymentWithDeposit" />
+        </set>
+        <set name="tblReservationRoomTypeDetailItems" table="tblReservationRoomTypeDetail_Item" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationRoomTypeDetailItem" />
+        </set>
+        <set name="tblFloors" table="tblFloor" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblFloor" />
+        </set>
+        <set name="tblStockOpnameDetailPropertyBarcodes" table="tblStockOpnameDetail_PropertyBarcode" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblStockOpnameDetailPropertyBarcode" />
+        </set>
+        <set name="tblCalendarEmployeeOvertimes" table="tblCalendar_EmployeeOvertime" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblCalendarEmployeeOvertime" />
+        </set>
+        <set name="tblSystemUsers" table="tblSystemUser" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblSystemUser" />
+        </set>
+        <set name="tblLocationOfWarehouses" table="tblLocationOfWarehouse" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblLocationOfWarehouse" />
+        </set>
+        <set name="tblPeopleEmploymentHistories" table="tblPeopleEmploymentHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPeopleEmploymentHistory" />
+        </set>
+        <set name="tblHotelInvoices" table="tblHotelInvoice" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblHotelInvoice" />
+        </set>
+        <set name="tblEmployeeWarningLetterTypes" table="tblEmployeeWarningLetterType" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RefRecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblEmployeeWarningLetterType" />
+        </set>
+        <set name="tblOpenCloseCashierBalances" table="tblOpenCloseCashierBalance" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblOpenCloseCashierBalance" />
+        </set>
+        <set name="sysSystems" table="sysSystem" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.SysSystem" />
+        </set>
+        <set name="tblRestoBankAccounts" table="tblResto_BankAccount" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRestoBankAccount" />
+        </set>
+        <set name="tblPeopleEducationHistories" table="tblPeopleEducationHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPeopleEducationHistory" />
+        </set>
+        <set name="tblReservationBrokenItemPropertyBarcodes" table="tblReservationBrokenItem_PropertyBarcode" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationBrokenItemPropertyBarcode" />
+        </set>
+        <set name="tblSuppliers" table="tblSupplier" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblSupplier" />
+        </set>
+        <set name="tblReservations" table="tblReservation" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservation" />
+        </set>
+        <set name="tblBrokenItems" table="tblBrokenItem" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblBrokenItem" />
+        </set>
+        <set name="tblItemLocations" table="tblItem_Location" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblItemLocation" />
+        </set>
+        <set name="tblReservationAdditionalServices" table="tblReservationAdditionalService" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationAdditionalService" />
+        </set>
+        <set name="tblEmployeeLeaves" table="tblEmployeeLeave" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblEmployeeLeave" />
+        </set>
+        <set name="sysPrograms" table="sysProgram" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.SysProgram" />
+        </set>
+        <set name="tblReservationBreakfastVouchers" table="tblReservationBreakfastVoucher" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationBreakfastVoucher" />
+        </set>
+        <set name="tblUnits" table="tblUnit" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblUnit" />
+        </set>
+        <set name="tblEmployeeEmployeeAllowances" table="tblEmployee_EmployeeAllowance" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblEmployeeEmployeeAllowance" />
+        </set>
+        <set name="tblLocationOfLaundries" table="tblLocationOfLaundry" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblLocationOfLaundry" />
+        </set>
+        <set name="tblRoomCheckItemMutationHistories" table="tblRoomCheck_ItemMutationHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRoomCheckItemMutationHistory" />
+        </set>
+        <set name="tblPeopleFamilies" table="tblPeopleFamily" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPeopleFamily" />
+        </set>
+        <set name="tblBankEdcBankNetworkCards" table="tblBankEDC_BankNetworkCard" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblBankEdcBankNetworkCard" />
+        </set>
+        <set name="tblItemTypeWhs" table="tblItemTypeWH" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblItemTypeWh" />
+        </set>
+        <set name="tblPartnerAgreements" table="tblPartnerAgreement" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPartnerAgreement" />
+        </set>
+        <set name="tblItemMutationHistoryPropertyBarcodes" table="tblItemMutationHistory_PropertyBarcode" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblItemMutationHistoryPropertyBarcode" />
+        </set>
+        <set name="tblEmployeeEmployeeCutOffLeaves" table="tblEmployee_EmployeeCutOffLeave" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblEmployeeEmployeeCutOffLeave" />
+        </set>
+        <set name="tblReturDetails" table="tblReturDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReturDetail" />
+        </set>
+        <set name="tblCalendarEmployeeLeaves" table="tblCalendar_EmployeeLeave" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblCalendarEmployeeLeave" />
+        </set>
+        <set name="tblHotelPayables" table="tblHotelPayable" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblHotelPayable" />
+        </set>
+        <set name="sysPasswordDeleteDebts" table="sysPasswordDeleteDebt" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.SysPasswordDeleteDebt" />
+        </set>
+        <set name="tblRoomStatusDetails" table="tblRoomStatusDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRoomStatusDetail" />
+        </set>
+        <set name="tblApprovalApproves" table="tblApprovalApprove" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblApprovalApprove" />
+        </set>
+        <set name="sysCalendars" table="sysCalendar" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.SysCalendar" />
+        </set>
+        <set name="tblReservationSeasons" table="tblReservationSeason" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationSeason" />
+        </set>
+        <set name="tblStoreRequestDetails" table="tblStoreRequestDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblStoreRequestDetail" />
+        </set>
+        <set name="tblServiceCharges" table="tblServiceCharge" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblServiceCharge" />
+        </set>
+        <set name="tblBankNetworkCards" table="tblBankNetworkCard" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblBankNetworkCard" />
+        </set>
+        <set name="tblSystemFeatures" table="tblSystemFeature" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblSystemFeature" />
+        </set>
+        <set name="tblEmployeeOvertimeDetails" table="tblEmployeeOvertimeDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblEmployeeOvertimeDetail" />
+        </set>
+        <set name="tblServiceChargeCashFlows" table="tblServiceChargeCashFlow" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblServiceChargeCashFlow" />
+        </set>
+        <set name="tblEmployeeEmployeeServiceCharges" table="tblEmployee_EmployeeServiceCharge" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblEmployeeEmployeeServiceCharge" />
+        </set>
+        <set name="tblStockOpnames" table="tblStockOpname" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblStockOpname" />
+        </set>
+        <set name="tblLocations" table="tblLocation" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblLocation" />
+        </set>
+        <set name="tblPurchaseRequests" table="tblPurchaseRequest" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPurchaseRequest" />
+        </set>
+        <set name="tblHotelReceivables" table="tblHotelReceivable" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblHotelReceivable" />
+        </set>
+        <set name="tblCashierBalances" table="tblCashierBalance" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblCashierBalance" />
+        </set>
+        <set name="tblItems" table="tblItem" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblItem" />
+        </set>
+        <set name="tblBrokenItemDetailItemMutationHistories" table="tblBrokenItemDetail_ItemMutationHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblBrokenItemDetailItemMutationHistory" />
+        </set>
+        <set name="tblHotelFinanceTransactions" table="tblHotelFinanceTransaction" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblHotelFinanceTransaction" />
+        </set>
+        <set name="tblEmployeeSalaryHistories" table="tblEmployeeSalaryHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblEmployeeSalaryHistory" />
+        </set>
+        <set name="tblPurchaseOrderRevisionHistories" table="tblPurchaseOrderRevisionHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPurchaseOrderRevisionHistory" />
+        </set>
+        <set name="tblEmployeeThrs" table="tblEmployeeTHR" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblEmployeeThr" />
+        </set>
+        <set name="tblEndOfDays" table="tblEndOfDay" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblEndOfDay" />
+        </set>
+        <set name="tblOutGoingDetails" table="tblOutGoingDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblOutGoingDetail" />
+        </set>
+        <set name="tblReservationPaymentWithCekGiros" table="tblReservationPaymentWithCekGiro" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationPaymentWithCekGiro" />
+        </set>
+        <set name="tblHotelExpenseTransactionDetails" table="tblHotelExpenseTransactionDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblHotelExpenseTransactionDetail" />
+        </set>
+        <set name="tblReservationPayments" table="tblReservationPayment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationPayment" />
+        </set>
+        <set name="tblHotelFinanceTransactionWithCashes" table="tblHotelFinanceTransactionWithCash" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblHotelFinanceTransactionWithCash" />
+        </set>
+        <set name="tblBankEdcs" table="tblBankEDC" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblBankEdc" />
+        </set>
+        <set name="tblCalendarEmployeeSchedules" table="tblCalendar_EmployeeSchedule" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblCalendarEmployeeSchedule" />
+        </set>
+        <set name="tblHotelEvents" table="tblHotelEvent" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblHotelEvent" />
+        </set>
+        <set name="tblItemLocationItemExpiredDates" table="tblItem_Location_ItemExpiredDate" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblItemLocationItemExpiredDate" />
+        </set>
+        <set name="tblEmployeeResigns" table="tblEmployeeResign" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblEmployeeResign" />
+        </set>
+        <set name="tblCustomers" table="tblCustomer" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblCustomer" />
+        </set>
+        <set name="tblReservationRescheduleCanceleds" table="tblReservationRescheduleCanceled" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationRescheduleCanceled" />
+        </set>
+        <set name="tblStoreRequestDetailItemMutationHistories" table="tblStoreRequestDetail_ItemMutationHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblStoreRequestDetailItemMutationHistory" />
+        </set>
+        <set name="tblInComings" table="tblInComing" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblInComing" />
+        </set>
+        <set name="tblHotelFinanceTransactionHotelReceivables" table="tblHotelFinanceTransaction_HotelReceivable" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblHotelFinanceTransactionHotelReceivable" />
+        </set>
+        <set name="tblRoomChecks" table="tblRoomCheck" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRoomCheck" />
+        </set>
+        <set name="tblJobs" table="tblJob" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblJob" />
+        </set>
+        <set name="tblLostInformations" table="tblLostInformation" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblLostInformation" />
+        </set>
+        <set name="tblCompanyBalanceTransferReceiveds" table="tblCompanyBalance_TransferReceived" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblCompanyBalanceTransferReceived" />
+        </set>
+        <set name="tblEmployeeLeaveDetails" table="tblEmployeeLeaveDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblEmployeeLeaveDetail" />
+        </set>
+        <set name="tblReservationRoomTypeDetailRoomServices" table="tblReservationRoomTypeDetail_RoomService" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationRoomTypeDetailRoomService" />
+        </set>
+        <set name="tblPropertyBarcodes" table="tblPropertyBarcode" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPropertyBarcode" />
+        </set>
+        <set name="tblRestos" table="tblResto" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblResto" />
+        </set>
+        <set name="tblFinanceTransactions" table="tblFinanceTransaction" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblFinanceTransaction" />
+        </set>
+        <set name="tblReservationRoomTypeDetailTravelAgentDiscountDetails" table="tblReservationRoomTypeDetail_TravelAgentDiscountDetail" inverse="true" lazy="true"
+        fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationRoomTypeDetailTravelAgentDiscountDetail" />
+        </set>
+        <set name="tblReservationCheckInOuts" table="tblReservationCheckInOut" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationCheckInOut" />
+        </set>
+        <set name="tblRoomCardTypes" table="tblRoomCardType" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRoomCardType" />
+        </set>
+        <set name="tblEmployeeAllowances" table="tblEmployeeAllowance" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblEmployeeAllowance" />
+        </set>
+        <set name="tblHotelExpenseTransactions" table="tblHotelExpenseTransaction" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblHotelExpenseTransaction" />
+        </set>
+        <set name="tblHotelFinanceTransactionWithCekGiros" table="tblHotelFinanceTransactionWithCekGiro" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblHotelFinanceTransactionWithCekGiro" />
+        </set>
+        <set name="tblEmployeeEmployeeInsurances" table="tblEmployee_EmployeeInsurance" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblEmployeeEmployeeInsurance" />
+        </set>
+        <set name="tblReservationVouchers" table="tblReservationVoucher" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationVoucher" />
+        </set>
+        <set name="sysDataHardCodes" table="sysDataHardCode" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.SysDataHardCode" />
+        </set>
+        <set name="tblEmployeePayrolls" table="tblEmployeePayroll" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblEmployeePayroll" />
+        </set>
+        <set name="tblEmployeeEmployeePayrolls" table="tblEmployee_EmployeePayroll" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblEmployeeEmployeePayroll" />
+        </set>
+        <set name="tblFixedTangibleAssetLocations" table="tblFixedTangibleAsset_Location" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblFixedTangibleAssetLocation" />
+        </set>
+        <set name="tblReservationRoomItems" table="tblReservationRoomItem" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationRoomItem" />
+        </set>
+        <set name="tblItemTypeHks" table="tblItemTypeHK" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblItemTypeHk" />
+        </set>
+        <set name="tblGroups" table="tblGroup" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblGroup" />
+        </set>
+        <set name="tblRoomCards" table="tblRoomCard" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRoomCard" />
+        </set>
+        <set name="tblEmployeeBankAccounts" table="tblEmployee_BankAccount" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblEmployeeBankAccount" />
+        </set>
+        <set name="tblEmployeeOvertimes" table="tblEmployeeOvertime" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblEmployeeOvertime" />
+        </set>
+        <set name="tblReservationRoomItemDetails" table="tblReservationRoomItemDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationRoomItemDetail" />
+        </set>
+        <set name="tblEmployeeEmployeeThrs" table="tblEmployee_EmployeeTHR" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblEmployeeEmployeeThr" />
+        </set>
+        <set name="sysProgramAccounts" table="sysProgram_Account" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.SysProgramAccount" />
+        </set>
+        <set name="tblBankCards" table="tblBankCard" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblBankCard" />
+        </set>
+        <set name="tblBuildings" table="tblBuilding" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblBuilding" />
+        </set>
+        <set name="tblEmployeeInsurances" table="tblEmployeeInsurance" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblEmployeeInsurance" />
+        </set>
+        <set name="tblRooms" table="tblRoom" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRoom" />
+        </set>
+        <set name="tblEmployeeSwitchSchedules" table="tblEmployeeSwitchSchedule" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblEmployeeSwitchSchedule" />
+        </set>
+        <set name="tblReservationPaymentWithBankCards" table="tblReservationPaymentWithBankCard" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationPaymentWithBankCard" />
+        </set>
+        <set name="tblCalendarEmployeePaymentHistories" table="tblCalendar_EmployeePaymentHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RefRecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblCalendarEmployeePaymentHistory" />
+        </set>
+        <set name="tblCustomerBankAccounts" table="tblCustomer_BankAccount" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblCustomerBankAccount" />
+        </set>
+        <set name="tblItemExpiredDates" table="tblItemExpiredDate" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblItemExpiredDate" />
+        </set>
+        <set name="tblBanks" table="tblBank" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblBank" />
+        </set>
+        <set name="tblCalendarEmployeeDebts" table="tblCalendar_EmployeeDebt" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblCalendarEmployeeDebt" />
+        </set>
+        <set name="tblPurchaseOrders" table="tblPurchaseOrder" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPurchaseOrder" />
+        </set>
+        <set name="tblReservationRoomTypeDetails" table="tblReservationRoomTypeDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationRoomTypeDetail" />
+        </set>
+        <set name="tblPurchaseOrderDetails" table="tblPurchaseOrderDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPurchaseOrderDetail" />
+        </set>
+        <set name="tblReservationRoomPriceDetails" table="tblReservationRoomPriceDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationRoomPriceDetail" />
+        </set>
+        <set name="tblReservationAdditionalItemReserveds" table="tblReservationAdditionalItem_Reserved" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationAdditionalItemReserved" />
+        </set>
+        <set name="tblReservationCalendarBars" table="tblReservationCalendarBAR" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationCalendarBar" />
+        </set>
+        <set name="tblFixedTangibleAssets" table="tblFixedTangibleAsset" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblFixedTangibleAsset" />
+        </set>
+        <set name="tblMemorandumInvoiceDetailPropertyBarcodes" table="tblMemorandumInvoiceDetail_PropertyBarcode" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblMemorandumInvoiceDetailPropertyBarcode" />
+        </set>
+        <set name="tblStockOpnameItemExpiredDateDetails" table="tblStockOpnameItemExpiredDateDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblStockOpnameItemExpiredDateDetail" />
+        </set>
+        <set name="tblReservationBars" table="tblReservationBAR" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationBar" />
+        </set>
+        <set name="tblHotelFinanceTransactionWithTransfers" table="tblHotelFinanceTransactionWithTransfer" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblHotelFinanceTransactionWithTransfer" />
+        </set>
+        <set name="tblSupplierBankAccounts" table="tblSupplier_BankAccount" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblSupplierBankAccount" />
+        </set>
+        <set name="sysAccounts" table="sysAccount" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.SysAccount" />
+        </set>
+        <set name="tblCalendarEmployeeAttendances" table="tblCalendar_EmployeeAttendance" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblCalendarEmployeeAttendance" />
+        </set>
+        <set name="tblBankAccounts" table="tblBankAccount" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblBankAccount" />
+        </set>
+        <set name="tblItemMutationHistoryItemExpiredDates" table="tblItemMutationHistory_ItemExpiredDate" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblItemMutationHistoryItemExpiredDate" />
+        </set>
+        <set name="tblReservationTravelAgentDiscountDetails" table="tblReservationTravelAgentDiscountDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationTravelAgentDiscountDetail" />
+        </set>
+        <set name="tblTravelAgents" table="tblTravelAgent" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblTravelAgent" />
+        </set>
+        <set name="tblApprovalJobRequireds" table="tblApprovalJobRequired" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblApprovalJobRequired" />
+        </set>
+        <set name="tblGuaranteeLetterItemDetails" table="tblGuaranteeLetterItemDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblGuaranteeLetterItemDetail" />
+        </set>
+        <set name="tblReservationRoomTypeDetailRoomPriceDetails" table="tblReservationRoomTypeDetail_RoomPriceDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationRoomTypeDetailRoomPriceDetail" />
+        </set>
+        <set name="tblSystemRoles" table="tblSystemRole" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblSystemRole" />
+        </set>
+        <set name="tblCompanyBalanceBankAccounts" table="tblCompanyBalance_BankAccount" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblCompanyBalanceBankAccount" />
+        </set>
+        <set name="tblFinanceDatas" table="tblFinanceData" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblFinanceData" />
+        </set>
+        <set name="tblReturs" table="tblRetur" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRetur" />
+        </set>
+        <set name="tblTravelAgentRoomTypes" table="tblTravelAgent_RoomType" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblTravelAgentRoomType" />
+        </set>
+        <set name="tblItemLocationPropertyBarcodes" table="tblItem_Location_PropertyBarcode" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblItemLocationPropertyBarcode" />
+        </set>
+        <set name="tblReservationBrokenItems" table="tblReservationBrokenItem" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationBrokenItem" />
+        </set>
+        <set name="tblPartners" table="tblPartner" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPartner" />
+        </set>
+        <set name="tblSettingPbbs" table="tblSettingPBB" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblSettingPbb" />
+        </set>
+        <set name="tblEmployeeEmployeeOvertimeDetails" table="tblEmployee_EmployeeOvertimeDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblEmployeeEmployeeOvertimeDetail" />
+        </set>
+        <set name="tblPurchaseRequestDetails" table="tblPurchaseRequestDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPurchaseRequestDetail" />
+        </set>
+        <set name="tblReservationBreakfastOrders" table="tblReservationBreakfastOrder" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationBreakfastOrder" />
+        </set>
+        <set name="tblReservationPaymentWithReservationVouchers" table="tblReservationPaymentWithReservationVoucher" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationPaymentWithReservationVoucher" />
+        </set>
+        <set name="tblSystemLogBookJobs" table="tblSystemLogBook_Job" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblSystemLogBookJob" />
+        </set>
+        <set name="tblEmployeeContracts" table="tblEmployeeContract" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblEmployeeContract" />
+        </set>
+        <set name="tblItemCostOfGoodSoldHistories" table="tblItemCostOfGoodSoldHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblItemCostOfGoodSoldHistory" />
+        </set>
+        <set name="tblReservationRoomTypeDetailChildDetails" table="tblReservationRoomTypeDetailChildDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationRoomTypeDetailChildDetail" />
+        </set>
+        <set name="tblApplicants" table="tblApplicant" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblApplicant" />
+        </set>
+        <set name="tblReservationBills" table="tblReservationBill" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationBill" />
+        </set>
+        <set name="tblStoreRequests" table="tblStoreRequest" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblStoreRequest" />
+        </set>
+        <set name="tblOutGoings" table="tblOutGoing" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblOutGoing" />
+        </set>
+        <set name="tblMemorandumInvoices" table="tblMemorandumInvoice" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblMemorandumInvoice" />
+        </set>
+        <set name="tblRoomServices" table="tblRoomService" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRoomService" />
+        </set>
+        <set name="tblBankEventCards" table="tblBankEventCard" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblBankEventCard" />
+        </set>
+        <set name="tblReturDetailPropertyBarcodes" table="tblReturDetail_PropertyBarcode" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReturDetailPropertyBarcode" />
+        </set>
+        <set name="tblBrokenItemDetails" table="tblBrokenItemDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblBrokenItemDetail" />
+        </set>
+        <set name="tblCompanyBalances" table="tblCompanyBalance" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblCompanyBalance" />
+        </set>
+        <set name="tblRoomCheckHouseKeepingAttendanceDetails" table="tblRoomCheck_HouseKeepingAttendance_Detail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRoomCheckHouseKeepingAttendanceDetail" />
+        </set>
+        <set name="tblRoomCheckHouseKeepingAttendances" table="tblRoomCheck_HouseKeepingAttendance" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRoomCheckHouseKeepingAttendance" />
+        </set>
+        <set name="tblMemorandumInvoiceDetailItemExpiredDates" table="tblMemorandumInvoiceDetail_ItemExpiredDate" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblMemorandumInvoiceDetailItemExpiredDate" />
+        </set>
+        <set name="tblRoomTypes" table="tblRoomType" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRoomType" />
+        </set>
+        <set name="tblReservationPaymentWithGuaranteePayments" table="tblReservationPaymentWithGuaranteePayment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationPaymentWithGuaranteePayment" />
+        </set>
+        <set name="tblStockOpnameDetails" table="tblStockOpnameDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblStockOpnameDetail" />
+        </set>
+        <set name="tblRoomStatusChangeHistories" table="tblRoomStatusChangeHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRoomStatusChangeHistory" />
+        </set>
+        <set name="tblHotelFinanceTransactionHotelPayables" table="tblHotelFinanceTransaction_HotelPayable" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblHotelFinanceTransactionHotelPayable" />
+        </set>
+        <set name="tblSupplierItems" table="tblSupplier_Item" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblSupplierItem" />
+        </set>
+        <set name="tblStockOpnameDetailItemExpiredDates" table="tblStockOpnameDetail_ItemExpiredDate" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblStockOpnameDetailItemExpiredDate" />
+        </set>
+        <set name="tblInComingDetailItemMutationHistories" table="tblInComingDetail_ItemMutationHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblInComingDetailItemMutationHistory" />
+        </set>
+        <set name="tblReservationRoomTypeDetailRoomPriceDetailChangeRoomHistories" table="tblReservationRoomTypeDetail_RoomPriceDetail_ChangeRoomHistory" inverse="true"
+        lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationRoomTypeDetailRoomPriceDetailChangeRoomHistory" />
+        </set>
+        <set name="tblRfidcards" table="tblRFIDCard" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRfidcard" />
+        </set>
+        <set name="sysCodes" table="sysCode" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.SysCode" />
+        </set>
+        <set name="tblApprovalDatas" table="tblApprovalData" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblApprovalData" />
+        </set>
+        <set name="tblOpenCloseCashierBalanceDetails" table="tblOpenCloseCashierBalanceDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblOpenCloseCashierBalanceDetail" />
+        </set>
+        <set name="tblSystemLogBooks" table="tblSystemLogBook" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblSystemLogBook" />
+        </set>
+        <set name="tblEmployees" table="tblEmployee" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblEmployee" />
+        </set>
+        <set name="tblCalendarEmployeePaymentDebtHistories" table="tblCalendar_EmployeePaymentDebtHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblCalendarEmployeePaymentDebtHistory" />
+        </set>
+        <set name="tblReservationAdditionalItems" table="tblReservationAdditionalItem" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationAdditionalItem" />
+        </set>
+        <set name="tblReservationCancelingFees" table="tblReservationCancelingFee" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationCancelingFee" />
+        </set>
+        <set name="tblEmployeeServiceCharges" table="tblEmployeeServiceCharge" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblEmployeeServiceCharge" />
+        </set>
+        <set name="tblFoundInformations" table="tblFoundInformation" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblFoundInformation" />
+        </set>
+        <set name="tblRoomTypeItems" table="tblRoomType_Item" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRoomTypeItem" />
+        </set>
+        <set name="tblPartnerBankAccounts" table="tblPartner_BankAccount" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPartnerBankAccount" />
+        </set>
+        <set name="tblEmployeeWarningLetters" table="tblEmployeeWarningLetter" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblEmployeeWarningLetter" />
+        </set>
+        <set name="tblReturDetailItemExpiredDates" table="tblReturDetail_ItemExpiredDate" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReturDetailItemExpiredDate" />
+        </set>
+        <set name="tblCalendarEmployeeWarningLetters" table="tblCalendar_EmployeeWarningLetter" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblCalendarEmployeeWarningLetter" />
+        </set>
+        <set name="tblSystemRoleSystemFeatures" table="tblSystemRole_SystemFeature" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblSystemRoleSystemFeature" />
+        </set>
+        <set name="tblEmployeeCutOffLeaves" table="tblEmployeeCutOffLeave" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblEmployeeCutOffLeave" />
+        </set>
+        <set name="tblRoomTypeRoomServices" table="tblRoomType_RoomService" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRoomTypeRoomService" />
+        </set>
+        <set name="tblReservationPaymentWithTransfers" table="tblReservationPaymentWithTransfer" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationPaymentWithTransfer" />
+        </set>
+        <set name="tblApprovalJobPrivilages" table="tblApprovalJobPrivilage" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblApprovalJobPrivilage" />
+        </set>
+        <set name="tblItemMutationHistories" table="tblItemMutationHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblItemMutationHistory" />
+        </set>
+        <set name="tblLostFoundInformationDetails" table="tblLostFoundInformationDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblLostFoundInformationDetail" />
+        </set>
+        <set name="tblMemorandumInvoiceDetails" table="tblMemorandumInvoiceDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblMemorandumInvoiceDetail" />
+        </set>
+        <set name="tblReservationDefaultBars" table="tblReservationDefaultBAR" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationDefaultBar" />
+        </set>
+        <set name="tblPeoples" table="tblPeople" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPeople" />
+        </set>
+        <set name="tblLocationOfBins" table="tblLocationOfBin" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblLocationOfBin" />
+        </set>
+        <set name="tblEmployeeSchedules" table="tblEmployeeSchedule" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblEmployeeSchedule" />
+        </set>
+        <set name="tblInComingDetails" table="tblInComingDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblInComingDetail" />
+        </set>
+        <set name="tblOutGoingDetailItemMutationHistories" table="tblOutGoingDetail_ItemMutationHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblOutGoingDetailItemMutationHistory" />
+        </set>
+        <set name="tblReservationCanceleds" table="tblReservationCanceled" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RecordStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationCanceled" />
+        </set>
+    </class>
+    <query name="findAllRefRecordStatus">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from RefRecordStatus]]>
+    </query>
+</hibernate-mapping>

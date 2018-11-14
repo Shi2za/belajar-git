@@ -1,0 +1,75 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+@import "../reservation_change_room_input.css";
+
+.reservation-cldr-sp {
+    -fx-background-color: transparent;
+}
+
+.reservation-cldr-sp > .viewport{
+    -fx-background-color: transparent;
+}
+
+.reservation-cldr-sp > .scroll-bar:vertical{
+    -fx-background-color: transparent;
+}
+
+.reservation-cldr-sp > .scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    /*-fx-padding:0 -1 0 -1;*/
+    -fx-background-radius: 10;
+}
+
+.reservation-cldr-sp > .scroll-bar:vertical > .thumb{
+    -fx-background-color: #388E3C;
+    -fx-border-color: transparent;
+}
+
+.reservation-cldr-sp > .scroll-bar:vertical .increment-arrow, 
+.reservation-cldr-sp > .scroll-bar:vertical .decrement-arrow{
+    -fx-background-color: transparent;
+    -fx-padding:0 1.5 0 1.5;
+    -fx-shape:"";
+}
+
+.button-room-type{
+    -fx-font-family:"Helvetica";
+    -fx-font-weight: bolder;
+    -fx-text-fill:#388E3C;
+    -fx-font-size: 9.0pt;
+    -fx-background-color:whitesmoke;
+/*    -fx-background-color:#388E3C;*/
+    /*-fx-shape:"M28 0h-24c-2.2 0-4 1.8-4 4v24c0 2.2 1.8 4 4 4h24c2.2 0 4-1.8 4-4v-24c0-2.2-1.8-4-4-4zM28 28h-24v-24h24v24z";*/
+}
+
+.button-calendar-room-type-available-not-used{
+    -fx-text-fill:black;
+    -fx-background-color:whitesmoke;
+    -fx-border-width: 0.1 0.5 0.1 0.5;
+    -fx-border-color:black;
+}
+
+.button-calendar-room-type-available{
+    -fx-text-fill:black;
+    -fx-background-color:white;
+    -fx-border-width: 0.1 0.5 0.1 0.5;
+    -fx-border-color:black;
+}
+
+.button-calendar-room-type-available-full{
+    -fx-text-fill:white;
+    -fx-background-color:red;
+    -fx-border-width: 0.1 0.5 0.1 0.5;
+    -fx-border-color:white;
+    /*-fx-opacity: 1;*/
+}
+
+.title-dayofweek{
+    -fx-font-family:"Helvetica";
+    -fx-font-weight: bolder;
+    -fx-text-fill:#388E3C;
+    -fx-font-size: 9.5pt;
+    -fx-effect: dropshadow( two-pass-box , rgba(240, 240, 240, 1) , 4, 5 , 0 , 0 );
+}

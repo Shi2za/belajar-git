@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="BonReservasiHotelSummary" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="0" uuid="dbbea455-f580-45d8-81ab-d5c0435f5b5f">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DBHotel"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="plsql">
+		<![CDATA[{call PrintHotelReservasiSummary()}]]>
+	</queryString>
+	<field name="summary" class="java.lang.String"/>
+	<field name="note" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<summary>
+		<band height="200" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField>
+				<reportElement x="0" y="0" width="260" height="70" uuid="3edfa620-0543-46d8-bac6-5bda2ead157d"/>
+				<textElement>
+					<font size="9" isItalic="true" pdfFontName="Helvetica-Oblique"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{summary}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="338" y="30" width="197" height="37" uuid="2c75dcc1-46c9-4194-9888-da9f55b018d0"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="9" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[SIGNATURE______________________]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="108" y="146" width="330" height="40" uuid="c8d28953-e661-4b57-9b82-dfb30a46571b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9" isItalic="true" pdfFontName="Helvetica-Oblique"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{note}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

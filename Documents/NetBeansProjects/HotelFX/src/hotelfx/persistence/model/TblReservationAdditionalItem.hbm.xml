@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 19, 2018 11:15:59 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblReservationAdditionalItem" table="tblReservationAdditionalItem" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idadditional" type="long">
+            <column name="IDAdditional" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refEndOfDayDataStatus" class="hotelfx.persistence.model.RefEndOfDayDataStatus" fetch="select">
+            <column name="_EoDDataStatus" />
+        </many-to-one>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="refReservationBillType" class="hotelfx.persistence.model.RefReservationBillType" fetch="select">
+            <column name="_ReservationBillType" />
+        </many-to-one>
+        <many-to-one name="tblBankEventCard" class="hotelfx.persistence.model.TblBankEventCard" fetch="select">
+            <column name="IDCardEvent" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblHotelEvent" class="hotelfx.persistence.model.TblHotelEvent" fetch="select">
+            <column name="IDHotelEvent" />
+        </many-to-one>
+        <many-to-one name="tblItem" class="hotelfx.persistence.model.TblItem" fetch="select">
+            <column name="IDItem" />
+        </many-to-one>
+        <many-to-one name="tblReservationRoomTypeDetail" class="hotelfx.persistence.model.TblReservationRoomTypeDetail" fetch="select">
+            <column name="IDRoomTypeDetail" />
+        </many-to-one>
+        <property name="additionalDate" type="date">
+            <column name="AdditionalDate" />
+        </property>
+        <property name="itemCharge" type="big_decimal">
+            <column name="ItemCharge" precision="18" scale="4" />
+        </property>
+        <property name="itemQuantity" type="big_decimal">
+            <column name="ItemQuantity" precision="10" scale="4" />
+        </property>
+        <property name="discountPercentage" type="big_decimal">
+            <column name="DiscountPercentage" precision="10" scale="4" />
+        </property>
+        <property name="taxable" type="java.lang.Boolean">
+            <column name="Taxable" />
+        </property>
+        <property name="note" type="string">
+            <column name="Note" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+    </class>
+    <sql-query name="deleteAllTblReservationAdditionalItemByIDRoomTypeDetail" callable="true">
+        <return-scalar column="err_msg" type="string"/>
+        <![CDATA[{CALL DeleteAllReservationAdditionalItemByIDRoomTypeDetail(:idRoomTypeDetail, :idEmployee)}]]>
+    </sql-query>
+    <sql-query name="deleteAllTblReservationAdditionalItemByIDRoomTypeDetailAndAdditionalDateAfter" callable="true">
+        <return-scalar column="err_msg" type="string"/>
+        <![CDATA[{CALL DeleteAllReservationAdditionalItemByIDRoomTypeDetailAndAdditionalDateAfter(:idRoomTypeDetail, :additionalDate, :idEmployee)}]]>
+    </sql-query>
+    <query name="findAllTblReservationAdditionalItemByIDReservationRoomTypeDetail">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationAdditionalItem t where t.tblReservationRoomTypeDetail.iddetail=:idReservationRoomTypeDetail and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblReservationAdditionalItemByIDReservationRoomTypeDetailAndAdditionalDate">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationAdditionalItem t where t.tblReservationRoomTypeDetail.iddetail=:idReservationRoomTypeDetail and t.additionalDate=:additionalDate and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblReservationAdditionalItemByIDReservationRoomTypeDetailAndReservationBillType">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationAdditionalItem t where t.tblReservationRoomTypeDetail.iddetail=:idReservationRoomTypeDetail and t.refReservationBillType.idtype=:idReservationBillType and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblReservationAdditionalItem">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationAdditionalItem t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+    <query name="findAllTblReservationAdditionalItemByIdReservation">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationAdditionalItem t where t.tblReservationRoomTypeDetail.tblReservation.idreservation =:idReservation and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LaporanOccupancyKamarDetail" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="0" uuid="664366f8-a3dd-4b02-8d76-93dec2cc81c6">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="tanggal" class="java.lang.String"/>
+	<field name="jumlahKamar" class="java.lang.Long"/>
+	<field name="jumlahTerjual" class="java.lang.Long"/>
+	<field name="occupancy" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="550" height="15" uuid="e8573c6c-5cfd-427d-8653-590e805644b0">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="0" y="0" width="138" height="15" uuid="6a174fae-e738-4e8b-a031-d5014c24724a"/>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Tanggal]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="138" y="0" width="138" height="15" uuid="67be7af7-045a-408b-9787-684c2d983e2a"/>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Jumlah Kamar]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="276" y="0" width="137" height="15" uuid="d3970ebc-1e5d-4a6b-9f36-0db90c6f4360">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Jumlah Terjual]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="413" y="0" width="137" height="15" uuid="871ed7e3-67c0-4ca2-a57a-837d2a161ad5"/>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Occupancy ]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="138" height="15" uuid="fe804c98-e127-47da-817c-c201dd809da1">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box topPadding="3" leftPadding="5" rightPadding="5"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tanggal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="138" y="0" width="138" height="15" uuid="9c26c355-d38c-47cb-9cdc-797a8ee68bff"/>
+				<box topPadding="3" leftPadding="5" rightPadding="5"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jumlahKamar}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="276" y="0" width="137" height="15" uuid="be491f25-95aa-4a68-9fcd-c645318114d5"/>
+				<box topPadding="3" leftPadding="5" rightPadding="5"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jumlahTerjual}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="413" y="0" width="137" height="15" uuid="9f0b765b-799d-4a87-9b6f-4a55a3f58411"/>
+				<box topPadding="3" leftPadding="5" rightPadding="5"/>
+				<textElement textAlignment="Right">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("#,###.##",new DecimalFormatSymbols(new Locale("en"))).format($F{occupancy})+" %"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="1" splitType="Stretch">
+			<frame>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="0" width="550" height="1" uuid="1d412464-29f4-46b5-90d0-c51c3d21082f"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</frame>
+		</band>
+	</columnFooter>
+</jasperReport>

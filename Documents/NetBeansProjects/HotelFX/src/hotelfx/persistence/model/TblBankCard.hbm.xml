@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 11, 2018 9:40:08 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblBankCard" table="tblBankCard" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idbankCard" type="long">
+            <column name="IDBankCard" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refBankCardType" class="hotelfx.persistence.model.RefBankCardType" fetch="select">
+            <column name="_BankCardType" />
+        </many-to-one>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblBank" class="hotelfx.persistence.model.TblBank" fetch="select">
+            <column name="IDBank" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <property name="bankCardName" type="string">
+            <column name="BankCardName" length="100" />
+        </property>
+        <property name="bankCardClassName" type="string">
+            <column name="BankCardClassName" length="100" />
+        </property>
+        <property name="bankCardNote" type="string">
+            <column name="BankCardNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblBankEventCards" table="tblBankEventCard" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDBankCard" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblBankEventCard" />
+        </set>
+        <set name="tblReservationBills" table="tblReservationBill" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDBankCard" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationBill" />
+        </set>
+    </class>
+    <sql-query name="deleteAllTblBankCard" callable="true">
+        <return-scalar column="err_msg" type="string"/>
+        <![CDATA[{CALL DeleteAllBankCard(:idBank, :idEmployee)}]]>
+    </sql-query>
+    <query name="findAllTblBankCardByIDBank">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblBankCard t where t.tblBank.idbank=:idBank and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblBankCard">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblBankCard t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

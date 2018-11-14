@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 26, 2018 11:47:20 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblReservationPaymentWithBankCard" table="tblReservationPaymentWithBankCard" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="iddetil" type="long">
+            <column name="IDDetil" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refEdctransactionStatus" class="hotelfx.persistence.model.RefEdctransactionStatus" fetch="select">
+            <column name="_EDCTransactionStatus" />
+        </many-to-one>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblBank" class="hotelfx.persistence.model.TblBank" fetch="select">
+            <column name="IDBank" />
+        </many-to-one>
+        <many-to-one name="tblBankAccount" class="hotelfx.persistence.model.TblBankAccount" fetch="select">
+            <column name="BalanceBankAccount" />
+        </many-to-one>
+        <many-to-one name="tblBankEdc" class="hotelfx.persistence.model.TblBankEdc" fetch="select">
+            <column name="IDEDC" />
+        </many-to-one>
+        <many-to-one name="tblBankEdcBankNetworkCard" class="hotelfx.persistence.model.TblBankEdcBankNetworkCard" fetch="select">
+            <column name="IDEDCNetworkCard" />
+        </many-to-one>
+        <many-to-one name="tblBankEventCard" class="hotelfx.persistence.model.TblBankEventCard" fetch="select">
+            <column name="IDBankEventCard" />
+        </many-to-one>
+        <many-to-one name="tblBankNetworkCard" class="hotelfx.persistence.model.TblBankNetworkCard" fetch="select">
+            <column name="IDNetworkCard" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblReservationPayment" class="hotelfx.persistence.model.TblReservationPayment" fetch="select">
+            <column name="IDPayment" />
+        </many-to-one>
+        <property name="bankCardHolder" type="string">
+            <column name="BankCardHolder" length="100" />
+        </property>
+        <property name="bankCardNumber" type="string">
+            <column name="BankCardNumber" length="100" />
+        </property>
+        <property name="bankCardExprDate" type="timestamp">
+            <column name="BankCardExprDate" length="23" />
+        </property>
+        <property name="approvalCode" type="string">
+            <column name="ApprovalCode" length="50" />
+        </property>
+        <property name="paymentDiscount" type="big_decimal">
+            <column name="PaymentDiscount" precision="18" scale="4" />
+        </property>
+        <property name="paymentCharge" type="big_decimal">
+            <column name="PaymentCharge" precision="18" scale="4" />
+        </property>
+        <property name="bankCardNote" type="string">
+            <column name="BankCardNote" />
+        </property>
+        <property name="settleDate" type="timestamp">
+            <column name="SettleDate" length="23" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+    </class>
+    <query name="findAllTblReservationPaymentWithBankCardByIDEDC">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationPaymentWithBankCard t where t.tblBankEdc.idedc=:idEDC and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblReservationPaymentWithBankCardByIDReservationPayment">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationPaymentWithBankCard t where t.tblReservationPayment.idpayment=:idReservationPayment and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblReservationPaymentWithBankCardByIDEDCAndPaymentDateInRange">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationPaymentWithBankCard t where t.tblBankEdc.idedc=:idEDC and (t.tblReservationPayment.paymentDate <= :endPeriode and t.tblReservationPayment.paymentDate >= :beginPeriode) and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblReservationPaymentWithBankCard">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationPaymentWithBankCard t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

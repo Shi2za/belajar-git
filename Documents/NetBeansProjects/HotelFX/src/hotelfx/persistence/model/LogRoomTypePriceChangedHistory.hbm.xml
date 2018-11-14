@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 19, 2018 2:33:47 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.LogRoomTypePriceChangedHistory" table="logRoomTypePriceChangedHistory" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idhistory" type="long">
+            <column name="IDHistory" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tblEmployee" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="HistoryEmployee" />
+        </many-to-one>
+        <many-to-one name="tblRoomType" class="hotelfx.persistence.model.TblRoomType" fetch="select">
+            <column name="IDRoomType" />
+        </many-to-one>
+        <property name="roomTypePrice" type="big_decimal">
+            <column name="RoomTypePrice" precision="18" scale="4" />
+        </property>
+        <property name="historyDate" type="timestamp">
+            <column name="HistoryDate" length="23" />
+        </property>
+        <property name="historyNote" type="string">
+            <column name="HistoryNote" />
+        </property>
+    </class>
+    <query name="findAllLogRoomTypePriceChangedHistory">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from LogRoomTypePriceChangedHistory]]>
+    </query>
+</hibernate-mapping>

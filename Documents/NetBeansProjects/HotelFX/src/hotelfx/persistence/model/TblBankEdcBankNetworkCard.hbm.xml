@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 26, 2018 12:42:05 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblBankEdcBankNetworkCard" table="tblBankEDC_BankNetworkCard" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idrelation" type="long">
+            <column name="IDRelation" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refBankCardType" class="hotelfx.persistence.model.RefBankCardType" fetch="select">
+            <column name="_BankCardType" />
+        </many-to-one>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblBankEdc" class="hotelfx.persistence.model.TblBankEdc" fetch="select">
+            <column name="IDEDC" />
+        </many-to-one>
+        <many-to-one name="tblBankNetworkCard" class="hotelfx.persistence.model.TblBankNetworkCard" fetch="select">
+            <column name="IDNetwork" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <property name="onUs" type="java.lang.Boolean">
+            <column name="OnUs" />
+        </property>
+        <property name="networkNote" type="string">
+            <column name="NetworkNote" />
+        </property>
+        <property name="networkMdr" type="big_decimal">
+            <column name="NetworkMDR" precision="10" scale="4" />
+        </property>
+        <property name="maxNetworkMdrnominal" type="big_decimal">
+            <column name="MaxNetworkMDRNominal" precision="18" scale="4" />
+        </property>
+        <property name="networkDdr" type="big_decimal">
+            <column name="NetworkDDR" precision="10" scale="4" />
+        </property>
+        <property name="maxNetworkDdrnominal" type="big_decimal">
+            <column name="MaxNetworkDDRNominal" precision="18" scale="4" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <property name="debitMdrintern" type="big_decimal">
+            <column name="DebitMDRIntern" precision="10" scale="4" />
+        </property>
+        <property name="debitMdrextern" type="big_decimal">
+            <column name="DebitMDRExtern" precision="10" scale="4" />
+        </property>
+        <property name="creaditMdrintern" type="big_decimal">
+            <column name="CreaditMDRIntern" precision="10" scale="4" />
+        </property>
+        <property name="creaditMdrextern" type="big_decimal">
+            <column name="CreaditMDRExtern" precision="10" scale="4" />
+        </property>
+        <set name="tblReservationPaymentWithBankCards" table="tblReservationPaymentWithBankCard" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDEDCNetworkCard" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationPaymentWithBankCard" />
+        </set>
+    </class>
+    <sql-query name="deleteAllTblBankEdcBankNetworkCard" callable="true">
+        <return-scalar column="err_msg" type="string"/>
+        <![CDATA[{CALL DeleteAllBankEDCBankNetworkCard(:idEDC, :idEmployee)}]]>
+    </sql-query>
+    <query name="findAllTblBankEdcBankNetworkCardByIDBankEdc">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblBankEdcBankNetworkCard t where t.tblBankEdc.idedc=:idBankEDC and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblBankEdcBankNetworkCardByIDBankEdcAndIDBankNetworkCard">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblBankEdcBankNetworkCard t where t.tblBankEdc.idedc=:idBankEDC and t.tblBankNetworkCard.idnetworkCard=:idBankNetworkCard and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblBankEdcBankNetworkCardByIDBankEdcAndIDBankNetworkCardAndIDBankCardTypeAndOnUs">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblBankEdcBankNetworkCard t where t.tblBankEdc.idedc=:idBankEDC and t.tblBankNetworkCard.idnetworkCard=:idBankNetworkCard and t.refBankCardType.idtype=:idBankCardType and t.onUs=:onUs and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblBankEdcBankNetworkCard">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblBankEdcBankNetworkCard t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

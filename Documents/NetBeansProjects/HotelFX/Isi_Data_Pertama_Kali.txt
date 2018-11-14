@@ -1,0 +1,14 @@
+0. Data Default
+1. Bank, Jaringan Bank
+2. Kas (Bank Account)
+3. Bank EDC
+4. Barang
+5. Lokasi
+6. Warehouse + Laundry
+7. Employee : Job, Group
+8. Supplier
+9. Partner
+10.Kamar + Rate
+11.Promosi
+12.Role, User, User Access
+13.Customer

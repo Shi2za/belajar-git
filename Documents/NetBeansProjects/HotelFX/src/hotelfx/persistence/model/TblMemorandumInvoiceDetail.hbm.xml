@@ -1,0 +1,98 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 2, 2018 2:28:48 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblMemorandumInvoiceDetail" table="tblMemorandumInvoiceDetail" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="iddetail" type="long">
+            <column name="IDDetail" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblItem" class="hotelfx.persistence.model.TblItem" fetch="select">
+            <column name="IDItemBonus" />
+        </many-to-one>
+        <many-to-one name="tblLocation" class="hotelfx.persistence.model.TblLocation" fetch="select">
+            <column name="IDLocation" />
+        </many-to-one>
+        <many-to-one name="tblMemorandumInvoice" class="hotelfx.persistence.model.TblMemorandumInvoice" fetch="select">
+            <column name="IDMI" />
+        </many-to-one>
+        <many-to-one name="tblSupplierItem" class="hotelfx.persistence.model.TblSupplierItem" fetch="select">
+            <column name="IDSupplierItem" />
+        </many-to-one>
+        <property name="itemExpiredDate" type="timestamp">
+            <column name="ItemExpiredDate" length="23" />
+        </property>
+        <property name="itemCost" type="big_decimal">
+            <column name="ItemCost" precision="18" scale="4" />
+        </property>
+        <property name="itemQuantity" type="big_decimal">
+            <column name="ItemQuantity" precision="10" scale="4" />
+        </property>
+        <property name="itemDiscount" type="big_decimal">
+            <column name="ItemDiscount" precision="18" scale="4" />
+        </property>
+        <property name="itemNote" type="string">
+            <column name="ItemNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblMemorandumInvoiceDetailPropertyBarcodes" table="tblMemorandumInvoiceDetail_PropertyBarcode" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDMIDetail" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblMemorandumInvoiceDetailPropertyBarcode" />
+        </set>
+        <set name="tblMemorandumInvoiceDetailItemExpiredDates" table="tblMemorandumInvoiceDetail_ItemExpiredDate" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDMIDetail" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblMemorandumInvoiceDetailItemExpiredDate" />
+        </set>
+    </class>
+    <sql-query name="deleteAllTblMemorandumInvoiceDetailByIDMemorandumInvoice" callable="true">
+        <return-scalar column="err_msg" type="string"/>
+        <![CDATA[{CALL DeleteAllMemorandumInvoiceDetailByIDMemorandumInvoice(:idMemorandumInvoice, :idEmployee)}]]>
+    </sql-query>
+    <query name="findAllTblMemorandumInvoiceDetailByIDMemorandumInvoice">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblMemorandumInvoiceDetail t where t.tblMemorandumInvoice.idmi=:idMemorandumInvoice and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblMemorandumInvoiceDetailByIDPurchaseOrderAndIDItemAndIsNotBonus">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblMemorandumInvoiceDetail t where t.tblMemorandumInvoice.tblPurchaseOrder.idpo=:idPurchaseOrder and t.tblSupplierItem.tblItem.iditem=:idItem and t.tblItem is null and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblMemorandumInvoiceDetailByIDPurchaseOrderAndIDSupplierItem">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblMemorandumInvoiceDetail t where t.tblMemorandumInvoice.tblPurchaseOrder.idpo=:idPurchaseOrder and t.tblSupplierItem.idrelation=:idSupplierItem and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblMemorandumInvoiceDetailByIDPurchaseOrderAndIDSupplierItemAndIsNotBonus">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblMemorandumInvoiceDetail t where t.tblMemorandumInvoice.tblPurchaseOrder.idpo=:idPurchaseOrder and t.tblSupplierItem.idrelation=:idSupplierItem and t.tblItem is null and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblMemorandumInvoiceDetailByIDMemorandumInvoiceAndIDItem">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblMemorandumInvoiceDetail t where t.tblMemorandumInvoice.idmi=:idMemorandumInvoice and t.tblSupplierItem.tblItem.iditem=:idItem and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblMemorandumInvoiceDetailByIDMemorandumInvoiceAndIDSupplierItem">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblMemorandumInvoiceDetail t where t.tblMemorandumInvoice.idmi=:idMemorandumInvoice and t.tblSupplierItem.idrelation=:idSupplierItem and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblMemorandumInvoiceDetail">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblMemorandumInvoiceDetail t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

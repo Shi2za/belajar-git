@@ -1,0 +1,38 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+@import "../end_of_day.css";
+
+.anchor-pane-selected-detail{
+    -fx-background-color: derive(gold, 67%);
+}
+
+.table-view .table-row-cell:eod{
+  -fx-border-color: #ec407a;
+  -fx-border-width: 0 0 1 0  ;
+}
+
+.table-view .table-row-cell:eod,
+.table-view .table-row-cell:eod .table-cell{
+  -fx-text-fill : black;
+  -fx-background-color : #ffcdd2; 
+}
+
+.table-view .table-row-cell:eod:selected,
+.table-view .table-row-cell:eod:selected .table-cell{
+   -fx-background-color: derive(gold,67%);
+   -fx-text-fill: black;
+}
+
+.table-view .table-row-cell:refresh:even,
+.table-view .table-row-cell:refresh:even .table-cell{
+   -fx-background-color: #dcedc8;
+   -fx-text-fill:black;
+}
+
+.table-view .table-row-cell:refresh:odd,
+.table-view .table-row-cell:refresh:odd .table-cell{
+   -fx-background-color: #f1f8e9;
+   -fx-text-fill:black;
+}

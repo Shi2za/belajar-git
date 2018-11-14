@@ -1,0 +1,80 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+@import "../feature_leave.css";
+.label-data{
+    -fx-text-fill:#388E3C;
+    -fx-font-size:10.5pt;
+    -fx-font-weight:bold;
+}
+
+.label-info{
+    -fx-text-fill:#388E3C;
+    -fx-font-weight:bold;
+}
+
+.label-annual-leave{
+    -fx-background-color:#e57373;
+    -fx-border-color: black;
+}
+
+.label-personal-leave{
+    -fx-background-color:#ffcdd2;
+    -fx-border-color: black;
+}
+
+.table-view .table-row-cell:dateBefore,
+.table-view .table-row-cell:dateBefore .table-cell{
+  -fx-text-fill : black;
+  -fx-background-color : #ffcdd2; 
+}
+
+.table-view .table-row-cell:dateBefore:selected,
+.table-view .table-row-cell:dateBefore:selected .table-cell{
+  -fx-text-fill : black;
+  -fx-background-color :derive(gold, 67%);
+}
+
+.table-view .table-row-cell:schedule,
+.table-view .table-row-cell:schedule .table-cell{
+  -fx-text-fill : black;
+  -fx-background-color : #2196f3; 
+}
+
+.table-view .table-row-cell:schedule:selected,
+.table-view .table-row-cell:schedule:selected .table-cell{
+  -fx-text-fill : black;
+  -fx-background-color : #e3f2fd;
+}
+
+.table-view .table-row-cell:holiday,
+.table-view .table-row-cell:holiday .table-cell{
+  -fx-text-fill : black;
+  -fx-background-color : #009688; 
+; 
+}
+
+.table-view .table-row-cell:holiday:selected,
+.table-view .table-row-cell:holiday:selected .table-cell{
+  -fx-text-fill : black;
+  -fx-background-color: derive(gold, 67%);
+}
+
+.table-view .table-row-cell:refresh:even,
+.table-view .table-row-cell:refresh:even .table-cell{
+   -fx-background-color: #dcedc8;
+   -fx-text-fill:black;
+}
+
+.table-view .table-row-cell:refresh:odd,
+.table-view .table-row-cell:refresh:odd .table-cell{
+   -fx-background-color: #f1f8e9;
+   -fx-text-fill:black;
+}
+
+.table-view .table-row-cell:refresh:selected,
+.table-view .table-row-cell:refresh:selected .table-cell{
+   -fx-background-color: derive(gold, 67%);
+   -fx-text-fill:black;
+}

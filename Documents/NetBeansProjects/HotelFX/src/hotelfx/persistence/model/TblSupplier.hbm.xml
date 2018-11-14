@@ -1,0 +1,113 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 9, 2018 10:55:29 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblSupplier" table="tblSupplier" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idsupplier" type="long">
+            <column name="IDSupplier" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblLocation" class="hotelfx.persistence.model.TblLocation" fetch="select">
+            <column name="IDLocation" />
+        </many-to-one>
+        <property name="codeSupplier" type="string">
+            <column name="CodeSupplier" length="50" />
+        </property>
+        <property name="supplierName" type="string">
+            <column name="SupplierName" length="100" />
+        </property>
+        <property name="supplierAddress" type="string">
+            <column name="SupplierAddress" />
+        </property>
+        <property name="supplierPhoneNumber" type="string">
+            <column name="SupplierPhoneNumber" length="20" />
+        </property>
+        <property name="supplierFax" type="string">
+            <column name="SupplierFax" length="50" />
+        </property>
+        <property name="supplierEmailAddress" type="string">
+            <column name="SupplierEmailAddress" length="100" />
+        </property>
+        <property name="supplierWebsite" type="string">
+            <column name="SupplierWebsite" length="100" />
+        </property>
+        <property name="picname" type="string">
+            <column name="PICName" length="100" />
+        </property>
+        <property name="picphoneNumber" type="string">
+            <column name="PICPhoneNumber" length="20" />
+        </property>
+        <property name="picemailAddress" type="string">
+            <column name="PICEmailAddress" length="100" />
+        </property>
+        <property name="supplierInfo" type="string">
+            <column name="SupplierInfo" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblMemorandumInvoices" table="tblMemorandumInvoice" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDSupplier" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblMemorandumInvoice" />
+        </set>
+        <set name="tblSupplierBankAccounts" table="tblSupplier_BankAccount" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDSupplier" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblSupplierBankAccount" />
+        </set>
+        <set name="tblHotelInvoices" table="tblHotelInvoice" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDSupplier" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblHotelInvoice" />
+        </set>
+        <set name="tblPurchaseRequests" table="tblPurchaseRequest" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDSupplier" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPurchaseRequest" />
+        </set>
+        <set name="tblReturs" table="tblRetur" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDSupplier" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRetur" />
+        </set>
+        <set name="tblSupplierItems" table="tblSupplier_Item" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDSupplier" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblSupplierItem" />
+        </set>
+        <set name="tblPurchaseOrders" table="tblPurchaseOrder" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDSupplier" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPurchaseOrder" />
+        </set>
+    </class>
+    <query name="findAllTblSupplier">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblSupplier t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblSupplierByIdLocation">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblSupplier t where t.tblLocation.idlocation=:id and(t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

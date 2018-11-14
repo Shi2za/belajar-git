@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 9, 2018 10:54:24 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblReservationPaymentWithGuaranteePayment" table="tblReservationPaymentWithGuaranteePayment" schema="dbo" catalog="Hotel"
+    optimistic-lock="version">
+        <id name="iddetail" type="long">
+            <column name="IDDetail" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblBankAccountBySenderBankAccount" class="hotelfx.persistence.model.TblBankAccount" fetch="select">
+            <column name="SenderBankAccount" />
+        </many-to-one>
+        <many-to-one name="tblBankAccountByReceiverBankAccount" class="hotelfx.persistence.model.TblBankAccount" fetch="select">
+            <column name="ReceiverBankAccount" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblHotelReceivable" class="hotelfx.persistence.model.TblHotelReceivable" fetch="select">
+            <column name="IDHotelReceivable" />
+        </many-to-one>
+        <many-to-one name="tblPartner" class="hotelfx.persistence.model.TblPartner" fetch="select">
+            <column name="IDPartner" />
+        </many-to-one>
+        <many-to-one name="tblPartnerAgreement" class="hotelfx.persistence.model.TblPartnerAgreement" fetch="select">
+            <column name="IDAgreement" />
+        </many-to-one>
+        <many-to-one name="tblReservationPayment" class="hotelfx.persistence.model.TblReservationPayment" fetch="select">
+            <column name="IDPayment" />
+        </many-to-one>
+        <property name="codeGuarantee" type="string">
+            <column name="CodeGuarantee" length="100" />
+        </property>
+        <property name="senderName" type="string">
+            <column name="SenderName" length="100" />
+        </property>
+        <property name="receiverName" type="string">
+            <column name="ReceiverName" length="100" />
+        </property>
+        <property name="dueDate" type="timestamp">
+            <column name="DueDate" length="23" />
+        </property>
+        <property name="isDebt" type="java.lang.Boolean">
+            <column name="IsDebt" />
+        </property>
+        <property name="guaranteePaymentNote" type="string">
+            <column name="GuaranteePaymentNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblGuaranteeLetterItemDetails" table="tblGuaranteeLetterItemDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDRPGL" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblGuaranteeLetterItemDetail" />
+        </set>
+    </class>
+    <query name="findAllTblReservationPaymentWithGuaranteePaymentByIDReservationPayment">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationPaymentWithGuaranteePayment t where t.tblReservationPayment.idpayment=:idReservationPayment and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblReservationPaymentWithGuaranteePaymentByIDHotelReceivable">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationPaymentWithGuaranteePayment t where t.tblHotelReceivable.idhotelReceivable=:idHotelReceivable and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblReservationPaymentWithGuaranteePaymentByIDPartner">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationPaymentWithGuaranteePayment t where t.tblPartner.idpartner=:idPartner and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblReservationPaymentWithGuaranteePayment">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationPaymentWithGuaranteePayment t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

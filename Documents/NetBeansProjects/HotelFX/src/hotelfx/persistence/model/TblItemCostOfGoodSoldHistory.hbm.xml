@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 19, 2018 10:20:45 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblItemCostOfGoodSoldHistory" table="tblItemCostOfGoodSoldHistory" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idcostOfGoodsSoldHistory" type="long">
+            <column name="IDCostOfGoodsSoldHistory" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblItem" class="hotelfx.persistence.model.TblItem" fetch="select">
+            <column name="IDItem" />
+        </many-to-one>
+        <property name="codeCostOfGoodsSoldHistory" type="string">
+            <column name="CodeCostOfGoodsSoldHistory" length="50" />
+        </property>
+        <property name="changedDate" type="timestamp">
+            <column name="ChangedDate" length="23" />
+        </property>
+        <property name="costOfGoodsSold" type="big_decimal">
+            <column name="CostOfGoodsSold" precision="18" scale="4" />
+        </property>
+        <property name="historyNote" type="string">
+            <column name="HistoryNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+    </class>
+    <query name="findAllTblItemCostOfGoodSoldHistory">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblItemCostOfGoodSoldHistory t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

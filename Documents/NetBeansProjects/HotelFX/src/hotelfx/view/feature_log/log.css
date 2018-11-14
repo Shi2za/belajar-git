@@ -1,0 +1,23 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+@import "../root.css";
+
+.lable-title-detail{
+    -fx-font-family:"Helvetica";
+    -fx-font-weight: bolder;
+    -fx-text-fill:#388E3C;
+    -fx-font-size: 11pt;
+    -fx-effect: dropshadow( two-pass-box , rgba(255, 255, 255, 1) , 4, 5 , 0 , 0 );
+}
+
+.area-detail-log{
+    -fx-border-width: 0.5;
+    -fx-border-color: grey;
+}
+
+.area-detail-log .input-line, 
+.area-detail-log .input-focused-line{
+    -fx-background-color:transparent;
+}

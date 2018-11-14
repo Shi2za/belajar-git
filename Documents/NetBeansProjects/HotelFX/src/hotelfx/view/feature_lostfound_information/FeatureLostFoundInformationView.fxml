@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@feature_lostfound_information.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hotelfx.view.feature_lostfound_information.FeatureLostFoundInformationController">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <left>
+            <VBox maxWidth="150.0" minWidth="150.0" prefWidth="150.0" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane fx:id="btnShowLostInformationLayout" maxHeight="70.0" maxWidth="155.0" minHeight="70.0" minWidth="155.0" prefHeight="70.0" prefWidth="155.0">
+                     <children>
+                        <JFXButton fx:id="btnShowLostInformation" layoutX="40.0" layoutY="63.0" text="Lost Information" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="btnShowFoundInformationLayout" maxHeight="70.0" maxWidth="155.0" minHeight="70.0" minWidth="155.0" prefHeight="70.0" prefWidth="155.0">
+                     <children>
+                        <JFXButton fx:id="btnShowFoundInformation" layoutX="56.0" layoutY="45.0" prefHeight="119.0" prefWidth="135.0" text="Found Information" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                     </children></AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <AnchorPane fx:id="subFeatureContent" prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

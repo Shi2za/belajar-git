@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 15, 2018 10:24:17 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.LogCompanyBalanceCashFlow" table="logCompanyBalanceCashFlow" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idhistory" type="long">
+            <column name="IDHistory" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tblBankAccountByIdreceiverCbbankAccount" class="hotelfx.persistence.model.TblBankAccount" fetch="select">
+            <column name="IDReceiverCBBankAccount" />
+        </many-to-one>
+        <many-to-one name="tblBankAccountByIdsenderCbbankAccount" class="hotelfx.persistence.model.TblBankAccount" fetch="select">
+            <column name="IDSenderCBBankAccount" />
+        </many-to-one>
+        <many-to-one name="tblCompanyBalanceByIdsenderCompanyBalance" class="hotelfx.persistence.model.TblCompanyBalance" fetch="select">
+            <column name="IDSenderCompanyBalance" />
+        </many-to-one>
+        <many-to-one name="tblCompanyBalanceByIdreceiverCompanyBalance" class="hotelfx.persistence.model.TblCompanyBalance" fetch="select">
+            <column name="IDReceiverCompanyBalance" />
+        </many-to-one>
+        <many-to-one name="tblEmployee" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="HistoryEmployee" />
+        </many-to-one>
+        <property name="transferNominal" type="big_decimal">
+            <column name="TransferNominal" precision="18" scale="4" />
+        </property>
+        <property name="historyDate" type="timestamp">
+            <column name="HistoryDate" length="23" />
+        </property>
+        <property name="historyNote" type="string">
+            <column name="HistoryNote" />
+        </property>
+        <property name="historyStystemNote" type="string">
+            <column name="HistoryStystemNote" />
+        </property>
+        <set name="tblOpenCloseCashierBalanceDetails" table="tblOpenCloseCashierBalanceDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDLogCompanyBalanceCashFlow" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblOpenCloseCashierBalanceDetail" />
+        </set>
+    </class>
+    <query name="findAllLogCompanyBalanceCashFlow">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from LogCompanyBalanceCashFlow]]>
+    </query>
+    <query name="findAllLogCompanyBalanceCashFlowByIdBalance">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from LogCompanyBalanceCashFlow t where (t.tblCompanyBalanceByIdsenderCompanyBalance.idbalance=:idBalance or t.tblCompanyBalanceByIdreceiverCompanyBalance.idbalance=:idBalance) order by convert(date,historyDate)]]>
+    </query>
+    
+    <sql-query name="getBalance" callable="true">
+        <return-scalar column="totalBalance" type="string"/>
+        <![CDATA[{CALL GetBalance(:idBalance,:dateStart,:bankAccount)}]]>
+    </sql-query>
+</hibernate-mapping>

@@ -1,0 +1,94 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+@import "../feature_receiving.css";
+
+.button-delete{
+    -fx-background-color:#388E3C;
+    -fx-shape:"M31.708 25.708c-0-0-0-0-0-0l-9.708-9.708 9.708-9.708c0-0 0-0 0-0 0.105-0.105 0.18-0.227 0.229-0.357 0.133-0.356 0.057-0.771-0.229-1.057l-4.586-4.586c-0.286-0.286-0.702-0.361-1.057-0.229-0.13 0.048-0.252 0.124-0.357 0.228 0 0-0 0-0 0l-9.708 9.708-9.708-9.708c-0-0-0-0-0-0-0.105-0.104-0.227-0.18-0.357-0.228-0.356-0.133-0.771-0.057-1.057 0.229l-4.586 4.586c-0.286 0.286-0.361 0.702-0.229 1.057 0.049 0.13 0.124 0.252 0.229 0.357 0 0 0 0 0 0l9.708 9.708-9.708 9.708c-0 0-0 0-0 0-0.104 0.105-0.18 0.227-0.229 0.357-0.133 0.355-0.057 0.771 0.229 1.057l4.586 4.586c0.286 0.286 0.702 0.361 1.057 0.229 0.13-0.049 0.252-0.124 0.357-0.229 0-0 0-0 0-0l9.708-9.708 9.708 9.708c0 0 0 0 0 0 0.105 0.105 0.227 0.18 0.357 0.229 0.356 0.133 0.771 0.057 1.057-0.229l4.586-4.586c0.286-0.286 0.362-0.702 0.229-1.057-0.049-0.13-0.124-0.252-0.229-0.357z";
+}
+
+.button-mark-error{
+    -fx-background-color:red;
+    -fx-shape:"M16 0c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16zM16 29c-7.18 0-13-5.82-13-13s5.82-13 13-13 13 5.82 13 13-5.82 13-13 13z 
+        M21 8l-5 5-5-5-3 3 5 5-5 5 3 3 5-5 5 5 3-3-5-5 5-5z";
+}
+
+.button-mark-warning{
+    -fx-background-color:orange;
+    -fx-shape:"M16 3c-3.472 0-6.737 1.352-9.192 3.808s-3.808 5.72-3.808 9.192c0 3.472 1.352 6.737 3.808 9.192s5.72 3.808 9.192 3.808c3.472 0 6.737-1.352 9.192-3.808s3.808-5.72 3.808-9.192c0-3.472-1.352-6.737-3.808-9.192s-5.72-3.808-9.192-3.808zM16 0v0c8.837 0 16 7.163 16 16s-7.163 16-16 16c-8.837 0-16-7.163-16-16s7.163-16 16-16zM14 22h4v4h-4zM14 6h4v12h-4z";
+}
+
+.button-mark-valid{
+    -fx-background-color:#388E3C;
+    -fx-shape:"M14 9.5c0-0.825 0.675-1.5 1.5-1.5h1c0.825 0 1.5 0.675 1.5 1.5v1c0 0.825-0.675 1.5-1.5 1.5h-1c-0.825 0-1.5-0.675-1.5-1.5v-1z 
+        M20 24h-8v-2h2v-6h-2v-2h6v8h2z 
+        M16 0c-8.837 0-16 7.163-16 16s7.163 16 16 16 16-7.163 16-16-7.163-16-16-16zM16 29c-7.18 0-13-5.82-13-13s5.82-13 13-13 13 5.82 13 13-5.82 13-13 13z";
+}
+
+.cell-input-odd{
+    /*-fx-background-color: #e1f5fe;*/
+/*    -fx-background-color: #b3e5fc;
+    -fx-text-fill:black;
+    -fx-background-insets: 1, 1, 1, 1;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );*/
+    /*-fx-padding: 1;*/
+    -fx-border-color: red;
+    -fx-border-width: 0 0 1 0;
+    /*-fx-background-insets: 8, 8, 8, 8;*/
+/*    -fx-underline: true;*/
+}
+
+.cell-input-even{
+    /*-fx-background-color: #b3e5fc;*/
+/*    -fx-background-color: #81d4fa;
+    -fx-text-fill:black;
+    -fx-background-insets: 1, 1, 1, 1;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );*/
+    /*-fx-padding: 1;*/
+    -fx-border-color: red;
+    -fx-border-width: 0 0 1 0;
+    /*-fx-background-insets: 8, 8, 8, 8;*/
+}
+
+
+.cell-input-odd-edit{
+    /*-fx-background-color: #e1f5fe;*/
+/*    -fx-background-color: #b3e5fc;
+    -fx-text-fill:black;
+    -fx-background-insets: 1, 1, 1, 1;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );*/
+    /*-fx-padding: 1;*/
+    -fx-border-color: black;
+    -fx-border-width: 0 0 0 0;
+    /*-fx-background-insets: 8, 8, 8, 8;*/
+/*    -fx-underline: true;*/
+}
+
+.cell-input-even-edit{
+    /*-fx-background-color: #b3e5fc;*/
+/*    -fx-background-color: #81d4fa;
+    -fx-text-fill:black;
+    -fx-background-insets: 1, 1, 1, 1;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );*/
+    /*-fx-padding: 1;*/
+    -fx-border-color: black;
+    -fx-border-width: 0 0 0 0;
+    /*-fx-background-insets: 8, 8, 8, 8;*/
+}
+
+.button-detail-input{
+/*    -fx-background-color: #1976d2;
+    -fx-text-fill:white;
+    -fx-background-insets: 0, 1;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 8, 0.0 , 0 , 0 );*/
+}
+
+.remove-underline{
+    -fx-underline: false;
+}
+
+.detail-combo-box-popup:disabled .button{
+    -fx-opacity:0.5;
+}

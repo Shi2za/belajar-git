@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 18, 2018 3:25:53 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.RefReservationAdditionalItemReservedStatus" table="refReservationAdditionalItemReservedStatus" schema="dbo" catalog="Hotel"
+    optimistic-lock="version">
+        <id name="idstatus" type="int">
+            <column name="IDStatus" />
+            <generator class="assigned" />
+        </id>
+        <property name="statusName" type="string">
+            <column name="StatusName" length="100" />
+        </property>
+        <property name="statusNote" type="string">
+            <column name="StatusNote" />
+        </property>
+        <set name="tblReservationAdditionalItemReserveds" table="tblReservationAdditionalItem_Reserved" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_RAIRStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationAdditionalItemReserved" />
+        </set>
+    </class>
+    <query name="findAllRefReservationAdditionalItemReservedStatus">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from RefReservationAdditionalItemReservedStatus]]>
+    </query>
+</hibernate-mapping>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="anchor-pane" stylesheets="@group.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <SplitPane fx:id="spDataGroup" dividerPositions="0.5" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="570.0" minWidth="1020.0" prefHeight="570.0" prefWidth="1020.0" styleClass="selected-layout" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <items>
+            <AnchorPane fx:id="contentLayout" prefHeight="200.0" prefWidth="200.0" styleClass="anchor-pane" SplitPane.resizableWithParent="false">
+               <children>
+                  <StackPane prefHeight="150.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <AnchorPane fx:id="tableDataGroupLayout" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="anchor-pane">
+                           <children>
+                              <AnchorPane fx:id="ancHeaderLayout" prefHeight="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                              <AnchorPane fx:id="ancBodyLayout" prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0" />
+                           </children></AnchorPane>
+                        <AnchorPane fx:id="tableDataGroupLayoutDisableLayer" prefHeight="200.0" prefWidth="200.0" styleClass="anchor-pane-disable-layer" />
+                     </children>
+                  </StackPane>
+               </children>
+            </AnchorPane>
+            <AnchorPane fx:id="anchorFormGroupLayout" maxHeight="1.7976931348623157E308" maxWidth="360.0" minHeight="570.0" minWidth="0.0" prefHeight="570.0" prefWidth="360.0" styleClass="anchor-pane-disable-layer" SplitPane.resizableWithParent="false">
+               <children>
+                  <ScrollPane fx:id="spFormDataGroup" fitToWidth="true" prefViewportHeight="540.0" styleClass="input-scroll" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="0.0">
+                     <content>
+                        <GridPane fx:id="gpFormDataGroup" hgap="15.0" maxHeight="1.7976931348623157E308" maxWidth="350.0" minHeight="570.0" minWidth="0.0" prefWidth="350.0" styleClass="input-form" vgap="20.0">
+                          <columnConstraints>
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="67.0" minWidth="0.0" prefWidth="9.0" />
+                            <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" maxWidth="76.0" minWidth="10.0" prefWidth="24.0" />
+                          </columnConstraints>
+                          <rowConstraints>
+                            <RowConstraints maxHeight="28.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                            <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="100.0" minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                              <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                          </rowConstraints>
+                           <children>
+                              <JFXTextField fx:id="txtCodeGroup" disable="true" editable="false" labelFloat="true" promptText="ID Department" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                              <JFXTextField fx:id="txtNameGroup" labelFloat="true" promptText="Department *" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2" />
+                              <JFXTextArea fx:id="txtNoteGroup" labelFloat="true" promptText="Keterangan" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                              <JFXButton fx:id="btnSave" maxHeight="30.0" maxWidth="140.0" minHeight="30.0" minWidth="140.0" prefHeight="30.0" prefWidth="140.0" text="Simpan" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                              <JFXButton fx:id="btnCancel" maxHeight="30.0" maxWidth="140.0" minHeight="30.0" minWidth="140.0" prefHeight="30.0" prefWidth="140.0" text="Batal" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                           </children>
+                        </GridPane>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+         </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

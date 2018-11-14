@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 5, 2018 4:28:02 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblStoreRequest" table="tblStoreRequest" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idsr" type="long">
+            <column name="IDSR" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="refStoreRequestStatus" class="hotelfx.persistence.model.RefStoreRequestStatus" fetch="select">
+            <column name="_SRStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByApprovedBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="ApprovedBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCanceledBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CanceledBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByReceivedBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="ReceivedBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreatedBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreatedBy" />
+        </many-to-one>
+        <many-to-one name="tblLocationByIdlocationSource" class="hotelfx.persistence.model.TblLocation" fetch="select">
+            <column name="IDLocationSource" />
+        </many-to-one>
+        <many-to-one name="tblLocationByIdlocationDestination" class="hotelfx.persistence.model.TblLocation" fetch="select">
+            <column name="IDLocationDestination" />
+        </many-to-one>
+        <property name="codeSr" type="string">
+            <column name="CodeSR" length="50" />
+        </property>
+        <property name="srdate" type="timestamp">
+            <column name="SRDate" length="23" />
+        </property>
+        <property name="createdDate" type="timestamp">
+            <column name="CreatedDate" length="23" />
+        </property>
+        <property name="approvedDate" type="timestamp">
+            <column name="ApprovedDate" length="23" />
+        </property>
+        <property name="receivedDate" type="timestamp">
+            <column name="ReceivedDate" length="23" />
+        </property>
+        <property name="canceledDate" type="timestamp">
+            <column name="CanceledDate" length="23" />
+        </property>
+        <property name="srnote" type="string">
+            <column name="SRNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblStoreRequestDetails" table="tblStoreRequestDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDSR" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblStoreRequestDetail" />
+        </set>
+        <set name="tblOutGoings" table="tblOutGoing" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDStoreRequest" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblOutGoing" />
+        </set>
+    </class>
+    <query name="findAllTblStoreRequestByIDStoreRequestStatus">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblStoreRequest t where t.refStoreRequestStatus.idstatus=:idStoreRequestStatus and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3) order by t.idsr desc]]>
+    </query>
+    <query name="findAllTblStoreRequest">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblStoreRequest t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3) order by t.idsr desc]]>
+    </query>
+</hibernate-mapping>

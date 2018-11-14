@@ -1,0 +1,83 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 15, 2018 12:47:57 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblMemorandumInvoice" table="tblMemorandumInvoice" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idmi" type="long">
+            <column name="IDMI" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refMemorandumInvoiceStatus" class="hotelfx.persistence.model.RefMemorandumInvoiceStatus" fetch="select">
+            <column name="_MIStatus" />
+        </many-to-one>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblApprovalData" class="hotelfx.persistence.model.TblApprovalData" fetch="select">
+            <column name="IDApprovalData" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblFinanceData" class="hotelfx.persistence.model.TblFinanceData" fetch="select">
+            <column name="IDFinanceData" />
+        </many-to-one>
+        <many-to-one name="tblPurchaseOrder" class="hotelfx.persistence.model.TblPurchaseOrder" fetch="select">
+            <column name="IDPO" />
+        </many-to-one>
+        <many-to-one name="tblSupplier" class="hotelfx.persistence.model.TblSupplier" fetch="select">
+            <column name="IDSupplier" />
+        </many-to-one>
+        <property name="codeMi" type="string">
+            <column name="CodeMI" length="50" />
+        </property>
+        <property name="receivingDate" type="timestamp">
+            <column name="ReceivingDate" length="23" />
+        </property>
+        <property name="deliveryNumber" type="string">
+            <column name="DeliveryNumber" length="50" />
+        </property>
+        <property name="deliveryName" type="string">
+            <column name="DeliveryName" length="100" />
+        </property>
+        <property name="receivingNote" type="string">
+            <column name="ReceivingNote" />
+        </property>
+        <property name="storingDate" type="timestamp">
+            <column name="StoringDate" length="23" />
+        </property>
+        <property name="balancingCostDate" type="timestamp">
+            <column name="BalancingCostDate" length="23" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblMemorandumInvoiceDetails" table="tblMemorandumInvoiceDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDMI" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblMemorandumInvoiceDetail" />
+        </set>
+        <set name="tblReturDetails" table="tblReturDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDMI" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReturDetail" />
+        </set>
+    </class>
+    <query name="findAllTblMemorandumInvoiceByIDPurchaseOrder">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblMemorandumInvoice t where t.tblPurchaseOrder.idpo=:idPurchaseOrder and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblMemorandumInvoice">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblMemorandumInvoice t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3) order by t.idmi desc]]>
+    </query>
+</hibernate-mapping>

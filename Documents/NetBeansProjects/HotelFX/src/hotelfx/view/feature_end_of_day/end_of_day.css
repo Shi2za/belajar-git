@@ -1,0 +1,43 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+@import "../root.css";
+
+.button-arrow-right{
+    -fx-background-color:#388E3C;
+    -fx-shape: "M20.078 14c0-0.266-0.094-0.516-0.281-0.703l-7.078-7.078c-0.187-0.187-0.438-0.281-0.703-0.281s-0.516 0.094-0.703 0.281l-1.422 1.422c-0.187 0.187-0.281 0.438-0.281 0.703s0.094 0.516 0.281 0.703l2.953 2.953h-7.844c-0.547 0-1 0.453-1 1v2c0 0.547 0.453 1 1 1h7.844l-2.953 2.953c-0.187 0.187-0.297 0.438-0.297 0.703s0.109 0.516 0.297 0.703l1.422 1.422c0.187 0.187 0.438 0.281 0.703 0.281s0.516-0.094 0.703-0.281l7.078-7.078c0.187-0.187 0.281-0.438 0.281-0.703zM24 14c0 6.625-5.375 12-12 12s-12-5.375-12-12 5.375-12 12-12 12 5.375 12 12z";
+}
+
+.button-arrow-left{
+    -fx-background-color:#388E3C;
+    -fx-shape: "M20 15v-2c0-0.547-0.453-1-1-1h-7.844l2.953-2.953c0.187-0.187 0.297-0.438 0.297-0.703s-0.109-0.516-0.297-0.703l-1.422-1.422c-0.187-0.187-0.438-0.281-0.703-0.281s-0.516 0.094-0.703 0.281l-7.078 7.078c-0.187 0.187-0.281 0.438-0.281 0.703s0.094 0.516 0.281 0.703l7.078 7.078c0.187 0.187 0.438 0.281 0.703 0.281s0.516-0.094 0.703-0.281l1.422-1.422c0.187-0.187 0.281-0.438 0.281-0.703s-0.094-0.516-0.281-0.703l-2.953-2.953h7.844c0.547 0 1-0.453 1-1zM24 14c0 6.625-5.375 12-12 12s-12-5.375-12-12 5.375-12 12-12 12 5.375 12 12z";
+}
+
+.anchor-pane-odd{
+    -fx-background-color:transparent;
+}
+
+.anchor-pane-even{
+    -fx-background-color:transparent;
+}
+
+.anchor-pane-base-layout{
+    -fx-background-color:white;
+}
+
+.anchor-pane-header-layout{
+    -fx-background-color:transparent;
+}
+
+.anchor-pane-body-layout{
+    -fx-background-color:transparent;
+}
+
+.label-title-data{
+    -fx-font-family:"Helvetica";
+    -fx-font-weight: bolder;
+    -fx-text-fill:#388E3C;
+    -fx-font-size: 16pt;
+    -fx-effect: dropshadow( two-pass-box , rgba(255, 255, 255, 1) , 4, 5 , 0 , 0 );
+}

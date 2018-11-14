@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 24, 2018 1:30:17 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblOpenCloseCashierBalance" table="tblOpenCloseCashierBalance" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idopenCloseCashierBalance" type="long">
+            <column name="IDOpenCloseCashierBalance" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refOpenCloseCashierBalanceStatus" class="hotelfx.persistence.model.RefOpenCloseCashierBalanceStatus" fetch="select">
+            <column name="_OpenCloseStatus" />
+        </many-to-one>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByIdcashier" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="IDCashier" />
+        </many-to-one>
+        <property name="openDateTime" type="timestamp">
+            <column name="OpenDateTime" length="23" />
+        </property>
+        <property name="closeDateTime" type="timestamp">
+            <column name="CloseDateTime" length="23" />
+        </property>
+        <property name="beginBalanceNominal" type="big_decimal">
+            <column name="BeginBalanceNominal" precision="18" scale="4" />
+        </property>
+        <property name="systemEndBalanceNominal" type="big_decimal">
+            <column name="SystemEndBalanceNominal" precision="18" scale="4" />
+        </property>
+        <property name="realEndBalanceNominal" type="big_decimal">
+            <column name="RealEndBalanceNominal" precision="18" scale="4" />
+        </property>
+        <property name="openCloseCashierBalanceNote" type="string">
+            <column name="OpenCloseCashierBalanceNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblOpenCloseCashierBalanceDetails" table="tblOpenCloseCashierBalanceDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDOpenCloseCashierBalance" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblOpenCloseCashierBalanceDetail" />
+        </set>
+    </class>
+    <query name="findAllTblOpenCloseCashierBalance">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblOpenCloseCashierBalance t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3) order by t.openDateTime desc]]>
+    </query>
+    <query name="findAllTblOpenCloseCashierBalanceByIDOpenCloseStatus">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblOpenCloseCashierBalance t where t.refOpenCloseCashierBalanceStatus.idstatus=:idOpenCloseStatus and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

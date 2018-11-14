@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="LaporanHutangKaryawanDetail" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="0" uuid="37d96e58-b559-4c7d-9409-82fedf06aac2">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="One Empty Record"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="105"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="idKaryawan" class="java.lang.String"/>
+	<field name="namaKaryawan" class="java.lang.String"/>
+	<field name="tipeKaryawan" class="java.lang.String"/>
+	<field name="jabatanKaryawan" class="java.lang.String"/>
+	<field name="nominalPinjaman" class="java.math.BigDecimal"/>
+	<field name="statusPinjaman" class="java.lang.String"/>
+	<field name="tanggal" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<frame>
+				<reportElement x="0" y="0" width="800" height="20" uuid="d4bc56e7-858d-4a3d-9b6f-fc99207746c3">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="0" y="0" width="68" height="20" uuid="24701258-3b21-4f49-8f21-acbc020bd828"/>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Tanggal ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="153" y="0" width="70" height="20" uuid="d3222296-dfc0-47f0-8b5d-b99c97e7903f"/>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[ID Karyawan]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="223" y="0" width="216" height="20" uuid="21b9060f-33b2-430f-b7cb-a916276c1b14">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Nama Karyawan]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="439" y="0" width="111" height="20" uuid="5803db4f-d4da-4930-9ecc-59ea9b4d7440"/>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Jabatan]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="550" y="0" width="117" height="20" uuid="f70c4d1c-e4aa-4d99-b6ab-4364354798eb"/>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Nominal Pinjaman (IDR)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="667" y="0" width="133" height="20" uuid="0ce0f1a0-7fd0-4071-b495-32dc0b3c38a0"/>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Status ]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="68" y="0" width="85" height="20" uuid="19470fdc-ef14-454e-8b58-2a7b0554f66f"/>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Tipe Karyawan]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="153" y="0" width="70" height="15" uuid="6d7735ca-fb4b-4e48-a261-d22fc868757f"/>
+				<box topPadding="3" leftPadding="5" rightPadding="5"/>
+				<textElement verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idKaryawan}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="223" y="0" width="216" height="15" uuid="f49b9b00-a1db-4d5f-95dc-6ef6f094121a"/>
+				<box topPadding="3" leftPadding="5" rightPadding="5"/>
+				<textElement verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{namaKaryawan}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="439" y="0" width="111" height="15" uuid="be869943-9afd-47e4-8196-22667349caac"/>
+				<box topPadding="3" leftPadding="5" rightPadding="5"/>
+				<textElement verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jabatanKaryawan}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="550" y="0" width="117" height="15" uuid="f6ed672d-f9ea-4b61-9219-22545b4ae3aa"/>
+				<box topPadding="3" leftPadding="5" rightPadding="5"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("#,###.##",new DecimalFormatSymbols(new Locale("id"))).format($F{nominalPinjaman})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="667" y="0" width="133" height="15" uuid="ae58a2a2-dd5e-42e1-993e-6c8a1fb59432">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box topPadding="3" leftPadding="5" rightPadding="5"/>
+				<textElement verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{statusPinjaman}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="68" height="15" uuid="6f8cd8d5-60b1-4c68-8247-6ec5df885820"/>
+				<box topPadding="3" leftPadding="5" rightPadding="5"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tanggal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="68" y="0" width="85" height="15" uuid="c2432784-800d-4a4b-a61c-fe66f155ded5"/>
+				<box topPadding="3" leftPadding="5" rightPadding="5"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipeKaryawan}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="3" splitType="Stretch">
+			<frame>
+				<reportElement x="0" y="0" width="800" height="3" uuid="bf2c226e-d57c-4905-baf0-1be143fddf76"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</frame>
+		</band>
+	</columnFooter>
+</jasperReport>

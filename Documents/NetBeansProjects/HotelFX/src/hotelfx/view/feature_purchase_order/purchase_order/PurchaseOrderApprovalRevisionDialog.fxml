@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane fx:id="ancFormApprovalRevision" maxHeight="680.0" maxWidth="1350.0" minHeight="680.0" minWidth="1350.0" prefHeight="680.0" prefWidth="1350.0" stylesheets="@purchase_order_approval_revision.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <AnchorPane prefHeight="50.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <JFXButton fx:id="btnCancel" buttonType="RAISED" prefHeight="30.0" prefWidth="30.0" styleClass="button-cancel" text=" " AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+            <JFXButton fx:id="btnSave" buttonType="RAISED" prefHeight="30.0" prefWidth="30.0" styleClass="button-save" text=" " AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="60.0" AnchorPane.topAnchor="15.0" />
+            <Label fx:id="lblCodeData" styleClass="title-code-status" text="Label" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="15.0" />
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="50.0">
+         <children>
+            <GridPane fx:id="gpFormDataApprovalRevision" hgap="15.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="5.0">
+               <columnConstraints>
+                  <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                  <ColumnConstraints hgrow="SOMETIMES" maxWidth="315.0" minWidth="315.0" prefWidth="315.0" />
+               </columnConstraints>
+               <rowConstraints>
+                  <RowConstraints maxHeight="5.0" minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+               </rowConstraints>
+               <children>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="1">
+                     <children>
+                        <TitledPane animated="false" collapsible="false" text="Data PO (Revisi)" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <GridPane hgap="15.0" vgap="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="160.0" prefWidth="160.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="20.0" minWidth="20.0" prefWidth="20.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="260.0" minWidth="260.0" prefWidth="260.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Separator prefWidth="200.0" GridPane.columnSpan="7" GridPane.rowIndex="3" />
+                                          <Separator orientation="VERTICAL" prefHeight="200.0" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.rowSpan="3" />
+                                          <JFXDatePicker fx:id="dtpDueDate" editable="false" labelFloat="true" promptText="Estimasi Tgl. Kirim *" />
+                                          <AnchorPane fx:id="ancSupplierLayout" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                                          <AnchorPane fx:id="ancPRLayout" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" />
+                                          <JFXTextField fx:id="txtSubTotal" disable="true" editable="false" labelFloat="true" promptText="Subtotal" GridPane.columnIndex="3" />
+                                          <JFXTextField fx:id="txtTax" disable="true" editable="false" labelFloat="true" promptText="Tax *" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                                          <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.rowIndex="1">
+                                             <children>
+                                                <Spinner fx:id="spnTaxPercentage" editable="true" maxWidth="80.0" minWidth="80.0" prefWidth="80.0" />
+                                                <Label fx:id="lblTaxPercentage" maxHeight="30.0" minHeight="30.0" prefHeight="30.0" text="   %" />
+                                             </children>
+                                          </HBox>
+                                          <JFXTextField fx:id="txtDiscount" labelFloat="true" promptText="Diskon (Nominal) *" GridPane.columnIndex="4" />
+                                          <JFXTextField fx:id="txtDeliveryCost" labelFloat="true" promptText="Biaya Pengiriman *" GridPane.columnIndex="3" GridPane.rowIndex="2" />
+                                          <Label fx:id="lblTotal" alignment="CENTER_RIGHT" maxHeight="80.0" maxWidth="260.0" minHeight="80.0" minWidth="260.0" prefHeight="80.0" prefWidth="260.0" styleClass="label-total" text="A" textAlignment="CENTER" GridPane.columnIndex="6" GridPane.rowSpan="3">
+                                             <GridPane.margin>
+                                                <Insets />
+                                             </GridPane.margin>
+                                             <padding>
+                                                <Insets right="10.0" />
+                                             </padding>
+                                          </Label>
+                                          <AnchorPane fx:id="ancDetailLayout" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="7" GridPane.rowIndex="4" />
+                                          <JFXTextField fx:id="txtPOPaymentTypeInformation" labelFloat="true" promptText="Tipe Pembayaran *" GridPane.columnIndex="1" />
+                                          <JFXTextArea fx:id="txtPONote" disable="true" labelFloat="true" promptText="Keterangan PO" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.rowSpan="2">
+                                             <GridPane.margin>
+                                                <Insets bottom="5.0" />
+                                             </GridPane.margin>
+                                          </JFXTextArea>
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </TitledPane>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <children>
+                        <TitledPane animated="false" collapsible="false" text="Informasi Revisi" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                           <content>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                 <children>
+                                    <GridPane hgap="15.0" vgap="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0">
+                                       <columnConstraints>
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" />
+                                          <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" />
+                                       </columnConstraints>
+                                       <rowConstraints>
+                                          <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="80.0" minHeight="80.0" prefHeight="80.0" vgrow="SOMETIMES" />
+                                          <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                       </rowConstraints>
+                                       <children>
+                                          <Label styleClass="title-revision-infomation" text="Revisi Dari : " />
+                                          <Label styleClass="title-revision-infomation" text="Status Penerimaan :" GridPane.rowIndex="1" />
+                                          <AnchorPane fx:id="ancPOSourceLayout" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" />
+                                          <AnchorPane fx:id="ancPOSourceItemArriveStatusLayout" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                          <AnchorPane fx:id="ancPOSourcePaymentStatusLayout" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                          <JFXTextArea fx:id="txtRevisionReason" labelFloat="true" promptText="Alasan Revisi *" GridPane.columnSpan="2" GridPane.rowIndex="3">
+                                             <GridPane.margin>
+                                                <Insets bottom="15.0" top="15.0" />
+                                             </GridPane.margin>
+                                          </JFXTextArea>
+                                          <JFXTextArea fx:id="txtDataRevision" promptText="Detail Revisi" GridPane.columnSpan="2" GridPane.rowIndex="5">
+                                             <GridPane.margin>
+                                                <Insets />
+                                             </GridPane.margin>
+                                          </JFXTextArea>
+                                          <Label styleClass="title-revision-infomation" text="Status Pembayaran :" GridPane.rowIndex="2" />
+                                          <JFXTextField fx:id="txtRevisionNote" labelFloat="true" promptText="Revisi (tentang) *" GridPane.columnSpan="2" GridPane.rowIndex="4" />
+                                       </children>
+                                    </GridPane>
+                                 </children>
+                              </AnchorPane>
+                           </content>
+                        </TitledPane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </GridPane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

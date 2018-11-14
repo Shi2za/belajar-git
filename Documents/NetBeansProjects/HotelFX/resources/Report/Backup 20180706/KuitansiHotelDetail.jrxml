@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="KuitansiHotelDetail" language="javascript" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="0" uuid="03a5a1fc-42c8-4a0d-bb84-834ba9e66671">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DBHotel"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<parameter name="idReservation" class="java.lang.Long"/>
+	<parameter name="billType" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[select trp._PaymentType
+		from tblReservationBill trb
+		join tblReservationPayment trp on trp.IDBill = trb.IDBill
+		where trb.IDReservation =  $P{idReservation} 
+		and trb._ReservationBillType = $P{billType}   and 
+		trp._ReservationBillType = $P{billType} 
+		and (trb._RecordStatus = 1 or trb._RecordStatus = 3) 
+		and (trp._RecordStatus = 1 or trp._RecordStatus = 3)]]>
+	</queryString>
+	<field name="_PaymentType" class="java.lang.Integer"/>
+	<group name="Cash">
+		<groupHeader>
+			<band height="20">
+				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				<subreport>
+					<reportElement x="-20" y="0" width="595" height="20" isRemoveLineWhenBlank="true" uuid="6f766cff-7f3b-4901-bec9-bf4de40aaf74">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<subreportParameter name="idReservation">
+						<subreportParameterExpression><![CDATA[$P{idReservation}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="billType">
+						<subreportParameterExpression><![CDATA[$P{billType}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA["KuitansiHotel/KuitansiHotelDetailCash.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="DetailPayment"/>
+	<group name="Debit">
+		<groupHeader>
+			<band height="20">
+				<subreport>
+					<reportElement x="-20" y="0" width="595" height="20" isRemoveLineWhenBlank="true" uuid="66403bbf-8723-4f2d-b348-85ede169643b">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<subreportParameter name="idReservation">
+						<subreportParameterExpression><![CDATA[$P{idReservation}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="billType">
+						<subreportParameterExpression><![CDATA[$P{billType}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA["KuitansiHotel/KuitansiHotelDetailDebit.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="credit">
+		<groupHeader>
+			<band height="20">
+				<subreport>
+					<reportElement x="-20" y="0" width="595" height="20" isRemoveLineWhenBlank="true" uuid="2ca17cb8-547d-403f-a15b-6e596696d797">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<subreportParameter name="idReservation">
+						<subreportParameterExpression><![CDATA[$P{idReservation}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="billType">
+						<subreportParameterExpression><![CDATA[$P{billType}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA["KuitansiHotel/KuitansiHotelDetailCredit.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="Cek">
+		<groupHeader>
+			<band height="20">
+				<subreport>
+					<reportElement x="-20" y="0" width="595" height="20" isRemoveLineWhenBlank="true" uuid="bba145ad-1451-4f7c-a0a1-c7c48e3ec881"/>
+					<subreportParameter name="idReservation">
+						<subreportParameterExpression><![CDATA[$P{idReservation}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="billType">
+						<subreportParameterExpression><![CDATA[$P{billType}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA["KuitansiHotel/KuitansiHotelDetailCek.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="Giro">
+		<groupHeader>
+			<band height="20">
+				<subreport>
+					<reportElement x="-20" y="0" width="595" height="20" isRemoveLineWhenBlank="true" uuid="0800365f-558b-45f4-915d-e392f945c6fc">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<subreportParameter name="idReservation">
+						<subreportParameterExpression><![CDATA[$P{idReservation}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="billType">
+						<subreportParameterExpression><![CDATA[$P{billType}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA["KuitansiHotel/KuitansiHotelDetailGiro.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="TravelAgent">
+		<groupHeader>
+			<band height="20">
+				<subreport>
+					<reportElement x="-20" y="0" width="595" height="20" isRemoveLineWhenBlank="true" uuid="b56bd1fb-8ddb-4529-83d8-ba5c45f8aa5b">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<subreportParameter name="idReservation">
+						<subreportParameterExpression><![CDATA[$P{idReservation}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="billType">
+						<subreportParameterExpression><![CDATA[$P{billType}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA["KuitansiHotel/KuitansiHotelDetailTravelAgent.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="GuaranteedLetter(Corporate)">
+		<groupHeader>
+			<band height="20">
+				<subreport>
+					<reportElement x="-20" y="0" width="595" height="20" isRemoveLineWhenBlank="true" uuid="341149d5-6a9e-403c-ba7a-69eb1752e4d9">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<subreportParameter name="idReservation">
+						<subreportParameterExpression><![CDATA[$P{idReservation}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="billType">
+						<subreportParameterExpression><![CDATA[$P{billType}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA["KuitansiHotel/KuitansiHotelDetailGuaranteedCorporate.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="GuaranteedLetter(Goverment)">
+		<groupHeader>
+			<band height="20">
+				<subreport>
+					<reportElement x="-20" y="0" width="595" height="20" isRemoveLineWhenBlank="true" uuid="17360b23-b720-40db-b22e-b70afd271d81">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<subreportParameter name="idReservation">
+						<subreportParameterExpression><![CDATA[$P{idReservation}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="billType">
+						<subreportParameterExpression><![CDATA[$P{billType}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA["KuitansiHotel/KuitansiHotelDetailGuaranteedGoverment.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="Voucher">
+		<groupHeader>
+			<band height="20">
+				<subreport>
+					<reportElement positionType="Float" x="-20" y="0" width="595" height="20" isRemoveLineWhenBlank="true" uuid="d5162990-b2db-45ab-b30f-a5daa7a1657c">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<subreportParameter name="idReservation">
+						<subreportParameterExpression><![CDATA[$P{idReservation}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="billType">
+						<subreportParameterExpression><![CDATA[$P{billType}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA["KuitansiHotel/KuitansiHotelDetailVoucher.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="Transfer">
+		<groupHeader>
+			<band height="20">
+				<subreport>
+					<reportElement x="-20" y="0" width="595" height="20" isRemoveLineWhenBlank="true" uuid="66407834-e2ca-49fd-8768-196cedd40fd4">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<subreportParameter name="idReservation">
+						<subreportParameterExpression><![CDATA[$P{idReservation}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="billType">
+						<subreportParameterExpression><![CDATA[$P{billType}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA["KuitansiHotel/KuitansiHotelDetailTransfer.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+</jasperReport>

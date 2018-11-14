@@ -1,0 +1,85 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 21, 2018 1:57:22 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblItemLocation" table="tblItem_Location" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idrelation" type="long">
+            <column name="IDRelation" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblItem" class="hotelfx.persistence.model.TblItem" fetch="select">
+            <column name="IDItem" />
+        </many-to-one>
+        <many-to-one name="tblLocation" class="hotelfx.persistence.model.TblLocation" fetch="select">
+            <column name="IDLocation" />
+        </many-to-one>
+        <property name="itemQuantity" type="big_decimal">
+            <column name="ItemQuantity" precision="10" scale="4" />
+        </property>
+        <property name="note" type="string">
+            <column name="Note" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblItemLocationPropertyBarcodes" table="tblItem_Location_PropertyBarcode" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDItemLocation" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblItemLocationPropertyBarcode" />
+        </set>
+        <set name="tblItemLocationItemExpiredDates" table="tblItem_Location_ItemExpiredDate" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDItemLocation" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblItemLocationItemExpiredDate" />
+        </set>
+    </class>
+    <query name="findAllTblItemLocation">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblItemLocation t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+    <query name="findAllTblItemLocationByIdLocation">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblItemLocation t where t.tblLocation.idlocation=:idLocation and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+    <query name = "findAllTblItemLocationByNameLocation">
+        <![CDATA[from TblItemLocation tl where tl.tblLocation.locationName=:name and tl.tblLocation.refLocationType.typeName=:type and (tl.refRecordStatus.idstatus=1 or tl.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+    <query name = "findAllTblItemLocationByIdLocationAndIdType">
+        <![CDATA[from TblItemLocation tl where tl.tblLocation.idlocation=:idLoc and tl.tblLocation.refLocationType.idtype=:idType and (tl.refRecordStatus.idstatus=1 or tl.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+    <query name = "findAllTblItemLocationByLocationType">
+        <![CDATA[from TblItemLocation tl where tl.tblLocation.refLocationType.idtype=:typeId and (tl.refRecordStatus.idstatus=1 or tl.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+    <query name = "findAllTblItemLocationByIDLocationType">
+        <![CDATA[from TblItemLocation tl where tl.tblLocation.refLocationType.idtype=:idLocationType and (tl.refRecordStatus.idstatus=1 or tl.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+    <query name = "findAllItemLocationByIdLocationAndIdItem">
+        <![CDATA[from TblItemLocation tl where tl.tblLocation.idlocation=:idLocation and tl.tblItem.iditem=:idItem and (tl.refRecordStatus.idstatus=1 or tl.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+    <query name="findAllTblItemLocationByIdItem">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblItemLocation t where t.tblItem.iditem=:idItem and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

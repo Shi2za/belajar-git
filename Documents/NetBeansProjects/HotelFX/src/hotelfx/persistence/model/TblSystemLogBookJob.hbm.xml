@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 6, 2018 9:44:16 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblSystemLogBookJob" table="tblSystemLogBook_Job" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idrelation" type="long">
+            <column name="IDRelation" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblJob" class="hotelfx.persistence.model.TblJob" fetch="select">
+            <column name="IDJob" />
+        </many-to-one>
+        <many-to-one name="tblSystemLogBook" class="hotelfx.persistence.model.TblSystemLogBook" fetch="select">
+            <column name="IDLogBook" />
+        </many-to-one>
+        <property name="relationNote" type="string">
+            <column name="RelationNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+    </class>
+    <sql-query name="deleteAllTblSystemLogBookJob" callable="true">
+        <return-scalar column="err_msg" type="string"/>
+        <![CDATA[{CALL DeleteAllSystemLogBookJob(:idLogBook, :idEmployee)}]]>
+    </sql-query>
+    <query name="findAllTblSystemLogBookJob">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblSystemLogBookJob t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblSystemLogBookJobByIDSystemLogBook">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblSystemLogBookJob t where t.tblSystemLogBook.idlogBook=:idLogBook and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblSystemLogBookJobByIDJob">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblSystemLogBookJob t where t.tblJob.idjob=:idJob and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)  order by t.tblSystemLogBook.logBookDateTime desc]]>
+    </query>
+    <query name="findAllTblSystemLogBookJobByIDJobAndIsReminderAndReminderDateInDate">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblSystemLogBookJob t where t.tblJob.idjob=:idJob and t.tblSystemLogBook.isReminder=:isReminder and (cast(t.tblSystemLogBook.reminderDate as date) = cast(:reminderDate as date)) and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)  order by t.tblSystemLogBook.logBookDateTime desc]]>
+    </query>
+</hibernate-mapping>

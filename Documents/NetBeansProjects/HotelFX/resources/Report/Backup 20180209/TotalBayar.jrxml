@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TotalBayar" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="04937541-992f-49f9-a1af-f41c23cc6a35">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DBHotel"/>
+	<parameter name="idReservation" class="java.lang.Long"/>
+	<queryString language="SQL">
+		<![CDATA[select sum(trpd.DetailPrice) as Harga,sum((trpd.DetailPrice*(trpd.DetailDiscountPercentage/100))) as Diskon, sum((trpd.DetailPrice-(trpd.DetailPrice*(trpd.DetailDiscountPercentage/100)))*trb.ServiceChargePercentage) as ServiceCharge, sum((trpd.DetailPrice-(trpd.DetailPrice*(trpd.DetailDiscountPercentage/100)) + (trpd.DetailPrice-(trpd.DetailPrice*(trpd.DetailDiscountPercentage/100)))*trb.ServiceChargePercentage)*trb.TaxPercentage) as Tax
+from tblReservationBill trb join tblReservation tr on trb.IDReservation = tr.IDReservation 
+join tblReservationRoomTypeDetail trtd on tr.IDReservation = trtd.IDReservation
+join tblReservationRoomTypeDetail_RoomPriceDetail trtd_rpd on trtd.IDDetail = trtd_rpd.IDRoomTypeDetail 
+join tblReservationRoomPriceDetail trpd on trtd_rpd.IDRoomPriceDetail = trpd.IDDetail
+where tr.IDReservation =   $P{idReservation}   and trb._ReservationBillType = 0 and (trtd._RecordStatus = 1 or trtd._RecordStatus = 3) and (trtd_rpd._RecordStatus= 1 or trtd_rpd._RecordStatus = 3)
+union (select cast(case when sum((trai.ItemCharge*trai.ItemQuantity)) is null then 0 else sum((trai.ItemCharge*trai.ItemQuantity)) end as decimal) as Harga, 
+			  cast(case when sum(((trai.ItemCharge*trai.ItemQuantity)*(trai.DiscountPercentage/100))) is null then 0 else sum(((trai.ItemCharge*trai.ItemQuantity)*(trai.DiscountPercentage/100))) end as decimal) as Diskon,
+		      cast(case when sum(((trai.ItemQuantity*trai.ItemCharge)-((trai.ItemCharge*trai.ItemQuantity)*(trai.DiscountPercentage/100)))*trb.ServiceChargePercentage) is null then 0 else  sum(((trai.ItemQuantity*trai.ItemCharge)-((trai.ItemCharge*trai.ItemQuantity)*(trai.DiscountPercentage/100)))*trb.ServiceChargePercentage) end as decimal) as ServiceCharge, 
+			  cast(case when sum(((trai.ItemQuantity*trai.ItemCharge)-((trai.ItemQuantity*trai.ItemCharge)*(trai.DiscountPercentage/100)) + ((trai.ItemQuantity*trai.ItemCharge)-((trai.ItemQuantity*trai.ItemCharge)*(trai.DiscountPercentage/100)))*trb.ServiceChargePercentage)*trb.TaxPercentage) is null then 0 else sum(((trai.ItemQuantity*trai.ItemCharge)-((trai.ItemQuantity*trai.ItemCharge)*(trai.DiscountPercentage/100)) + ((trai.ItemQuantity*trai.ItemCharge)-((trai.ItemQuantity*trai.ItemCharge)*(trai.DiscountPercentage/100)))*trb.ServiceChargePercentage)*trb.TaxPercentage) end as decimal) as Tax
+		from tblReservationBill trb join tblReservation tr on trb.IDReservation = tr.IDReservation 
+		join tblReservationRoomTypeDetail trtd on tr.IDReservation = trtd.IDReservation
+		join tblReservationAdditionalItem trai on trai.IDRoomTypeDetail = trtd.IDDetail
+		where tr.IDReservation =  $P{idReservation}  and trb._ReservationBillType = 0 and trai._ReservationBillType = 0 and (trai._RecordStatus = 1 or trai._RecordStatus = 3))
+union (select cast(case when sum(tras.Price) is null then 0 else sum(tras.Price) end as decimal) as Harga, 
+			  cast(case when sum((tras.Price*(tras.DiscountPercentage/100))) is null then 0 else sum((tras.Price*(tras.DiscountPercentage/100))) end as decimal)as Diskon, 
+			  cast(case when sum((tras.Price-(tras.Price*(tras.DiscountPercentage/100)))*trb.ServiceChargePercentage) is null then 0 else sum((tras.Price-(tras.Price*(tras.DiscountPercentage/100)))*trb.ServiceChargePercentage) end as decimal)as ServiceCharge, 
+			  cast(case when sum((tras.Price-(tras.Price*(tras.DiscountPercentage/100)) + (tras.Price-(tras.Price*(tras.DiscountPercentage/100)))*trb.ServiceChargePercentage)*trb.TaxPercentage) is null then 0 else sum((tras.Price-(tras.Price*(tras.DiscountPercentage/100)) + (tras.Price-(tras.Price*(tras.DiscountPercentage/100)))*trb.ServiceChargePercentage)*trb.TaxPercentage) end as decimal) as Tax
+	   from tblReservationBill trb join tblReservation tr on trb.IDReservation = tr.IDReservation 
+       join tblReservationRoomTypeDetail trtd on tr.IDReservation = trtd.IDReservation
+       join tblReservationAdditionalService tras on tras.IDRoomTypeDetail = trtd.IDDetail
+       where tr.IDReservation =   $P{idReservation}    and trb._ReservationBillType = 0 and tras._ReservationBillType = 0 and (tras._RecordStatus = 1 or tras._RecordStatus = 3))
+union(select 0 as harga,sum(trbad.NominalAdditionalDiscount) as diskon, sum((0-trbad.NominalAdditionalDiscount)*trb.ServiceChargePercentage) as serviceCharge, sum(((0-trbad.NominalAdditionalDiscount)+(0-trbad.NominalAdditionalDiscount)*trb.ServiceChargePercentage)*trb.TaxPercentage) as Tax
+from tblReservationBill trb join tblReservation tr on trb.IDReservation = tr.IDReservation 
+join tblReservationBillAdditionalDiscount trbad on trbad.IDBill = trb.IDBill
+where tr.IDReservation =   $P{idReservation}     and trb._ReservationBillType = 0 and (trb._RecordStatus = 1 or trb._RecordStatus = 3) and (trbad._RecordStatus= 1 or trbad._RecordStatus=3))]]>
+	</queryString>
+	<field name="Harga" class="java.math.BigDecimal"/>
+	<field name="Diskon" class="java.math.BigDecimal"/>
+	<field name="ServiceCharge" class="java.math.BigDecimal"/>
+	<field name="Tax" class="java.math.BigDecimal"/>
+	<variable name="totalHarga" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{Harga}.doubleValue()]]></variableExpression>
+	</variable>
+	<variable name="totalDiskon" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{Diskon}.doubleValue()]]></variableExpression>
+	</variable>
+	<variable name="totalServiceCharge" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{ServiceCharge}.doubleValue()]]></variableExpression>
+	</variable>
+	<variable name="totalTax" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{Tax}.doubleValue()]]></variableExpression>
+	</variable>
+	<variable name="totalPayment" class="java.lang.Double">
+		<variableExpression><![CDATA[$V{totalHarga}-$V{totalDiskon}+$V{totalServiceCharge}+$V{totalTax}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<summary>
+		<band height="106" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<frame>
+				<reportElement x="0" y="0" width="550" height="100" uuid="f49192f9-e33e-4a38-a3bf-5b54c4b9e979">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="270" y="11" width="140" height="16" uuid="1219f93d-b156-4429-9e11-eafca17243e8">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="12"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[SUBTOTAL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="270" y="28" width="140" height="16" uuid="404a25b0-0687-4865-a3c2-6654ebdc65ec">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="12"/>
+					</textElement>
+					<text><![CDATA[DISKON]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="270" y="44" width="140" height="16" uuid="a5abfc12-0fd1-4203-b16c-6ee1a8fe7b2c">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[SERVICE CHARGE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="270" y="61" width="140" height="16" uuid="0f1d44a8-9cce-4bb0-a85a-d33b1994b2b0">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font fontName="SansSerif" size="12"/>
+					</textElement>
+					<text><![CDATA[PAJAK]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="270" y="78" width="140" height="16" uuid="fd0ed4f1-4f77-4e47-b7e4-fab4c9823448">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[TOTAL BILL]]></text>
+				</staticText>
+				<textField pattern="#,##0.###;(#,##0.###-)">
+					<reportElement x="410" y="28" width="100" height="16" uuid="9680caf9-78be-40c2-a041-80bd465c89b3"/>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totalDiskon}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.###;(#,##0.###-)">
+					<reportElement x="410" y="11" width="100" height="16" uuid="1a1a4778-1f9d-4709-a944-f8ec74c69373">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font fontName="SansSerif" size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totalHarga}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.###;(#,##0.###-)">
+					<reportElement x="410" y="44" width="100" height="16" uuid="2ddc9659-a864-4b42-a052-d54b49c62281">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totalServiceCharge}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.###;(#,##0.###-)">
+					<reportElement x="410" y="61" width="100" height="16" uuid="e89ae1a6-cc31-4137-92c1-9ba39d3aa4fe">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totalTax}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0.###;(#,##0.###-)">
+					<reportElement x="409" y="78" width="101" height="16" uuid="1c4f63d1-1754-43c7-8359-e1710fdd3282">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Right">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totalPayment}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</summary>
+</jasperReport>

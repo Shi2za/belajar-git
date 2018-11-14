@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 29, 2018 9:21:53 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblEmployeeAllowance" table="tblEmployeeAllowance" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idallowance" type="long">
+            <column name="IDAllowance" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <property name="codeAllowance" type="string">
+            <column name="CodeAllowance" length="50" />
+        </property>
+        <property name="allowanceName" type="string">
+            <column name="AllowanceName" length="100" />
+        </property>
+        <property name="allowanceNominal" type="big_decimal">
+            <column name="AllowanceNominal" precision="18" scale="4" />
+        </property>
+        <property name="allowanceNote" type="string">
+            <column name="AllowanceNote" />
+        </property>
+        <property name="allowanceStatus" type="java.lang.Boolean">
+            <column name="AllowanceStatus" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblEmployeeEmployeeAllowances" table="tblEmployee_EmployeeAllowance" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDAllowance" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblEmployeeEmployeeAllowance" />
+        </set>
+    </class>
+    <query name="findAllTblEmployeeAllowance">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblEmployeeAllowance t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

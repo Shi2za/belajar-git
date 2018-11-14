@@ -1,0 +1,86 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 12, 2018 1:00:05 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblBank" table="tblBank" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idbank" type="long">
+            <column name="IDBank" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <property name="codeBank" type="string">
+            <column name="CodeBank" length="50" />
+        </property>
+        <property name="bankName" type="string">
+            <column name="BankName" length="100" />
+        </property>
+        <property name="bankNote" type="string">
+            <column name="BankNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblBankEventCards" table="tblBankEventCard" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDBank" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblBankEventCard" />
+        </set>
+        <set name="tblBankAccounts" table="tblBankAccount" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDBank" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblBankAccount" />
+        </set>
+        <set name="tblBankCards" table="tblBankCard" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDBank" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblBankCard" />
+        </set>
+        <set name="tblHotelFinanceTransactionWithCekGiros" table="tblHotelFinanceTransactionWithCekGiro" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDBankIssue" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblHotelFinanceTransactionWithCekGiro" />
+        </set>
+        <set name="tblBankEdcs" table="tblBankEDC" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDBank" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblBankEdc" />
+        </set>
+        <set name="tblReservationPaymentWithBankCards" table="tblReservationPaymentWithBankCard" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDBank" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationPaymentWithBankCard" />
+        </set>
+        <set name="tblReservationPaymentWithCekGiros" table="tblReservationPaymentWithCekGiro" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDBankIssue" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationPaymentWithCekGiro" />
+        </set>
+    </class>
+    <query name="findAllTblBank">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblBank t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblBankByBankName">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblBank t where t.bankName=:bankName and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3 or t.refRecordStatus.idstatus=5)]]>
+    </query>
+</hibernate-mapping>

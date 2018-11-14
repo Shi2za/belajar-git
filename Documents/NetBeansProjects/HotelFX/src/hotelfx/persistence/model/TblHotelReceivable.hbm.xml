@@ -1,0 +1,67 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jul 9, 2018 4:37:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblHotelReceivable" table="tblHotelReceivable" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idhotelReceivable" type="long">
+            <column name="IDHotelReceivable" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refFinanceTransactionStatus" class="hotelfx.persistence.model.RefFinanceTransactionStatus" fetch="select">
+            <column name="_FinanceTransactionStatus" />
+        </many-to-one>
+        <many-to-one name="refHotelReceivableType" class="hotelfx.persistence.model.RefHotelReceivableType" fetch="select">
+            <column name="_HotelReceivableType" />
+        </many-to-one>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblHotelInvoice" class="hotelfx.persistence.model.TblHotelInvoice" fetch="select">
+            <column name="IDHotelInvoice" />
+        </many-to-one>
+        <property name="codeHotelReceivable" type="string">
+            <column name="CodeHotelReceivable" length="50" />
+        </property>
+        <property name="hotelReceivableNominal" type="big_decimal">
+            <column name="HotelReceivableNominal" precision="18" scale="4" />
+        </property>
+        <property name="hotelReceivableNote" type="string">
+            <column name="HotelReceivableNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblReturs" table="tblRetur" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDHotelReceivable" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRetur" />
+        </set>
+        <set name="tblHotelFinanceTransactionHotelReceivables" table="tblHotelFinanceTransaction_HotelReceivable" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDHotelReceivable" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblHotelFinanceTransactionHotelReceivable" />
+        </set>
+        <set name="tblReservationPaymentWithGuaranteePayments" table="tblReservationPaymentWithGuaranteePayment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDHotelReceivable" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationPaymentWithGuaranteePayment" />
+        </set>
+    </class>
+    <query name="findAllTblHotelReceivable">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblHotelReceivable t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

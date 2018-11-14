@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 21, 2017 1:49:37 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblEmployeeSalaryHistory" table="tblEmployeeSalaryHistory" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idsalaryHistory" type="long">
+            <column name="IDSalaryHistory" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByIdemployee" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="IDEmployee" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblJob" class="hotelfx.persistence.model.TblJob" fetch="select">
+            <column name="IDJob" />
+        </many-to-one>
+        <property name="codeSalaryHistory" type="string">
+            <column name="CodeSalaryHistory" length="50" />
+        </property>
+        <property name="changedDate" type="timestamp">
+            <column name="ChangedDate" length="23" />
+        </property>
+        <property name="codeChange" type="string">
+            <column name="CodeChange" length="50" />
+        </property>
+        <property name="salary" type="java.lang.Long">
+            <column name="Salary" precision="18" scale="0" />
+        </property>
+        <property name="historyNote" type="string">
+            <column name="HistoryNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+    </class>
+    <query name="findAllTblEmployeeSalaryHistory">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblEmployeeSalaryHistory t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

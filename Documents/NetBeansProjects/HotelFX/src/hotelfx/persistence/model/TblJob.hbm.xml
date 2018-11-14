@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 30, 2018 10:38:16 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblJob" table="tblJob" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idjob" type="long">
+            <column name="IDJob" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refJobRecruitmentShowStatus" class="hotelfx.persistence.model.RefJobRecruitmentShowStatus" fetch="select">
+            <column name="_RecruitmentShowStatus" />
+        </many-to-one>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <property name="codeJob" type="string">
+            <column name="CodeJob" length="50" />
+        </property>
+        <property name="jobName" type="string">
+            <column name="JobName" length="100" />
+        </property>
+        <property name="serviceChargeWeight" type="java.lang.Integer">
+            <column name="ServiceChargeWeight" />
+        </property>
+        <property name="jobNote" type="string">
+            <column name="JobNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblApprovalJobPrivilages" table="tblApprovalJobPrivilage" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDJobPrivilage" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblApprovalJobPrivilage" />
+        </set>
+        <set name="tblApplicantsForApplymentJob2" table="tblApplicant" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ApplymentJob2" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblApplicant" />
+        </set>
+        <set name="tblApplicantsForApplymentJob1" table="tblApplicant" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="ApplymentJob1" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblApplicant" />
+        </set>
+        <set name="tblEmployees" table="tblEmployee" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDJob" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblEmployee" />
+        </set>
+        <set name="tblApprovalJobRequireds" table="tblApprovalJobRequired" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDJobRequired" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblApprovalJobRequired" />
+        </set>
+        <set name="tblSystemLogBookJobs" table="tblSystemLogBook_Job" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDJob" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblSystemLogBookJob" />
+        </set>
+        <set name="tblEmployeeSalaryHistories" table="tblEmployeeSalaryHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDJob" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblEmployeeSalaryHistory" />
+        </set>
+    </class>
+    <query name="findAllTblJob">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblJob t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

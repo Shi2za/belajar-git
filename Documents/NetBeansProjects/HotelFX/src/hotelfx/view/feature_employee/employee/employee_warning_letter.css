@@ -1,0 +1,29 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Jun 4, 2018, 10:14:10 AM
+    Author     : Andreas
+*/
+
+@import "employee.css";
+
+.input-form-left{
+    -fx-background-color:#f1f8e9;
+    -fx-background-radius: 10 0 0 10;
+}
+
+.input-form-right{
+    -fx-background-color:#f1f8e9;
+    -fx-background-radius: 0 10 10 0;
+}
+
+.lbl-warning-letter{
+    -fx-text-fill: #46965d;
+}
+
+.lbl-warning-letter:pressed{
+    -fx-text-fill: #06ea47;
+}

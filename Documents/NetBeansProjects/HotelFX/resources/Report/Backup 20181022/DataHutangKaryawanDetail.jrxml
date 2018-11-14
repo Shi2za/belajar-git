@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DataHutangKaryawanDetail" pageWidth="842" pageHeight="595" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="0" uuid="661cc3b5-c4e4-4549-a41e-8992bb4771c0">
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[]]>
+	</queryString>
+	<field name="idKaryawan" class="java.lang.String"/>
+	<field name="namaKaryawan" class="java.lang.String"/>
+	<field name="jabatan" class="java.lang.String"/>
+	<field name="totalPinjaman" class="java.math.BigDecimal"/>
+	<field name="totalBayar" class="java.math.BigDecimal"/>
+	<field name="sisaPinjaman" class="java.math.BigDecimal"/>
+	<field name="tipeKaryawan" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement x="0" y="0" width="800" height="15" uuid="752d3a9c-924d-4d18-aaa4-1b46189332a5">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="95" y="0" width="70" height="15" uuid="53a14a4a-294f-48fe-800c-42412841cd9b"/>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[ID Karyawan]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="165" y="0" width="194" height="15" uuid="e1ddafe1-1416-4569-9fa7-4384e3827b0f"/>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Nama Karyawan]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="359" y="0" width="127" height="15" uuid="185177bb-4cb3-4b28-bc30-90da0c3a1d94"/>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Jabatan]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="486" y="0" width="104" height="15" uuid="0dec5cce-ed50-4e0b-8d99-4294b6b4e8fb">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Total Pinjaman]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="590" y="0" width="100" height="15" uuid="2cc03c57-4cd3-49b0-ae39-7849efec8baa">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Total Bayar]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="690" y="0" width="110" height="15" uuid="3d4aec88-31c3-46f6-9c42-9775f8ab3f5b"/>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Sisa Pinjaman]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="0" width="95" height="15" uuid="4471b51a-3dec-4141-b815-41800baa0e6d"/>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement verticalAlignment="Middle">
+						<font size="9" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Tipe Karyawan]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="95" y="0" width="70" height="15" uuid="5d46b42d-12c8-4e29-9111-4977de6ad86c">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box topPadding="3" leftPadding="5" rightPadding="5"/>
+				<textElement verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{idKaryawan}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="165" y="0" width="194" height="15" uuid="163a3a1a-a1f6-4a2d-99be-6142b590a944"/>
+				<box topPadding="3" leftPadding="5" rightPadding="5"/>
+				<textElement verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{namaKaryawan}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="359" y="0" width="127" height="15" uuid="72c828f2-b3f2-4c50-a9f4-242758a4e9e8"/>
+				<box topPadding="3" leftPadding="5" rightPadding="5"/>
+				<textElement verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jabatan}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="486" y="0" width="104" height="15" uuid="a189469c-8cb4-4c4f-b117-766ef72a5e34"/>
+				<box topPadding="3" leftPadding="5" rightPadding="5"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("#,###.##",new DecimalFormatSymbols(new java.util.Locale("en"))).format($F{totalPinjaman})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="590" y="0" width="100" height="15" uuid="e4126b4c-7ae1-4c69-b7c3-94b76d195d0c"/>
+				<box topPadding="3" leftPadding="5" rightPadding="5"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("#,###.##",new DecimalFormatSymbols(new java.util.Locale("en"))).format($F{totalBayar})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="690" y="0" width="110" height="15" uuid="84f25e55-afeb-4909-9a73-40b1b8f129c7"/>
+				<box topPadding="3" leftPadding="5" rightPadding="5"/>
+				<textElement textAlignment="Right" verticalAlignment="Top">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("#,###.##",new DecimalFormatSymbols(new java.util.Locale("en"))).format($F{sisaPinjaman})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="95" height="15" isPrintWhenDetailOverflows="true" uuid="99c0e567-7311-4aa0-b326-e96c3a3daf97"/>
+				<box topPadding="3" leftPadding="5" rightPadding="5"/>
+				<textElement>
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipeKaryawan}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="3" splitType="Stretch">
+			<frame>
+				<reportElement x="0" y="0" width="800" height="2" uuid="a889181b-5c31-4a2a-aab3-d6c976579ba1"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+			</frame>
+		</band>
+	</columnFooter>
+</jasperReport>

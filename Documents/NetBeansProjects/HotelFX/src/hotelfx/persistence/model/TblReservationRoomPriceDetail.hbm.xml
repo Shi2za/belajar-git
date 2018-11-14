@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 10, 2018 11:40:18 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblReservationRoomPriceDetail" table="tblReservationRoomPriceDetail" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="iddetail" type="long">
+            <column name="IDDetail" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refEndOfDayDataStatus" class="hotelfx.persistence.model.RefEndOfDayDataStatus" fetch="select">
+            <column name="_EoDDataStatus" />
+        </many-to-one>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblBankEventCard" class="hotelfx.persistence.model.TblBankEventCard" fetch="select">
+            <column name="IDCardEvent" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblHotelEvent" class="hotelfx.persistence.model.TblHotelEvent" fetch="select">
+            <column name="IDHotelEvent" />
+        </many-to-one>
+        <property name="detailDate" type="date">
+            <column name="DetailDate" />
+        </property>
+        <property name="detailPrice" type="big_decimal">
+            <column name="DetailPrice" precision="18" scale="4" />
+        </property>
+        <property name="detailDiscountPercentage" type="big_decimal">
+            <column name="DetailDiscountPercentage" precision="10" scale="4" />
+        </property>
+        <property name="detailComplimentary" type="big_decimal">
+            <column name="DetailComplimentary" precision="18" scale="4" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblReservationRoomTypeDetailRoomPriceDetails" table="tblReservationRoomTypeDetail_RoomPriceDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDRoomPriceDetail" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationRoomTypeDetailRoomPriceDetail" />
+        </set>
+    </class>
+    <query name="findAllTblRoomPriceDetailByDetailDate">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationRoomPriceDetail t where t.detailDate=:detailDate and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblReservationRoomPriceDetail">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationRoomPriceDetail t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

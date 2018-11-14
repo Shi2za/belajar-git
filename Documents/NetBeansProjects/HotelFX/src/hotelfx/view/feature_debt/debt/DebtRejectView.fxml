@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXTextArea?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane id="AnchorPane" maxHeight="350.0" maxWidth="350.0" minHeight="400.0" minWidth="350.0" prefHeight="350.0" prefWidth="350.0" styleClass="dialog-bp" stylesheets="@debt_reject.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TitledPane collapsible="false" prefHeight="200.0" prefWidth="200.0" text="Data Peminjaman (Tolak)" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+         <content>
+            <AnchorPane prefHeight="200.0" prefWidth="200.0">
+               <children>
+                  <GridPane hgap="15.0" vgap="20.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="100.0" minHeight="100.0" prefHeight="100.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label prefHeight="33.0" prefWidth="168.0" styleClass="label-info" text="Karyawan" GridPane.columnIndex="1" />
+                        <Label fx:id="lblRejectStatus" prefHeight="49.0" prefWidth="167.0" styleClass="label-info" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+                        <Label prefHeight="52.0" prefWidth="168.0" styleClass="label-info" text="Nominal Pinjaman" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label fx:id="lblDebtNominal" prefHeight="65.0" prefWidth="167.0" styleClass="label-info" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <JFXTextArea fx:id="txtRejectNote" labelFloat="true" promptText="Alasan Ditolak *" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3" />
+                        <JFXButton fx:id="btnSave" prefHeight="25.0" prefWidth="141.0" text="Simpan" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                        <JFXButton fx:id="btnCancel" prefHeight="25.0" prefWidth="143.0" text="Batal" GridPane.columnIndex="2" GridPane.rowIndex="5" />
+                        <Label prefHeight="39.0" prefWidth="140.0" styleClass="label-info" text="Status " GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label fx:id="lblEmployee" prefHeight="39.0" prefWidth="140.0" styleClass="label-info" text="Label" GridPane.columnIndex="2" />
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+         </content>
+      </TitledPane>
+   </children>
+</AnchorPane>

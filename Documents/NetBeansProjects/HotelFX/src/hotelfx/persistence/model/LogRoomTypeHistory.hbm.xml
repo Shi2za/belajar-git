@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 16, 2018 9:09:26 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.LogRoomTypeHistory" table="logRoomTypeHistory" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idrelation" type="long">
+            <column name="IDRelation" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="tblRoomType" class="hotelfx.persistence.model.TblRoomType" fetch="select">
+            <column name="IDRoomType" />
+        </many-to-one>
+        <property name="historyDate" type="date">
+            <column name="HistoryDate" />
+        </property>
+        <property name="roomTypeQuantity" type="java.lang.Long">
+            <column name="RoomTypeQuantity" />
+        </property>
+    </class>
+    <query name="findAllLogRoomTypeHistory">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from LogRoomTypeHistory]]>
+    </query>
+    <query name="findAllLogRoomTypeHistoryByIDRoomType">
+      <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+      <![CDATA[from LogRoomTypeHistory t where t.tblRoomType.idroomType=:idRoomType order by historyDate asc]]>
+    </query>
+</hibernate-mapping>

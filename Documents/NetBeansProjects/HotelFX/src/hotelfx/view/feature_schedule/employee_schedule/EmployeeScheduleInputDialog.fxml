@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+
+<AnchorPane id="AnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" styleClass="dialog-bp" stylesheets="@employee_schedule_dialog.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="500.0" minWidth="1000.0" prefHeight="500.0" prefWidth="940.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <AnchorPane fx:id="tableEmployeeScheduleLayout" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="400.0" minWidth="820.0" prefHeight="400.0" prefWidth="820.0" BorderPane.alignment="CENTER" />
+         </center>
+         <top>
+            <AnchorPane prefHeight="50.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <GridPane hgap="15.0" layoutX="-14.0" layoutY="-20.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="170.0" minWidth="137.0" prefWidth="137.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="40.0" minWidth="40.0" prefWidth="40.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="50.0" minWidth="50.0" prefWidth="50.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="35.0" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <JFXButton fx:id="btnViewSchedule" prefHeight="25.0" prefWidth="138.0" text="Lihat Jadwal" GridPane.columnIndex="3" />
+                        <JFXButton fx:id="btnAddSchedule" prefHeight="25.0" prefWidth="30.0" styleClass="button-add" GridPane.columnIndex="5" />
+                        <JFXButton fx:id="btnSaveSchedule" prefHeight="25.0" prefWidth="30.0" styleClass="button-save" GridPane.columnIndex="6" />
+                        <JFXButton fx:id="btnPrintSchedule" maxHeight="25.0" maxWidth="35.0" minHeight="25.0" minWidth="35.0" prefHeight="25.0" prefWidth="40.0" styleClass="button-print" GridPane.columnIndex="7" />
+                        <JFXButton fx:id="btnCancel" prefHeight="25.0" prefWidth="25.0" styleClass="button-cancel" GridPane.columnIndex="10" />
+                        <Label fx:id="lblDate" prefHeight="30.0" prefWidth="172.0" styleClass="label-data-date" text="Label" GridPane.columnIndex="1" />
+                        <AnchorPane fx:id="ancFiltering" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="8" />
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+         </top>
+         <right>
+            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="400.0" minWidth="200.0" prefHeight="400.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <children>
+                  <StackPane prefHeight="150.0" prefWidth="150.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <AnchorPane fx:id="ancDisableLayerLayout" prefHeight="200.0" prefWidth="200.0" />
+                        <AnchorPane fx:id="ancForm" prefHeight="200.0" prefWidth="200.0">
+                           <children>
+                              <GridPane fx:id="gpFormSchedule" hgap="15.0" vgap="20.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+                                <columnConstraints>
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="165.0" minWidth="165.0" prefWidth="165.0" />
+                                    <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
+                                </columnConstraints>
+                                <rowConstraints>
+                                  <RowConstraints maxHeight="17.0" minHeight="1.0" prefHeight="17.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                  <RowConstraints maxHeight="10.0" minHeight="10.0" prefHeight="10.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                    <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                </rowConstraints>
+                                 <children>
+                                    <JFXButton fx:id="btnFormSave" alignment="CENTER" prefHeight="25.0" prefWidth="163.0" text="Simpan" GridPane.columnIndex="1" GridPane.rowIndex="5" />
+                                    <JFXButton fx:id="btnFormCancel" prefHeight="25.0" prefWidth="162.0" text="Batal" GridPane.columnIndex="1" GridPane.rowIndex="6" />
+                                    <AnchorPane fx:id="cbpEmployeeTypeLayout" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                    <AnchorPane fx:id="cbpEmployeeLayout" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                    <AnchorPane prefHeight="200.0" prefWidth="200.0" />
+                                    <AnchorPane fx:id="cbpScheduleLayout" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                                 </children>
+                              </GridPane>
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </StackPane>
+               </children>
+            </AnchorPane>
+         </right>
+      </BorderPane>
+   </children>
+</AnchorPane>

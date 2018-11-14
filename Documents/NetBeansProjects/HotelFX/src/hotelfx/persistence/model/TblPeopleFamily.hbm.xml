@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 21, 2017 1:49:37 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblPeopleFamily" table="tblPeopleFamily" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idfamily" type="long">
+            <column name="IDFamily" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblPeople" class="hotelfx.persistence.model.TblPeople" fetch="select">
+            <column name="IDPeople" />
+        </many-to-one>
+        <property name="familyName" type="string">
+            <column name="FamilyName" length="100" />
+        </property>
+        <property name="familyRelation" type="string">
+            <column name="FamilyRelation" length="50" />
+        </property>
+        <property name="birthDate" type="date">
+            <column name="BirthDate" />
+        </property>
+        <property name="homePlace" type="string">
+            <column name="HomePlace" length="100" />
+        </property>
+        <property name="contactNumber" type="string">
+            <column name="ContactNumber" length="20" />
+        </property>
+        <property name="lastEducation" type="string">
+            <column name="LastEducation" length="50" />
+        </property>
+        <property name="job" type="string">
+            <column name="Job" length="100" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+    </class>
+    <query name="findAllTblPeopleFamily">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblPeopleFamily t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

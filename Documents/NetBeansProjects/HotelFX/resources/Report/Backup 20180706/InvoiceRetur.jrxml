@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="InvoiceRetur" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a2e81f4c-edae-4cc8-a317-df0bc9c5e915">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DBHotel"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idInvoice" class="java.lang.Long"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["E:\\Data 20180418\\HotelFX\\resources\\Report\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="logoImage" class="java.lang.String"/>
+	<queryString language="plsql">
+		<![CDATA[{call InvoicePrintHeader($P{idInvoice},1)}]]>
+	</queryString>
+	<field name="title" class="java.lang.String"/>
+	<field name="codeInvoice" class="java.lang.String"/>
+	<field name="invoiceDate" class="java.sql.Date"/>
+	<field name="dueDate" class="java.sql.Date"/>
+	<field name="balanceDue" class="java.math.BigDecimal"/>
+	<field name="subjectInvoice" class="java.lang.String"/>
+	<field name="terms" class="java.lang.String"/>
+	<group name="InvoiceReturDetail">
+		<groupHeader>
+			<band height="30">
+				<subreport>
+					<reportElement x="-20" y="0" width="592" height="30" uuid="43797696-90ad-468f-854a-285ebecca6d4"/>
+					<subreportParameter name="idInvoice">
+						<subreportParameterExpression><![CDATA[$P{idInvoice}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "InvoiceReturDetail.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="235" splitType="Stretch">
+			<textField>
+				<reportElement x="90" y="0" width="320" height="40" uuid="8babb5cb-f470-44e6-a753-11d64a580201"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{title}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement x="410" y="0" width="140" height="30" uuid="c175eab4-0059-4627-82de-d30f7df402cd"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("EEEE,dd MMMM yyyy",new java.util.Locale("id")).format(new Date())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="120" width="200" height="20" uuid="2c6d5b29-660f-4f17-b085-f317059a254d">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA["INVOICE # "+$F{codeInvoice}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="140" width="200" height="20" uuid="55e83d3e-2b4f-4f42-b330-0396cd64b7b6">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Terms]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="120" width="110" height="20" uuid="85ef22f1-00fa-4dc2-974d-92691a0a8bbc"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[No. Faktur]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="410" y="120" width="140" height="20" uuid="98ac06b1-fb91-45de-8323-2bc7c62cba59"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{codeInvoice}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="400" y="120" width="10" height="20" uuid="a3129bcd-e4b3-4a8f-89aa-75331f0a382e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="140" width="110" height="20" uuid="573f0537-b57e-43e0-904f-aeaaa5dfc574">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tanggal Buat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="140" width="10" height="20" uuid="96f0b2f7-b776-41ad-943c-06ae8cc49966"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="410" y="140" width="140" height="20" uuid="7703b911-d5d7-4286-bdce-301721e24252">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd MMM yyyy").format($F{invoiceDate})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="290" y="160" width="110" height="20" uuid="cbbeefed-062f-4ac7-85cc-568540d36482">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tanggal Jatuh Tempo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="160" width="10" height="20" uuid="4b5d91c4-9b7a-45f0-9bee-94b984c31082"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="410" y="160" width="140" height="20" uuid="e12039bc-ae52-43bf-92f0-8d0facadc6df"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd MMM yyyy").format($F{dueDate})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="290" y="180" width="110" height="20" uuid="d3bf65db-9f8a-4bd2-976f-cc85616a434a">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Tagihan]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="410" y="180" width="140" height="20" uuid="03d90a01-13a2-4a4b-86e8-f69736c14d4a"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{balanceDue}==null ? "Rp. 0":"Rp. "+new DecimalFormat("#,###.##").format($F{balanceDue})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="400" y="180" width="10" height="20" uuid="777c8310-a3d2-4117-a537-dea814872fb4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="200" width="110" height="35" uuid="e1411263-b8cd-4792-a585-aab56e05fa10">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Top">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Subject]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="200" width="10" height="35" uuid="3f485330-119e-4e68-928b-042fd82ebcf5"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="410" y="200" width="140" height="35" uuid="372fcfde-32d1-4fe5-b0f4-2e1258fc61d8"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$F{subjectInvoice}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="10" y="10" width="80" height="80" uuid="e6bfaa2b-560d-4304-b47a-e10e0434a9c9"/>
+				<imageExpression><![CDATA[$P{logoImage}]]></imageExpression>
+			</image>
+			<subreport>
+				<reportElement x="90" y="40" width="320" height="60" uuid="4825026e-67a8-4fee-9682-42531e1636d6"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "PrintHotelHeader.jasper"]]></subreportExpression>
+			</subreport>
+			<rectangle>
+				<reportElement x="0" y="160" width="200" height="75" uuid="88e5ec80-3963-44c1-b879-18cac66bf524"/>
+			</rectangle>
+			<textField>
+				<reportElement x="10" y="170" width="177" height="50" uuid="361090de-0245-4e9a-af6d-8e21e94bdb66"/>
+				<textFieldExpression><![CDATA[$F{terms}==null ? "" : $F{terms}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageFooter>
+		<band height="30">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField>
+				<reportElement x="350" y="0" width="100" height="30" uuid="b3c27929-9098-4417-a154-750f9c12dcf5"/>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Halaman " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="450" y="0" width="100" height="30" uuid="7d0a5bea-c93d-4017-9af7-c04be8593bd9"/>
+				<textElement textAlignment="Left">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" / " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>

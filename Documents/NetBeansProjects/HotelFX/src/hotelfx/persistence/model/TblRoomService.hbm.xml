@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 29, 2018 4:55:39 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblRoomService" table="tblRoomService" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idroomService" type="long">
+            <column name="IDRoomService" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <property name="codeRoomService" type="string">
+            <column name="CodeRoomService" length="50" />
+        </property>
+        <property name="serviceName" type="string">
+            <column name="ServiceName" length="100" />
+        </property>
+        <property name="price" type="big_decimal">
+            <column name="Price" precision="18" scale="4" />
+        </property>
+        <property name="note" type="string">
+            <column name="Note" />
+        </property>
+        <property name="hotelDiscountable" type="java.lang.Boolean">
+            <column name="HotelDiscountable" />
+        </property>
+        <property name="cardDiscountable" type="java.lang.Boolean">
+            <column name="CardDiscountable" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblRoomTypeRoomServices" table="tblRoomType_RoomService" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDRoomService" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRoomTypeRoomService" />
+        </set>
+        <set name="tblReservationRescheduleCanceleds" table="tblReservationRescheduleCanceled" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDRoomService" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationRescheduleCanceled" />
+        </set>
+        <set name="tblReservationAdditionalServices" table="tblReservationAdditionalService" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDRoomService" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationAdditionalService" />
+        </set>
+        <set name="tblReservationRoomTypeDetailRoomServices" table="tblReservationRoomTypeDetail_RoomService" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDRoomService" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationRoomTypeDetailRoomService" />
+        </set>
+    </class>
+    <query name="findAllTblRoomService">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblRoomService t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

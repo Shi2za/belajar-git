@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 31, 2017 4:12:06 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.RefReservationOrderByType" table="refReservationOrderByType" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idtype" type="int">
+            <column name="IDType" />
+            <generator class="assigned" />
+        </id>
+        <property name="typeName" type="string">
+            <column name="TypeName" length="100" />
+        </property>
+        <property name="typeNote" type="string">
+            <column name="TypeNote" />
+        </property>
+        <set name="tblReservationRoomTypeDetails" table="tblReservationRoomTypeDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_ReservationOrderByType" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationRoomTypeDetail" />
+        </set>
+    </class>
+    <query name="findAllRefReservationOrderByType">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from RefReservationOrderByType]]>
+    </query>
+</hibernate-mapping>

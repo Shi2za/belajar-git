@@ -1,0 +1,228 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 1, 2018 9:11:14 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblItem" table="tblItem" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="iditem" type="long">
+            <column name="IDItem" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblItemTypeHk" class="hotelfx.persistence.model.TblItemTypeHk" fetch="select">
+            <column name="IDItemTypeHK" />
+        </many-to-one>
+        <many-to-one name="tblItemTypeWh" class="hotelfx.persistence.model.TblItemTypeWh" fetch="select">
+            <column name="IDItemTypeWH" />
+        </many-to-one>
+        <many-to-one name="tblUnit" class="hotelfx.persistence.model.TblUnit" fetch="select">
+            <column name="IDUnit" />
+        </many-to-one>
+        <property name="codeItem" type="string">
+            <column name="CodeItem" length="50" />
+        </property>
+        <property name="codeWorkSheet" type="string">
+            <column name="CodeWorkSheet" />
+        </property>
+        <property name="itemName" type="string">
+            <column name="ItemName" length="100" />
+        </property>
+        <property name="itemBrand" type="string">
+            <column name="ItemBrand" length="100" />
+        </property>
+        <property name="itemCostOfGoodsSold" type="big_decimal">
+            <column name="ItemCostOfGoodsSold" precision="18" scale="4" />
+        </property>
+        <property name="additionalCharge" type="big_decimal">
+            <column name="AdditionalCharge" precision="18" scale="4" />
+        </property>
+        <property name="brokenCharge" type="big_decimal">
+            <column name="BrokenCharge" precision="18" scale="4" />
+        </property>
+        <property name="stockMinimal" type="big_decimal">
+            <column name="StockMinimal" precision="10" scale="4" />
+        </property>
+        <property name="consumable" type="java.lang.Boolean">
+            <column name="Consumable" />
+        </property>
+        <property name="itemNote" type="string">
+            <column name="ItemNote" />
+        </property>
+        <property name="hotelDiscountable" type="java.lang.Boolean">
+            <column name="HotelDiscountable" />
+        </property>
+        <property name="cardDiscountable" type="java.lang.Boolean">
+            <column name="CardDiscountable" />
+        </property>
+        <property name="taxable" type="java.lang.Boolean">
+            <column name="Taxable" />
+        </property>
+        <property name="guestStatus" type="java.lang.Boolean">
+            <column name="GuestStatus" />
+        </property>
+        <property name="propertyStatus" type="java.lang.Boolean">
+            <column name="PropertyStatus" />
+        </property>
+        <property name="leasedStatus" type="java.lang.Boolean">
+            <column name="LeasedStatus" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblReservationRescheduleCanceleds" table="tblReservationRescheduleCanceled" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDItem" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationRescheduleCanceled" />
+        </set>
+        <set name="tblSupplierItems" table="tblSupplier_Item" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDItem" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblSupplierItem" />
+        </set>
+        <set name="tblItemLocations" table="tblItem_Location" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDItem" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblItemLocation" />
+        </set>
+        <set name="tblRoomTypeItems" table="tblRoomType_Item" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDItem" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRoomTypeItem" />
+        </set>
+        <set name="tblItemMutationHistories" table="tblItemMutationHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDItem" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblItemMutationHistory" />
+        </set>
+        <set name="tblRoomCheckHouseKeepingAttendanceDetails" table="tblRoomCheck_HouseKeepingAttendance_Detail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDItem" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRoomCheckHouseKeepingAttendanceDetail" />
+        </set>
+        <set name="tblItemCostOfGoodSoldHistories" table="tblItemCostOfGoodSoldHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDItem" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblItemCostOfGoodSoldHistory" />
+        </set>
+        <set name="tblReservationAdditionalItemReserveds" table="tblReservationAdditionalItem_Reserved" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDItem" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationAdditionalItemReserved" />
+        </set>
+        <set name="tblStockOpnameItemExpiredDates" table="tblStockOpnameItemExpiredDate" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDItem" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblStockOpnameItemExpiredDate" />
+        </set>
+        <set name="tblStoreRequestDetails" table="tblStoreRequestDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDItem" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblStoreRequestDetail" />
+        </set>
+        <set name="tblInComingDetails" table="tblInComingDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDItem" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblInComingDetail" />
+        </set>
+        <set name="tblPurchaseRequestDetails" table="tblPurchaseRequestDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDItem" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPurchaseRequestDetail" />
+        </set>
+        <set name="tblMemorandumInvoiceDetails" table="tblMemorandumInvoiceDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDItemBonus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblMemorandumInvoiceDetail" />
+        </set>
+        <set name="tblReservationRoomItemDetails" table="tblReservationRoomItemDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDItem" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationRoomItemDetail" />
+        </set>
+        <set name="tblReservationBrokenItems" table="tblReservationBrokenItem" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDItem" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationBrokenItem" />
+        </set>
+        <set name="tblPropertyBarcodes" table="tblPropertyBarcode" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDItem" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPropertyBarcode" />
+        </set>
+        <set name="tblStockOpnameDetails" table="tblStockOpnameDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDItem" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblStockOpnameDetail" />
+        </set>
+        <set name="tblBrokenItemDetails" table="tblBrokenItemDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDItem" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblBrokenItemDetail" />
+        </set>
+        <set name="tblReservationRoomTypeDetailItems" table="tblReservationRoomTypeDetail_Item" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDItem" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationRoomTypeDetailItem" />
+        </set>
+        <set name="tblOutGoingDetails" table="tblOutGoingDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDItem" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblOutGoingDetail" />
+        </set>
+        <set name="tblReservationAdditionalItems" table="tblReservationAdditionalItem" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDItem" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationAdditionalItem" />
+        </set>
+        <set name="tblItemExpiredDates" table="tblItemExpiredDate" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDItem" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblItemExpiredDate" />
+        </set>
+    </class>
+    <query name="findAllTblItemByConsumableAndPropertyStatusAndLeasedStatusAndGuestStatus">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblItem t where t.consumable=:consumable and t.propertyStatus=:propertyStatus and t.leasedStatus=:leasedStatus and t.guestStatus=:guestStatus and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblItemByGuestStatus">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblItem t where t.guestStatus=:guestStatus and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblItem">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblItem t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@feature_item_and_asset_md.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hotelfx.view.feature_item_and_asset_md.FeatureItemAndAssetMDController">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <left>
+            <VBox maxWidth="150.0" minWidth="150.0" prefWidth="150.0" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane fx:id="btnShowItemLayout" maxHeight="70.0" maxWidth="150.0" minHeight="70.0" minWidth="150.0" prefHeight="70.0" prefWidth="150.0">
+                     <children>
+                        <JFXButton fx:id="btnShowItem" buttonType="RAISED" layoutX="27.0" layoutY="37.0" text="Barang" textFill="#030303" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="btnShowItemTypeLayout" maxHeight="70.0" maxWidth="150.0" minHeight="70.0" minWidth="150.0" prefHeight="70.0" prefWidth="150.0">
+                     <children>
+                        <JFXButton fx:id="btnShowItemType" buttonType="RAISED" layoutX="27.0" layoutY="37.0" text="Tipe Barang" textFill="#030303" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="btnShowPropertyBarcodeLayout" maxHeight="70.0" maxWidth="150.0" minHeight="70.0" minWidth="150.0" prefHeight="70.0" prefWidth="150.0">
+                     <children>
+                        <JFXButton fx:id="btnShowPropertyBarcode" buttonType="RAISED" layoutX="27.0" layoutY="37.0" text="Properti Barcode" textFill="#030303" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane id="s" fx:id="btnShowAssetLayout" maxHeight="70.0" maxWidth="150.0" minHeight="70.0" minWidth="150.0" prefHeight="70.0" prefWidth="150.0">
+                     <children>
+                        <JFXButton fx:id="btnShowAsset" layoutX="15.0" layoutY="17.0" prefWidth="120.0" text="Aset" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="btnShowUnitLayout" maxHeight="70.0" maxWidth="150.0" minHeight="70.0" minWidth="150.0" prefHeight="70.0" prefWidth="150.0">
+                     <children>
+                        <JFXButton fx:id="btnShowUnit" buttonType="RAISED" layoutX="27.0" layoutY="37.0" text="Satuan" textFill="#030303" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="btnShowItemStockLayout" maxHeight="70.0" maxWidth="150.0" minHeight="70.0" minWidth="150.0" prefHeight="70.0" prefWidth="150.0" visible="false">
+                     <children>
+                        <JFXButton fx:id="btnShowItemStock" buttonType="RAISED" layoutX="27.0" layoutY="37.0" text="Stok" textFill="#030303" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="btnShowPropertyBarcodeStockLayout" maxHeight="70.0" maxWidth="150.0" minHeight="70.0" minWidth="150.0" prefHeight="70.0" prefWidth="150.0" visible="false">
+                     <children>
+                        <JFXButton fx:id="btnShowPropertyBarcodeStock" buttonType="RAISED" layoutX="27.0" layoutY="37.0" text="Stok (Barcode)" textFill="#030303" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="btnShowItemExpiredDateLayout" maxHeight="70.0" maxWidth="150.0" minHeight="70.0" minWidth="150.0" prefHeight="70.0" prefWidth="150.0" visible="false">
+                     <children>
+                        <JFXButton fx:id="btnShowItemExpiredDate" buttonType="RAISED" layoutX="27.0" layoutY="37.0" text="Kadaluarsa" textFill="#030303" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <AnchorPane fx:id="subFeatureContent" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

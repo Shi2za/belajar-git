@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXRadioButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane id="AnchorPane" fx:id="ancFormReturType" maxHeight="250.0" maxWidth="365.0" minHeight="250.0" minWidth="365.0" prefHeight="250.0" prefWidth="365.0" styleClass="dialog-bp" stylesheets="@retur_type.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <GridPane fx:id="gpFormDataReturType" hgap="15.0" vgap="20.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+         <columnConstraints>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="5.0" minWidth="5.0" prefWidth="5.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="5.0" minWidth="5.0" prefWidth="5.0" />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints maxHeight="5.0" minHeight="5.0" prefHeight="5.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="20.0" minHeight="20.0" prefHeight="20.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+         </rowConstraints>
+         <children>
+            <Label styleClass="title-retur-type" text="JENIS RETUR" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <JFXRadioButton fx:id="rbtChangeWithItem" maxHeight="30.0" maxWidth="140.0" minHeight="30.0" minWidth="140.0" prefHeight="30.0" prefWidth="140.0" text="Tukar Barang" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <JFXRadioButton fx:id="rbtChangeWithMoney" maxHeight="30.0" maxWidth="140.0" minHeight="30.0" minWidth="140.0" prefHeight="30.0" prefWidth="140.0" text="Kembali Uang" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <JFXButton fx:id="btnSave" buttonType="RAISED" maxHeight="30.0" maxWidth="140.0" minHeight="30.0" minWidth="140.0" prefHeight="30.0" prefWidth="140.0" text="Simpan" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+            <JFXButton fx:id="btnCancel" buttonType="RAISED" maxHeight="30.0" maxWidth="140.0" minHeight="30.0" minWidth="140.0" prefHeight="30.0" prefWidth="140.0" text="Batal" GridPane.columnIndex="2" GridPane.rowIndex="4" />
+         </children>
+      </GridPane>
+   </children>
+</AnchorPane>

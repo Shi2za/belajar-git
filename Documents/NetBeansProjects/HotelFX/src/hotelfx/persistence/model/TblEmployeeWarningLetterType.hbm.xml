@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 29, 2018 9:21:53 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblEmployeeWarningLetterType" table="tblEmployeeWarningLetterType" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idwarningLetter" type="long">
+            <column name="IDWarningLetter" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RefRecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreatedBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreatedBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdatedBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdatedBy" />
+        </many-to-one>
+        <property name="nameWarningLetter" type="string">
+            <column name="NameWarningLetter" />
+        </property>
+        <property name="noteWarningLetter" type="string">
+            <column name="NoteWarningLetter" />
+        </property>
+        <property name="createdDate" type="timestamp">
+            <column name="CreatedDate" length="23" />
+        </property>
+        <property name="lastUpdatedDate" type="timestamp">
+            <column name="LastUpdatedDate" length="23" />
+        </property>
+        <set name="tblCalendarEmployeeWarningLetters" table="tblCalendar_EmployeeWarningLetter" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDWarningLetter" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblCalendarEmployeeWarningLetter" />
+        </set>
+    </class>
+    <query name="findAllTblEmployeeWarningLetterType">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblEmployeeWarningLetterType t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

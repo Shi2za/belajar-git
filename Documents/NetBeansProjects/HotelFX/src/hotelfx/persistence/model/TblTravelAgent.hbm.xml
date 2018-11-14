@@ -1,0 +1,49 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 5, 2017 4:52:43 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblTravelAgent" table="tblTravelAgent" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idtravelAgent" type="long">
+            <column name="IDTravelAgent" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblPartner" class="hotelfx.persistence.model.TblPartner" fetch="select">
+            <column name="IDPartner" />
+        </many-to-one>
+        <property name="roomTypeDiscountPercentage" type="big_decimal">
+            <column name="RoomTypeDiscountPercentage" precision="10" scale="4" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+    </class>
+    <sql-query name="getMaxRoomTypeNumberHasBeenUsedByCustomer" callable="true">
+        <return-scalar column="DataMax" type="string"/>
+        <![CDATA[{CALL GetMaxRoomTypeNumberHasBeenUsedByCustomer(:idRoomType, :detailDate)}]]>
+    </sql-query>
+    <sql-query name="getMaxRoomTypeNumberHasBeenUsedByTravelAgent" callable="true">
+        <return-scalar column="DataMax" type="string"/>
+        <![CDATA[{CALL GetMaxRoomTypeNumberHasBeenUsedByTravelAgent(:idRoomType, :detailDate, :idPartner)}]]>
+    </sql-query>
+    <query name="findAllTblTravelAgentByIDPartner">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblTravelAgent t where t.tblPartner.idpartner=:idPartner and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblTravelAgent">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblTravelAgent t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

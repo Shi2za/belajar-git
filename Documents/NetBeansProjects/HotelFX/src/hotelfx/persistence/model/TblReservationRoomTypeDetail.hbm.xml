@@ -1,0 +1,153 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Oct 29, 2018 4:55:39 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblReservationRoomTypeDetail" table="tblReservationRoomTypeDetail" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="iddetail" type="long">
+            <column name="IDDetail" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refEndOfDayDataStatus" class="hotelfx.persistence.model.RefEndOfDayDataStatus" fetch="select">
+            <column name="_EoDDataStatus" />
+        </many-to-one>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="refReservationOrderByType" class="hotelfx.persistence.model.RefReservationOrderByType" fetch="select">
+            <column name="_ReservationOrderByType" />
+        </many-to-one>
+        <many-to-one name="refReservationPaymentType" class="hotelfx.persistence.model.RefReservationPaymentType" fetch="select">
+            <column name="_ReservationPaymentType" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblReservation" class="hotelfx.persistence.model.TblReservation" fetch="select">
+            <column name="IDReservation" />
+        </many-to-one>
+        <many-to-one name="tblReservationCheckInOut" class="hotelfx.persistence.model.TblReservationCheckInOut" fetch="select">
+            <column name="IDCheckInOut" />
+        </many-to-one>
+        <many-to-one name="tblRoomType" class="hotelfx.persistence.model.TblRoomType" fetch="select">
+            <column name="IDRoomType" />
+        </many-to-one>
+        <property name="codeDetail" type="string">
+            <column name="CodeDetail" length="50" />
+        </property>
+        <property name="checkInDateTime" type="timestamp">
+            <column name="CheckInDateTime" length="23" />
+        </property>
+        <property name="checkOutDateTime" type="timestamp">
+            <column name="CheckOutDateTime" length="23" />
+        </property>
+        <property name="note" type="string">
+            <column name="Note" />
+        </property>
+        <property name="reservationRoomDate" type="timestamp">
+            <column name="ReservationRoomDate" length="23" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblReservationBreakfastVouchers" table="tblReservationBreakfastVoucher" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDRoomTypeDetail" not-null="true" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationBreakfastVoucher" />
+        </set>
+        <set name="tblReservationAdditionalItemReserveds" table="tblReservationAdditionalItem_Reserved" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDRRTD" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationAdditionalItemReserved" />
+        </set>
+        <set name="tblReservationRoomTypeDetailRoomServices" table="tblReservationRoomTypeDetail_RoomService" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDRRTD" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationRoomTypeDetailRoomService" />
+        </set>
+        <set name="tblReservationRoomTypeDetailItems" table="tblReservationRoomTypeDetail_Item" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDRRTD" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationRoomTypeDetailItem" />
+        </set>
+        <set name="tblReservationAdditionalItems" table="tblReservationAdditionalItem" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDRoomTypeDetail" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationAdditionalItem" />
+        </set>
+        <set name="tblReservationRoomTypeDetailTravelAgentDiscountDetails" table="tblReservationRoomTypeDetail_TravelAgentDiscountDetail" inverse="true" lazy="true"
+        fetch="select">
+            <key>
+                <column name="IDRoomTypeDetail" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationRoomTypeDetailTravelAgentDiscountDetail" />
+        </set>
+        <set name="tblReservationRoomTypeDetailRoomPriceDetails" table="tblReservationRoomTypeDetail_RoomPriceDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDRoomTypeDetail" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationRoomTypeDetailRoomPriceDetail" />
+        </set>
+        <set name="tblReservationBrokenItems" table="tblReservationBrokenItem" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDRoomTypeDetail" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationBrokenItem" />
+        </set>
+        <set name="tblReservationRescheduleCanceleds" table="tblReservationRescheduleCanceled" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDRRTD" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationRescheduleCanceled" />
+        </set>
+        <set name="tblReservationRoomItems" table="tblReservationRoomItem" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDReservationRoomTypeDetail" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationRoomItem" />
+        </set>
+        <set name="tblReservationRoomTypeDetailChildDetails" table="tblReservationRoomTypeDetailChildDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDRoomTypeDetail" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationRoomTypeDetailChildDetail" />
+        </set>
+        <set name="tblReservationAdditionalServices" table="tblReservationAdditionalService" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDRoomTypeDetail" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationAdditionalService" />
+        </set>
+    </class>
+    <query name="findAllTblReservationRoomTypeDetailByIDReservation">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationRoomTypeDetail t where t.tblReservation.idreservation=:idReservation and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+<!--    <query name="findAllTblReservationRoomTypeDetailByFirstCheckInDateAndEndCheckOutDate">
+        <![CDATA[CALL GetStocks(:stockCode)]]>
+        <![CDATA[from TblReservationRoomTypeDetail t where (t.checkInDateTime=:firstDate or t.checkOutDateTime=:endDate) and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3) order by t.tblReservation.idreservation]]>
+    </query>-->
+    <query name="findAllTblReservationRoomTypeDetailByFirstCheckInDateAndEndCheckOutDate">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationRoomTypeDetail t where (t.checkInDateTime<=:firstDate and t.checkOutDateTime>=:endDate) and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3) order by t.tblReservation.idreservation]]>
+    </query>
+    <query name="findAllTblReservationRoomTypeDetailByIDReservationOrderByIDReservationRoomTypeDetailDescIgnoreRefRecordStatus">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationRoomTypeDetail t where t.tblReservation.idreservation=:idReservation order by t.iddetail desc]]>
+    </query>
+    <query name="findAllTblReservationRoomTypeDetail">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationRoomTypeDetail t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

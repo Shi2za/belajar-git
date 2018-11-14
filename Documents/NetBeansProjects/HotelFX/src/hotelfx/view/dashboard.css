@@ -1,0 +1,233 @@
+/*
+ * Empty Stylesheet file.
+ */
+/*@import url('/hotelfx/util/colorCSS.css');*/
+
+@import "root.css";
+
+/* TOP */
+.background-header {
+    -fx-background-color: #f5f5f5BB;
+}
+
+.title-feature {
+    -fx-text-fill: black;
+    -fx-font-family: "Segoe UI Semibold";
+    -fx-font-size: 18pt;
+    -fx-font-weight: bolder;
+}
+
+.context-menu {
+    -fx-background-color: #006699;
+    -fx-text-fill: black;
+    -fx-background-radius:30;
+}
+
+.menu-item .label {
+    -fx-text-fill: yellow;
+}
+
+.menu-item:focused .label {
+    -fx-text-fill: black;
+}
+
+.jfx-hamburger-icon StackPane{
+    -fx-background-color : black;
+    -fx-background-radius : 5px;
+}
+
+/* LEFT */
+
+
+/* CENTER */
+.background-center{
+    -fx-background-color: #FFFFFFBB;
+}
+
+.background-shadow{
+    -fx-background-color: transparent;
+}
+
+.jfx-button {
+    -fx-background-color: white;
+
+}
+
+.jfx-button:pressed{
+    -jfx-rippler-fill:red;
+}
+
+.background-center .accordion{
+    -fx-background-color: #f5f5f5BB;
+}
+
+.background-center .accordion .titled-pane {
+    -fx-text-fill: black;   
+}
+
+.background-center .accordion .titled-pane > .title > .arrow-button > .arrow {
+    -fx-shape: "M9.498 26.125c0.848 0 1.681-0.41 2.187-1.169 0.804-1.206 0.478-2.836-0.728-3.64l-2.065-1.377c0.353-0.096 0.725-0.149 1.109-0.149 2.325 0 4.209 1.884 4.209 4.209s-1.885 4.209-4.209 4.209c-2.263 0-4.108-1.785-4.205-4.024l2.249 1.499c0.448 0.298 0.953 0.441 1.454 0.441zM26.667 0c2.934 0 5.333 2.4 5.333 5.334v21.332c0 2.936-2.399 5.334-5.333 5.334h-21.333c-2.934 0-5.334-2.398-5.334-5.334v-6.345l3.792 2.528c-0.364 1.974 0.217 4.088 1.744 5.615 2.466 2.466 6.463 2.466 8.929 0 1.515-1.515 2.098-3.607 1.752-5.568l7.783-6.968c1.445-0.207 2.838-0.867 3.95-1.979 2.734-2.734 2.734-7.166 0-9.899s-7.166-2.734-9.9 0c-1.112 1.112-1.771 2.505-1.979 3.95v0l-6.397 9.695c-0.995 0.051-1.981 0.336-2.866 0.856l-6.808-4.539v-8.678c0-2.934 2.4-5.334 5.334-5.334h21.333zM28 9c0-2.761-2.239-5-5-5s-5 2.239-5 5 2.239 5 5 5 5-2.239 5-5zM20 9c0-1.657 1.343-3 3-3s3 1.343 3 3-1.343 3-3 3-3-1.343-3-3z";
+}
+
+.button-home {
+    -fx-shape: "M32 18.451l-16-12.42-16 12.42v-5.064l16-12.42 16 12.42zM28 18v12h-8v-8h-8v8h-8v-12l12-9z";
+    -fx-background-color: #388E3C;
+    -fx-font-weight:900;
+    -fx-text-fill: white;
+}
+
+.button-inbox {
+    -fx-shape: "M29 4h-26c-1.65 0-3 1.35-3 3v20c0 1.65 1.35 3 3 3h26c1.65 0 3-1.35 3-3v-20c0-1.65-1.35-3-3-3zM12.461 17.199l-8.461 6.59v-15.676l8.461 9.086zM5.512 8h20.976l-10.488 7.875-10.488-7.875zM12.79 17.553l3.21 3.447 3.21-3.447 6.58 8.447h-19.579l6.58-8.447zM19.539 17.199l8.461-9.086v15.676l-8.461-6.59z";
+    -fx-background-color: #388E3C;
+    -fx-font-weight:900;
+    -fx-text-fill: white;
+}
+
+.button-bell {
+    -fx-shape: "M14.25 26.5c0-0.141-0.109-0.25-0.25-0.25-1.234 0-2.25-1.016-2.25-2.25 0-0.141-0.109-0.25-0.25-0.25s-0.25 0.109-0.25 0.25c0 1.516 1.234 2.75 2.75 2.75 0.141 0 0.25-0.109 0.25-0.25zM27 22c0 1.094-0.906 2-2 2h-7c0 2.203-1.797 4-4 4s-4-1.797-4-4h-7c-1.094 0-2-0.906-2-2 2.312-1.953 5-5.453 5-13 0-3 2.484-6.281 6.625-6.891-0.078-0.187-0.125-0.391-0.125-0.609 0-0.828 0.672-1.5 1.5-1.5s1.5 0.672 1.5 1.5c0 0.219-0.047 0.422-0.125 0.609 4.141 0.609 6.625 3.891 6.625 6.891 0 7.547 2.688 11.047 5 13z";
+    -fx-background-color: #388E3C;
+    -fx-font-weight:900;
+    -fx-text-fill: white;
+}
+
+.button-book {
+    -fx-shape: "M28 4v26h-21c-1.657 0-3-1.343-3-3s1.343-3 3-3h19v-24h-20c-2.2 0-4 1.8-4 4v24c0 2.2 1.8 4 4 4h24v-28h-2z
+        M7.002 26v0c-0.001 0-0.001 0-0.002 0-0.552 0-1 0.448-1 1s0.448 1 1 1c0.001 0 0.001-0 0.002-0v0h18.997v-2h-18.997z";
+    -fx-background-color: #388E3C;
+    -fx-font-weight:900;
+    -fx-text-fill: white;
+}
+
+.background-center .accordion .titled-pane .title{
+    /*-fx-padding: 5 22 5 22;*/   
+    -fx-border-color: #e2e2e2;
+    /*-fx-border-width: 2;*/
+    -fx-background-radius: 0;
+    -fx-background-color: #f5f5f5BB;
+
+    -fx-font-family: "Segoe UI", Helvetica, Arial, sans-serif;
+    -fx-font-size: 11pt;
+    -fx-background-insets: 0 0 0 0, 0, 1, 2;
+}
+
+.background-center .accordion .titled-pane:focused {
+    -fx-text-fill: black;
+}
+
+.background-center .accordion .titled-pane:focused .title{
+    -fx-background-color: -light-green-A200;
+
+}
+
+.background-center .main-content{
+    -fx-background-color: white;
+}
+
+/* RIGHT */
+
+
+/* BOTTOM */
+.background-footer{
+    /*-fx-background-color: -blue-grey-800;*/
+    -fx-background-color: #f5f5f5BB;
+}
+
+/* FEATURE */
+.feature .jfx-button {
+    -fx-font:18px "Helvetica";
+    -fx-font-weight: lighter; 
+    -fx-text-fill:#64dd17;
+}
+
+.feature .label{
+    -fx-font-family:"Helvetica";
+    -fx-font-weight: bolder;
+    -fx-text-fill:#64dd17;
+    -fx-effect: dropshadow( two-pass-box , rgba(255, 255, 255, 1) , 4, 5 , 0 , 0 );
+}
+
+.tree-view, .tree-cell{
+  -fx-background-color: #e8f5e9;
+  -fx-text-fill : #21AE2F;
+  -fx-font-family :"Helvetica";
+  -fx-font-size: 10.5pt;
+}
+
+.tree-cell{
+  -fx-border-width : 1.8 0 1.8 0;
+  -fx-border-color : transparent;
+  -fx-background-offset : 8;
+}
+
+.tree-cell:main-menu{
+   -fx-background-color : linear-gradient( #f1f8e9, #dcedc8);
+   -fx-padding :  0.337em 0.13em 0.337em 0.13em;
+   -fx-font-weight:bold;
+}
+
+.tree-cell:sub-menu{
+  -fx-background-color : #e8f5e9;
+  -fx-padding :0.337em 0.166667em 0.337em 0.166667em;
+  -fx-border-color :  #c8e6c9;
+}
+
+.tree-cell:main-menu:selected,
+.tree-cell:sub-menu:selected{
+  -fx-border-color : #388E3C;
+}
+
+.tree-cell:expanded > .tree-disclosure-node{
+  -fx-translate-y: 0;
+}
+
+.image-user{
+  -fx-background-color: transparent;
+  -fx-border-color: #a5d6a7;
+  -fx-border-width: 2;
+ 
+}
+
+.button-dashboard{
+    -fx-background-color: transparent;
+    -fx-border-color : white;
+    -fx-border-width : 3;
+    -fx-text-fill: green;
+    -fx-font-weight : bold;
+    -fx-padding: 10 20 10 20;
+    
+}
+
+.separator .line{
+  -fx-background-color : #a5d6a7;
+}
+
+.anchor-pane-list-menu{
+   -fx-background-color: white;
+   -fx-opacity : 0.5;
+}
+
+.viewport{
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical{
+    -fx-background-color: transparent;
+}
+
+.scroll-bar:vertical .track{
+    -fx-background-color: transparent;
+    /*-fx-padding:0 -1 0 -1;*/
+    -fx-background-radius: 10;
+}
+
+.scroll-bar:vertical > .thumb{
+    -fx-background-color: #388E3C;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:vertical .increment-arrow, 
+.scroll-bar:vertical .decrement-arrow{
+    -fx-background-color: transparent;
+    -fx-padding:0 1.5 0 1.5;
+    -fx-shape:"";
+}

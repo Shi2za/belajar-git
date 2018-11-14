@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="BonReservasiDetailRevisi" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="50c3becd-9fad-4e01-8b08-0cc85dcf9880">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DBHotel"/>
+	<parameter name="idReservation" class="java.lang.Long"/>
+	<queryString language="SQL">
+		<![CDATA[select ROW_NUMBER()OVER(order by tblReportReservation.tipe desc) as number,* 
+from (select 'P' as tipe,rtp.TypeName+' '+convert(varchar(max),(case 
+							when rtp.IDType=2 then substring(trpwc.BankCardNumber,1,4)+REPLICATE('X',LEN(trpwc.BankCardNumber)-LEN(substring(trpwc.BankCardNumber,1,4)))
+							when rtp.IDType=3 then substring(trpwc.BankCardNumber,1,4)+REPLICATE('X',LEN(trpwc.BankCardNumber)-LEN(substring(trpwc.BankCardNumber,1,4)))
+							when rtp.IDType=4 then trpwcg.CodeCekGiro
+							when rtp.IDType=5 then trpwcg.CodeCekGiro
+							when rtp.IDType=7 then trpwgp.CodeGuarantee
+							when rtp.IDType=8 then trpwgp.CodeGuarantee else '' end))as Keterangan, trp.UnitNominal as debit,0 as credit
+	from tblReservationPayment trp join tblReservationBill trb on trp.IDBill = trb.IDBill
+	join tblReservation tr on trb.IDReservation = tr.IDReservation
+	join refFinanceTransactionPaymentType rtp on rtp.IDType = trp._PaymentType
+	left join tblReservationPaymentWithBankCard trpwc on trpwc.IDPayment = trp.IDPayment
+	left join tblReservationPaymentWithCekGiro trpwcg on trpwcg.IDPayment = trp.IDPayment
+	left join tblReservationPaymentWithDeposit trpwd on trpwd.IDPayment = trp.IDPayment
+	left join tblReservationPaymentWithGuaranteePayment trpwgp on trpwgp.IDPayment = trp.IDPayment
+	left join tblReservationPaymentWithReservationVoucher trpwrv on trpwrv.IDPayment = trp.IDPayment
+	left join tblReservationPaymentWithTransfer trpwt on trpwt.IDPayment = trp.IDPayment
+	left join tblBankAccount tba on tba.IDBankAccount = trpwt.SenderBankAccount
+	where tr.IDReservation =   $P{idReservation} 	   and trb._ReservationBillType = 0 
+	and (trp._RecordStatus=1 or trp._RecordStatus=3) and (trpwc._RecordStatus is null or trpwc._RecordStatus=1 or trpwc._RecordStatus=3)
+	and (trpwcg._RecordStatus is null or trpwcg._RecordStatus=1 or trpwcg._RecordStatus=3)and (trpwd._RecordStatus is null or trpwd._RecordStatus=1 or trpwd._RecordStatus=3)
+	and (trpwgp._RecordStatus is null or trpwgp._RecordStatus=1 or trpwgp._RecordStatus=3)and (trpwrv._RecordStatus is null or trpwrv._RecordStatus=1 or trpwrv._RecordStatus=3)
+	and (trpwt._RecordStatus is null or trpwt._RecordStatus=1 or trpwt._RecordStatus=3)
+	union all(select 'K'as tipe,convert(varchar(50),count(trrtd.IDDetail)) +' '+'Kamar'+' '+trt.RoomTypeName as Keterangan, 0 as debit, trrpd.DetailPrice-(trrpd.DetailPrice*(trrpd.DetailDiscountPercentage/100))+((trrpd.DetailPrice-(trrpd.DetailPrice*(trrpd.DetailDiscountPercentage/100)))*trb.ServiceChargePercentage)+(trrpd.DetailPrice-(trrpd.DetailPrice*(trrpd.DetailDiscountPercentage/100))+((trrpd.DetailPrice-(trrpd.DetailPrice*(trrpd.DetailDiscountPercentage/100)))*trb.ServiceChargePercentage))*trb.TaxPercentage as credit
+		  from tblReservationBill trb join tblReservation tr on trb.IDReservation = tr.IDReservation
+		  join tblReservationRoomTypeDetail trrtd on  tr.IDReservation = trrtd.IDReservation
+			join tblReservationRoomTypeDetail_RoomPriceDetail trrtd_rpd on trrtd.IDDetail=trrtd_rpd. IDRoomTypeDetail
+			join tblRoomType trt on trrtd.IDRoomType  = trt.IDRoomType
+			join tblReservationRoomPriceDetail trrpd on trrpd.IDDetail = trrtd_rpd.IDRoomPriceDetail
+			where tr.IDReservation =   $P{idReservation} 
+			and trb._ReservationBillType = 0 and (trrpd._RecordStatus = 1 or  trrpd._RecordStatus = 3) and (trrtd_rpd._RecordStatus = 1 or trrtd_rpd._RecordStatus = 3)
+			and (trrtd._RecordStatus = 1 or trrtd._RecordStatus=3)
+			Group by trrtd_rpd.IDRelation,tr.CodeReservation,trt.RoomTypeName,trrpd.DetailPrice,trrtd.IDDetail,trrpd.DetailDiscountPercentage,trrpd.DetailDate,trb.ServiceChargePercentage,trb.TaxPercentage)
+	union all (select 'I' as tipe,convert(varchar(50),convert(int,trai.ItemQuantity))+' '+ti.ItemName+' '+convert(varchar(MAX),FORMAT(trai.AdditionalDate,'dd MMM yyyy')) as keterangan, 0 as debit,(trai.ItemCharge*trai.ItemQuantity)-((trai.ItemCharge*trai.ItemQuantity)*(trai.DiscountPercentage))+(((trai.ItemCharge*trai.ItemQuantity)-((trai.ItemCharge*trai.ItemQuantity)*(trai.DiscountPercentage)))*trb.ServiceChargePercentage)+((trai.ItemCharge*trai.ItemQuantity)-((trai.ItemCharge*trai.ItemQuantity)*(trai.DiscountPercentage))+((trai.ItemCharge*trai.ItemQuantity)-((trai.ItemCharge*trai.ItemQuantity)*(trai.DiscountPercentage)))*trb.ServiceChargePercentage)*trb.TaxPercentage as credit
+			from tblReservationBill trb join tblReservation tr on trb.IDReservation = tr.IDReservation
+			join tblReservationRoomTypeDetail trrtd on  tr.IDReservation = trrtd.IDReservation
+			join tblReservationAdditionalItem trai on trrtd.IDDetail=trai. IDRoomTypeDetail
+			join tblItem ti on ti.IDItem = trai.IDItem
+			where tr.IDReservation =  $P{idReservation} 
+			and trb._ReservationBillType = 0  and trai._ReservationBillType= 0 and (trrtd._RecordStatus =1 or trrtd._RecordStatus = 3) and (trai._RecordStatus = 1 or trai._RecordStatus = 3)
+			Group by  tr.CodeReservation,trai.IDRoomTypeDetail,ti.ItemName,trai.ItemCharge,trai.AdditionalDate,trai.ItemQuantity,trai.DiscountPercentage,trb.ServiceChargePercentage,trb.TaxPercentage)
+	union all(select 'B' as tipe,convert(varchar(50),count(tras.IDRoomTypeDetail))+' '+trs.ServiceName+' '+convert(varchar(MAX),format(tras.AdditionalDate,'dd MMM yyyy'))as keterangan,0 as debit, (count(tras.IDRoomTypeDetail)*tras.Price )-((count(tras.IDRoomTypeDetail)*tras.Price)*(tras.DiscountPercentage))+(((count(tras.IDRoomTypeDetail)*tras.Price)-((count(tras.IDRoomTypeDetail)*tras.Price )*(tras.DiscountPercentage)))*trb.ServiceChargePercentage)+((count(tras.IDRoomTypeDetail)*tras.Price)-((count(tras.IDRoomTypeDetail)*tras.Price)*(tras.DiscountPercentage))+((count(tras.IDRoomTypeDetail)*tras.Price)-((count(tras.IDRoomTypeDetail)*tras.Price)*(tras.DiscountPercentage)))*trb.ServiceChargePercentage)*trb.TaxPercentage as credit
+				from tblReservationBill trb join tblReservation tr on trb.IDReservation = tr.IDReservation
+				join tblReservationRoomTypeDetail trrtd on  tr.IDReservation = trrtd.IDReservation
+				join tblReservationAdditionalService tras on trrtd.IDDetail=tras. IDRoomTypeDetail
+				join tblRoomService trs on trs.IDRoomService = tras.IDRoomService
+				where tr.IDReservation =  $P{idReservation} 
+				and trb._ReservationBillType =0 and tras._ReservationBillType= 0 and (trrtd._RecordStatus = 1 or trrtd._RecordStatus = 3) and (tras._RecordStatus = 1 or tras._RecordStatus = 3) 
+				Group by  tr.CodeReservation,tras.IDRoomTypeDetail,trs.ServiceName,tras.Price,tras.AdditionalDate,trb.ServiceChargePercentage,tras.DiscountPercentage,trb.TaxPercentage)
+	union all(select 'A' as tipe,'Additional Discount' as Keterangan,sum(trbad.NominalAdditionalDiscount)+(sum(trbad.NominalAdditionalDiscount)*trb.ServiceChargePercentage)+((sum(trbad.NominalAdditionalDiscount)+(sum(trbad.NominalAdditionalDiscount)*trb.ServiceChargePercentage))*trb.TaxPercentage) as debit, 0 as credit
+				from tblReservationBill trb join tblReservation tr on trb.IDReservation = tr.IDReservation
+				join tblReservationBillAdditionalDiscount trbad on trbad.IDBill = trb.IDBill
+				where tr.IDReservation =  $P{idReservation} 
+				and trb._ReservationBillType=0 and (trbad._RecordStatus=1 or trbad._RecordStatus=3)
+				group by trb.IDBill,trb.ServiceChargePercentage,trb.TaxPercentage)) 
+				as tblReportReservation
+				order by tipe desc]]>
+	</queryString>
+	<field name="number" class="java.lang.Long"/>
+	<field name="tipe" class="java.lang.String"/>
+	<field name="Keterangan" class="java.lang.String"/>
+	<field name="debit" class="java.math.BigDecimal"/>
+	<field name="credit" class="java.math.BigDecimal"/>
+	<variable name="varBalance" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{debit}.doubleValue()-$F{credit}.doubleValue()]]></variableExpression>
+	</variable>
+	<group name="TotalBalance">
+		<groupFooter>
+			<band height="40">
+				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				<frame>
+					<reportElement x="0" y="0" width="550" height="40" uuid="54e56e27-e32f-471c-9068-8027c3327182">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<staticText>
+						<reportElement x="360" y="1" width="80" height="39" uuid="ecf65e89-5c03-41b6-8c34-69fc394aff2b"/>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font size="12" isBold="true"/>
+						</textElement>
+						<text><![CDATA[Balance ]]></text>
+					</staticText>
+					<textField pattern="#,##0.###;(#,##0.###-)">
+						<reportElement x="440" y="0" width="110" height="40" uuid="542d5974-935f-484c-b0bf-a2b639c05dac"/>
+						<textElement textAlignment="Center" verticalAlignment="Middle">
+							<font size="12" isBold="true"/>
+						</textElement>
+						<textFieldExpression><![CDATA[$V{varBalance}]]></textFieldExpression>
+					</textField>
+				</frame>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="40" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<staticText>
+				<reportElement positionType="Float" x="0" y="0" width="40" height="40" uuid="1c69f611-912f-4ec9-b08c-298b6b7c1839"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="40" y="0" width="250" height="40" uuid="11eeda8c-b52d-4308-98ec-c44b4575ab9d">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12" isBold="true"/>
+					<paragraph lineSpacing="Proportional"/>
+				</textElement>
+				<text><![CDATA[Description]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="290" y="0" width="70" height="40" uuid="0a3dd699-9798-4cc2-bb54-cbc80ba7f764">
+					<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Debit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="360" y="0" width="80" height="40" uuid="c5b8f832-effa-43da-b7b7-9cd5baf24f50">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Credit]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="440" y="0" width="110" height="40" uuid="62a631ca-618e-4b91-97a3-cd153cb5170e">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Balance]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="40" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField>
+				<reportElement x="40" y="0" width="250" height="40" uuid="4c1679be-2282-44de-abd1-a258ae845b78"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Keterangan}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.###;(#,##0.###-)">
+				<reportElement x="290" y="0" width="70" height="40" uuid="92a93bbe-8503-4df8-952b-7fe2f42580ef"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{debit}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.###;(#,##0.###-)">
+				<reportElement x="360" y="0" width="80" height="40" uuid="33fde672-a58f-4760-af64-838374d2b32d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{credit}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.###;(#,##0.###-)">
+				<reportElement x="440" y="0" width="110" height="40" uuid="11d7c1f5-f94d-4679-a8a0-e8cae62fa304"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{varBalance}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="40" height="40" uuid="51e2fe04-3cd7-4ab0-8650-3725c6650994"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{number}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="40" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

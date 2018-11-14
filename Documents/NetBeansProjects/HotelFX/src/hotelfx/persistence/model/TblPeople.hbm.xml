@@ -1,0 +1,148 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 29, 2018 3:29:02 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblPeople" table="tblPeople" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idpeople" type="long">
+            <column name="IDPeople" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refCountry" class="hotelfx.persistence.model.RefCountry" fetch="select">
+            <column name="_Country" />
+        </many-to-one>
+        <many-to-one name="refPeopleGender" class="hotelfx.persistence.model.RefPeopleGender" fetch="select">
+            <column name="_Gender" />
+        </many-to-one>
+        <many-to-one name="refPeopleIdentifierType" class="hotelfx.persistence.model.RefPeopleIdentifierType" fetch="select">
+            <column name="_PeopleIdentifierType" />
+        </many-to-one>
+        <many-to-one name="refPeopleReligion" class="hotelfx.persistence.model.RefPeopleReligion" fetch="select">
+            <column name="_Religion" />
+        </many-to-one>
+        <many-to-one name="refPeopleStatus" class="hotelfx.persistence.model.RefPeopleStatus" fetch="select">
+            <column name="_PeopleStatus" />
+        </many-to-one>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <property name="codePeople" type="string">
+            <column name="CodePeople" length="50" />
+        </property>
+        <property name="ktpnumber" type="string">
+            <column name="KTPNumber" length="50" />
+        </property>
+        <property name="simnumber" type="string">
+            <column name="SIMNumber" length="50" />
+        </property>
+        <property name="passportNumber" type="string">
+            <column name="PassportNumber" length="50" />
+        </property>
+        <property name="fullName" type="string">
+            <column name="FullName" length="100" />
+        </property>
+        <property name="birthPlace" type="string">
+            <column name="BirthPlace" length="100" />
+        </property>
+        <property name="birthDate" type="date">
+            <column name="BirthDate" />
+        </property>
+        <property name="address" type="string">
+            <column name="Address" length="100" />
+        </property>
+        <property name="rt" type="string">
+            <column name="RT" length="10" />
+        </property>
+        <property name="rw" type="string">
+            <column name="RW" length="10" />
+        </property>
+        <property name="kelurahan" type="string">
+            <column name="Kelurahan" length="100" />
+        </property>
+        <property name="kecamatan" type="string">
+            <column name="Kecamatan" length="100" />
+        </property>
+        <property name="town" type="string">
+            <column name="Town" length="100" />
+        </property>
+        <property name="poscode" type="string">
+            <column name="POSCode" length="50" />
+        </property>
+        <property name="region" type="string">
+            <column name="Region" length="100" />
+        </property>
+        <property name="telpNumber" type="string">
+            <column name="TelpNumber" length="20" />
+        </property>
+        <property name="hpnumber" type="string">
+            <column name="HPNumber" length="20" />
+        </property>
+        <property name="email" type="string">
+            <column name="Email" length="50" />
+        </property>
+        <property name="imageUrl" type="string">
+            <column name="ImageURL" />
+        </property>
+        <property name="peopleNote" type="string">
+            <column name="PeopleNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblApplicants" table="tblApplicant" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPeople" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblApplicant" />
+        </set>
+        <set name="tblEmployees" table="tblEmployee" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPeople" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblEmployee" />
+        </set>
+        <set name="tblPeopleEmploymentHistories" table="tblPeopleEmploymentHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPeople" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPeopleEmploymentHistory" />
+        </set>
+        <set name="tblPeopleEducationHistories" table="tblPeopleEducationHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPeople" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPeopleEducationHistory" />
+        </set>
+        <set name="tblCustomers" table="tblCustomer" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPeople" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblCustomer" />
+        </set>
+        <set name="tblLostInformations" table="tblLostInformation" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPeople" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblLostInformation" />
+        </set>
+        <set name="tblPeopleFamilies" table="tblPeopleFamily" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPeople" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPeopleFamily" />
+        </set>
+    </class>
+    <query name="findAllTblPeople">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblPeople t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

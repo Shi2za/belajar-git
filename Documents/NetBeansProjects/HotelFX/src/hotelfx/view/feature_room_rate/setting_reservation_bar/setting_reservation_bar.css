@@ -1,0 +1,85 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+@import "../feature_room_rate.css";
+
+.month-grid-header {
+    -fx-border-width: 3 0 1 0;
+/*    -fx-border-color: -grey-900;
+    -fx-alignment: bottom-right;*/
+}
+
+.month-grid-header .label {
+    /*-fx-text-fill: -my-primary-text-L;*/
+}
+
+.month-cell * {
+    /*-fx-text-fill: -my-primary-text-L;*/
+}
+
+
+.month-cell:after , .month .month-cell:before {
+    -fx-opacity: 0.52;
+    
+}
+
+.month-cell {
+    -fx-border-width: 1 0.2 0.2 0.2;
+    -fx-border-color: black;
+}
+
+.month-cell:weekend {
+    -fx-background-color: #C8E6C9;
+}
+
+.month-cell:selecting {
+    -fx-background-color: gold;
+}
+
+.month-cell:selecting .date {
+    /*-fx-text-fill: -my-primary-text-L;*/
+}
+
+.button-cog{
+    -fx-shape: "M29.181 19.070c-1.679-2.908-0.669-6.634 2.255-8.328l-3.145-5.447c-0.898 0.527-1.943 0.829-3.058 0.829-3.361 0-6.085-2.742-6.085-6.125h-6.289c0.008 1.044-0.252 2.103-0.811 3.070-1.679 2.908-5.411 3.897-8.339 2.211l-3.144 5.447c0.905 0.515 1.689 1.268 2.246 2.234 1.676 2.903 0.672 6.623-2.241 8.319l3.145 5.447c0.895-0.522 1.935-0.82 3.044-0.82 3.35 0 6.067 2.725 6.084 6.092h6.289c-0.003-1.034 0.259-2.080 0.811-3.038 1.676-2.903 5.399-3.894 8.325-2.219l3.145-5.447c-0.899-0.515-1.678-1.266-2.232-2.226zM16 22.479c-3.578 0-6.479-2.901-6.479-6.479s2.901-6.479 6.479-6.479c3.578 0 6.479 2.901 6.479 6.479s-2.901 6.479-6.479 6.479z";
+}
+
+.title-day{
+    -fx-font-family:"Helvetica";
+    -fx-font-weight: bolder;
+    -fx-text-fill:#388E3C;
+    -fx-font-size: 10pt;
+    -fx-effect: dropshadow( two-pass-box , rgba(240, 240, 240, 1) , 4, 5 , 0 , 0 );
+}
+
+.title-date-selected-label{
+    -fx-font-family:"Helvetica";
+    -fx-font-weight: bolder;
+    -fx-text-fill:#388E3C;
+    -fx-font-size: 11pt;
+    -fx-effect: dropshadow( two-pass-box , rgba(240, 240, 240, 1) , 4, 5 , 0 , 0 );
+}
+
+.jfx-date-picker-custom{
+    -fx-background-color:#388E3C;
+    -fx-text-fill:white;
+    -fx-font-weight:900;
+    -fx-background-radius:5;
+}
+
+.button-arrow-right{
+    -fx-background-color:#388E3C;
+    -fx-shape: "M20.078 14c0-0.266-0.094-0.516-0.281-0.703l-7.078-7.078c-0.187-0.187-0.438-0.281-0.703-0.281s-0.516 0.094-0.703 0.281l-1.422 1.422c-0.187 0.187-0.281 0.438-0.281 0.703s0.094 0.516 0.281 0.703l2.953 2.953h-7.844c-0.547 0-1 0.453-1 1v2c0 0.547 0.453 1 1 1h7.844l-2.953 2.953c-0.187 0.187-0.297 0.438-0.297 0.703s0.109 0.516 0.297 0.703l1.422 1.422c0.187 0.187 0.438 0.281 0.703 0.281s0.516-0.094 0.703-0.281l7.078-7.078c0.187-0.187 0.281-0.438 0.281-0.703zM24 14c0 6.625-5.375 12-12 12s-12-5.375-12-12 5.375-12 12-12 12 5.375 12 12z";
+}
+
+.button-arrow-left{
+    -fx-background-color:#388E3C;
+    -fx-shape: "M20 15v-2c0-0.547-0.453-1-1-1h-7.844l2.953-2.953c0.187-0.187 0.297-0.438 0.297-0.703s-0.109-0.516-0.297-0.703l-1.422-1.422c-0.187-0.187-0.438-0.281-0.703-0.281s-0.516 0.094-0.703 0.281l-7.078 7.078c-0.187 0.187-0.281 0.438-0.281 0.703s0.094 0.516 0.281 0.703l7.078 7.078c0.187 0.187 0.438 0.281 0.703 0.281s0.516-0.094 0.703-0.281l1.422-1.422c0.187-0.187 0.281-0.438 0.281-0.703s-0.094-0.516-0.281-0.703l-2.953-2.953h7.844c0.547 0 1-0.453 1-1zM24 14c0 6.625-5.375 12-12 12s-12-5.375-12-12 5.375-12 12-12 12 5.375 12 12z";
+}
+
+.button-note{
+    -fx-background-color:#388E3C;
+    -fx-shape:"M15 5.484v5.531h5.484zM21.984 9.984v8.016c0 1.078-0.891 1.969-1.969 1.969l-16.031 0.047c-1.078 0-1.969-0.938-1.969-2.016v-12c0-1.078 0.891-2.016 1.969-2.016h12z";
+    /*-fx-shape:"M6 0v32l10-10 10 10v-32z";*/
+}

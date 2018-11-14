@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="BonReservasiItemHotel" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="90094c52-c28f-44c7-9c5b-609e0a1b8954">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DBHotel"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="idReservation" class="java.lang.Long"/>
+	<queryString>
+		<![CDATA[select tr.CodeReservation,trs.ServiceName,tras.Price,tras.AdditionalDate,count(tras.IDRoomTypeDetail) as jumlah,count(tras.IDRoomTypeDetail)*tras.Price as SubTotal
+from tblReservationBill trb join tblReservation tr on trb.IDReservation = tr.IDReservation
+join tblReservationRoomTypeDetail trrtd on  tr.IDReservation = trrtd.IDReservation
+join tblReservationAdditionalService tras on trrtd.IDDetail=tras. IDRoomTypeDetail
+join tblRoomService trs on trs.IDRoomService = tras.IDRoomService
+where tr.IDReservation =  $P{idReservation} 
+and trb._ReservationBillType =1 and tras._ReservationBillType= 1 and (trrtd._RecordStatus = 1 or trrtd._RecordStatus = 3) and (tras._RecordStatus = 1 or tras._RecordStatus = 3) 
+Group by  tr.CodeReservation,tras.IDRoomTypeDetail,trs.ServiceName,tras.Price,tras.AdditionalDate]]>
+	</queryString>
+	<field name="CodeReservation" class="java.lang.String"/>
+	<field name="ServiceName" class="java.lang.String"/>
+	<field name="Price" class="java.math.BigDecimal"/>
+	<field name="AdditionalDate" class="java.lang.String"/>
+	<field name="jumlah" class="java.lang.Integer"/>
+	<field name="SubTotal" class="java.math.BigDecimal"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<staticText>
+				<reportElement x="0" y="0" width="210" height="20" uuid="8351ea46-dde8-4540-9454-bc517c964d52">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tambahan Layanan]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="47" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField>
+				<reportElement x="0" y="0" width="50" height="20" uuid="6bd3eecf-e917-4dee-8525-013dd64a3c13">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{COLUMN_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="60" y="0" width="74" height="20" uuid="84317838-088a-459d-8427-abb8d7c2bc53">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CodeReservation}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="134" y="0" width="6" height="20" uuid="5e2b8255-a666-4e36-899f-8ed0787ecc95">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[-]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="60" y="20" width="90" height="20" uuid="00e2b52f-91aa-43b4-ba4b-6121a167d9af">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{AdditionalDate}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="70" y="20" width="6" height="20" uuid="5d7e5ca0-5c77-4053-b1a8-d026c8ba1a0d">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[-]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="140" y="0" width="100" height="20" uuid="e0f24793-eaab-407c-ad89-f871471a5a56"/>
+				<textElement verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ServiceName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="290" y="0" width="90" height="20" uuid="276b65ea-1db9-4cbb-b587-e4024db9fef6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="SansSerif" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{Price}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="380" y="0" width="100" height="20" uuid="53aaa43d-46c8-4869-81ee-1635b9732412">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SubTotal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="240" y="0" width="70" height="20" uuid="883a173c-a8a8-4307-af26-c008a41ea9e7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jumlah}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

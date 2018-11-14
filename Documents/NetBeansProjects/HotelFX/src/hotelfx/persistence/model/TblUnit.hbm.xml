@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 3, 2017 2:13:01 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblUnit" table="tblUnit" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idunit" type="long">
+            <column name="IDUnit" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <property name="codeUnit" type="string">
+            <column name="CodeUnit" length="50" />
+        </property>
+        <property name="unitName" type="string">
+            <column name="UnitName" length="100" />
+        </property>
+        <property name="unitNote" type="string">
+            <column name="UnitNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblItems" table="tblItem" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDUnit" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblItem" />
+        </set>
+    </class>
+    <query name="findAllTblUnit">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblUnit t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

@@ -1,0 +1,122 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 30, 2018 8:52:11 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblPartner" table="tblPartner" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idpartner" type="long">
+            <column name="IDPartner" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refPartnerStatus" class="hotelfx.persistence.model.RefPartnerStatus" fetch="select">
+            <column name="_PartnerStatus" />
+        </many-to-one>
+        <many-to-one name="refPartnerType" class="hotelfx.persistence.model.RefPartnerType" fetch="select">
+            <column name="_PartnerType" />
+        </many-to-one>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <property name="codePartner" type="string">
+            <column name="CodePartner" length="50" />
+        </property>
+        <property name="partnerName" type="string">
+            <column name="PartnerName" length="100" />
+        </property>
+        <property name="partnerAddress" type="string">
+            <column name="PartnerAddress" length="100" />
+        </property>
+        <property name="telpNumber" type="string">
+            <column name="TelpNumber" length="20" />
+        </property>
+        <property name="email" type="string">
+            <column name="Email" length="50" />
+        </property>
+        <property name="website" type="string">
+            <column name="Website" length="100" />
+        </property>
+        <property name="picname" type="string">
+            <column name="PICName" length="100" />
+        </property>
+        <property name="picphoneNumber" type="string">
+            <column name="PICPhoneNumber" length="20" />
+        </property>
+        <property name="picemailAddress" type="string">
+            <column name="PICEmailAddress" length="100" />
+        </property>
+        <property name="partnerDeposit" type="big_decimal">
+            <column name="PartnerDeposit" precision="18" scale="4" />
+        </property>
+        <property name="partnerNote" type="string">
+            <column name="PartnerNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblPartnerBankAccounts" table="tblPartner_BankAccount" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPartner" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPartnerBankAccount" />
+        </set>
+        <set name="tblHotelInvoices" table="tblHotelInvoice" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPartner" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblHotelInvoice" />
+        </set>
+        <set name="tblTravelAgents" table="tblTravelAgent" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPartner" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblTravelAgent" />
+        </set>
+        <set name="tblPartnerAgreements" table="tblPartnerAgreement" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPartner" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPartnerAgreement" />
+        </set>
+        <set name="tblReservationPaymentWithGuaranteePayments" table="tblReservationPaymentWithGuaranteePayment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPartner" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationPaymentWithGuaranteePayment" />
+        </set>
+        <set name="tblReservationTravelAgentDiscountDetails" table="tblReservationTravelAgentDiscountDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDTravelAgent" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationTravelAgentDiscountDetail" />
+        </set>
+        <set name="tblTravelAgentRoomTypes" table="tblTravelAgent_RoomType" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDTravelAgent" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblTravelAgentRoomType" />
+        </set>
+        <set name="tblReservations" table="tblReservation" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPartner" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservation" />
+        </set>
+    </class>
+    <query name="findAllTblPartnerByIDPartnerType">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblPartner t where t.refPartnerType.idtype=:idType and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblPartner">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblPartner t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

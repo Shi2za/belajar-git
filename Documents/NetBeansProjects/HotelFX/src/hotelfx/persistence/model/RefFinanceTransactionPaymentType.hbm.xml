@@ -1,0 +1,52 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 12, 2018 3:38:28 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.RefFinanceTransactionPaymentType" table="refFinanceTransactionPaymentType" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idtype" type="int">
+            <column name="IDType" />
+            <generator class="assigned" />
+        </id>
+        <property name="typeName" type="string">
+            <column name="TypeName" length="100" />
+        </property>
+        <property name="typeNote" type="string">
+            <column name="TypeNote" />
+        </property>
+        <set name="tblCalendarEmployeeDebts" table="tblCalendar_EmployeeDebt" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="EmployeeDebtType" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblCalendarEmployeeDebt" />
+        </set>
+        <set name="tblHotelFinanceTransactions" table="tblHotelFinanceTransaction" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_PaymentType" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblHotelFinanceTransaction" />
+        </set>
+        <set name="tblCalendarEmployeePaymentHistories" table="tblCalendar_EmployeePaymentHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="EmployeePaymentTypeDebt" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblCalendarEmployeePaymentHistory" />
+        </set>
+        <set name="tblReservationPayments" table="tblReservationPayment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_PaymentType" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationPayment" />
+        </set>
+        <set name="tblHotelExpenseTransactions" table="tblHotelExpenseTransaction" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_FinanceTransactionPaymentType" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblHotelExpenseTransaction" />
+        </set>
+    </class>
+    <query name="findAllRefFinanceTransactionPaymentType">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from RefFinanceTransactionPaymentType]]>
+    </query>
+</hibernate-mapping>

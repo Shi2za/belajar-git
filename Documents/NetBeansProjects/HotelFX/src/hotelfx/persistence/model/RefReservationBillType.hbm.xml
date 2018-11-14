@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 7, 2017 1:18:13 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.RefReservationBillType" table="refReservationBillType" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idtype" type="int">
+            <column name="IDType" />
+            <generator class="assigned" />
+        </id>
+        <property name="typeName" type="string">
+            <column name="TypeName" length="100" />
+        </property>
+        <property name="typeNote" type="string">
+            <column name="TypeNote" />
+        </property>
+        <set name="tblReservationAdditionalItems" table="tblReservationAdditionalItem" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_ReservationBillType" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationAdditionalItem" />
+        </set>
+        <set name="tblReservationAdditionalServices" table="tblReservationAdditionalService" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_ReservationBillType" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationAdditionalService" />
+        </set>
+        <set name="tblReservationBills" table="tblReservationBill" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_ReservationBillType" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationBill" />
+        </set>
+        <set name="tblReservationPayments" table="tblReservationPayment" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_ReservationBillType" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationPayment" />
+        </set>
+    </class>
+    <query name="findAllRefReservationBillTypeByTypeName">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from RefReservationBillType t where t.typeName=:typeName]]>
+    </query>
+    <query name="findAllRefReservationBillType">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from RefReservationBillType]]>
+    </query>
+</hibernate-mapping>

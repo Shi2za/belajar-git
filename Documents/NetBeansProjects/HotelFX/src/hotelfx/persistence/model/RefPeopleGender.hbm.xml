@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 21, 2017 1:49:37 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.RefPeopleGender" table="refPeopleGender" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idgender" type="int">
+            <column name="IDGender" />
+            <generator class="assigned" />
+        </id>
+        <property name="genderName" type="string">
+            <column name="GenderName" length="100" />
+        </property>
+        <property name="genderNote" type="string">
+            <column name="GenderNote" />
+        </property>
+        <set name="tblPeoples" table="tblPeople" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_Gender" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPeople" />
+        </set>
+    </class>
+    <query name="findAllRefPeopleGender">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from RefPeopleGender]]>
+    </query>
+</hibernate-mapping>

@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 21, 2018 11:01:16 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblPurchaseRequest" table="tblPurchaseRequest" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idpr" type="long">
+            <column name="IDPR" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refPurchaseRequestStatus" class="hotelfx.persistence.model.RefPurchaseRequestStatus" fetch="select">
+            <column name="_PRStatus" />
+        </many-to-one>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblApprovalData" class="hotelfx.persistence.model.TblApprovalData" fetch="select">
+            <column name="IDApprovalData" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCanceledBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CanceledBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreatedBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreatedBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByClosingBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="ClosingBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByApprovedBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="ApprovedBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblSupplier" class="hotelfx.persistence.model.TblSupplier" fetch="select">
+            <column name="IDSupplier" />
+        </many-to-one>
+        <property name="codePr" type="string">
+            <column name="CodePR" length="50" />
+        </property>
+        <property name="prdate" type="timestamp">
+            <column name="PRDate" length="23" />
+        </property>
+        <property name="prdueDate" type="timestamp">
+            <column name="PRDueDate" length="23" />
+        </property>
+        <property name="createdDate" type="timestamp">
+            <column name="CreatedDate" length="23" />
+        </property>
+        <property name="approvedDate" type="timestamp">
+            <column name="ApprovedDate" length="23" />
+        </property>
+        <property name="canceledDate" type="timestamp">
+            <column name="CanceledDate" length="23" />
+        </property>
+        <property name="closingDate" type="timestamp">
+            <column name="ClosingDate" length="23" />
+        </property>
+        <property name="prnote" type="string">
+            <column name="PRNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblPurchaseOrders" table="tblPurchaseOrder" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPR" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPurchaseOrder" />
+        </set>
+        <set name="tblPurchaseRequestDetails" table="tblPurchaseRequestDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPR" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPurchaseRequestDetail" />
+        </set>
+    </class>
+    <query name="findAllTblPurchaseRequest">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblPurchaseRequest t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3) order by t.idpr desc]]>
+    </query>
+</hibernate-mapping>

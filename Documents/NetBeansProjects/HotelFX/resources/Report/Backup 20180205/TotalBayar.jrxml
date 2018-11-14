@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.4.0.final using JasperReports Library version 6.4.1  -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="TotalBayar" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="04937541-992f-49f9-a1af-f41c23cc6a35">
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DBHotel"/>
+	<parameter name="idReservation" class="java.lang.Long"/>
+	<queryString language="SQL">
+		<![CDATA[select cast(case when tblKamar.totalHargaKamar is null then 0 else tblKamar.totalHargaKamar end as decimal)as totalHargaKamar,cast(case when tblKamar.totalDiscountRoom is null then 0 else tblKamar.totalDiscountRoom end as decimal)totalDiskonRoom,
+	   cast(case when tblKamar.totalServiceChargeKamar is null then 0 else tblKamar.totalServiceChargeKamar end as decimal)as totalServiceChargeKamar,cast(case when tblKamar.totalTaxKamar is null then 0 else tblKamar.totalTaxKamar end as decimal)totalTaxKamar,
+	   cast(case when tblServiceReservation.totalHargaService is null then 0 else tblServiceReservation.totalHargaService end as decimal)as totalHargaService,cast(case when tblServiceReservation.totalDiscountService is null then 0 else tblServiceReservation.totalDiscountService end as decimal)as totalDiskonService,
+	   cast(case when tblServiceReserVation.totalServiceChargeService is null then 0 else tblServiceReservation.totalServiceChargeService end as decimal)as totalServiceChargeService,cast(case when tblServiceReservation.totalTaxService is null then 0 else tblServiceReservation.totalTaxService end as decimal)totalTaxService,
+	   cast(case when tblItemReservation.totalHargaItem is null then 0 else tblItemReservation.totalHargaItem end as decimal)as totalHargaItem,cast(case when tblItemReservation.totalDiscountItem is null then 0 else tblItemReservation.totalDiscountItem end as decimal)as totalDiskonItem,
+	   cast(case when tblItemReservation.totalServiceChargeItem is null then 0 else tblItemReservation.totalServiceChargeItem end as decimal)as totalServiceChargeItem,cast(case when tblItemReservation.totalTaxItem is null then 0 else tblItemReservation.totalTaxItem end as decimal)totalTaxItem
+from (select 'K' as TypeReserVation,sum(trrpd.DetailPrice)as totalHargaKamar,sum(trrpd.DetailDiscountPercentage/100*trrpd.DetailPrice) as totalDiscountRoom,
+	  sum((trrpd.DetailPrice-(trrpd.DetailDiscountPercentage/100*trrpd.DetailPrice))*trb.ServiceChargePercentage) as totalServiceChargeKamar,
+	  sum((trrpd.DetailPrice-(trrpd.DetailDiscountPercentage/100*trrpd.DetailPrice)+(trrpd.DetailPrice-(trrpd.DetailDiscountPercentage/100*trrpd.DetailPrice))*trb.ServiceChargePercentage)*trb.TaxPercentage) as totalTaxKamar
+	  from tblReservationBill trb join tblReservation tr on trb.IDReservation = tr.IDReservation
+	  join tblReservationRoomTypeDetail trrtd on tr.IDReservation = trrtd.IDReservation
+	  join tblReservationRoomTypeDetail_RoomPriceDetail trrtd_rpd on trrtd.IDDetail = trrtd_rpd.IDRoomTypeDetail
+	  join tblReservationRoomPriceDetail trrpd on trrpd.IDDetail = trrtd_rpd.IDRoomPriceDetail 
+	  where tr.IDReservation =	$P{idReservation} 	and trb._ReservationBillType=0)as tblKamar
+	  full outer join (select 'I' as TypeReservation,sum(trai.ItemCharge*trai.ItemQuantity) as totalHargaItem,sum(trai.DiscountPercentage/100 *(trai.ItemCharge*trai.ItemQuantity))as totalDiscountItem,
+						sum(((trai.ItemCharge*trai.ItemQuantity)-trai.DiscountPercentage/100 *(trai.ItemCharge*trai.ItemQuantity))*trb.ServiceChargePercentage) as totalServiceChargeItem,
+						sum(((trai.ItemCharge*trai.ItemQuantity)-(trai.DiscountPercentage/100*(trai.ItemCharge*trai.ItemQuantity))+(((trai.ItemCharge*trai.ItemQuantity)-(trai.DiscountPercentage/100*(trai.ItemCharge*trai.ItemQuantity)))*trb.ServiceChargePercentage))*trb.TaxPercentage) as totalTaxItem
+					   from tblReservationAdditionalItem trai
+					   right join tblReservationRoomTypeDetail trrtd on trai.IDRoomTypeDetail = trrtd.IDDetail
+					   join tblReservation tr on tr.IDReservation = trrtd.IDReservation
+					   join tblReservationBill trb on trb.IDReservation = tr.IDReservation
+					   where tr.IDReservation =   $P{idReservation} and trb._ReservationBillType = 0 and trai._ReservationBillType = 0 and(trrtd._RecordStatus = 1 or trrtd._RecordStatus = 3) and (trai._RecordStatus = 1 or trai._RecordStatus = 3)) as tblItemReservation
+		on tblKamar.TypeReserVation = tblItemReservation.TypeReservation
+		full outer join (select 'S'as TypeReservation,sum(tras.Price) as totalHargaService,sum(tras.Price*tras.DiscountPercentage/100) as totalDiscountService,
+						 SUM((tras.Price-(tras.DiscountPercentage/100*tras.Price))*trb.ServiceChargePercentage) as totalServiceChargeService,
+						sum((tras.Price-(tras.DiscountPercentage/100*tras.Price)+(tras.Price-(tras.DiscountPercentage/100*tras.Price))*trb.ServiceChargePercentage)*trb.TaxPercentage) as totalTaxService
+						 from tblReservationBill trb join tblReservation tr on trb.IDReservation = tr.IDReservation
+						 join tblReservationRoomTypeDetail trrtd on  tr.IDReservation = trrtd.IDReservation
+						 join tblReservationAdditionalService tras on trrtd.IDDetail=tras. IDRoomTypeDetail
+						 where tr.IDReservation =  $P{idReservation} 	and trb._ReservationBillType =0 and tras._ReservationBillType= 0 and (trrtd._RecordStatus = 1 or trrtd._RecordStatus = 3) and (tras._RecordStatus = 1 or tras._RecordStatus = 3)) as tblServiceReservation
+		on tblKamar.TypeReserVation = tblServiceReservation.TypeReservation
+		 --where tr.IDReservation = 10107 and trb._ReservationBillType=0]]>
+	</queryString>
+	<field name="totalHargaKamar" class="java.math.BigDecimal"/>
+	<field name="totalDiskonRoom" class="java.math.BigDecimal"/>
+	<field name="totalServiceChargeKamar" class="java.math.BigDecimal"/>
+	<field name="totalTaxKamar" class="java.math.BigDecimal"/>
+	<field name="totalHargaService" class="java.math.BigDecimal"/>
+	<field name="totalDiskonService" class="java.math.BigDecimal"/>
+	<field name="totalServiceChargeService" class="java.math.BigDecimal"/>
+	<field name="totalTaxService" class="java.math.BigDecimal"/>
+	<field name="totalHargaItem" class="java.math.BigDecimal"/>
+	<field name="totalDiskonItem" class="java.math.BigDecimal"/>
+	<field name="totalServiceChargeItem" class="java.math.BigDecimal"/>
+	<field name="totalTaxItem" class="java.math.BigDecimal"/>
+	<variable name="Subtotal" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{totalHargaKamar}.doubleValue()+$F{totalHargaItem}.doubleValue()+$F{totalHargaService}.doubleValue()]]></variableExpression>
+	</variable>
+	<variable name="totalDiskon" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{totalDiskonRoom}.doubleValue()+$F{totalDiskonItem}.doubleValue()+$F{totalDiskonService}.doubleValue()]]></variableExpression>
+	</variable>
+	<variable name="totalServiceCharge" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{totalServiceChargeKamar}.doubleValue()+$F{totalServiceChargeItem}.doubleValue()+$F{totalServiceChargeService}.doubleValue()]]></variableExpression>
+	</variable>
+	<variable name="totalTax" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{totalTaxKamar}.doubleValue()+$F{totalTaxService}.doubleValue()+$F{totalTaxItem}.doubleValue()]]></variableExpression>
+	</variable>
+	<variable name="TotalPayment" class="java.lang.Double">
+		<variableExpression><![CDATA[$V{Subtotal}-$V{totalDiskon}+$V{totalServiceCharge}+$V{totalTax}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<summary>
+		<band height="100" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<frame>
+				<reportElement x="0" y="0" width="550" height="100" uuid="f49192f9-e33e-4a38-a3bf-5b54c4b9e979">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="240" y="11" width="140" height="16" uuid="1219f93d-b156-4429-9e11-eafca17243e8">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="12"/>
+						<paragraph lineSpacing="Single"/>
+					</textElement>
+					<text><![CDATA[SUBTOTAL]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="240" y="24" width="140" height="16" uuid="404a25b0-0687-4865-a3c2-6654ebdc65ec">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[DISKON]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="240" y="37" width="140" height="16" uuid="a5abfc12-0fd1-4203-b16c-6ee1a8fe7b2c">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[SERVICE CHARGE]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="240" y="50" width="140" height="16" uuid="0f1d44a8-9cce-4bb0-a85a-d33b1994b2b0">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" size="12"/>
+					</textElement>
+					<text><![CDATA[PAJAK]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="240" y="64" width="140" height="16" uuid="fd0ed4f1-4f77-4e47-b7e4-fab4c9823448">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textElement>
+						<font size="12"/>
+					</textElement>
+					<text><![CDATA[TOTAL PEMBAYARAN]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="380" y="11" width="100" height="16" uuid="023f3167-4841-431e-ae97-e9b328be6425">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font fontName="SansSerif" size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{Subtotal}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="380" y="24" width="100" height="16" uuid="e59bcb0d-2527-4694-8951-2b0eebf0a4c9">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totalDiskon}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="380" y="37" width="140" height="16" uuid="4c0fb506-e1ef-46b0-8884-cae318fb137c">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totalServiceCharge}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="380" y="50" width="100" height="16" uuid="d3abff1c-a2f4-4315-8423-63983b83be83">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="12"/>
+						<paragraph lineSpacing="Proportional"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{totalTax}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="380" y="64" width="100" height="16" uuid="67d4a8a4-e5a1-4fbc-b405-619bcf5a4f37">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<textElement verticalAlignment="Middle">
+						<font size="12"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$V{TotalPayment}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</summary>
+</jasperReport>

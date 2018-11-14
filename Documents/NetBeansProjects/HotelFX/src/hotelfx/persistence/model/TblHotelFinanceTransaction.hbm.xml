@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 21, 2018 3:34:09 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblHotelFinanceTransaction" table="tblHotelFinanceTransaction" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idtransaction" type="long">
+            <column name="IDTransaction" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refFinanceTransactionPaymentType" class="hotelfx.persistence.model.RefFinanceTransactionPaymentType" fetch="select">
+            <column name="_PaymentType" />
+        </many-to-one>
+        <many-to-one name="refFinanceTransactionType" class="hotelfx.persistence.model.RefFinanceTransactionType" fetch="select">
+            <column name="_TransactionType" />
+        </many-to-one>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <property name="codeTransaction" type="string">
+            <column name="CodeTransaction" length="50" />
+        </property>
+        <property name="transactionNominal" type="big_decimal">
+            <column name="TransactionNominal" precision="18" scale="4" />
+        </property>
+        <property name="transactionRoundingValue" type="big_decimal">
+            <column name="TransactionRoundingValue" precision="18" scale="4" />
+        </property>
+        <property name="isReturnTransaction" type="java.lang.Boolean">
+            <column name="IsReturnTransaction" />
+        </property>
+        <property name="transactionNote" type="string">
+            <column name="TransactionNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblHotelFinanceTransactionHotelReceivables" table="tblHotelFinanceTransaction_HotelReceivable" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDHotelFinanceTransaction" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblHotelFinanceTransactionHotelReceivable" />
+        </set>
+        <set name="tblHotelFinanceTransactionWithCekGiros" table="tblHotelFinanceTransactionWithCekGiro" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDHotelFinanceTransaction" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblHotelFinanceTransactionWithCekGiro" />
+        </set>
+        <set name="tblHotelFinanceTransactionHotelPayables" table="tblHotelFinanceTransaction_HotelPayable" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDHotelFinanceTransaction" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblHotelFinanceTransactionHotelPayable" />
+        </set>
+        <set name="tblHotelFinanceTransactionWithCashes" table="tblHotelFinanceTransactionWithCash" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDHotelFinanceTransaction" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblHotelFinanceTransactionWithCash" />
+        </set>
+        <set name="tblHotelFinanceTransactionWithTransfers" table="tblHotelFinanceTransactionWithTransfer" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDHotelFinanceTransaction" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblHotelFinanceTransactionWithTransfer" />
+        </set>
+    </class>
+    <query name="findAllTblHotelFinanceTransaction">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblHotelFinanceTransaction t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+<!--    <query name="findAllTblHotelFinanceTransactionByIDHotelPayable">
+        <![CDATA[CALL GetStocks(:stockCode)]]>
+        <![CDATA[from TblHotelFinanceTransaction t where t.tblHotelPayable.idhotelPayable=:idHotelPayable and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblHotelFinanceTransactionByIDHotelReceivable">
+        <![CDATA[CALL GetStocks(:stockCode)]]>
+        <![CDATA[from TblHotelFinanceTransaction t where t.tblHotelReceivable.idhotelReceivable=:idHotelReceivable and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>-->
+</hibernate-mapping>

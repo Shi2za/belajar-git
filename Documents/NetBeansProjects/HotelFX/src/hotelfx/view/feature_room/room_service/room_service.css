@@ -1,0 +1,14 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+@import "../feature_room.css";
+
+/*.flatbee-card{
+	-fx-spacing : 12.0;
+	-fx-padding : 10;
+	-fx-hgap : 10;
+	-fx-vgap : 10;
+	-fx-background-color : -white;
+	-fx-effect : dropshadow(two-pass-box,-black,10,0,0,0);
+}*/

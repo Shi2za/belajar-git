@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Sep 5, 2017 11:14:27 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblItemLocationPropertyBarcode" table="tblItem_Location_PropertyBarcode" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idrelation" type="long">
+            <column name="IDRelation" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblItemLocation" class="hotelfx.persistence.model.TblItemLocation" fetch="select">
+            <column name="IDItemLocation" />
+        </many-to-one>
+        <many-to-one name="tblPropertyBarcode" class="hotelfx.persistence.model.TblPropertyBarcode" fetch="select">
+            <column name="IDPropertyBarcode" />
+        </many-to-one>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+    </class>
+    <query name = "findAllTblItemLocationPropertyBarcodeByIdBarcode">
+        <![CDATA[from TblItemLocationPropertyBarcode tl where tl.tblPropertyBarcode.idbarcode=:id and (tl.refRecordStatus.idstatus=1 or tl.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+    <query name = "findAllTblItemLocationPropertyBarcodeByIdItemLocation">
+        <![CDATA[from TblItemLocationPropertyBarcode tl where tl.tblItemLocation.idrelation=:idItemLocation and (tl.refRecordStatus.idstatus=1 or tl.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+    <query name = "findAllTblItemLocationPropertyBarcodeByItemLocation">
+        <![CDATA[from TblItemLocationPropertyBarcode tl where tl.tblItemLocation.idrelation=:id and (tl.refRecordStatus.idstatus=1 or tl.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+    <query name = "findAllTblItemLocationPropertyBarcodeByItemLocationAndPropertyBarcode">
+        <![CDATA[from TblItemLocationPropertyBarcode tl where tl.tblItemLocation.idrelation=:idrelation and tl.tblPropertyBarcode.idbarcode=:idproperty and (tl.refRecordStatus.idstatus=1 or tl.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+    <query name="findAllTblItemLocationPropertyBarcode">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblItemLocationPropertyBarcode t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+    <query name = "findAllTblItemLocationPropertyBarcodeByIDItemLocationAndIDPropertyBarcode">
+        <![CDATA[from TblItemLocationPropertyBarcode t where t.tblItemLocation.idrelation=:idItemLocation and t.tblPropertyBarcode.idbarcode=:idPropertyBarcode and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+    <query name = "findAllTblItemLocationPropertyBarcodeByIdLocationAndIdType">
+        <![CDATA[from TblItemLocationPropertyBarcode tl where tl.tblItemLocation.tblLocation.idlocation=:idLoc and tl.tblItemLocation.tblLocation.refLocationType.idtype=:idType and (tl.refRecordStatus.idstatus=1 or tl.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+    <query name = "findAllTblItemLocationPropertyBarcodeByIDPropertyBarcode">
+        <![CDATA[from TblItemLocationPropertyBarcode t where t.tblPropertyBarcode.idbarcode=:idPropertyBarcode and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

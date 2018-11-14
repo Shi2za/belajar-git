@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="BonReservasi" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="67b81a2b-0f7f-4a76-bf14-d3d9855680fa">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DBHotel"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idReservation" class="java.lang.Long"/>
+	<parameter name="NamaHotel" class="java.lang.String"/>
+	<parameter name="AlamatHotel" class="java.lang.String"/>
+	<parameter name="NoTeleponHotel" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["C:\\Users\\Andreas\\Documents\\NetBeansProjects\\CobaJasperReport\\src\\cobajasperreport\\BonHotelReservasi\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select tblKasirReservation.CodeEmployee,tblKasirReservation.FullName as NamaKasir,tblCustomerReservation.FullName as NamaCustomer,tblCustomerReservation.CheckInDateTime,tblCustomerReservation.CheckOutDateTime
+from (select 'K' as typeName,tp.FullName,te.CodeEmployee
+	  from tblReservationPayment trp 
+	  join tblReservationBill trb on trp.IDBill = trb.IDBill and trb._ReservationBillType = trp._ReservationBillType
+	  join tblEmployee te on trp.IDCashier = te.IDEmployee
+      join tblPeople tp on tp.IDPeople = te.IDPeople 
+      join tblReservation tr on tr.IDReservation = trb.IDReservation
+      where tr.IDReservation =  $P{idReservation} 
+      and trb._ReservationBillType = 0) as tblKasirReservation
+	  cross join (select 'C' AS typeName,tp.FullName,trrtd.CheckInDateTime,trrtd.CheckOutDateTime 
+	  from tblReservationPayment trp 
+	  join tblReservationBill trb on trp.IDBill = trb.IDBill and trb._ReservationBillType = trp._ReservationBillType
+	  join tblReservation tr on tr.IDReservation = trb.IDReservation
+	  join tblReservationRoomTypeDetail trrtd on trrtd.IDReservation = tr.IDReservation
+      join tblCustomer tc on tc.IDCustomer = tr.IDCustomer
+	  join tblPeople tp on tp.IDPeople = tc.IDPeople
+	  where tr.IDReservation =  $P{idReservation}  and trb._ReservationBillType = 0) as tblCustomerReservation
+	  ORDER BY tblCustomerReservation.CheckOutDateTime DESC]]>
+	</queryString>
+	<field name="CodeEmployee" class="java.lang.String"/>
+	<field name="NamaKasir" class="java.lang.String"/>
+	<field name="NamaCustomer" class="java.lang.String"/>
+	<field name="CheckInDateTime" class="java.sql.Timestamp"/>
+	<field name="CheckOutDateTime" class="java.sql.Timestamp"/>
+	<variable name="varCurrentPage" class="java.lang.Integer" resetType="Page">
+		<variableExpression><![CDATA[1]]></variableExpression>
+		<initialValueExpression><![CDATA[$V{PAGE_NUMBER}]]></initialValueExpression>
+	</variable>
+	<group name="BillRoom">
+		<groupHeader>
+			<band height="204">
+				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				<subreport>
+					<reportElement x="-20" y="0" width="597" height="100" uuid="4dfbd768-6912-47c3-8f77-7ee28ffce05c"/>
+					<subreportParameter name="idReservation">
+						<subreportParameterExpression><![CDATA[$P{idReservation}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "BonReservasiDetailRevisi.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="BonItem">
+		<groupHeader>
+			<band height="20">
+				<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.HorizontalRowLayout"/>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="BonService"/>
+	<group name="TotalPayment"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="200" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField pattern="">
+				<reportElement x="410" y="0" width="140" height="30" uuid="5e8c87c1-6458-48f3-9959-5307ac56c4cc"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("EEEE,dd MMMM yyyy",new java.util.Locale("id")).format(new Date())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="27" width="310" height="30" uuid="64c7a466-ea53-4a37-b579-7b6835842525">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="20" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{NamaHotel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="57" width="310" height="23" uuid="a118a91e-dc56-42bd-81ec-c2a46e4b5a2a">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{AlamatHotel}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="80" width="310" height="23" uuid="ff7574a1-203e-4cff-87de-c6a60f836589">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{NoTeleponHotel}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="120" width="100" height="20" uuid="463dc062-9d55-46bd-ad75-41eb1baf7298">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Cashier       	 :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="120" width="40" height="20" uuid="2fc18a3d-638c-4a43-98ff-b277b7246c90">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CodeEmployee}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="140" y="120" width="10" height="20" uuid="f59cb4c7-33e0-4330-adc3-c9a46d3ad86a">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[-]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="150" y="120" width="80" height="20" uuid="19a85b80-a7b5-4df2-a57c-ada3ad536bb0">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NamaKasir}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="140" width="100" height="20" uuid="cc1b51cf-cb59-46a1-8ab9-fa58528a01f9"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[Customer Name :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="140" width="120" height="20" uuid="54ca6c15-6d37-4ee2-9dd0-a843b69c6000">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NamaCustomer}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="270" y="120" width="100" height="20" uuid="97acfc28-b251-4dcd-80c4-215b63500e8b">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[CheckIn/CheckOut :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="270" y="140" width="100" height="20" uuid="461451f2-0324-4316-b148-31f8d4580bc3"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd MMM yyyy HH:mm",new java.util.Locale("id")).format($F{CheckInDateTime})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="370" y="140" width="10" height="20" uuid="68a2ab79-279d-4504-97c0-eea1a6526e86">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<text><![CDATA[/]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="380" y="140" width="110" height="20" uuid="cccda61d-424b-423d-829d-226f45cc1bd8"/>
+				<textElement verticalAlignment="Middle">
+					<font size="11"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd MMM yyyy HH:mm",new java.util.Locale("id")).format($F{CheckOutDateTime})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="90" y="0" width="310" height="27" uuid="f387858d-cdc9-4aac-8dd1-8a521d5d069d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[RESERVATION BILL]]></text>
+			</staticText>
+		</band>
+	</title>
+	<summary>
+		<band height="90" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+		</band>
+	</summary>
+</jasperReport>

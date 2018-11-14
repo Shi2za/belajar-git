@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 1, 2017 3:39:40 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblCalendarEmployeeSchedule" table="tblCalendar_EmployeeSchedule" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idrelation" type="long">
+            <column name="IDRelation" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="sysCalendar" class="hotelfx.persistence.model.SysCalendar" fetch="select">
+            <column name="IDCalendar" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByIdemployee" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="IDEmployee" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeSchedule" class="hotelfx.persistence.model.TblEmployeeSchedule" fetch="select">
+            <column name="IDSchedule" />
+        </many-to-one>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+    </class>
+    <query name="findAllTblCalendarEmployeeSchedule">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblCalendarEmployeeSchedule t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+    <query name="findAllTblCalendarEmployeeScheduleByIdCalendar">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblCalendarEmployeeSchedule t where t.sysCalendar.idcalendar=:idCalendar and(t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+     <query name="findAllTblCalendarEmployeeScheduleByPeriode">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblCalendarEmployeeSchedule t where t.sysCalendar.calendarDate between :startDate and :endDate and(t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+    <sql-query name="deleteEmployeeSchedule" callable="true">
+        <return-scalar column="err_msg" type="string"/>
+        <![CDATA[{CALL DeleteDataSchedule(:idCalendar)}]]>
+    </sql-query>
+    
+    <query name="findAllTblCalendarEmployeeScheduleByIdEmployeeOneDay">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblCalendarEmployeeSchedule t where t.tblEmployeeByIdemployee.idemployee=:idEmployee and t.sysCalendar.calendarDate=:date and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+     <query name="findAllTblCalendarEmployeeScheduleByIdEmployeeOneMoreDay">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblCalendarEmployeeSchedule t where t.tblEmployeeByIdemployee.idemployee=:idEmployee and t.sysCalendar.calendarDate between :startDate and :endDate and(t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+     <query name="findAllTblCalendarEmployeeScheduleByEmployeeTypeOneMoreDay">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblCalendarEmployeeSchedule t where t.tblEmployeeByIdemployee.refEmployeeType.idtype=:idType and t.sysCalendar.calendarDate between :startDate and :endDate and(t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+     <query name="findAllTblCalendarEmployeeScheduleOneMoreDay">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblCalendarEmployeeSchedule t where t.sysCalendar.calendarDate between :startDate and :endDate and(t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+     <query name="findAllTblCalendarEmployeeScheduleByIdEmployeeAndMonth">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblCalendarEmployeeSchedule t where t.tblEmployeeByIdemployee.idemployee=:idEmployee and t.sysCalendar.calendarDate>=:date and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3) order by t.sysCalendar.calendarDate ASC]]>
+    </query>
+    
+    <query name="findAllTblCalendarEmployeeScheduleByTypeEmployeeEmployeeScheduleAndSysCalendar">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblCalendarEmployeeSchedule t where t.tblEmployeeByIdemployee.refEmployeeType.idtype=:idType and t.tblEmployeeSchedule.idschedule=:idSchedule and t.sysCalendar.idcalendar=:idCalendar and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+     <query name="findAllTblCalendarEmployeeScheduleByTypeEmployeeAndSysCalendar">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblCalendarEmployeeSchedule t where t.tblEmployeeByIdemployee.refEmployeeType.idtype=:idType and t.sysCalendar.idcalendar=:idCalendar and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    
+     <query name="findAllTblCalendarEmployeeScheduleByEmployeeScheduleAndSysCalendar">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblCalendarEmployeeSchedule t where t.tblEmployeeSchedule.idschedule=:idSchedule and t.sysCalendar.idcalendar=:idCalendar and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

@@ -1,0 +1,160 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 8, 2018 9:14:58 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblPurchaseOrder" table="tblPurchaseOrder" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idpo" type="long">
+            <column name="IDPO" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refPurchaseOrderItemArriveStatus" class="hotelfx.persistence.model.RefPurchaseOrderItemArriveStatus" fetch="select">
+            <column name="_POItemArriveStatus" />
+        </many-to-one>
+        <many-to-one name="refPurchaseOrderPaymentStatus" class="hotelfx.persistence.model.RefPurchaseOrderPaymentStatus" fetch="select">
+            <column name="_POPaymentStatus" />
+        </many-to-one>
+        <many-to-one name="refPurchaseOrderStatus" class="hotelfx.persistence.model.RefPurchaseOrderStatus" fetch="select">
+            <column name="_POStatus" />
+        </many-to-one>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblApprovalData" class="hotelfx.persistence.model.TblApprovalData" fetch="select">
+            <column name="IDApprovalData" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByApprovedBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="ApprovedBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCanceledBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CanceledBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByOrderedBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="OrderedBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreatedBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreatedBy" />
+        </many-to-one>
+        <many-to-one name="tblFinanceData" class="hotelfx.persistence.model.TblFinanceData" fetch="select">
+            <column name="IDFinanceData" />
+        </many-to-one>
+        <many-to-one name="tblHotelPayable" class="hotelfx.persistence.model.TblHotelPayable" fetch="select">
+            <column name="IDHotelPayable" />
+        </many-to-one>
+        <many-to-one name="tblPurchaseRequest" class="hotelfx.persistence.model.TblPurchaseRequest" fetch="select">
+            <column name="IDPR" />
+        </many-to-one>
+        <many-to-one name="tblRetur" class="hotelfx.persistence.model.TblRetur" fetch="select">
+            <column name="IDRetur" />
+        </many-to-one>
+        <many-to-one name="tblSupplier" class="hotelfx.persistence.model.TblSupplier" fetch="select">
+            <column name="IDSupplier" />
+        </many-to-one>
+        <property name="codePo" type="string">
+            <column name="CodePO" length="50" />
+        </property>
+        <property name="podate" type="timestamp">
+            <column name="PODate" length="23" />
+        </property>
+        <property name="podueDate" type="timestamp">
+            <column name="PODueDate" length="23" />
+        </property>
+        <property name="createdDate" type="timestamp">
+            <column name="CreatedDate" length="23" />
+        </property>
+        <property name="approvedDate" type="timestamp">
+            <column name="ApprovedDate" length="23" />
+        </property>
+        <property name="orderedDate" type="timestamp">
+            <column name="OrderedDate" length="23" />
+        </property>
+        <property name="canceledDate" type="timestamp">
+            <column name="CanceledDate" length="23" />
+        </property>
+        <property name="canceledNote" type="string">
+            <column name="CanceledNote" />
+        </property>
+        <property name="nominalDiscount" type="big_decimal">
+            <column name="NominalDiscount" precision="18" scale="4" />
+        </property>
+        <property name="taxPecentage" type="big_decimal">
+            <column name="TaxPecentage" precision="10" scale="4" />
+        </property>
+        <property name="deliveryCost" type="big_decimal">
+            <column name="DeliveryCost" precision="18" scale="4" />
+        </property>
+        <property name="popaymentTypeInformation" type="string">
+            <column name="POPaymentTypeInformation" length="100" />
+        </property>
+        <property name="ponote" type="string">
+            <column name="PONote" />
+        </property>
+        <property name="receivingFinishedDate" type="timestamp">
+            <column name="ReceivingFinishedDate" length="23" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblPurchaseOrderRevisionHistoriesForIdposource" table="tblPurchaseOrderRevisionHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPOSource" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPurchaseOrderRevisionHistory" />
+        </set>
+        <set name="tblMemorandumInvoices" table="tblMemorandumInvoice" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPO" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblMemorandumInvoice" />
+        </set>
+        <set name="tblPurchaseOrderDetails" table="tblPurchaseOrderDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPO" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPurchaseOrderDetail" />
+        </set>
+        <set name="tblPurchaseOrderRevisionHistoriesForIdponew" table="tblPurchaseOrderRevisionHistory" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPONew" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPurchaseOrderRevisionHistory" />
+        </set>
+    </class>
+    <!--    <sql-query name="updateTblPurchaseOrderPaymentStatusByIDPurchaseOrder" callable="true">
+        <return-scalar column="err_msg" type="string"/>
+        <![CDATA[{CALL UpdatePurchaseOrderPaymentStatus(:idPurchaseOrder)}]]>
+    </sql-query>-->
+<!--    <sql-query name="updateTblPurchaseOrderItemArriveStatusByIDPurchaseOrder" callable="true">
+        <return-scalar column="err_msg" type="string"/>
+        <![CDATA[{CALL UpdatePurchaseOrderItemArriveStatus(:idPurchaseOrder)}]]>
+    </sql-query>-->
+    <query name="findAllTblPurchaseOrderByIDPurchaseRequest">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblPurchaseOrder t where t.tblPurchaseRequest.idpr=:idPurchaseRequest and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblPurchaseOrderByIDSupplier">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblPurchaseOrder t where t.tblSupplier.idsupplier=:idSupplier and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblPurchaseOrderByIDHotelPayable">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblPurchaseOrder t where t.tblHotelPayable.idhotelPayable=:idHotelPayable and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblPurchaseOrderByMinPODueDate">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblPurchaseOrder t where t.podueDate>=:poDueDate and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3) order by t.idpo desc]]>
+    </query>
+    <query name="findAllTblPurchaseOrder">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblPurchaseOrder t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3) order by t.idpo desc]]>
+    </query>
+</hibernate-mapping>

@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PrintReturDetail" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="0" bottomMargin="20" uuid="49387144-0b9f-4ca7-97b5-75661165d75a">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DBHotel"/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["E:\\Data 20180215\\HotelFX\\resources\\Report\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Keterangan" class="java.lang.String"/>
+	<parameter name="pajak" class="java.math.BigDecimal"/>
+	<parameter name="biayaPengiriman" class="java.math.BigDecimal"/>
+	<queryString language="plsql">
+		<![CDATA[]]>
+	</queryString>
+	<field name="kodeBarang" class="java.lang.String"/>
+	<field name="namaBarang" class="java.lang.String"/>
+	<field name="hargaBarang" class="java.math.BigDecimal"/>
+	<field name="diskon" class="java.math.BigDecimal"/>
+	<field name="jumlah" class="java.math.BigDecimal"/>
+	<field name="satuan" class="java.lang.String"/>
+	<field name="totalHarga" class="java.math.BigDecimal"/>
+	<variable name="subtotal" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{totalHarga}]]></variableExpression>
+	</variable>
+	<variable name="varPajak" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[($V{subtotal}).multiply($P{pajak})]]></variableExpression>
+	</variable>
+	<variable name="varTotal" class="java.math.BigDecimal">
+		<variableExpression><![CDATA[$V{subtotal}.add($V{varPajak})]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<columnHeader>
+		<band height="22" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<frame>
+				<reportElement x="0" y="0" width="555" height="22" uuid="a994ba4b-7cbf-4efd-9740-0668058504f7"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<staticText>
+					<reportElement x="0" y="0" width="63" height="22" uuid="3d3d5089-dcdb-4de6-a284-40190061492c">
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[ID Barang]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="63" y="0" width="171" height="22" uuid="25ff2210-9d0f-4087-914a-f897f0776194">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement verticalAlignment="Middle">
+						<font size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Nama Barang]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="234" y="0" width="90" height="22" uuid="be2781a7-7a73-4642-a0e8-addbab831ff9">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Harga Satuan (IDR)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="324" y="0" width="62" height="22" uuid="699eaa97-b5c8-4f8f-bc8d-4f0574728b6d">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Diskon (IDR)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="386" y="0" width="39" height="22" uuid="68bc71c0-70f8-4bc6-8397-36132a725389">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Jumlah]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="425" y="0" width="45" height="22" uuid="2dbce6a8-049c-468c-941f-be575425bf9e"/>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Unit]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="470" y="0" width="85" height="22" uuid="8caca8b4-1dde-4340-b5ad-f9df88d51e01">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Total Harga (IDR)]]></text>
+				</staticText>
+			</frame>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="63" y="0" width="171" height="15" isPrintWhenDetailOverflows="true" uuid="23d6d92c-d557-4da4-bea9-ff03fd177855"/>
+				<box leftPadding="5" rightPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{namaBarang}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="386" y="0" width="39" height="15" isPrintWhenDetailOverflows="true" uuid="a1bf2be6-ae9c-4180-b6c6-63435c5d306b"/>
+				<box leftPadding="5" rightPadding="5"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("#,###.##;(#,###.##)",new DecimalFormatSymbols(new java.util.Locale("en"))).format($F{jumlah})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="234" y="0" width="90" height="15" isPrintWhenDetailOverflows="true" uuid="32ea6b4c-5d83-4d9c-8985-f6494da545a1"/>
+				<box leftPadding="5" rightPadding="5"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("#,###.##;(#,###.##)",new DecimalFormatSymbols(new java.util.Locale("en"))).format($F{hargaBarang})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="470" y="0" width="85" height="15" isPrintWhenDetailOverflows="true" uuid="c9bb9609-4f4e-4bcc-ba50-12bbfb7e9ebb"/>
+				<box leftPadding="5" rightPadding="5"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("#,###.##;(#,###.##)",new DecimalFormatSymbols(new java.util.Locale("en"))).format($F{totalHarga})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="324" y="0" width="62" height="15" isPrintWhenDetailOverflows="true" uuid="970dcc65-5173-4d34-a991-7a89d82718cd"/>
+				<box leftPadding="5" rightPadding="5"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new DecimalFormat("#,###.##;(#,###.##)",new DecimalFormatSymbols(new java.util.Locale("en"))).format($F{diskon})]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="425" y="0" width="45" height="15" isPrintWhenDetailOverflows="true" uuid="4ca5cc53-6b1f-40cc-afc1-59fc4c9fe196"/>
+				<box leftPadding="5" rightPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{satuan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="0" width="63" height="15" isPrintWhenDetailOverflows="true" uuid="7aed9ff3-9d7f-45e9-987d-63e8b5164526"/>
+				<box leftPadding="5" rightPadding="5"/>
+				<textElement verticalAlignment="Middle">
+					<font size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{kodeBarang}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="93" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<frame>
+				<reportElement x="0" y="5" width="555" height="88" uuid="a58f8ef0-e1db-4adf-b183-c69fce95ee12"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<staticText>
+					<reportElement x="427" y="30" width="9" height="15" uuid="fecbf45a-f252-4919-95f7-0f3c33ba06f9">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="340" y="15" width="87" height="15" uuid="159fa37c-329d-4287-9fec-b954b2b0cc4e">
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Subtotal (IDR)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="340" y="45" width="87" height="15" uuid="1841deb6-1fcc-4567-b03b-d7a4f3c74daf">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="8" isBold="false"/>
+					</textElement>
+					<text><![CDATA[Biaya Pengiriman (IDR)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="427" y="60" width="9" height="15" uuid="41111194-defd-4941-9425-1787e05a9628">
+						<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9" isBold="true"/>
+					</textElement>
+					<text><![CDATA[:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="427" y="15" width="9" height="15" uuid="0384f989-08cf-4bcd-9566-01a4cbc52a8c">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+						<property name="com.jaspersoft.studio.unit.x" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="427" y="45" width="9" height="15" uuid="deec5549-b96e-4699-ad3c-bf24b7ef0d52"/>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="8" isBold="true"/>
+					</textElement>
+					<text><![CDATA[:]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="340" y="60" width="87" height="15" uuid="eb225b8d-4992-4e8f-8b78-d809cb16370f">
+						<property name="com.jaspersoft.studio.unit.width" value="pixel"/>
+					</reportElement>
+					<textElement textAlignment="Left" verticalAlignment="Middle">
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Total (IDR)]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="340" y="30" width="87" height="15" uuid="228996d5-6fdc-4807-9b56-5b4d625d0e1e"/>
+					<textElement verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<text><![CDATA[Pajak (IDR)]]></text>
+				</staticText>
+				<line>
+					<reportElement x="340" y="80" width="210" height="1" uuid="861ed996-bb2d-4222-8679-b77367662842"/>
+					<graphicElement>
+						<pen lineWidth="2.0" lineStyle="Double"/>
+					</graphicElement>
+				</line>
+				<textField>
+					<reportElement x="436" y="15" width="114" height="15" uuid="1e557137-ab49-45a6-9b23-d6d7d62041a7"/>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new DecimalFormat("#,###.##;(#,###.##)",new DecimalFormatSymbols(new java.util.Locale("en"))).format($V{subtotal})]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="436" y="30" width="114" height="15" uuid="204e5f4f-3eba-42f7-b8c8-52390432af22"/>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new DecimalFormat("#,###.##;(#,###.##)",new DecimalFormatSymbols(new java.util.Locale("en"))).format($V{varPajak})]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="436" y="45" width="114" height="15" uuid="ff5ca46b-714c-49c7-b9b9-243a9838e6e0"/>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new DecimalFormat("#,###.##;(#,###.##)",new DecimalFormatSymbols(new java.util.Locale("en"))).format($P{biayaPengiriman})]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="436" y="60" width="114" height="15" uuid="6b1c26eb-b7ce-475a-b05c-41392e245b41"/>
+					<box leftPadding="5" rightPadding="5"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new DecimalFormat("#,###.##;(#,###.##)",new DecimalFormatSymbols(new java.util.Locale("en"))).format($V{varTotal})]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement positionType="Float" stretchType="RelativeToTallestObject" x="0" y="15" width="216" height="73" isPrintWhenDetailOverflows="true" uuid="ca822e24-999a-41de-9ecf-2fb03e19e871"/>
+					<box topPadding="3" leftPadding="5" rightPadding="5">
+						<pen lineWidth="1.0"/>
+						<topPen lineWidth="1.0"/>
+						<leftPen lineWidth="1.0"/>
+						<bottomPen lineWidth="1.0"/>
+						<rightPen lineWidth="1.0"/>
+					</box>
+					<textElement markup="styled">
+						<font size="8"/>
+					</textElement>
+					<textFieldExpression><![CDATA["<style isBold='true' size='8' pdfFontName='Helvetica-Bold'>Keterangan :</style> \n"+$P{Keterangan}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</summary>
+</jasperReport>

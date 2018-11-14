@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jun 29, 2018 3:18:38 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblPurchaseOrderDetail" table="tblPurchaseOrderDetail" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="iddetail" type="long">
+            <column name="IDDetail" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblPurchaseOrder" class="hotelfx.persistence.model.TblPurchaseOrder" fetch="select">
+            <column name="IDPO" />
+        </many-to-one>
+        <many-to-one name="tblSupplierItem" class="hotelfx.persistence.model.TblSupplierItem" fetch="select">
+            <column name="IDSupplierItem" />
+        </many-to-one>
+        <property name="itemCost" type="big_decimal">
+            <column name="ItemCost" precision="18" scale="4" />
+        </property>
+        <property name="itemQuantity" type="big_decimal">
+            <column name="ItemQuantity" precision="10" scale="4" />
+        </property>
+        <property name="itemDiscount" type="big_decimal">
+            <column name="ItemDiscount" precision="18" scale="4" />
+        </property>
+        <property name="itemNote" type="string">
+            <column name="ItemNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+    </class>
+    <sql-query name="deleteAllTblPurchaseOrderDetailByIDPurchaseOrder" callable="true">
+        <return-scalar column="err_msg" type="string"/>
+        <![CDATA[{CALL DeleteAllPurchaseOrderDetailByIDPurchaseOrder(:idPurchaseOrder, :idEmployee)}]]>
+    </sql-query>
+    <query name="findAllTblPurchaseOrderDetailByIDPurchaseOrder">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblPurchaseOrderDetail t where t.tblPurchaseOrder.idpo=:idPurchaseOrder and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblPurchaseOrderDetailByIDPurchaseOrderAndIDItem">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblPurchaseOrderDetail t where t.tblPurchaseOrder.idpo=:idPurchaseOrder and t.tblSupplierItem.tblItem.iditem=:idItem and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblPurchaseOrderDetailByIDPurchaseOrderAndIDSupplierItem">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblPurchaseOrderDetail t where t.tblPurchaseOrder.idpo=:idPurchaseOrder and t.tblSupplierItem.idrelation=:idSupplierItem and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblPurchaseOrderDetailByIDPurchaseRequestAndIDItem">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblPurchaseOrderDetail t where t.tblPurchaseOrder.tblPurchaseRequest.idpr=:idPurchaseRequest and t.tblSupplierItem.tblItem.iditem=:idItem and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblPurchaseOrderDetail">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblPurchaseOrderDetail t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

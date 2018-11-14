@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 19, 2018 12:58:28 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblReservationVoucher" table="tblReservationVoucher" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idvoucher" type="long">
+            <column name="IDVoucher" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="refVoucherStatus" class="hotelfx.persistence.model.RefVoucherStatus" fetch="select">
+            <column name="_VoucherStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <property name="codeVoucher" type="string">
+            <column name="CodeVoucher" length="50" />
+        </property>
+        <property name="voucherName" type="string">
+            <column name="VoucherName" length="100" />
+        </property>
+        <property name="nominal" type="big_decimal">
+            <column name="Nominal" precision="18" scale="4" />
+        </property>
+        <property name="minimumPayment" type="big_decimal">
+            <column name="MinimumPayment" precision="18" scale="4" />
+        </property>
+        <property name="validUntil" type="timestamp">
+            <column name="ValidUntil" length="23" />
+        </property>
+        <property name="voucherNote" type="string">
+            <column name="VoucherNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblReservationPaymentWithReservationVouchers" table="tblReservationPaymentWithReservationVoucher" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDReservationVoucher" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationPaymentWithReservationVoucher" />
+        </set>
+    </class>
+    <query name="findAllTblReservationVoucher">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationVoucher t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

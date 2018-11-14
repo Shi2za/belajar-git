@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 29, 2018 3:29:02 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.RefFounderType" table="refFounderType" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idtype" type="int">
+            <column name="IDType" />
+            <generator class="assigned" />
+        </id>
+        <property name="typeName" type="string">
+            <column name="TypeName" />
+        </property>
+        <property name="typeNote" type="string">
+            <column name="TypeNote" />
+        </property>
+        <set name="tblFoundInformations" table="tblFoundInformation" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="_FounderType" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblFoundInformation" />
+        </set>
+    </class>
+    <query name="findAllRefFounderType">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from RefFounderType]]>
+    </query>
+</hibernate-mapping>

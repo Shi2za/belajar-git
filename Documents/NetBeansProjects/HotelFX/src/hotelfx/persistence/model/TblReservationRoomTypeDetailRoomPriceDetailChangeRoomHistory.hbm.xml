@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Jan 22, 2018 2:34:51 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblReservationRoomTypeDetailRoomPriceDetailChangeRoomHistory" table="tblReservationRoomTypeDetail_RoomPriceDetail_ChangeRoomHistory"
+    schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idhistory" type="long">
+            <column name="IDHistory" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblReservationRoomTypeDetailRoomPriceDetailByIdrelationNew" class="hotelfx.persistence.model.TblReservationRoomTypeDetailRoomPriceDetail"
+        fetch="select">
+            <column name="IDRelationNew" />
+        </many-to-one>
+        <many-to-one name="tblReservationRoomTypeDetailRoomPriceDetailByIdrelationOld" class="hotelfx.persistence.model.TblReservationRoomTypeDetailRoomPriceDetail"
+        fetch="select">
+            <column name="IDRelationOld" />
+        </many-to-one>
+        <property name="historyNote" type="string">
+            <column name="HistoryNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+    </class>
+    <query name="findAllTblReservationRoomTypeDetailRoomPriceDetailChangeRoomHistoryByIDReservationRoomTypeDetailNew">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationRoomTypeDetailRoomPriceDetailChangeRoomHistory t where t.tblReservationRoomTypeDetailRoomPriceDetailByIdrelationNew.tblReservationRoomTypeDetail.iddetail=:idReservationRoomTypeDetailNew and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblReservationRoomTypeDetailRoomPriceDetailChangeRoomHistory">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationRoomTypeDetailRoomPriceDetailChangeRoomHistory t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

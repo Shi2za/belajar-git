@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 21, 2018 2:53:10 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblReservationCheckInOut" table="tblReservationCheckInOut" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idcheckInOut" type="long">
+            <column name="IDCheckInOut" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="refReservationCheckInOutStatus" class="hotelfx.persistence.model.RefReservationCheckInOutStatus" fetch="select">
+            <column name="_CheckInOutStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblRoom" class="hotelfx.persistence.model.TblRoom" fetch="select">
+            <column name="IDRoom" />
+        </many-to-one>
+        <property name="codeCheckInOut" type="string">
+            <column name="CodeCheckInOut" length="50" />
+        </property>
+        <property name="checkInDateTime" type="timestamp">
+            <column name="CheckInDateTime" length="23" />
+        </property>
+        <property name="checkOutDateTime" type="timestamp">
+            <column name="CheckOutDateTime" length="23" />
+        </property>
+        <property name="childNumber" type="java.lang.Integer">
+            <column name="ChildNumber" />
+        </property>
+        <property name="adultNumber" type="java.lang.Integer">
+            <column name="AdultNumber" />
+        </property>
+        <property name="cardUsed" type="java.lang.Integer">
+            <column name="CardUsed" />
+        </property>
+        <property name="cardMissed" type="java.lang.Integer">
+            <column name="CardMissed" />
+        </property>
+        <property name="brokenCardCharge" type="big_decimal">
+            <column name="BrokenCardCharge" precision="18" scale="4" />
+        </property>
+        <property name="cardAdditional" type="java.lang.Integer">
+            <column name="CardAdditional" />
+        </property>
+        <property name="additionalCardCharge" type="big_decimal">
+            <column name="AdditionalCardCharge" precision="18" scale="4" />
+        </property>
+        <property name="note" type="string">
+            <column name="Note" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblReservationRoomTypeDetails" table="tblReservationRoomTypeDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDCheckInOut" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationRoomTypeDetail" />
+        </set>
+        <set name="tblReservationPaymentWithDeposits" table="tblReservationPaymentWithDeposit" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDCheckInOut" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationPaymentWithDeposit" />
+        </set>
+        <set name="tblRoomCards" table="tblRoomCard" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDCheckInOut" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRoomCard" />
+        </set>
+    </class>
+    <query name="findAllTblReservationCheckInOut">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationCheckInOut where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

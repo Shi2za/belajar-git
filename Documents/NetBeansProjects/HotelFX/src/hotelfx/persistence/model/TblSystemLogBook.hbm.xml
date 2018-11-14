@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Apr 6, 2018 9:44:16 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblSystemLogBook" table="tblSystemLogBook" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idlogBook" type="long">
+            <column name="IDLogBook" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByIdemployee" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="IDEmployee" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblSystemUser" class="hotelfx.persistence.model.TblSystemUser" fetch="select">
+            <column name="IDUser" />
+        </many-to-one>
+        <property name="codeLogBook" type="string">
+            <column name="CodeLogBook" length="50" />
+        </property>
+        <property name="logBookDateTime" type="timestamp">
+            <column name="LogBookDateTime" length="23" />
+        </property>
+        <property name="hostName" type="string">
+            <column name="HostName" length="100" />
+        </property>
+        <property name="logBookHeader" type="string">
+            <column name="LogBookHeader" />
+        </property>
+        <property name="logBookDetail" type="string">
+            <column name="LogBookDetail" />
+        </property>
+        <property name="isReminder" type="java.lang.Boolean">
+            <column name="IsReminder" />
+        </property>
+        <property name="reminderDate" type="timestamp">
+            <column name="ReminderDate" length="23" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblSystemLogBookJobs" table="tblSystemLogBook_Job" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDLogBook" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblSystemLogBookJob" />
+        </set>
+    </class>
+    <query name="findAllTblSystemLogBook">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblSystemLogBook t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3) order by t.logBookDateTime desc]]>
+    </query>
+    <query name="findAllTblSystemLogBookByIsReminderAndReminderDateInDate">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblSystemLogBook t where t.isReminder=:isReminder and (cast(t.reminderDate as date) = cast(:reminderDate as date)) and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3) order by t.logBookDateTime desc]]>
+    </query>
+</hibernate-mapping>

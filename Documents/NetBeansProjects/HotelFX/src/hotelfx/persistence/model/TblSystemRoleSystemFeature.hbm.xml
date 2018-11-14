@@ -1,0 +1,68 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 6, 2018 9:26:24 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblSystemRoleSystemFeature" table="tblSystemRole_SystemFeature" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idrelation" type="long">
+            <column name="IDRelation" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblSystemFeature" class="hotelfx.persistence.model.TblSystemFeature" fetch="select">
+            <column name="IDFeature" />
+        </many-to-one>
+        <many-to-one name="tblSystemRole" class="hotelfx.persistence.model.TblSystemRole" fetch="select">
+            <column name="IDRole" />
+        </many-to-one>
+        <property name="createData" type="java.lang.Boolean">
+            <column name="CreateData" />
+        </property>
+        <property name="updateData" type="java.lang.Boolean">
+            <column name="UpdateData" />
+        </property>
+        <property name="approveData" type="java.lang.Boolean">
+            <column name="ApproveData" />
+        </property>
+        <property name="deleteData" type="java.lang.Boolean">
+            <column name="DeleteData" />
+        </property>
+        <property name="printData" type="java.lang.Boolean">
+            <column name="PrintData" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+    </class>
+    <sql-query name="deleteAllTblSystemRoleSystemFeatureByIdRole" callable="true">
+        <return-scalar column="err_msg" type="string"/>
+        <![CDATA[{CALL DeleteAllSystemRoleSystemFeatureByIdRole(:idRole, :idEmployee)}]]>
+    </sql-query>
+    <query name="findAllTblSystemRoleSystemFeature">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblSystemRoleSystemFeature t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <sql-query name="updateDataRoleFeatureParent" callable="true">
+       <return-scalar column="err_msg" type="string"/>
+       <![CDATA[{CALL UpdateDataRoleFeature(:idRole,:idFeature,:idFeatureParent,:idEmployee)}]]>
+    </sql-query>
+    <query name="findAllTblSystemRoleSystemFeatureByIdRole">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblSystemRoleSystemFeature t where t.tblSystemRole.idrole=:idRole and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblSystemRoleSystemFeatureByIdRoleOrderByIdFeature">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblSystemRoleSystemFeature t where t.tblSystemRole.idrole=:idRole and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3) order by IDFeature]]>
+    </query>
+</hibernate-mapping>

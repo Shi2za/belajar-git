@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="EmployeeScheduleDetail" pageWidth="595" pageHeight="842" columnWidth="575" leftMargin="0" rightMargin="20" topMargin="0" bottomMargin="0" uuid="b8e85a9f-3129-46df-bad5-a594ca4dfc8f">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DBHotel"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.unit." value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageHeight" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.pageWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.topMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.bottomMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.leftMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.rightMargin" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnWidth" value="pixel"/>
+	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="ScheduleDataset" uuid="5bfed0cc-e727-4293-b749-7b8d2a787754">
+		<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+		<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DBHotel"/>
+		<queryString language="SQL">
+			<![CDATA[select sc.CalendarDate,tes.ScheduleName+' '+convert(varchar(5),tes.BeginTime)+'-'+convert(varchar(5),tes.EndTime) as schedule,tes.IDSchedule
+	from sysCalendar sc
+	left join tblCalendar_EmployeeSchedule tc_es on tc_es.IDCalendar = sc.IDCalendar
+	left join tblEmployeeSchedule tes on tes.IDSchedule = tc_es.IDSchedule
+	where sc.CalendarDate between '2018-05-01' and '2018-05-12']]>
+		</queryString>
+		<field name="CalendarDate" class="java.lang.String"/>
+		<field name="schedule" class="java.lang.String"/>
+		<field name="IDSchedule" class="java.lang.Long"/>
+		<group name="CalendarDate">
+			<groupExpression><![CDATA[$F{CalendarDate}]]></groupExpression>
+		</group>
+		<group name="IDSchedule">
+			<groupExpression><![CDATA[$F{IDSchedule}]]></groupExpression>
+		</group>
+	</subDataset>
+	<parameter name="dateSchedule" class="java.util.Date"/>
+	<parameter name="tipeEmployee" class="java.lang.Integer"/>
+	<queryString language="plsql">
+		<![CDATA[{call EmployeeScheduleDetail($P{dateSchedule},$P{tipeEmployee})}]]>
+	</queryString>
+	<field name="codeEmployee" class="java.lang.String"/>
+	<field name="nameEmployee" class="java.lang.String"/>
+	<field name="employeeType" class="java.lang.String"/>
+	<field name="employeeJob" class="java.lang.String"/>
+	<field name="schedule" class="java.lang.String"/>
+	<group name="Schedule" isReprintHeaderOnEachPage="true">
+		<groupExpression><![CDATA[$F{schedule}]]></groupExpression>
+		<groupHeader>
+			<band height="40" splitType="Stretch">
+				<textField>
+					<reportElement x="0" y="0" width="430" height="20" isPrintWhenDetailOverflows="true" uuid="4b920fd9-c34e-4700-804c-f22120449205"/>
+					<box>
+						<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{schedule}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="110" y="20" width="70" height="20" uuid="6d37eafe-b973-4569-9ef7-a6510e2d7467"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[ID Karyawan]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="180" y="20" width="130" height="20" uuid="aa6c99c2-cc67-4627-9222-0181b9e0117a">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Nama Karyawan]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="0" y="20" width="110" height="20" uuid="df999108-667a-4f98-8f0a-78102e51ebb5">
+						<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+					</reportElement>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Tipe Karyawan]]></text>
+				</staticText>
+				<staticText>
+					<reportElement positionType="FixRelativeToBottom" x="310" y="20" width="120" height="20" uuid="695686fa-1efd-42d2-9107-a2efbb2f024f"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+						<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font size="9" isBold="true" pdfFontName="Helvetica-Bold"/>
+					</textElement>
+					<text><![CDATA[Jabatan]]></text>
+				</staticText>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="30" splitType="Stretch">
+			<property name="com.jaspersoft.studio.layout" value="com.jaspersoft.studio.editor.layout.FreeLayout"/>
+			<textField>
+				<reportElement x="110" y="0" width="70" height="30" uuid="bacfcafe-1997-45dd-9d3c-e3b684d990af"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codeEmployee}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="110" height="30" uuid="b8237eb4-8699-4595-afc1-5502b804870d"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{employeeType}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="310" y="0" width="120" height="30" uuid="73152907-2a05-4199-b310-c5df553d4a40"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{employeeJob}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="180" y="0" width="130" height="30" uuid="9799b71d-e6d5-4608-9af5-ac277195b764"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nameEmployee}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

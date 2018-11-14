@@ -1,0 +1,90 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Nov 10, 2018 10:51:26 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblPropertyBarcode" table="tblPropertyBarcode" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idbarcode" type="long">
+            <column name="IDBarcode" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblFixedTangibleAsset" class="hotelfx.persistence.model.TblFixedTangibleAsset" fetch="select">
+            <column name="IDAsset" />
+        </many-to-one>
+        <many-to-one name="tblItem" class="hotelfx.persistence.model.TblItem" fetch="select">
+            <column name="IDItem" />
+        </many-to-one>
+        <property name="codeBarcode" type="string">
+            <column name="CodeBarcode" length="50" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblStockOpnameDetailPropertyBarcodes" table="tblStockOpnameDetail_PropertyBarcode" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPropertyBarcode" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblStockOpnameDetailPropertyBarcode" />
+        </set>
+        <set name="tblItemLocationPropertyBarcodes" table="tblItem_Location_PropertyBarcode" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPropertyBarcode" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblItemLocationPropertyBarcode" />
+        </set>
+        <set name="tblReservationBrokenItemPropertyBarcodes" table="tblReservationBrokenItem_PropertyBarcode" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPropertyBarcode" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReservationBrokenItemPropertyBarcode" />
+        </set>
+        <set name="tblStockOpnameDetails" table="tblStockOpnameDetail" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPropertyBarcode" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblStockOpnameDetail" />
+        </set>
+        <set name="tblItemMutationHistoryPropertyBarcodes" table="tblItemMutationHistory_PropertyBarcode" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPropertyBarcode" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblItemMutationHistoryPropertyBarcode" />
+        </set>
+        <set name="tblReturDetailPropertyBarcodes" table="tblReturDetail_PropertyBarcode" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPropertyBarcode" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblReturDetailPropertyBarcode" />
+        </set>
+        <set name="tblMemorandumInvoiceDetailPropertyBarcodes" table="tblMemorandumInvoiceDetail_PropertyBarcode" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPropertyBarcode" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblMemorandumInvoiceDetailPropertyBarcode" />
+        </set>
+    </class>
+    <query name="findAllTblPropertyBarcodeByIdItem">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblPropertyBarcode pb where pb.tblItem.iditem=:id and (pb.refRecordStatus.idstatus=1 or pb.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblPropertyBarcodeByCodeBarcode">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblPropertyBarcode pb where pb.codeBarcode=:codeBarcode and (pb.refRecordStatus.idstatus=1 or pb.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblPropertyBarcode">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblPropertyBarcode t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

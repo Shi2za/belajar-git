@@ -1,0 +1,9 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+@import "../feature_purchase_order.css";
+
+.label-pr-status{
+    -fx-text-fill: red;
+}

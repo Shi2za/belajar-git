@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Aug 21, 2017 1:49:37 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblEmployeeEmployeePayroll" table="tblEmployee_EmployeePayroll" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idrelation" type="long">
+            <column name="IDRelation" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByIdemployee" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="IDEmployee" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeePayroll" class="hotelfx.persistence.model.TblEmployeePayroll" fetch="select">
+            <column name="IDPayroll" />
+        </many-to-one>
+        <property name="basicSalary" type="java.lang.Long">
+            <column name="BasicSalary" precision="18" scale="0" />
+        </property>
+        <property name="basicAllowance" type="java.lang.Long">
+            <column name="BasicAllowance" precision="18" scale="0" />
+        </property>
+        <property name="overtimeGet" type="java.lang.Long">
+            <column name="OvertimeGet" precision="18" scale="0" />
+        </property>
+        <property name="anotherAllowance" type="java.lang.Long">
+            <column name="AnotherAllowance" precision="18" scale="0" />
+        </property>
+        <property name="allowanceNote" type="string">
+            <column name="AllowanceNote" length="1000" />
+        </property>
+        <property name="monthlyPayment" type="java.lang.Long">
+            <column name="MonthlyPayment" precision="18" scale="0" />
+        </property>
+        <property name="absentCut" type="java.lang.Long">
+            <column name="AbsentCut" precision="18" scale="0" />
+        </property>
+        <property name="lateCut" type="java.lang.Long">
+            <column name="LateCut" precision="18" scale="0" />
+        </property>
+        <property name="taxPayment" type="java.lang.Long">
+            <column name="TaxPayment" precision="18" scale="0" />
+        </property>
+        <property name="insurancePayment" type="java.lang.Long">
+            <column name="InsurancePayment" precision="18" scale="0" />
+        </property>
+        <property name="anotherPayment" type="java.lang.Long">
+            <column name="AnotherPayment" precision="18" scale="0" />
+        </property>
+        <property name="paymentNote" type="string">
+            <column name="PaymentNote" />
+        </property>
+        <property name="absentCount" type="java.lang.Integer">
+            <column name="AbsentCount" />
+        </property>
+        <property name="leaveCount" type="java.lang.Integer">
+            <column name="LeaveCount" />
+        </property>
+        <property name="overtimeCount" type="java.lang.Integer">
+            <column name="OvertimeCount" />
+        </property>
+        <property name="regularCount" type="java.lang.Integer">
+            <column name="RegularCount" />
+        </property>
+        <property name="lateCount" type="java.lang.Integer">
+            <column name="LateCount" />
+        </property>
+        <property name="bankAccount" type="string">
+            <column name="BankAccount" length="25" />
+        </property>
+        <property name="detailNote" type="string">
+            <column name="DetailNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+    </class>
+    <query name="findAllTblEmployeeEmployeePayroll">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblEmployeeEmployeePayroll t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

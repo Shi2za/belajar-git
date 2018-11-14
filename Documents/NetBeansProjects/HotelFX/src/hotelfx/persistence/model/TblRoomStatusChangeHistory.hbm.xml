@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 23, 2018 10:25:30 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblRoomStatusChangeHistory" table="tblRoomStatusChangeHistory" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idchangeRoomStatus" type="long">
+            <column name="IDChangeRoomStatus" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="refRoomStatusByRoomStatusOld" class="hotelfx.persistence.model.RefRoomStatus" fetch="select">
+            <column name="_RoomStatusOld" />
+        </many-to-one>
+        <many-to-one name="refRoomStatusByRoomStatusNew" class="hotelfx.persistence.model.RefRoomStatus" fetch="select">
+            <column name="_RoomStatusNew" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByIdemployee" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="IDEmployee" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblRoom" class="hotelfx.persistence.model.TblRoom" fetch="select">
+            <column name="IDRoom" />
+        </many-to-one>
+        <many-to-one name="tblRoomStatusDetail" class="hotelfx.persistence.model.TblRoomStatusDetail" fetch="select">
+            <column name="IDRoomStatusDetail" />
+        </many-to-one>
+        <property name="changeRoomStatusDate" type="timestamp">
+            <column name="ChangeRoomStatusDate" length="23" />
+        </property>
+        <property name="changeRoomStatusNote" type="string">
+            <column name="ChangeRoomStatusNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblRoomChecks" table="tblRoomCheck" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDChangeRoomStatus" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblRoomCheck" />
+        </set>
+    </class>
+    <query name="findAllTblRoomStatusChangeHistory">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblRoomStatusChangeHistory t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

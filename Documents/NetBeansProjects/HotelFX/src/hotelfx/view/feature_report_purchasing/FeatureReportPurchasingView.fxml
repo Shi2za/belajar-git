@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" stylesheets="@feature_report_purchasing.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hotelfx.view.feature_report_purchasing.FeatureReportPurchasingController">
+   <children>
+      <BorderPane prefHeight="200.0" prefWidth="200.0" styleClass="border-pane" AnchorPane.bottomAnchor="10.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+         <left>
+            <VBox maxWidth="170.0" minWidth="170.0" prefWidth="170.0" BorderPane.alignment="CENTER">
+               <children>
+                  <AnchorPane fx:id="btnShowReportPurchasingLayout" maxHeight="75.0" maxWidth="170.0" minHeight="75.0" minWidth="170.0" prefHeight="75.0" prefWidth="170.0" styleClass="selected-layout">
+                     <children>
+                        <JFXButton fx:id="btnShowReportPurchasing" layoutX="27.0" layoutY="37.0" text="Laporan Pembelian Barang" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="btnShowReportReceivingPOLayout" maxHeight="75.0" maxWidth="170.0" minHeight="75.0" minWidth="170.0" prefHeight="75.0" prefWidth="170.0" styleClass="selected-layout">
+                     <children>
+                        <JFXButton fx:id="btnShowReportReceivingPO" layoutX="27.0" layoutY="37.0" text="Laporan Penerimaan PO" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="btnShowReportReceivingLayout" maxHeight="75.0" maxWidth="170.0" minHeight="75.0" minWidth="170.0" prefHeight="75.0" prefWidth="170.0" styleClass="selected-layout">
+                     <children>
+                        <JFXButton fx:id="btnShowReportReceiving" layoutX="27.0" layoutY="37.0" text="Laporan Terima Barang" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane fx:id="btnShowReportReturLayout" maxHeight="75.0" maxWidth="170.0" minHeight="75.0" minWidth="170.0" prefHeight="75.0" prefWidth="170.0" styleClass="selected-layout">
+                     <children>
+                        <JFXButton fx:id="btnShowReportRetur" layoutX="27.0" layoutY="37.0" text="Laporan Retur Barang" AnchorPane.bottomAnchor="16.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0" />
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+         </left>
+         <center>
+            <AnchorPane fx:id="subFeatureContent" prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

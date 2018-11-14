@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXCheckBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<AnchorPane id="AnchorPane" minHeight="-Infinity" minWidth="-Infinity" styleClass="anchor-pane" stylesheets="@report_reservation.css" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="570.0" minWidth="1020.0" prefHeight="570.0" prefWidth="1020.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <AnchorPane prefHeight="132.0" prefWidth="1055.0" BorderPane.alignment="CENTER">
+               <children>
+                  <GridPane hgap="15.0" layoutX="14.0" layoutY="5.0" vgap="10.0" AnchorPane.bottomAnchor="15.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="15.0">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="130.0" minWidth="130.0" prefWidth="130.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="30.0" minWidth="30.0" prefWidth="30.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="150.0" prefWidth="150.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="100.0" minWidth="100.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="140.0" minWidth="140.0" prefWidth="140.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" maxWidth="10.0" minWidth="10.0" prefWidth="10.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints maxHeight="0.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                      <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="30.0" minHeight="30.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label alignment="CENTER" prefHeight="30.0" prefWidth="144.0" text="Periode Reservasi" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <JFXDatePicker fx:id="dpPeriodeStart" labelFloat="true" promptText="Awal Periode " GridPane.columnIndex="2" GridPane.rowIndex="1" />
+                        <Label alignment="CENTER" prefHeight="39.0" prefWidth="50.0" text="s / d" GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <JFXDatePicker fx:id="dpPeriodeEnd" labelFloat="true" promptText="Akhir Periode" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="2">
+                           <children>
+                              <JFXCheckBox fx:id="chbCodeReservation" prefHeight="30.0" prefWidth="127.0" text="No. Reservasi" />
+                              <AnchorPane fx:id="ancReservationCode" prefHeight="30.0" prefWidth="171.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.columnSpan="2" GridPane.rowIndex="3">
+                           <children>
+                              <JFXCheckBox fx:id="chbTypeReservation" prefHeight="30.0" prefWidth="135.0" text="Tipe Reservasi" />
+                              <AnchorPane fx:id="ancReservationType" prefHeight="30.0" prefWidth="179.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="2">
+                           <children>
+                              <JFXCheckBox fx:id="chbStatusReservation" prefHeight="30.0" prefWidth="143.0" text="Status Reservasi" />
+                              <AnchorPane fx:id="ancReservationStatus" prefHeight="30.0" prefWidth="182.0" />
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.columnIndex="3" GridPane.columnSpan="3" GridPane.rowIndex="3">
+                           <children>
+                              <JFXCheckBox fx:id="chbTravelAgent" prefHeight="30.0" prefWidth="139.0" text="Travel Agent" />
+                              <AnchorPane fx:id="ancReservationTravelAgent" prefHeight="30.0" prefWidth="173.0" />
+                           </children>
+                        </HBox>
+                        <AnchorPane prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.rowIndex="2">
+                           <children>
+                              <JFXButton fx:id="btnShowPrint" layoutX="14.0" layoutY="4.0" prefHeight="25.0" prefWidth="79.0" text="Tampilkan" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.topAnchor="5.0" />
+                           </children>
+                        </AnchorPane>
+                     </children>
+                  </GridPane>
+               </children>
+            </AnchorPane>
+         </top>
+         <center>
+            <AnchorPane fx:id="ancReportReservation" prefHeight="200.0" prefWidth="200.0" styleClass="anchor-pane" BorderPane.alignment="CENTER" />
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

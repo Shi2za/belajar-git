@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 18, 2018 3:25:53 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblReservationAdditionalItemReserved" table="tblReservationAdditionalItem_Reserved" schema="dbo" catalog="Hotel"
+    optimistic-lock="version">
+        <id name="idrair" type="long">
+            <column name="IDRAIR" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="refReservationAdditionalItemReservedStatus" class="hotelfx.persistence.model.RefReservationAdditionalItemReservedStatus" fetch="select">
+            <column name="_RAIRStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblItem" class="hotelfx.persistence.model.TblItem" fetch="select">
+            <column name="IDItem" />
+        </many-to-one>
+        <many-to-one name="tblReservationRoomTypeDetail" class="hotelfx.persistence.model.TblReservationRoomTypeDetail" fetch="select">
+            <column name="IDRRTD" />
+        </many-to-one>
+        <property name="reservedDate" type="date">
+            <column name="ReservedDate" />
+        </property>
+        <property name="reservedQuantity" type="big_decimal">
+            <column name="ReservedQuantity" precision="10" scale="4" />
+        </property>
+        <property name="inUsedQuantity" type="big_decimal">
+            <column name="InUsedQuantity" precision="10" scale="4" />
+        </property>
+        <property name="doneQuantity" type="big_decimal">
+            <column name="DoneQuantity" precision="10" scale="4" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+    </class>
+    <sql-query name="deleteAllTblReservationAdditionalItemReservedByIDRoomTypeDetail" callable="true">
+        <return-scalar column="err_msg" type="string"/>
+        <![CDATA[{CALL DeleteAllReservationAdditionalItemReservedByIDRoomTypeDetail(:idRoomTypeDetail, :idEmployee)}]]>
+    </sql-query>
+    <sql-query name="deleteAllTblReservationAdditionalItemReservedByIDRoomTypeDetailAndReservedDateAfter" callable="true">
+        <return-scalar column="err_msg" type="string"/>
+        <![CDATA[{CALL DeleteAllReservationAdditionalItemReservedByIDRoomTypeDetailAndAdditionalDateAfter(:idRoomTypeDetail, :reservedDate, :idEmployee)}]]>
+    </sql-query>
+    <query name="findAllTblReservationAdditionalItemReservedByIDItemAndReservedDateAndIDRAIRStatus">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationAdditionalItemReserved t where t.tblItem.iditem=:idItem and t.reservedDate=:reservedDate and t.refReservationAdditionalItemReservedStatus.idstatus=:idRAIRStatus and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblReservationAdditionalItemReservedByIDItemAndIDRAIRStatus">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationAdditionalItemReserved t where t.tblItem.iditem=:idItem and t.refReservationAdditionalItemReservedStatus.idstatus=:idRAIRStatus and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblReservationAdditionalItemReservedByIDItemAndReservedDateInRangedAndIDRAIRStatus">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationAdditionalItemReserved t where t.tblItem.iditem=:idItem and (t.reservedDate >=:startReservedDate and t.reservedDate<=:endReservedDate) and t.refReservationAdditionalItemReservedStatus.idstatus=:idRAIRStatus and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblReservationAdditionalItemReservedByIDItemAndReservedDateInAfterAndIDRAIRStatus">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationAdditionalItemReserved t where t.tblItem.iditem=:idItem and t.reservedDate >=:reservedDate and t.refReservationAdditionalItemReservedStatus.idstatus=:idRAIRStatus and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblReservationAdditionalItemReservedByIDReservationRoomTypeDetail">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationAdditionalItemReserved t where t.tblReservationRoomTypeDetail.iddetail=:idRRTD and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblReservationAdditionalItemReservedByIDReservationRoomTypeDetailAndIDItemAndReservedDate">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationAdditionalItemReserved t where t.tblReservationRoomTypeDetail.iddetail=:idRRTD and t.tblItem.iditem=:idItem and t.reservedDate=:reservedDate and (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+    <query name="findAllTblReservationAdditionalItemReservedByIDReservationRoomTypeDetailAndIDItemAndReservedDateAndByIDRecordStatus">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationAdditionalItemReserved t where t.tblReservationRoomTypeDetail.iddetail=:idRRTD and t.tblItem.iditem=:idItem and t.reservedDate=:reservedDate and t.refRecordStatus.idstatus=:idRecordStatus]]>
+    </query>
+    <query name="findAllTblReservationAdditionalItemReserved">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblReservationAdditionalItemReserved t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

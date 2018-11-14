@@ -1,0 +1,70 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated May 14, 2018 4:23:30 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="hotelfx.persistence.model.TblFixedTangibleAsset" table="tblFixedTangibleAsset" schema="dbo" catalog="Hotel" optimistic-lock="version">
+        <id name="idasset" type="long">
+            <column name="IDAsset" />
+            <generator class="identity" />
+        </id>
+        <many-to-one name="refFixedTangibleAssetDepreciationStatus" class="hotelfx.persistence.model.RefFixedTangibleAssetDepreciationStatus" fetch="select">
+            <column name="_DepreciationStatus" />
+        </many-to-one>
+        <many-to-one name="refFixedTangibleAssetType" class="hotelfx.persistence.model.RefFixedTangibleAssetType" fetch="select">
+            <column name="_AssetType" />
+        </many-to-one>
+        <many-to-one name="refRecordStatus" class="hotelfx.persistence.model.RefRecordStatus" fetch="select">
+            <column name="_RecordStatus" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByLastUpdateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="LastUpdateBy" />
+        </many-to-one>
+        <many-to-one name="tblEmployeeByCreateBy" class="hotelfx.persistence.model.TblEmployee" fetch="select">
+            <column name="CreateBy" />
+        </many-to-one>
+        <property name="codeAsset" type="string">
+            <column name="CodeAsset" length="50" />
+        </property>
+        <property name="assetName" type="string">
+            <column name="AssetName" length="100" />
+        </property>
+        <property name="beginDate" type="timestamp">
+            <column name="BeginDate" length="23" />
+        </property>
+        <property name="beginValue" type="big_decimal">
+            <column name="BeginValue" precision="18" scale="4" />
+        </property>
+        <property name="currentValue" type="big_decimal">
+            <column name="CurrentValue" precision="18" scale="4" />
+        </property>
+        <property name="economicLife" type="big_decimal">
+            <column name="EconomicLife" precision="10" scale="4" />
+        </property>
+        <property name="assetNote" type="string">
+            <column name="AssetNote" />
+        </property>
+        <property name="createDate" type="timestamp">
+            <column name="CreateDate" length="23" />
+        </property>
+        <property name="lastUpdateDate" type="timestamp">
+            <column name="LastUpdateDate" length="23" />
+        </property>
+        <set name="tblFixedTangibleAssetLocations" table="tblFixedTangibleAsset_Location" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDAsset" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblFixedTangibleAssetLocation" />
+        </set>
+        <set name="tblPropertyBarcodes" table="tblPropertyBarcode" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDAsset" />
+            </key>
+            <one-to-many class="hotelfx.persistence.model.TblPropertyBarcode" />
+        </set>
+    </class>
+    <query name="findAllTblFixedTangibleAsset">
+        <!--<![CDATA[CALL GetStocks(:stockCode)]]>-->
+        <![CDATA[from TblFixedTangibleAsset t where (t.refRecordStatus.idstatus=1 or t.refRecordStatus.idstatus=3)]]>
+    </query>
+</hibernate-mapping>

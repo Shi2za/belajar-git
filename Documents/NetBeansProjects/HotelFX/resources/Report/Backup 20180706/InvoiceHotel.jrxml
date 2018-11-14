@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="InvoiceHotel" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="61163183-0512-4b95-9f15-b83fcc7c8a28">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DBHotel"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="idInvoice" class="java.lang.Long"/>
+	<parameter name="logoImage" class="java.lang.String"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["E:\\Data 20180411\\HotelFX\\resources\\Report\\"]]></defaultValueExpression>
+	</parameter>
+	<queryString language="plsql">
+		<![CDATA[{call InvoicePrintHeader($P{idInvoice},0)}]]>
+	</queryString>
+	<field name="title" class="java.lang.String"/>
+	<field name="codeInvoice" class="java.lang.String"/>
+	<field name="invoiceDate" class="java.sql.Date"/>
+	<field name="dueDate" class="java.sql.Date"/>
+	<field name="balanceDue" class="java.math.BigDecimal"/>
+	<field name="subjectInvoice" class="java.lang.String"/>
+	<field name="terms" class="java.lang.String"/>
+	<group name="DetailInvoice">
+		<groupHeader>
+			<band height="50">
+				<subreport>
+					<reportElement x="-20" y="0" width="594" height="50" uuid="5b7a025c-c623-4eef-83be-7a1163296445"/>
+					<subreportParameter name="idInvoice">
+						<subreportParameterExpression><![CDATA[$P{idInvoice}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="SUBREPORT_DIR">
+						<subreportParameterExpression><![CDATA[$P{SUBREPORT_DIR}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "InvoiceHotelDetail.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="201" splitType="Stretch">
+			<textField pattern="">
+				<reportElement x="415" y="0" width="140" height="30" uuid="550c41fa-820a-4d44-aafd-dcea6da58aa2"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("EEEE,dd MMMM yyyy",new java.util.Locale("en")).format(new Date())]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="90" width="200" height="20" uuid="deeab96f-23b3-4335-90d4-32298776133f">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA["INVOICE # "+$F{codeInvoice}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="110" width="200" height="20" uuid="e306b51d-5f87-401e-9144-4a136641e0cb">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Terms]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="307" y="90" width="71" height="20" uuid="32781073-25ee-442c-a05e-e0837fb8ac04"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Invoice Code]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="307" y="110" width="71" height="20" uuid="ffe2ce62-4c09-46a1-a0c4-980f96cb6ac1">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Invoice Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="307" y="130" width="71" height="20" uuid="c54c5dd7-3296-467e-a2bd-21fe92e9b549">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Due Date]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="307" y="150" width="71" height="20" uuid="c5c88f82-83e2-4195-ae5e-28a8c4d8cb97">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Balance Due]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="307" y="170" width="71" height="31" uuid="146b0c06-b8da-4a04-8793-6a37f8c60942">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Top">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Subject]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="378" y="90" width="10" height="20" uuid="ea991dac-13fe-406e-b69c-74560c20e8cf"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="378" y="110" width="10" height="20" uuid="f68d80e1-9eb4-49e4-8f17-65e421396395"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="378" y="130" width="10" height="20" uuid="4b616214-c8d6-4119-a308-f3b5ae3bdcec"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="378" y="150" width="10" height="20" uuid="dd7b0371-a863-41b3-a91f-952b69ec88ec"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="378" y="170" width="10" height="31" uuid="448bdfbd-f2db-4b26-8f1c-5222373dc746"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="388" y="90" width="167" height="20" uuid="83c1e092-ebe9-45e0-a28e-35bea669d54a"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[$F{codeInvoice}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="388" y="110" width="167" height="20" uuid="c77a9806-8bf4-48e7-a171-349914c67797"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd MMM yyyy").format($F{invoiceDate})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="388" y="130" width="167" height="20" uuid="68a502e2-c23e-4e47-a2fe-4f4ff9b50ba8"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA[new SimpleDateFormat("dd MMM yyyy").format($F{dueDate})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="388" y="150" width="167" height="20" uuid="f57162f6-0a4c-4d80-ae3d-a070711c572b"/>
+				<textElement verticalAlignment="Middle"/>
+				<textFieldExpression><![CDATA["Rp. "+new DecimalFormat("#,###.##").format($F{balanceDue})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="388" y="170" width="167" height="31" uuid="79f9f6cd-c5ab-4adf-a005-8a41897d6ee1"/>
+				<textElement verticalAlignment="Top"/>
+				<textFieldExpression><![CDATA[$F{subjectInvoice}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="0" width="320" height="20" uuid="657ef222-9262-41b7-9edb-2009002e3c94"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{title}]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="11" y="0" width="79" height="80" uuid="4cf04617-e548-4609-8fe5-cb9043b7dea3"/>
+				<imageExpression><![CDATA[$P{logoImage}]]></imageExpression>
+			</image>
+			<subreport>
+				<reportElement x="90" y="20" width="320" height="60" uuid="1b72e31b-f80f-4f43-a21b-8326e05e83d6"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "PrintHotelHeader.jasper"]]></subreportExpression>
+			</subreport>
+			<rectangle>
+				<reportElement x="0" y="130" width="200" height="70" uuid="884e034b-6797-4c35-a2b3-144343c1a4ad"/>
+			</rectangle>
+			<textField>
+				<reportElement x="11" y="140" width="177" height="48" uuid="4e08bdc7-4fd8-4872-8654-7f55a06d1132"/>
+				<textFieldExpression><![CDATA[$F{terms}==null ? "" : $F{terms}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageFooter>
+		<band height="20">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField>
+				<reportElement x="350" y="0" width="100" height="20" uuid="54fe6176-ef3e-46f5-8024-f45dd43db069">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Right">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Page " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="450" y="0" width="100" height="20" uuid="cd71aa0e-53fe-4e84-9139-edfbbf53973d">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left">
+					<font size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" / " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="100">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,455 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="KuitansiHotel" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="932d1273-2241-4ae2-8045-e53fdf14c681">
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="DBHotel"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="193"/>
+	<parameter name="idReservation" class="java.lang.Long"/>
+	<parameter name="billType" class="java.lang.Integer"/>
+	<parameter name="idLanguage" class="java.lang.Integer"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["E:\\Data 20180511\\HotelFX\\resources\\Report\\"]]></defaultValueExpression>
+	</parameter>
+	<parameter name="logoImage" class="java.lang.String"/>
+	<queryString language="plsql">
+		<![CDATA[{call ReservationReceiptPrintHeader($P{idReservation},$P{billType},0,$P{idLanguage})}]]>
+	</queryString>
+	<field name="nameReceipt" class="java.lang.String"/>
+	<field name="codeReservation" class="java.lang.String"/>
+	<field name="nameCustomer" class="java.lang.String"/>
+	<field name="addressCustomer" class="java.lang.String"/>
+	<field name="countryCustomer" class="java.lang.String"/>
+	<field name="phoneCustomer" class="java.lang.String"/>
+	<field name="emailCustomer" class="java.lang.String"/>
+	<field name="totalBill" class="java.math.BigDecimal"/>
+	<field name="totalPayment" class="java.math.BigDecimal"/>
+	<variable name="totalChangeDue" class="java.lang.Double">
+		<variableExpression><![CDATA[$F{totalPayment}.doubleValue()-$F{totalBill}.doubleValue()]]></variableExpression>
+	</variable>
+	<group name="Cash">
+		<groupHeader>
+			<band height="20">
+				<subreport>
+					<reportElement x="110" y="0" width="466" height="20" uuid="687133e3-7cba-4773-aa39-0f560da9fd0d"/>
+					<subreportParameter name="idReservation"/>
+					<subreportParameter name="billType"/>
+					<subreportParameter name="idLanguage"/>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "KuitansiHotelDetailCash.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="Debit">
+		<groupHeader>
+			<band height="20">
+				<subreport>
+					<reportElement x="110" y="0" width="466" height="20" uuid="e19b890f-80b0-4573-9db4-5dd675015c37"/>
+					<subreportParameter name="idReservation"/>
+					<subreportParameter name="billType"/>
+					<subreportParameter name="idLanguage"/>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "KuitansiHotelDetailDebit.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="Credit">
+		<groupHeader>
+			<band height="20">
+				<subreport>
+					<reportElement x="110" y="0" width="466" height="20" uuid="bb162837-81e6-481f-bd9a-6af8a5dff3d4"/>
+					<subreportParameter name="idReservation"/>
+					<subreportParameter name="billType"/>
+					<subreportParameter name="idLanguage"/>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "KuitansiHotelDetailCredit.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="Cek">
+		<groupHeader>
+			<band height="20">
+				<subreport>
+					<reportElement x="110" y="0" width="466" height="20" uuid="df3a9343-30f4-4077-9fb9-964ffc8ebb90"/>
+					<subreportParameter name="idReservation"/>
+					<subreportParameter name="billType"/>
+					<subreportParameter name="idLanguage"/>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "KuitansiHotelDetailCek.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="Giro">
+		<groupHeader>
+			<band height="20">
+				<subreport>
+					<reportElement x="110" y="0" width="466" height="20" uuid="69ea9118-4e95-4f83-8da9-516ec76769b9"/>
+					<subreportParameter name="idReservation"/>
+					<subreportParameter name="billType"/>
+					<subreportParameter name="idLanguage"/>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "KuitansiHotelDetailGiro.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="TravelAgen">
+		<groupHeader>
+			<band height="20">
+				<subreport>
+					<reportElement x="110" y="0" width="466" height="20" uuid="112fb02d-fe78-41e9-aef2-4249d7c5e2b2"/>
+					<subreportParameter name="idReservation"/>
+					<subreportParameter name="billType"/>
+					<subreportParameter name="idLanguage"/>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "KuitansiHotelDetailTravelAgent.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="GuaranteedLetter(Coorporate)">
+		<groupHeader>
+			<band height="20">
+				<subreport>
+					<reportElement x="110" y="0" width="440" height="20" isRemoveLineWhenBlank="true" uuid="43f260c2-374c-4cf1-a77c-8d21f5bd1463"/>
+					<subreportParameter name="idReservation">
+						<subreportParameterExpression><![CDATA[$P{idReservation}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="billType">
+						<subreportParameterExpression><![CDATA[$P{billType}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="idLanguage">
+						<subreportParameterExpression><![CDATA[$P{idLanguage}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA["KuitansiHotel/KuitansiHotelDetailGuaranteedCorporate.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="GuaranteedLetter(Goverment)">
+		<groupHeader>
+			<band height="20">
+				<subreport>
+					<reportElement x="110" y="0" width="440" height="20" isRemoveLineWhenBlank="true" uuid="b3b85380-b026-44d4-9d4d-485ba7fa6baf"/>
+					<subreportParameter name="idReservation">
+						<subreportParameterExpression><![CDATA[$P{idReservation}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="billType">
+						<subreportParameterExpression><![CDATA[$P{billType}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="idLanguage">
+						<subreportParameterExpression><![CDATA[$P{idLanguage}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA["KuitansiHotel/KuitansiHotelDetailGuaranteedGoverment.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="Voucher">
+		<groupHeader>
+			<band height="20">
+				<subreport>
+					<reportElement x="110" y="0" width="440" height="20" isRemoveLineWhenBlank="true" uuid="41de9219-b5b5-4c33-9d78-b15072565956"/>
+					<subreportParameter name="idReservation">
+						<subreportParameterExpression><![CDATA[$P{idReservation}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="billType">
+						<subreportParameterExpression><![CDATA[$P{billType}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="idLanguage">
+						<subreportParameterExpression><![CDATA[$P{idLanguage}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA["KuitansiHotel/KuitansiHotelDetailVoucher.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<group name="Transfer">
+		<groupHeader>
+			<band height="20">
+				<subreport>
+					<reportElement x="110" y="0" width="440" height="20" isRemoveLineWhenBlank="true" uuid="f8998320-2146-421a-8b94-3f4d033de6df"/>
+					<subreportParameter name="idReservation">
+						<subreportParameterExpression><![CDATA[$P{idReservation}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="billType">
+						<subreportParameterExpression><![CDATA[$P{billType}]]></subreportParameterExpression>
+					</subreportParameter>
+					<subreportParameter name="idLanguage">
+						<subreportParameterExpression><![CDATA[$P{idLanguage}]]></subreportParameterExpression>
+					</subreportParameter>
+					<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+					<subreportExpression><![CDATA["KuitansiHotel/KuitansiHotelDetailTransfer.jasper"]]></subreportExpression>
+				</subreport>
+			</band>
+		</groupHeader>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="280" splitType="Stretch">
+			<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+			<textField pattern="">
+				<reportElement x="410" y="0" width="140" height="30" uuid="debad63a-2cc4-4e85-8848-c826305eb96d"/>
+				<textElement>
+					<font fontName="SansSerif"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{idLanguage}==0 ? new SimpleDateFormat("EEEE,dd MMMM yyyy",new java.util.Locale("en")).format(new Date()) :
+new SimpleDateFormat("EEEE,dd MMMM yyyy",new java.util.Locale("id")).format(new Date())]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="208" width="100" height="20" uuid="b7f81623-3aa3-4d92-8b54-e4c07849b226">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[Email]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="100" width="10" height="20" uuid="fe184190-27a2-4428-bc36-67d3aa36f465"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="120" width="10" height="20" uuid="75ada34f-6d7b-4301-99fd-25de731a698c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="140" width="10" height="28" uuid="aad8aa3b-bf16-40ff-9ed8-6b39d54c0811">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="188" width="10" height="20" uuid="4304ec98-6e42-4efd-b733-c8269fa60d1f">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="208" width="10" height="20" uuid="8a11d5a1-9771-47df-8925-d096de0d6e95"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="110" y="100" width="440" height="20" uuid="ad11592c-fed9-4049-ad3a-576f180ca245">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{codeReservation}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="110" y="120" width="440" height="20" uuid="beeb0539-ffa5-409d-9f47-cf9e0c07e32c"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nameCustomer}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="110" y="140" width="440" height="28" uuid="ba1db41d-5a1e-4368-90ab-1b3406767445">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Top">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{addressCustomer}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="110" y="188" width="440" height="20" uuid="63edca9d-e2fe-4159-8b29-1de370a92e2b"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{phoneCustomer}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="110" y="208" width="440" height="20" uuid="86533931-d1af-449a-a473-0f57b6d054c2"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{emailCustomer}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="110" y="240" width="440" height="20" uuid="50a45a31-644c-4ee5-9cef-96bb7db421f6">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{totalBill}==null?"Rp. 0":"Rp. "+new java.text.DecimalFormat("#,###").format($F{totalBill})]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="100" y="240" width="10" height="20" uuid="d8bf6de5-05df-43de-b717-820bb39621a1"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="260" width="10" height="20" uuid="b06ab006-a1fe-4df4-bb27-af9e24dc16b7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="168" width="10" height="20" uuid="48f3a7ee-b74a-42ee-a2bf-20b8e6d457a5">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle"/>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="110" y="168" width="440" height="20" uuid="8b14c2b4-8128-407e-8321-42552cc0c00b"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{countryCustomer}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement x="110" y="260" width="440" height="20" uuid="4913a8f7-8af7-40fb-a721-b52b7eb7e42d">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{totalPayment}==null?"Rp. 0":"Rp. "+new java.text.DecimalFormat("#,###").format($F{totalPayment})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="0" width="310" height="20" uuid="664314e8-772a-4f81-b26b-81d6e6121ae6">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{nameReceipt}==null?"PAYMENT RECEIPT":$F{nameReceipt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="100" width="100" height="20" uuid="17f837ac-f686-4255-9733-f0b7a3cc0576">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{idLanguage}==0 ? "Reservation Code":"No.Reservasi"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="120" width="100" height="20" uuid="e6add961-3bd8-446f-8b66-8168f558565a">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{idLanguage}==0 ? "Name" :  "Nama"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="140" width="100" height="28" uuid="0805fc34-2496-47e1-9ef3-e44e2679049c">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Top">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{idLanguage}==0 ? "Address" : "Alamat"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="168" width="100" height="20" uuid="82357f46-cb84-4bbb-a1a7-f3c2a0e0487d">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{idLanguage}==0 ? "Country" : "Negara"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="188" width="100" height="20" uuid="b5eda165-00da-459f-9335-6ad296221782">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{idLanguage}==0 ? "Phone" : "Telepon"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="240" width="100" height="20" uuid="40c4b007-2d45-4223-9239-a9709faeabba">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{idLanguage}==0 ? "Bill Amount" : "Total Tagihan"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="260" width="100" height="20" uuid="93f8f57e-e210-417b-9021-3d3ae554b3f6">
+					<property name="com.jaspersoft.studio.unit.y" value="pixel"/>
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{idLanguage}==0 ? "Payment Amount" : "Total Bayar"]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement x="90" y="20" width="310" height="57" uuid="2035147d-f684-4de7-a9c6-c6976d8fda6d"/>
+				<connectionExpression><![CDATA[$P{REPORT_CONNECTION}]]></connectionExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "PrintHotelHeader.jasper"]]></subreportExpression>
+			</subreport>
+			<image>
+				<reportElement x="13" y="0" width="77" height="77" uuid="ef714990-0515-44a9-942f-2804a9090375"/>
+				<imageExpression><![CDATA[$P{logoImage}]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<summary>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement x="100" y="0" width="10" height="20" uuid="b1ae2f94-2b29-42b1-aef7-1ab5d6560500"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement x="110" y="0" width="440" height="20" uuid="e2a23419-bd0f-41e6-b767-cc93a9b46a27">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{totalChangeDue}==null?"Rp. 0":"Rp. "+new java.text.DecimalFormat("#,###").format($V{totalChangeDue})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="0" width="100" height="20" uuid="63498e20-2b4c-427a-b358-0ede503688d5">
+					<property name="com.jaspersoft.studio.unit.height" value="pixel"/>
+				</reportElement>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true" pdfFontName="Helvetica-Bold"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{idLanguage}==0 ? "Change Due" : "Kembalian"]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>
