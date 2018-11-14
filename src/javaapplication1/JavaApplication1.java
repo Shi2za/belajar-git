@@ -21,7 +21,7 @@ public class JavaApplication1 {
     public static void main(String[] args) {
         // TODO code application logic her
         String password = "Superadminin";
-        System.out.println("bbb");
+        System.out.println("bbb----");
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             md.update(password.getBytes(), 0, password.length());
